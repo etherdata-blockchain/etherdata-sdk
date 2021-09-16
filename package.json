@@ -17,8 +17,10 @@
     "typescript": "^4.4.3"
   },
   "standard-version": {
-    "scripts": {
-      "precommit": "node scripts/update-sdk-version.js"
-    }
+    "bumpFiles": [
+      "sdk-dist/typescript/package.json",
+      "sdk-dist/etd-react-ui/package.json",
+      "package.json"
+    ]
   }
 }
