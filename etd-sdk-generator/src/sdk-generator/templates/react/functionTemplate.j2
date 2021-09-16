@@ -1,0 +1,37 @@
+{{ functionComment }}
+export function {{ functionName | capitalize }}({ call }: Props){
+    const [values, setValues] = React.useState<any>()
+    const [errors, setErrors] = React.useState<any>()
+    
+    {{ functionBody | safe }}
+
+    return <Card className="form-item" variant="outlined">
+        {values && (
+        <Alert>
+          <div>{values}</div>
+        </Alert>
+      )}
+      {errors && (
+        <Alert severity='error'>
+          <div>{errors}</div>
+        </Alert>
+      )}
+        <Form schema={schema} onSubmit={async (v: any) => {
+        setErrors(undefined)
+        setValues(undefined)
+        try{
+            let result = await call({params: Object.values(v.formData as any), methodName: "{{rpcMethodName}}" })
+             if (typeof result === 'object') {
+             
+                setValues(JSON.stringify(result, undefined, 2))
+              
+            } else {
+              setValues(result ? result.toString() : 'ok')
+            }
+        } catch (err) {
+            setErrors(err ? err.toString(): "error")
+          }
+        }}
+        />
+    </Card>
+}

@@ -1,0 +1,16 @@
+{
+  "name": "etherdata-sdk",
+  "version": "1.2.0",
+  "main": "index.js",
+  "repository": "https://github.com/etherdata-blockchain/etherdata-sdk",
+  "author": "sirily11 <sirily1997@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "release": "standard-version",
+    "postrelease": "node scripts/update-sdk-version.js"
+  },
+  "dependencies": {
+    "prettier": "^2.4.1",
+    "standard-version": "^9.3.1"
+  }
+}

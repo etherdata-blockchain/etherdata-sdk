@@ -1,0 +1,63 @@
+{
+  "$id": "method",
+  "title": "JSON RPC",
+  "description": "A Json RPC Generator schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "API's title",
+      "description": "The title of the API. Will be used to generated file name"
+    },
+    "description": {
+      "type": "string",
+      "title": "API's description",
+      "description": "API's description. Will be used to generate Comment"
+    },
+    "functions": {
+      "type": "array",
+      "title": "API's functions",
+      "description": "List of functions",
+      "items": {
+        "type": "object",
+        "title": "Function",
+        "required": ["name", "description", "params", "returns", "rpc_method"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Function name",
+            "description": "Name of the function"
+          },
+          "description": {
+            "type": "string",
+            "title": "Function description",
+            "description": "Function description"
+          },
+          "rpc_method": {
+            "type": "string",
+            "title": "RPC method",
+            "description": "RPC method"
+          },
+          "params": {
+            "type": "array",
+            "title": "Function parameters",
+            "description": "List of parameters",
+            "items": {
+              "$ref": "./schemas/param.json"
+            }
+          },
+          "returns": {
+            "type": "array",
+            "title": "Function returns",
+            "description": "Function returns",
+            "requited": ["name", "type", "description"],
+            "items": {
+              "$ref": "./schemas/return.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["title", "description", "functions"]
+}

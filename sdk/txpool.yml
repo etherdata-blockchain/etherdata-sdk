@@ -1,0 +1,223 @@
+title: "txpool"
+description: "The txpool API gives you access to several non-standard RPC methods to inspect the contents of 
+              the transaction pool containing all the currently pending transactions as well as the ones queued 
+              for future processing."
+            
+functions:
+  - name: content
+    description: The content inspection property can be queried to list the exact details of all the 
+                 transactions currently pending for inclusion in the next block(s), as well as the ones that are 
+                 being scheduled for future execution only.
+
+                 The result is an object with two fields pending and queued. Each of these fields are 
+                 associative arrays, in which each entry maps an origin-address to a batch of scheduled 
+                 transactions. These batches themselves are maps associating nonces with actual transactions.
+
+                 Please note, there may be multiple transactions associated with the same account and nonce. 
+                 This can happen if the user broadcast mutliple ones with varying gas 
+                 allowances (or even complerely different transactions).
+    rpc_method: txpool_content
+    params: []
+    returns:
+      - name: transactionObject
+        description: The return transaction object
+        example: "no example"
+        type: object
+        objectType:
+          - name: pendingTransactions
+            description: The array of pending transactions
+            example: "example below"
+            type: array
+            arrayType: object
+            objectType:
+              - name: transaction
+                description: The object containing different fields
+                example: "example below"
+                type: array
+                arrayType: object
+                objectType:
+                  - name: blockHash
+                    description: The block hash of the transaction
+                    example: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                    type: string
+                  - name: blockNumber
+                    description: The block number of the transaction
+                    example: "NULL"
+                    type: number
+                  - name: from
+                    description: The from value of the transaction
+                    example: "0x0216d5032f356960cd3749c31ab34eeff21b3395"
+                    type: string
+                  - name: gas
+                    description: The gas value of the transaction
+                    example: "0x5208"
+                    type: string
+                  - name: gasPrice
+                    description: The gas price of the transaction
+                    example: "0xba43b7400"
+                    type: string
+                  - name: hash
+                    description: The hash of the transaction
+                    example: "0xaf953a2d01f55cfe080c0c94150a60105e8ac3d51153058a1f03dd239dd08586"
+                    type: string
+                  - name: input
+                    description: The input of the transaction
+                    example: "0x"
+                    type: string
+                  - name: nonce
+                    description: The nonce of the transaction
+                    example: "0x326"
+                    type: string
+                  - name: to
+                    description: The to of the transaction
+                    example: "0x7f69a91a3cf4be60020fb58b893b7cbb65376db8"
+                    type: string
+                  - name: transactionIndex
+                    description: The transaction index
+                    example: "null"
+                    type: "number"
+                  - name: value
+                    description: The value of the transaction
+                    example: "0x19a99f0cf456000"
+                    type: string
+
+          - name: queuedTransactions
+            description: The array of queued transactions
+            example: "example below"
+            type: array
+            arrayType: object
+            objectType:
+              - name: transaction
+                description: The object containing different fields
+                example: "example below"
+                type: array
+                arrayType: object
+                objectType:
+                  - name: blockHash
+                    description: The block hash of the transaction
+                    example: "0x0000000000000000000000000000000000000000000000000000000000000000"
+                    type: string
+                  - name: blockNumber
+                    description: The block number of the transaction
+                    example: "NULL"
+                    type: number
+                  - name: from
+                    description: The from value of the transaction
+                    example: "0x0216d5032f356960cd3749c31ab34eeff21b3395"
+                    type: string
+                  - name: gas
+                    description: The gas value of the transaction
+                    example: "0x5208"
+                    type: string
+                  - name: gasPrice
+                    description: The gas price of the transaction
+                    example: "0xba43b7400"
+                    type: string
+                  - name: hash
+                    description: The hash of the transaction
+                    example: "0xaf953a2d01f55cfe080c0c94150a60105e8ac3d51153058a1f03dd239dd08586"
+                    type: string
+                  - name: input
+                    description: The input of the transaction
+                    example: "0x"
+                    type: string
+                  - name: nonce
+                    description: The nonce of the transaction
+                    example: "0x326"
+                    type: string
+                  - name: to
+                    description: The to of the transaction
+                    example: "0x7f69a91a3cf4be60020fb58b893b7cbb65376db8"
+                    type: string
+                  - name: transactionIndex
+                    description: The transaction index
+                    example: "null"
+                    type: "number"
+                  - name: value
+                    description: The value of the transaction
+                    example: "0x19a99f0cf456000"
+                    type: string
+
+
+  - name: inspect
+    description: The inspect inspection property can be queried to list a textual summary of all the 
+                 transactions currently pending for inclusion in the next block(s), as well as the ones that are 
+                 being scheduled for future execution only. This is a method specifically tailored to developers 
+                 to quickly see the transactions in the pool and find any potential issues.
+
+                 The result is an object with two fields pending and queued. Each of these fields are 
+                 associative arrays, in which each entry maps an origin-address to a batch of scheduled 
+                 transactions. These batches themselves are maps associating nonces with transactions summary 
+                 strings.
+
+                 Please note, there may be multiple transactions associated with the same account and nonce. 
+                 This can happen if the user broadcast mutliple ones with varying gas 
+                 allowances (or even complerely different transactions).
+    rpc_method: txpool_inspect
+    params: []
+    returns:
+      - name: transactionObject
+        description: the return transcation object
+        example: "example below"
+        type: object
+        objectType:
+          - name: pendingTransactions
+            description: The array of pending transactions
+            example: "example below"
+            type: array
+            arrayType: object
+            objectType:
+              - name: transactionArray
+                description: A block with one or more transaction(s) # not sure
+                example: "example"
+                type: array
+                arrayType: object
+                objectType:
+                  - name: transaction # represented by transaction ID
+                    description: Each entry maps an origin-address to a batch of scheduled transactions.
+                    example: "0x3375ee30428b2a71c428afa5e89e427905f95f7e: 0 wei + 500000 × 20000000000 wei"
+                    type: string
+          - name: queuedTransactions
+            description: The array of queued transactions
+            example: "example below"
+            type: array
+            arrayType: object
+            objectType:
+              - name: transactionArray
+                description: A block with one or more transaction(s) # not sure
+                example: "example"
+                type: array
+                arrayType: object
+                objectType:
+                  - name: transaction # represented by transaction ID
+                    description: Each entry maps an origin-address to a batch of scheduled transactions.
+                    example: "0x3375ee30428b2a71c428afa5e89e427905f95f7e: 0 wei + 500000 × 20000000000 wei"
+                    type: string
+
+
+  - name: status
+    description: The status inspection property can be queried for the number of transactions currently pending 
+                 for inclusion in the next block(s), as well as the ones that are being scheduled for future 
+                 execution only.
+
+                 The result is an object with two fields pending and queued, each of which is a counter 
+                 representing the number of transactions in that particular state. 
+    rpc_method: txpool_status
+    params: []
+    returns:
+      - name: statusObject
+        description: An object containing transaction status
+        example: ""
+        type: object
+        objectType:
+          - name: pending
+            description: The number of transactions currently pending for inclusion in the next block(s)
+            example: "10"
+            type: number
+          - name: queued
+            description: The transaction that is being scheduled for future execution
+            example: "7"
+            type: number
+
+
+  

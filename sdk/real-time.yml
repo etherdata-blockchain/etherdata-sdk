@@ -1,0 +1,215 @@
+title: "real_time"
+description: "Getd v1.4 and later support publish / subscribe using JSON-RPC notifications. 
+              This allows clients to wait for events instead of polling for them.
+
+              It works by subscribing to particular events. The node will return a subscription id. 
+              For each event that matches the subscription a notification with relevant data is send toGetder 
+              with the subscription id.
+
+              Considerations
+              1. Notifications are sent for current events and not for past events. If your use case requires 
+                 you not to miss any notifications than subscriptions are probably not the best option.
+              2. Subscriptions require a full duplex connection. Getd offers such connections in the form of 
+                 WebSocket and IPC (enabled by default).
+              3. Subscriptions are coupled to a connection. If the connection is closed all subscriptions that 
+                 are created over this connection are removed.
+              4. Notifications are stored in an internal buffer and sent from this buffer to the client. If the 
+                 client is unable to keep up and the number of buffered notifications reaches a 
+                 limit (currently 10k) the connection is closed. Keep in mind that subscribing to some events 
+                 can cause a flood of notifications, e.g. listening for all logs/blocks when the node starts to 
+                 synchronize."
+
+
+functions:
+  - name: createSubscription
+    description: Subscriptions are created with a regular RPC call with etd_subscribe as method and the 
+                 subscription name as first parameter. If successful it returns the subscription id.
+    rpc_method: real-time_createSubscription
+    params:
+      - name: subscriptionName
+        description: The subscription name
+        example: "newHeads"
+        type: string
+        optional: false
+      - name: aaaaa # need more information for this
+        description: "" 
+        example: ""
+        type: any
+        optional: true 
+    returns:
+      - name: subscriptionID
+        description: The subscription ID
+        example: "0x9cef478923ff08bf67fde6c64013158d"
+        type: string
+
+
+  - name: cancelSubscription
+    description: Subscriptions are cancelled with a regular RPC call with etd_unsubscribe as method and the 
+                 subscription id as first parameter. It returns a bool indicating if the subscription was 
+                 cancelled successful.
+    rpc_method: real-time_cancelSubscription
+    params:
+      - name: subscriptionID
+        description: The subscription ID
+        example: "0x9cef478923ff08bf67fde6c64013158d"
+        type: string
+        optional: false
+    returns:
+      - name: cancelled
+        description: Indicating if the subscription was cancelled successful.
+        example: "true"
+        type: boolean
+
+
+  - name: supportedSubscriptions
+    description: newHeads
+                 -Fires a notification each time a new header is appended to the chain, including chain 
+                  reorganizations. Users can use the bloom filter to determine if the block contains logs that 
+                  are interested to them.
+                 -In case of a chain reorganization the subscription will emit all new headers for the new chain. 
+                  Therefore the subscription can emit multiple headers on the same height.
+
+                 logs
+                 -Returns logs that are included in new imported blocks and match the given filter criteria.
+                 -In case of a chain reorganization previous sent logs that are on the old chain will be resend 
+                  with the removed property set to true. Logs from transactions that ended up in the new chain 
+                  are emitted. Therefore a subscription can emit logs for the same transaction multiple times.
+
+    rpc_method: real-time_supportedSubscriptions
+    params:
+      - name: subscriptionObject
+        description: The object containing different opotional transcation fields
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: address
+            description: Either an address or an array of addresses. 
+                         Only logs that are created from these addresses are returned (optional)
+            example: "[0x8320fe7702b96808f7bbc0d4a888ed1468216cfd]"
+            type: array
+            optional: true
+            arrayType: string
+          - name: topics
+            description: Only logs which match the specified topics
+            example: '["0xd78a0cb8bb633d06981248b816e7bd33c2a35a6089241d099fa519e361cab902"]'
+            type: array
+            optional: true
+            arrayType: string
+    returns:
+      - name: outputObject
+        description: The return Object of the function
+        example: ""
+        type: object
+        objectType:
+          - name: address
+            description: The transaction address
+            example: "0x8320fe7702b96808f7bbc0d4a888ed1468216cfd"
+            type: string
+          - name: blockHash
+            description: The transaction block hash
+            example: "0x61cdb2a09ab99abf791d474f20c2ea89bf8de2923a2d42bb49944c8c993cbf04"
+            type: string
+          - name: blockNumber
+            description: The transaction block number
+            example: "0x29e87"
+            type: string
+          - name: data
+            description: The transaction data
+            example: "0x00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000003"
+            type: string
+          - name: logIndex
+            description: The transaction log index
+            example: "0x0"
+            type: string
+          - name: topics
+            description: The transaction topic(s)
+            example: "[0xd78a0cb8bb633d06981248b816e7bd33c2a35a6089241d099fa519e361cab902]"
+            type: array
+            arrayType: string
+          - name: transactionHash
+            description: The transaction hash
+            example: "0xe044554a0a55067caafd07f8020ab9f2af60bdfe337e395ecd84b4877a3d1ab4"
+            type: string
+          - name: transactionIndex
+            description: The transaction index
+            example: "0x0"
+            type: string
+
+
+  - name: newPendingTransactions
+    description: Returns the hash for all transactions that are added to the pending state and are signed 
+                 with a key that is available in the node.
+                 Tansaction that was previously part of the canonical chain isn’t part of the new canonical 
+                 chain after a reogranization its again emitted.
+    rpc_method: real-time_newPendingTransactions
+    params: []
+    returns:
+      - name: hash 
+        description: The hash for all transactions
+        example: "0xc3b33aa549fb9a60e95d21862596617c"
+        type: string
+      - name: transcation
+        description: The transaction
+        example: ""
+        type: object
+        objectType:
+          - name: jsonrpc
+            description: The jsonrpc version # not sure
+            example: "2.0"
+            type: string
+          - name: method
+            description: The subscription method 
+            example: "etd_subscription"
+            type: string
+          - name: params
+            description: The parameters regarding the subscription
+            example: ""
+            type: object
+            objectType:
+              - name: subscription
+                description: The subscription ID
+                example: "0xc3b33aa549fb9a60e95d21862596617c"
+                type: string
+              - name: result
+                description: The result address # not sure
+                example: "0xd6fdc5cc41a9959e922f30cb772a9aef46f4daea279307bc5f7024edc4ccd7fa"
+                type: string
+
+
+  - name: syncing
+    description: Indicates when the node starts or stops synchronizing. The result can either be a 
+                 boolean indicating that the synchronization has started (true), finished (false) or 
+                 an object with various progress indicators.
+    rpc_method: real-time_syncing
+    params: []
+    returns: # either one of the return
+      - name: synchronized
+        description: Indicating that the synchronization has started (true) or finished (false)
+        example: "true"
+        type: boolean
+      - name: status
+        description: An object with various progress indicators regarding the synchronization
+        example: ""
+        type: object
+        objectType:
+          - name: startingBlock
+            description: The starting block number
+            example: "674427"
+            type: number
+          - name: currentBlock
+            description: The current block number
+            example: "67400"
+            type: number
+          - name: highestBlock
+            description: The highest block number
+            example: "674432"
+            type: number
+          - name: pulledStates
+            description: The pulled states
+            example: "0"
+            type: number
+          - name: knownStates
+            description: The known states
+            example: "0"
+            type: number

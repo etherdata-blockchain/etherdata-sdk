@@ -1,0 +1,152 @@
+title: "etd"
+description: "Getd provides several extensions to the standard etd JSON-RPC namespace."
+
+functions:
+  - name: subscribe
+    description: This method is used for real-time events through subscriptions.
+      See the subscription documentation for more information.
+    rpc_method: eth_subscribe
+    params: []
+    returns: []
+
+  - name: unsubscribe
+    description: This method is used for real-time events through subscriptions.
+      See the subscription documentation for more information.
+    rpc_method: eth_unsubscribe
+    params: []
+    returns: []
+  # - name: call
+  #   description:
+  #     The method takes 3 parameters, an unsigned transaction object to execute in read-only mode;
+  #     the block number to execute the call against;
+  #     and an optional state override-set to allow executing the call against a modified chain state.
+  #     #"Simple Example", "Override Example" parts are not added
+  #   rpc_method: eth_call
+  #   params:
+  #     - name: object
+  #       description:
+  #         Transaction call object The transaction call object is mandatory and contains all the necessary parameters to
+  #         execute a read-only EVM contract method.
+  #       example: '{
+  #         "from": "0xd9c9cd5f6779558b6e0ed4e6acf6b1947e7fa1f3",
+  #         "to":   "0xebe8efa441b9302a0d7eaecc277c09d20d684540",
+  #         "gas":  "0x1bd7c",
+  #         "data": "0xd459fc46000000000000000000000000000000000000000000000000000000000046c650dbb5e8cb2bac4d2ed0b1e6475d37361157738801c494ca482f96527eb48f9eec488c2eba92d31baeccfb6968fad5c21a3df93181b43b4cf253b4d572b64172ef000000000000000000000000000000000000000000000000000000000000008c00000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001c000000000000000000000000000000000000000000000000000000000000001c0000000000000000000000000000000000000000000000000000000000000002b85c0c828d7a98633b4e1b65eac0c017502da909420aeade9a280675013df36bdc71cffdf420cef3d24ba4b3f9b980bfbb26bd5e2dcf7795b3519a3fd22ffbb2000000000000000000000000000000000000000000000000000000000000000238fb6606dc2b5e42d00c653372c153da8560de77bd9afaba94b4ab6e4aa11d565d858c761320dbf23a94018d843772349bd9d92301b0ca9ca983a22d86a70628",
+  #         }'
+  #       type: object
+  #       optional: false
+  #       objectType:
+  #         - name: from
+  #           description: 20 Bytes
+  #             Address the transaction is simulated to have been sent from.
+  #             Defaults to first account in the local keystore or the 0x00..0 address if no local accounts are available.
+  #           example: "0xd9c9cd5f6779558b6e0ed4e6acf6b1947e7fa1f3"
+  #           type: any # "Address" type
+  #           optional: true
+  #         - name: to
+  #           description: 20 Bytes
+  #             Address the transaction is sent to.
+  #           example: "0xebe8efa441b9302a0d7eaecc277c09d20d684540"
+  #           type: any # "Address" type
+  #           optional: false
+  #         - name: gas
+  #           description: <8 Bytes
+  #             Maximum gas allowance for the code execution to avoid infinite loops.
+  #             Defaults to 2^63 or whatever value the node operator specified via --rpc.gascap.
+  #           example: "0x1bd7c"
+  #           type: any # "Quality" type
+  #           optional: true
+  #         - name: gasprice
+  #           description: <32 Bytes
+  #             Number of wei to simulate paying for each unit of gas during execution. Defaults to 1 gwei.
+  #           example: "123456780"
+  #           type: any # "Quality" type
+  #           optional: true
+  #         - name: value
+  #           description: less than 32 Bytes
+  #             Amount of wei to simulate sending along with the transaction. Defaults to 0.
+  #           example: ""
+  #           type: any # "Quality" type
+  #           optional: true
+  #         - name: data
+  #           description: any Bytes
+  #             Binary data to send to the target contract. Generally the 4 byte hash of the method signature followed by the
+  #             ABI encoded parameters. For details please see Ethereum Contract ABI.
+  #           example: "0xd459fc46000000000000000000000000000000000000000000000000000000000046c650dbb5e8cb2bac4d2ed0b1e6475d37361157738801c494ca482f96527eb48f9eec488c2eba92d31baeccfb6968fad5c21a3df93181b43b4cf253b4d572b64172ef000000000000000000000000000000000000000000000000000000000000008c00000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001c000000000000000000000000000000000000000000000000000000000000001c0000000000000000000000000000000000000000000000000000000000000002b85c0c828d7a98633b4e1b65eac0c017502da909420aeade9a280675013df36bdc71cffdf420cef3d24ba4b3f9b980bfbb26bd5e2dcf7795b3519a3fd22ffbb2000000000000000000000000000000000000000000000000000000000000000238fb6606dc2b5e42d00c653372c153da8560de77bd9afaba94b4ab6e4aa11d565d858c761320dbf23a94018d843772349bd9d92301b0ca9ca983a22d86a70628"
+  #           type: any # "Binary" type
+  #           optional: true
+  #     - name: Quantity
+  #       description:
+  #         Block number or the string latest or pending The block number is mandatory and defines the context (state) against
+  #         which the specified transaction should be executed. It is not possible to execute calls against reorged blocks;
+  #         or blocks older than 128 (unless the node is an archive node).
+  #       example: ""
+  #       type: number
+  #       optional: false
+  #     - name: State
+  #       description:
+  #         State override set The state override set is an optional address-to-state mapping,
+  #         where each entry specifies some state to be ephemerally overridden prior to executing the call
+  #         The goal of the state override set is manyfold
+  #         -It can be used by DApps to reduce the amount of contract code needed to be deployed on chain. Code that simply
+  #         returns internal state or does pre-defined validations can be kept off chain and fed to the node on-demand.
+  #         -It can be used for smart contract analysis by extending the code deployed on chain with custom methods and
+  #         invoking them. This avoids having to download and reconstruct the entire state in a sandbox to run custom code against.
+  #         -It can be used to debug smart contracts in an already deployed large suite of contracts by selectively overriding
+  #         some code or state and seeing how execution changes. Specialized tooling will probably be necessary.
+  #       example: '{
+  #         "0xd9c9cd5f6779558b6e0ed4e6acf6b1947e7fa1f3": {
+  #         "balance": "0xde0b6b3a7640000"
+  #         },
+  #         "0xebe8efa441b9302a0d7eaecc277c09d20d684540": {
+  #         "code": "0x...",
+  #         "state": {
+  #         ""
+  #         }
+  #         }
+  #         }'
+  #       type: object
+  #       optional: true
+  #       objectType:
+  #         - name: balance
+  #           description: <32 Bytes. Fake balance to set for the account before executing the call.
+  #           example: ""
+  #           type: any # "Quantity" type
+  #           optional: true
+  #         - name: nonce
+  #           description: <8 Bytes. Fake nonce to set for the account before executing the call.
+  #           example: ""
+  #           type: any # "Quantity" type
+  #           optional: true
+  #         - name: code
+  #           description: Any Bytes. Fake EVM bytecode to inject into the account before executing the call.
+  #           example: ""
+  #           type: any # "Binary" type
+  #           optional: true
+  #         - name: state
+  #           description: Any Bytes. Fake key-value mapping to override all slots in the account storage before executing the call.
+  #           example: ""
+  #           type: object
+  #           optional: true
+  #           objectType: # Don't know about the details
+  #             - name: ""
+  #               description: ""
+  #               example: ""
+  #               type: any
+  #               optional: true
+  #         - name: stateDiff
+  #           description: Any Bytes. Fake key-value mapping to override individual slots in the account storage before executing the call.
+  #           example: ""
+  #           type: object
+  #           optional: true
+  #           objectType: # Don't know about the details
+  #             - name: ""
+  #               description: ""
+  #               example: ""
+  #               type: any
+  #               optional: true
+  #   returns:
+  #     - name: returnValue
+  #       description: The method returns a single Binary consisting the return value of the executed contract call.
+  #       example: ""
+  #       type: any # "Binary" type

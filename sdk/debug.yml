@@ -1,0 +1,589 @@
+title: "debug"
+description:
+  "The debug API gives you access to several non-standard RPC methods,
+  which will allow you to inspect, debug and set certain debugging flags during runtime."
+
+functions:
+  - name: backtraceAt
+    description:
+      Sets the logging backtrace location. When a backtrace location is set and a log message is
+      emitted at that location, the stack of the goroutine executing the log statement will be
+      printed to stderr.
+      The location is specified as <filename>:<line>.
+    rpc_method: debug_backtraceAt
+    params:
+      - name: locationJavascript_based
+        description: The logging backtrace location, which is specified as <filename>:<line>.
+        example: "server.go:443"
+        type: any # need change
+        optional: false
+    returns: []
+
+  - name: blockProfile
+    description:
+      Turns on block profiling for the given duration and writes profile data to disk.
+      It uses a profile rate of 1 for most accurate information.
+      If a different rate is desired, set the rate and write the profile manually using debug_writeBlockProfile.
+    rpc_method: debug_blockProfile
+    params: []
+    returns: []
+
+  - name: cpuProfile
+    description: Turns on CPU profiling for the given duration and writes profile data to disk.
+    rpc_method: debug_cpuProfile
+    params: []
+    returns: []
+
+  - name: dumpBlock
+    description:
+      Retrieves the state that corresponds to the block number and returns a list of accounts
+      (including storage and code).
+    rpc_method: debug_dumpBlock
+    params:
+      - name: blockNum
+        description: The block number
+        example: "10"
+        type: number
+        optional: false
+    returns:
+      - name: blockDetails
+        description: The block number and list of accounts
+        example: ""
+        type: object
+        objectType:
+          - name: accounts
+            description: The list accounts
+            example: ""
+            type: array
+            arrayType: object
+            objectType:
+              - name: balance
+                description: The balance of the account
+                example: "49358640978154672"
+                type: string
+              - name: code
+                description: The code of the account # don't know what is this(?)
+                example: ""
+                type: string
+              - name: codeHash
+                description: The code hash of the account
+                example: "c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
+                type: string
+              - name: nonce
+                description: The nonce of the account
+                example: "2"
+                type: number
+              - name: root
+                description: The root of the account
+                example: "56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+                type: string
+              - name: storage
+                description: The storage of the account
+                example: ""
+                type: array
+                arrayType: any # not provided
+          - name: root
+            description: The root of the block
+            example: "19f4ed94e188dd9c7eb04226bd240fa6b449401a6c656d6d2816a87ccaf206f1"
+            type: string
+
+  - name: gcStats
+    description: Returns GC statistics.
+      See https://golang.org/pkg/runtime/debug/#GCStats for information about the fields of the returned object.
+    rpc_method: debug_gcStats
+    params: []
+    returns: []
+
+  - name: getBlockRlp
+    description: Retrieves and returns the RLP encoded block by number.
+      References -> RLP
+    rpc_method: debug_getBlockRlp
+    params: []
+    returns: []
+
+  - name: goTrace
+    description: Turns on Go runtime tracing for the given duration and writes trace data to disk.
+    rpc_method: debug_goTrace
+    params: []
+    returns: []
+
+  - name: memStats
+    description: Returns detailed runtime memory statistics.
+      See https://golang.org/pkg/runtime/#MemStats for information about the fields of the returned object.
+    rpc_method: debug_memStats
+    params: []
+    returns: []
+
+  - name: seedHash
+    description: Fetches and retrieves the seed hash of the block by number
+    rpc_method: dubug_seedHash
+    params: []
+    returns: []
+
+  - name: setHead
+    description:
+      Sets the current head of the local chain by block number. Note, this is a destructive action and may severely damage your chain. Use with extreme caution.
+      References -> Ethash
+    rpc_method: debug_setHead
+    params: []
+    returns: []
+
+  - name: setBlockProfileRate
+    description: Sets the rate (in samples/sec) of goroutine block profile data collection. A non-zero rate enables block profiling, setting it to zero stops the profile. Collected profile data can be written using debug_writeBlockProfile.
+    rpc_method: debug_setBlockProfileRate
+    params: # docs does not have example
+      - name: rate
+        description: The rate (in samples/sec) of goroutine block profile data collection
+        example: "1"
+        type: number
+        optional: false
+    returns: []
+
+  - name: stacks
+    description: Returns a printed representation of the stacks of all goroutines. Note that the web3 wrapper for this method takes care of the printing and does not return the string.
+    rpc_method: debug_stacks
+    params: []
+    returns: # docs has no example
+      - name: printedStacks
+        description: A printed representation of the stacks of all goroutines
+        example: ""
+        type: any
+
+  - name: startCPUProfile
+    description: Turns on CPU profiling indefinitely, writing to the given file.
+    rpc_method: debug_startCPUProfile
+    params: []
+    returns: []
+
+  - name: startGoTrace
+    description: Starts writing a Go runtime trace to the given file.
+    rpc_method: debug_startGoTrace
+    params: []
+    returns: []
+
+  - name: stopCPUProfile
+    description: Stops an ongoing CPU profile.
+    rpc_method: debug_stopCPUProfile
+    params: []
+    returns: []
+
+  - name: stopGoTrace
+    description: Stops writing the Go runtime trace.
+    rpc_method: debug_stopGoTrace
+    params: []
+    returns: []
+
+  - name: traceBlock
+    description:
+      The traceBlock method will return a full stack trace of all invoked opcodes of all transaction that were included in this block. Note, the parent of this block must be present or it will fail.
+      References -> RLP
+    rpc_method: debug_traceBlock
+    params:
+      - name: blockName
+        description: The name of the traced block
+        example: "0xblock_rlp"
+        type: string
+        optional: false
+    returns:
+      - name: blcok
+        description: The stack trace of transcation of the block
+        example: ""
+        type: object
+        objectType:
+          - name: gas
+            description: The gas value
+            example: 85301""
+            type: number
+          - name: returnValue
+            description: The return value
+            example: ""
+            type: string
+          - name: strucrtLogs
+            description: The transaction logs
+            example: ""
+            type: array
+            arrayType: object
+            objectType:
+              - name: depth
+                description: The depth of transcation
+                example: "1"
+                type: number
+              - name: error
+                description: Shows error message(s) (if any)
+                example: ""
+                type: string
+              - name: gas
+                description: The gas of the transaction
+                example: "162106"
+                type: number
+              - name: gasCost
+                description: The gas cost
+                example: "1"
+                type: number
+              - name: memory
+                description: Memory list of the transaction
+                example: ""
+                type: array
+                arrayType: string
+              - name: op
+                description: The op command # need change(?)
+                example: "STOP"
+                type: string
+              - name: pc
+                description: The pc # need change(?)
+                example: "120"
+                type: number
+              - name: stackArray
+                description: The stack array # need change(?)
+                example: ""
+                type: array
+                arrayType: string
+              - name: storage
+                description: The storage of the block
+                example: ""
+                type: object
+                objectType:
+                  - name: storage
+                    description: The storage object
+                    example: ""
+                    type: array
+                    arrayType: object
+                    objectType:
+                      - name: storageName # presented by numbers
+                        description: The storage address # need change (?)
+                        example: "8241fa522772837f0d05511f20caa6da1d5a3209000000000000000400000001"
+                        type: string
+
+  - name: traceBlockByNumber
+    description:
+      Similar to debug_traceBlock,traceBlockByNumber accepts a block number and will replay the block that is already present in the database.
+      References -> RLP
+    rpc_method: debug_traceBlockByNumber
+    params:
+      - name: blockNum
+        description: A block number of a traced block
+        example: ""
+        type: string
+        optional: false
+    returns:
+      - name: block
+        description: Replaying the block that is already present in the database
+        example: ""
+        type: any # "similar to debug_traceBlock"
+
+  - name: traceBlockByHash
+    description:
+      Similar to debug_traceBlock,traceBlockByHash accepts a block hash and will replay the block that is already present in the database.
+      References -> RLP
+    rpc_method: debug_traceBlockByHash
+    params:
+      - name: blockHash
+        description: A block hash of a traced block
+        example: ""
+        type: string
+        optional: false
+    returns:
+      - name: block
+        description: Replaying the block that is already present in the database
+        example: ""
+        type: any # "similar to debug_traceBlock"
+
+  - name: traceBlockFromFile
+    description:
+      Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block.
+      References -> RLP
+    rpc_method: debug_traceBlockByHash
+    params:
+      - name: file
+        description: A file containing the RLP of the block
+        example: ""
+        type: any # file type?
+        optional: false
+    returns:
+      - name: block
+        description: Replaying the block that is already present in the database
+        example: ""
+        type: any # "similar to debug_traceBlock"
+
+  - name: standardTraceBlockToFile # Not sure if I do this part correctly
+    description:
+      When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that
+      could stream results back via a subscription channel. This method works a bit differently. (For full details, see PR)
+
+      -It streams output to disk during the execution, to not blow up the memory usage on the node
+      -It uses jsonl as output format (to allow streaming)
+      -Uses a cross-client standardized output, so called ‘standard json'
+      ~Uses op for string-representation of opcode, instead of op/opName for numeric/string, and other simlar small differences.
+      ~has refund
+      ~Represents memory as a contiguous chunk of data, as opposed to a list of 32 byte segments like debug_traceTransaction
+
+      This means that this method is only ‘useful’ for callers who control the node – at least sufficiently to be able to
+      read the artefacts from the filesystem after the fact.
+    rpc_method: debug_standardTraceBlockToFile
+    params:
+      - name: block
+        description: The block
+        example: "0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63"
+        type: string
+        optional: false
+      - name: txHash
+        description: txHash
+        example: "0x4049f61ffbb0747bb88dc1c85dd6686ebf225a3c10c282c45a8e0c644739f7e9"
+        type: string
+        optional: true
+      - name: disableMemory
+        description: disableMemory
+        example: "true"
+        type: boolean
+        optional: true
+    returns:
+      - name: output
+        description: output
+
+          'The method can be used to dump a certain transaction out of a given block
+          > debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {txHash:"0x4049f61ffbb0747bb88dc1c85dd6686ebf225a3c10c282c45a8e0c644739f7e9", disableMemory:true})
+          ["/tmp/block_0x0bbe9f14-14-0x4049f61f-099048234"]
+
+          Or all txs from a block
+          > debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {disableMemory:true})
+          ["/tmp/block_0x0bbe9f14-0-0xb4502ea7-409046657", "/tmp/block_0x0bbe9f14-1-0xe839be8f-954614764",...]
+
+          Files are created in a temp-location, with the naming standard block_<blockhash:4>-<txindex>-<txhash:4>-<random suffix>. Each opcode immediately streams to file, with no in-Getd buffering aside from whatever buffering the os normally does.
+
+          On the server side, it also adds some more info when regenerating historical state, namely, the reexec-number if required historical state is not avaiable is encountered, so a user can experiment with increasing that setting. It also prints out the remaining block until it reaches target
+
+          The options is as follows
+          type StdTraceConfig struct {
+          *vm.LogConfig
+          Reexec *uint64
+          TxHash *common.Hash
+          } '
+        example: ""
+        type: array
+        arrayType: string
+
+  - name: standardTraceBadBlockToFile
+    description: This method is similar to debug_standardTraceBlockToFile, but can be used to obtain info about a block which has been rejected as invalid (for some reason).
+    rpc_method: debug_standardTraceBadBlockToFile
+    params: []
+    returns: []
+
+  - name: traceTransaction
+    description:
+      "OBS In most scenarios, debug.standardTraceBlockToFile is better suited for tracing!
+      The traceTransaction debugging method will attempt to run the transaction in the exact same
+      manner as it was executed on the network. It will replay any transaction that may have been
+      executed prior to this one before it will finally attempt to execute the transaction that
+      corresponds to the given hash.
+
+      In addition to the hash of the transaction you may give it a secondary optional argument,
+      which specifies the options for this specific call. The possible options are
+
+      disableStorage: BOOL.   Setting this to true will disable storage capture (default = false).
+      disableMemory:  BOOL.   Setting this to true will disable memory capture (default = false).
+      disableStack:   BOOL.   Setting this to true will disable stack capture (default = false).
+      tracer:         STRING. Setting this will enable JavaScript-based transaction tracing, described below.
+      If set, the previous four arguments will be ignored.
+      timeout:        STRING. Overrides the default timeout of 5 seconds for JavaScript-based tracing calls.
+      Valid values are described here."
+    rpc_method: debug_traceTransaction
+    params:
+      - name: hash
+        description: The hash of the transaction
+        example: "0x2059dd53ecac9827faad14d364f9e04b1d5fe5b506e3acc886eff7a6f88a696a"
+        type: string
+        optional: false
+      - name: disableStorage
+        description: Setting this to true will disable storage capture (default = false).
+        example: "true"
+        type: boolean
+        optional: true
+      - name: disableMemory
+        description: Setting this to true will disable memory capture (default = false).
+        example: "true"
+        type: boolean
+        optional: true
+      - name: disableStack
+        description: Setting this to true will disable stack capture (default = false).
+        example: "true"
+        type: boolean
+        optional: true
+      - name: tracer
+        description: Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.
+        example: ""
+        type: string
+        optional: true
+      - name: timeout
+        description: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
+        example: ""
+        type: string
+        optional: true
+    returns:
+      - name: transaction
+        description: The stack trace of transcation of the block
+        example: ""
+        type: object
+        objectType:
+          - name: gas
+            description: The gas value
+            example: 85301""
+            type: number
+          - name: returnValue
+            description: The return value
+            example: ""
+            type: string
+          - name: strucrtLogs
+            description: The transaction logs
+            example: ""
+            type: array
+            arrayType: object
+            objectType:
+              - name: depth
+                description: The depth of transcation
+                example: "1"
+                type: number
+              - name: error
+                description: Shows error message(s) (if any)
+                example: ""
+                type: string
+              - name: gas
+                description: The gas of the transaction
+                example: "162106"
+                type: number
+              - name: gasCost
+                description: The gas cost
+                example: "3"
+                type: number
+              - name: memory
+                description: Memory list of the transaction
+                example: ""
+                type: array
+                arrayType: string
+              - name: op
+                description: The op command # need change(?)
+                example: "PUSH1"
+                type: string
+              - name: pc
+                description: The pc # need change(?)
+                example: "120"
+                type: number
+              - name: stackArray
+                description: The stack array # need change(?)
+                example: ""
+                type: array
+                arrayType: string
+              - name: storage
+                description: The storage of the block
+                example: ""
+                type: object
+                objectType:
+                  - name: storage
+                    description: The storage object
+                    example: ""
+                    type: array
+                    arrayType: string
+
+  - name: JavaScriptBasedTracing
+    description: "Javascript"
+    rpc_method: JavaScript-based tracing
+    params: []
+    returns: []
+
+  - name: traceCall
+    description:
+      "The debug_traceCall method lets you run an eth_call on top of a given block.
+      The block can be specified either by hash or by number. It takes the same input object as a
+      eth_call. It returns the same output as debug_traceTransaction. A tracer can be specified as a
+      third argument, similar to debug_traceTransaction.
+
+      Object - The transaction call object
+
+      from:     DATA, 20 Bytes - (optional) The address the transaction is sent from.
+      to:       DATA, 20 Bytes -            The address the transaction is directed to.
+      gas:      QUANTITY       - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+      gasPrice: QUANTITY       - (optional) Integer of the gasPrice used for each paid gas
+      value:    QUANTITY       - (optional) Integer of the value sent with this transaction
+      data:     DATA           - (optional) Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation"
+    rpc_method: debug_traceCall
+    params:
+      - name: to
+        description: The address the transaction is directed to.
+        example: "0xde929f939d939d393f939393f93939f393929023"
+        type: string
+        optional: false
+      - name: from
+        description: The address the transaction is sent from.
+        example: "0xdeadbeef292929291929394949595949339292929"
+        type: string
+        optional: true
+      - name: gas
+        description: Integer of the gasPrice used for each paid gas
+        example: "0x7a120"
+        type: string
+        optional: true
+      - name: gasPrice
+        description: Integer of the gasPrice used for each paid gas
+        example: "1"
+        type: number
+        optional: true
+      - name: value
+        description: Integer of the value sent with this transaction
+        example: ""
+        type: number
+        optional: true
+      - name: data
+        description: Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
+        example: "0xf00d4b5d00000000000000000000000001291230982139282304923482304912923823920000000000000000000000001293123098123928310239129839291010293810"
+        type: string
+        optional: true
+    returns:
+      - name: transaction
+        description: Same output as debug_traceTransaction # "Crul example" not shown
+        example: ""
+        type: any # need change
+
+  - name: verbosity
+    description:
+      Sets the logging verbosity ceiling. Log messages with level up to and including the given level will be printed.
+      The verbosity of individual packages and source files can be raised using debug_vmodule.
+    rpc_method: debug_verbosity
+    params: []
+    returns:
+      - name: message
+        description: Log messages with level up to and including the given level will be printed.
+        example: ""
+        type: any # log message
+
+  - name: vmodule
+    description: Sets the logging verbosity pattern.
+    rpc_method: debug_vmodule
+    params:
+      - name: messageRestrictions
+        description:
+          'If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd/*=6"
+          If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6"
+          If you want to see log messages from a particular source file, use:                                  "server.go=6"
+          You can compose these basic patterns. If you want to see all output from peer.go in a package below
+          etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level < = 5, use:    "etd peer.go=6,p2p=5" '
+        example: "etd/*=6"
+        type: string
+        optional: false
+    returns:
+      - name: message
+        description: ""
+        example: ""
+        type: string
+
+  - name: writeBlockProfile
+    description: Writes a goroutine blocking profile to the given file.
+    rpc_method: debug_writeBlockProfile
+    params: []
+    returns: []
+
+  - name: writeMemProfile
+    description:
+      Writes an allocation profile to the given file. Note that the profiling rate cannot be set
+      through the API, it must be set on the command line using the --pprof.memprofilerate flag.
+    rpc_method: debug_writeMenProfile
+    params: []
+    returns: []

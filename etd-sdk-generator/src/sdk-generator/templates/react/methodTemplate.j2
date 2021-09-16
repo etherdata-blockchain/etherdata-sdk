@@ -1,0 +1,53 @@
+//@ts-ignore
+import Form from '@rjsf/material-ui'
+import React from "react"
+import { Alert } from '@material-ui/lab'
+import { Card } from '@material-ui/core'
+import { RequestManager, HTTPTransport, Client } from '@open-rpc/client-js'
+
+type CallParam = {
+  methodName: string
+  params: string[]
+}
+
+interface Props {
+  call(callParam: CallParam): Promise<any>
+}
+
+interface MethodProps {
+  host?: string
+  port?: string
+  call?(callParam: CallParam): Promise<any>
+}
+
+
+{%- for function in functions %}
+{{ function[1] | safe }}
+{% endfor %}
+
+{{ methodComment }}
+export function {{ methodName }}({ call, host, port }: MethodProps) {
+
+ const callRPC = React.useCallback(
+    async (param: CallParam) => {
+      if (call !== undefined) {
+        return await call(param)
+      }
+      const transport = new HTTPTransport(`${host}:${port}`)
+      const client = new Client(new RequestManager([transport]))
+      return await client.request({
+        method: param.methodName,
+        params: param.params
+      })
+    },
+    [host, port, call]
+  )
+
+    return (
+        <div>
+             {%- for function in functions %}
+            <{{ function[0] | safe | capitalize }} call={callRPC}/>
+            {% endfor %}
+        </div>
+    )
+}

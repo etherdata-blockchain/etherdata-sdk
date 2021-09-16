@@ -1,0 +1,199 @@
+title: "personal"
+description: "The personal API manages private keys in the key store."
+
+functions:
+  - name: importRawKey
+    description: Imports the given unencrypted private key (hex string) into the key store, encrypting it with 
+                 the passphrase.
+                 Returns the address of the new account.
+    rpc_method: personal_importRawKey
+    params:
+      - name: priveteKey
+        description: An unencrypted private key (hex string)
+        example: ""
+        type: string
+        optional: false
+    returns:
+      - name: accountAddress
+        description: The address of the new account.
+        example: ""
+        type: string
+
+
+  - name: listAccounts
+    description: Returns all the Ethereum account addresses of all keys in the key store.
+    rpc_method: personal_listAccounts
+    params: []
+    returns:
+      - name: accountAddress
+        description: The list of ethereum account addresses
+        example: '["0x5e97870f263700f46aa00d967821199b9bc5a120", "0x3d80b31a78c30fc628f20b2c89d7ddbf6e53cedc"]'
+        type: array
+        arrayType: string
+
+
+  - name: lockAccount
+    description: Removes the private key with given address from memory. The account can no longer be used 
+                 to send transactions.
+    rpc_method: personal_lockAccount
+    params: []
+    returns: []
+
+
+  - name: newAccount
+    description: Generates a new private key and stores it in the key store directory. 
+                 The key file is encrypted with the given passphrase. Returns the address of the new account.
+                 
+                 At the Getd console, newAccount will prompt for a passphrase when it is not supplied as 
+                 the argument.
+    rpc_method: personal_newAccount
+    params:
+      - name: passphrase
+        description: The passphrase used to generate a new private key
+        example: "h4ck3r"
+        type: string
+        optional: true
+    returns:
+      - name: priveteKey
+        description: The generated priveteKey
+        example: "0x5e97870f263700f46aa00d967821199b9bc5a120"
+        type: string
+
+
+  - name: unlockAccount
+    description: Decrypts the key with the given address from the key store.
+
+                 Both passphrase and unlock duration are optional when using the JavaScript console. 
+                 If the passphrase is not supplied as an argument, the console will prompt for the passphrase 
+                 interactively.
+
+                 The unencrypted key will be held in memory until the unlock duration expires. 
+                 If the unlock duration defaults to 300 seconds. An explicit duration of zero seconds 
+                 unlocks the key until Getd exits.
+
+                 The account can be used with etd_sign and etd_sendTransaction while it is unlocked.
+    rpc_method: personal_unlockAccount
+    params:
+      - name: accountAddress
+        description: The account address
+        example: "0x5e97870f263700f46aa00d967821199b9bc5a120"
+        type: string
+        optional: false
+      - name: passphrase
+        description: The passphrase
+                     If you want to type in the passphrase and stil override the default unlock duration, 
+                     pass null as the passphrase.
+        example: "foo"
+        type: string
+        optional: true
+      - name: unlockDuration
+        description: The unlock duration
+        example: "30"
+        type: number
+        optional: true
+    returns:
+      - name: unlockState
+        description: Indicating whether is the account unlocked successfully
+        example: "true"
+        type: boolean
+
+
+  - name: sendTransaction
+    description: Validate the given passphrase and submit transaction.
+
+                 The transaction is the same argument as for etd_sendTransaction and contains the from address. 
+                 If the passphrase can be used to decrypt the private key belogging to tx.from the transaction 
+                 is verified, signed and send onto the network. The account is not unlocked globally in the 
+                 node and cannot be used in other RPC calls.
+
+                 Note, prior to Getd 1.5, please use personal_signAndSendTransaction as that was the original 
+                 introductory name and only later renamed to the current final version.
+
+                 Example
+                 '> var tx = {from':' "0x391694e7e0b0cce554cb130d723a9d27458f9298", to':' "0xafa3f8684e54059998bc3a7b0d2b0da075154d66", value':' web3.toWei(1.23, "ether")}
+                  undefined
+                 "> personal.sendTransaction(tx, "passphrase")"
+                  0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f'
+    rpc_method: personal_sendTransaction
+    params:
+      - name: tx
+        description: The transaction
+        example: 'tx = {from: "0x391694e7e0b0cce554cb130d723a9d27458f9298", to: "0xafa3f8684e54059998bc3a7b0d2b0da075154d66", value: web3.toWei(1.23, "ether")}'
+        type: object
+        optional: false
+        objectType:
+          - name: from
+            description: The from value
+            example: "0x391694e7e0b0cce554cb130d723a9d27458f9298"
+            type: string
+            optional: false
+          - name: to
+            description: The to value
+            example: "0xafa3f8684e54059998bc3a7b0d2b0da075154d66"
+            type: string
+            optional: false
+          - name: value
+            description: The value to be transcated
+            example: web3.toWei(1.23, "ether")
+            type: any # need change
+            optional: false
+    returns:
+      - name: address
+        description: The address
+        example: "0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f"
+        type: string
+
+
+  - name: sign
+    description: The sign method calculates an Ethereum specific signature with
+                 ' sign(keccack256("\x19Ethereum Signed Message:\n" + len(message) + message))). '
+
+                 By adding a prefix to the message makes the calculated signature recognisable as an Ethereum 
+                 specific signature. This prevents misuse where a malicious DApp can sign arbitrary 
+                 data (e.g. transaction) and use the signature to impersonate the victim.
+
+                 See ecRecover to verify the signature.
+    rpc_method: personal_sign
+    params:
+      - name: a # don't know
+        description: abcde # don't know
+        example: "0xdeadbeaf"
+        type: string
+        optional: false
+      - name: b # don't know
+        description: abcde # don't know
+        example: "0x9b2055d370f73ec7d8a03e965129118dc8f5bf83"
+        type: string
+        optional: false
+      - name: c # don't know
+        description: abcde # don't know
+        example: ""
+        type: string
+        optional: false
+    returns:
+      - name: value # don't know
+        description: abcde # don't know
+        example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        type: string
+
+
+  - name: ecRecover
+    description: ecRecover returns the address associated with the private key that was used to calculate the 
+                 signature in personal_sign.
+    rpc_method: personal_ecRecover
+    params:
+      - name: a # don't know
+        description: abcde # don't know
+        example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        type: string
+        optional: false
+      - name: b # don't know
+        description: abcde # don't know
+        example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        type: string
+        optional: false
+    returns:
+      - name: address
+        description: The address associated with the private key 
+        example: "0x9b2055d370f73ec7d8a03e965129118dc8f5bf83"
+        type: string

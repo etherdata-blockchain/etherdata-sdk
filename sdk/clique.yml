@@ -1,0 +1,133 @@
+title: "clique"
+description:
+  "The clique API provides access to the state of the clique consensus engine.
+  You can use this API to manage signer votes and to check the health of a private network."
+
+functions:
+  - name: getSnapshot
+    description: Retrieves a snapshot of all clique state at a given block.
+    rpc_method: clique.getSnapshot
+    params:
+      - name: number
+        description: The number of the block
+        example: "5463755"
+        type: number
+        optional: false
+    returns:
+      - name: snapshot
+        description: Snapshot of all clique state at the given block
+        example: ""
+        type: object
+        objectType:
+          - name: hash
+            description: The hash of the block
+            example: "0x018194fc50ca62d973e2f85cffef1e6811278ffd2040a4460537f8dbec3d5efc"
+            type: string
+          - name: number
+            description: The number of the block
+            example: "5463755"
+            type: number
+          - name: recents
+            description: The details of previous blocks
+            example: ""
+            type: object
+            objectType:
+              - name: number # presented by real numbers
+                description: The addresses of prevoious blocks
+                example: "0x42eb768f2244c8811c63729a21a3569731535f06"
+                type: array
+                arrayType: string
+          - name: signers # need change
+            description: An object containing an arrry of signers
+            example: ""
+            type: object
+            objectType:
+              - name: signer
+                description: The signer
+                example: ""
+                type: array
+                arrayType: string
+
+          # - name: tally # need change
+          #   description: tally
+          #   example: ""
+          #   type: object
+          #   objectType:
+          #     - name: ""
+          #       description: ""
+          #       example: ""
+          #       type: any
+          # - name: votes # need change
+          #   description: votes
+          #   example: ""
+          #   type: any
+
+  - name: getSnapshotAtHash
+    description: Retrieves the state snapshot at a given block.
+    rpc_method: clique_getSnapshotAtHash
+    params: []
+    returns:
+      - name: ststeSnapshot
+        description: The tate snapshot at the block.
+        example: ""
+        type: any
+
+  - name: getSigners
+    description: Retrieves the list of authorized signers at the specified block.
+    rpc_method: clique_getSigners
+    params: []
+    returns:
+      - name: signerArray
+        description: The list of authorized signers
+        example: ""
+        type: array
+        arrayType: string
+
+  - name: proposals
+    description: Returns the current proposals the node is voting on.
+    rpc_method: clique_proposals
+    params: []
+    returns:
+      - name: proposal
+        description: The current proposals
+        example: ""
+        type: string
+
+  - name: propose
+    description: Adds a new authorization proposal that the signer will attempt to push through. If the auth parameter is true, the local signer votes for the given address to be included in the set of authorized signers. With auth set to false, the vote is against the address.
+    rpc_method: clique_propose
+    params: []
+    returns: []
+
+  - name: discard
+    description: This method drops a currently running proposal. The signer will not cast further votes (either for or against) the address.
+    rpc_method: clique_discard
+    params: []
+    returns: []
+
+  - name: status
+    description: This is a debugging method which returns statistics about signer activity for the last 64 blocks.
+    rpc_method: clique_status
+    params: []
+    returns:
+      - name: inturnPercent
+        description: Percentage of blocks signed in-turn
+        example: ""
+        type: number
+      - name: sealerActivity
+        description: A object containing signer addresses and the number of blocks signed by them
+        example: ""
+        type: object
+        objectType:
+          - name: signerAddresses
+            description: The signer addresses
+            example: ""
+            type: string
+          - name: numBlocksSigned
+            description: The number of blocks signed by signers
+            example: "1"
+            type: number
+      - name: numBlocks
+        description: The number of blocks analyzed
+        example: "1"
+        type: number

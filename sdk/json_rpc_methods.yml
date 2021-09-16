@@ -1,0 +1,1366 @@
+title: "json_rpc_methods"
+description: "different methods to perform etd control"
+
+functions:
+  - name: protocalVersion
+    description: Returns the current etdereum protocol version.
+    rpc_method: eth_protocalVersion
+    params: []
+    returns:
+      - name: version
+        description: The current etdereum protocol version
+        example: "54"
+        type: string
+
+  - name: syncing
+    description: Returns an object with data about the sync status or false.
+    rpc_method: eth_syncing
+    params: []
+    returns: # either of the return
+      - name: syncObject
+        description: return this ONLY when syncing
+        example: ""
+        type: object
+        objectType:
+          - name: startingBlock
+            description:
+              The block at which the import started (will only be reset, after the sync reached his
+              head)
+            example: "0x384"
+            type: number # "QUANTITY"
+          - name: currentBlock
+            description: The current block, same as eth_blockNumber
+            example: "0x386"
+            type: number # "QUANTITY"
+          - name: highestBlock
+            description: The estimated highest block
+            example: "0x454"
+            type: number # "QUANTITY"
+      - name: syncStatus
+        description: return this ONLY when not syncing
+        example: "false"
+        type: boolean
+
+  - name: coinbase
+    description: Returns the client coinbase address.
+    rpc_method: eth_coinbase
+    params: []
+    returns:
+      - name: coinbase
+        description: The client coinbase address
+        example: "0x407d73d8a49eeb85d32cf465507dd71d507100c1"
+        type: any # DATA, 20 bytes
+
+  - name: mining
+    description: Returns true if client is actively mining new blocks.
+    rpc_method: eth_mining
+    params: []
+    returns:
+      - name: isMining
+        description: True if client is actively mining new blocks.
+        example: "True"
+        type: boolean
+
+  - name: hashrate
+    description: Returns the number of hashes per second that the node is mining with.
+    rpc_method: eth_hashrate
+    params: []
+    returns:
+      - name: hashrate
+        description: The number of hashes per second that the node is mining with
+        example: "0x38a"
+        type: any # QUANTITY - number of hashes per second.
+
+  - name: gasPrice
+    description: Returns the current price per gas in wei.
+    rpc_method: eth_gasPrice
+    params: []
+    returns:
+      - name: gasPrice
+        description: The current price per gas in wei (8049999872 Wei in the example)
+        example: "0x1dfd14000"
+        type: any # QUANTITY - integer of the current gas price in wei.
+
+  - name: accounts
+    description: Returns a list of addresses owned by client.
+    rpc_method: eth_accounts
+    params: []
+    returns:
+      - name: addressAccount
+        description: The array of accouts
+        example: '["0x407d73d8a49eeb85d32cf465507dd71d507100c1"]'
+        type: array
+        arrayType: any # QUANTITY - integer of the current gas price in wei.
+
+  - name: getBalance
+    description: Returns the balance of the account of given address.
+    rpc_method: eth_getBalance
+    params:
+      - name: address
+        description: DATA, 20 Bytes - address to check for balance
+        example: "0x407d73d8a49eeb85d32cf465507dd71d507100c1"
+        type: string
+        optional: false
+      - name: tag
+        description:
+          QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending",
+          see the default block parameter
+        example: "latest"
+        type: string # or number
+        optional: false
+    returns:
+      - name: balance
+        description: QUANTITY - integer of the current balance in wei.
+        example: "0x0234c8a3397aab58"
+        type: number
+
+  - name: getStorageAt
+    description:
+      "Returns the value from a storage position at a given address."
+      # more description added on Monday
+    rpc_method: eth_getStorageAt
+    params:
+      - name: address
+        description: DATA, 20 Bytes - address of the storage.
+        example: "0x295a70b2de5e3953354a6a8344e616ed314d7251"
+        type: any # DATA, 20 Bytes
+        optional: false
+      - name: position
+        description: The integer of the position in the storage.
+        example: "0x0"
+        type: any # QUTATITY, 20 Bytes
+        optional: false
+      - name: tag
+        description:
+          QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending",
+          see the default block parameter
+        example: "latest"
+        type: string # or number
+        optional: false
+    returns:
+      - name: valur
+        description: The value at this storage position.
+        example: "0x00000000000000000000000000000000000000000000000000000000000004d2"
+        type: any # DATA
+
+  - name: getTransactionCount
+    description: Returns the number of transactions sent from an address.
+    rpc_method: eth_getTransactionCount
+    params:
+      - name: address
+        description: The address.
+        example: "0x407d73d8a49eeb85d32cf465507dd71d507100c1"
+        type: any # DATA, 20 Bytes
+        optional: false
+      - name: state
+        description:
+          QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending",
+          see the default block parameter
+        example: "latest"
+        type: string # or number
+        optional: false
+    returns:
+      - name: number
+        description: The number of transactions send from this address.
+        example: "0x1"
+        type: number # QUANTITY
+
+  - name: getTransactionCountByHash
+    description: Returns the number of transactions in a block from a block matching the given block hash.
+    rpc_method: eth_getTransactionCountByHash
+    params:
+      - name: data
+        description: 20 Bytes - The address
+        example: "0x407d73d8a49eeb85d32cf465507dd71d507100c1"
+        type: string
+        optional: false
+      - name: QUANTITY_TAG
+        description:
+          integer block number, or the string "latest", "earliest" or "pending",
+          see the default block parameter
+        example: "latest"
+        type: string # or number
+        optional: false
+    returns:
+      - name: QUANTITY
+        description: The integer of the number of transactions send from this address.
+        example: "0x1"
+        type: string
+
+  - name: getBlockTransactionCountByHash
+    description: Returns the number of transactions in a block from a block matching the given block hash.
+    rpc_method: eth_getBlockTransactionCountByHash
+    params:
+      - name: DATA
+        description: 32 Bytes - The hash of a block
+        example: "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+        type: string
+        optional: false
+    returns:
+      - name: QUANTITY
+        description: The integer of the number of transactions in this block.
+        example: "0xb" # 11
+        type: string
+
+  - name: getBlockTransactionCountByNumber
+    description: Returns the number of transactions in a block matching the given block number.
+    rpc_method: eth_getBlockTransactionCountByNumber
+    params:
+      - name: QUANTITY_TAG
+        description:
+          The integer of a block number, or the string "earliest", "latest" or "pending",
+          see the default block parameter
+        example: "0xe8" # 232
+        type: string
+        optional: false
+    returns:
+      - name: QUANTITY
+        description: The integer of the number of transactions in this block.
+        example: "0xa" # 10
+        type: string
+
+  - name: getUncleCountByBlockHash
+    description: Returns the number of uncles in a block from a block matching the given block hash.
+    rpc_method: eth_getUncleCountByBlockHash
+    params:
+      - name: DATA
+        description: 32 Bytes - The hash of a block
+        example: "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+        type: string
+        optional: false
+    returns:
+      - name: QUANTITY_TAG
+        description: The integer of the number of uncles in this block.
+        example: "0x1" # 1
+        type: string
+
+  - name: getUncleCountByBlockNumber
+    description: Returns the number of uncles in a block from a block matching the given block number.
+    rpc_method: eth_getUncleCountByBlockNumber
+    params:
+      - name: QUANTITY_TAG
+        description:
+          The integer of a block number, or the string “latest”, “earliest” or “pending”,
+          see the default block parameter
+        example: "0xe8" # 232
+        type: string
+        optional: false
+    returns:
+      - name: QUANTITY
+        description: The integer of the number of uncles in this block.
+        example: "0x1" # 1
+        type: string
+
+  - name: getCode
+    description: Returns code at a given address.
+    rpc_method: eth_code
+    params:
+      - name: DATA
+        description: 20 Byter - The address
+        example: "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"
+        type: string
+        optional: false
+      - name: QUANTITY_TAG
+        description:
+          The integer block number, or the string "latest", "earliest" or "pending",
+          see the default block parameter
+        example: "0x2"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description: The code from the given address.
+        example: "0x600160008035811a818181146012578301005b601b6001356025565b8060005260206000f25b600060078202905091905056"
+        type: string
+
+  - name: sign
+    description: The sign method calculates an etdereum specific signature with
+      sign(keccak256("\x19etdereum Signed Message:\n" + len(message) + message))).
+
+      By adding a prefix to the message makes the calculated signature recognisable as an etdereum
+      specific signature. This prevents misuse where a malicious DApp can sign arbitrary
+      data (e.g. transaction) and use the signature to impersonate the victim.
+
+      Note the address to sign with must be unlocked.
+    rpc_method: eth_sign
+    params:
+      - name: a
+        description: 20 Bytes - The address
+        example: "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b"
+        type: string
+        optional: false
+      - name: b
+        description: N Bytes - The message to sign
+        example: "any message"
+        type: string
+        optional: false
+    returns:
+      - name: value
+        description: The signature
+        example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        type: string
+
+  - name: signTransaction
+    description:
+      Signs a transaction that can be submitted to the network at a later time using with
+      eth_sendRawTransaction.
+    rpc_method: eth_signTransaction
+    params:
+      - name: Object
+        description: The transaction object
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: from
+            description: DATA, 20 Bytes - The address the transaction is sent from.
+            example: "0xb60e8dd61c5d32be8058bb8eb970870f07233155"
+            type: string
+            optional: false
+          - name: to
+            description:
+              DATA, 20 Bytes - (optional when creating new contract) The address the transaction
+              is directed to.
+            example: "0xd46e8dd67c5d32be8058bb8eb970870f07244567"
+            type: string
+            optional: true
+          - name: gas
+            description:
+              QUANTITY - (optional, default "90000") Integer of the gas provided for the
+              transaction execution. It will return unused gas.
+            example: "0x76c0" # 30400
+            type: string
+            optional: true
+          - name: gasPrice
+            description:
+              QUANTITY - (optional, default "To-Be-Determined") Integer of the gasPrice used for
+              each paid gas, in Wei.
+            example: "0x9184e72a000" # 10000000000000
+            type: string
+            optional: true
+          - name: value
+            description: QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
+            example: "0x9184e72a" # 2441406250
+            type: string
+            optional: true
+          - name: data
+            description:
+              DATA - The compiled code of a contract OR the hash of the invoked method signature and
+              encoded parameters. For details see etdereum Contract ABI.
+            example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+            type: string
+            optional: false
+          - name: nonce
+            description:
+              QUANTITY - (optional) Integer of a nonce. This allows to overwrite your own pending
+              transactions that use the same nonce.
+            example: "1"
+            type: string
+            optional: true
+    returns:
+      - name: DATA
+        description: The signed transaction object.
+        example: "0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b"
+        type: string
+
+  - name: sendTranscation
+    description: Creates new message call transaction or a contract creation, if the data field contains code.
+    rpc_method: eth_sendTranscation
+    params:
+      - name: Object
+        description: The transaction object
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: from
+            description: DATA, 20 Bytes - The address the transaction is sent from.
+            example: "0xb60e8dd61c5d32be8058bb8eb970870f07233155"
+            type: string
+            optional: false
+          - name: to
+            description:
+              DATA, 20 Bytes - (optional when creating new contract) The address the transaction
+              is directed to.
+            example: "0xd46e8dd67c5d32be8058bb8eb970870f07244567"
+            type: string
+            optional: true
+          - name: gas
+            description:
+              QUANTITY - (optional, default "90000") Integer of the gas provided for the
+              transaction execution. It will return unused gas.
+            example: "0x76c0" # 30400
+            type: string
+            optional: true
+          - name: gasPrice
+            description:
+              QUANTITY - (optional, default "To-Be-Determined") Integer of the gasPrice used for
+              each paid gas, in Wei.
+            example: "0x9184e72a000" # 10000000000000
+            type: string
+            optional: true
+          - name: value
+            description: QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
+            example: "0x9184e72a" # 2441406250
+            type: string
+            optional: true
+          - name: data
+            description:
+              DATA - The compiled code of a contract OR the hash of the invoked method signature and
+              encoded parameters. For details see etdereum Contract ABI.
+            example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+            type: string
+            optional: false
+          - name: nonce
+            description:
+              QUANTITY - (optional) Integer of a nonce. This allows to overwrite your own pending
+              transactions that use the same nonce.
+            example: "1"
+            type: string
+            optional: true
+    returns:
+      - name: DATA
+        description:
+          32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+          Use eth_getTransactionReceipt to get the contract address, after the transaction was mined,
+          when you created a contract.
+        example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        type: string
+
+  - name: sendRawTransaction
+    description: Creates new message call transaction or a contract creation for signed transactions.
+    rpc_method: eth_sendRawTransaction
+    params:
+      - name: DATA
+        description: The signed transaction data.
+        example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description:
+          32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+          Use eth_getTransactionReceipt to get the contract address, after the transaction was mined,
+          when you created a contract.
+        example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        type: string
+
+  - name: call
+    description: Executes a new message call immediately without creating a transaction on the block chain.
+    rpc_method: eth_call
+    params:
+      - name: Object
+        description: The transaction object
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: from
+            description: DATA, 20 Bytes - The address the transaction is sent from.
+            example: "0xb60e8dd61c5d32be8058bb8eb970870f07233155"
+            type: string
+            optional: false
+          - name: to
+            description: DATA, 20 Bytes - The address the transaction is directed to.
+            example: "0xd46e8dd67c5d32be8058bb8eb970870f07244567"
+            type: string
+            optional: false
+          - name: gas
+            description:
+              QUANTITY - (optional) Integer of the gas provided for the transaction execution.
+              eth_call consumes zero gas, but this parameter may be needed by some executions.
+            example: "0x76c0" # 30400
+            type: string
+            optional: true
+          - name: gasPrice
+            description: QUANTITY - (optional) Integer of the gasPrice used for each paid gas, in Wei.
+            example: "0x9184e72a000" # 10000000000000
+            type: string
+            optional: true
+          - name: value
+            description: QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
+            example: "0x9184e72a" # 2441406250
+            type: string
+            optional: true
+          - name: data
+            description:
+              DATA - (optional) Hash of the method signature and encoded parameters. For details see
+              etdereum Contract ABI in the Solidity documentation.
+            example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+            type: string
+            optional: true
+      - name: QUANTITY_TAG
+        description:
+          The integer block number, or the string "latest", "earliest" or "pending", see the default
+          block parameter.
+        example: "latest"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description: The return value of executed contract.
+        example: "0x"
+        type: string
+
+  - name: estimateGas
+    description:
+      Generates and returns an estimate of how much gas is necessary to allow the transaction to
+      complete. The transaction will not be added to the blockchain. Note that the estimate may be
+      significantly more than the amount of gas actually used by the transaction, for a variety of
+      reasons including EVM mechanics and node performance.
+    rpc_method: eth_estimateGas
+    params:
+      - name: Object
+        description: The transaction object
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: from
+            description: DATA, 20 Bytes - The address the transaction is sent from.
+            example: "0xb60e8dd61c5d32be8058bb8eb970870f07233155"
+            type: string
+            optional: false
+          - name: to
+            description: DATA, 20 Bytes - The address the transaction is directed to.
+            example: "0xd46e8dd67c5d32be8058bb8eb970870f07244567"
+            type: string
+            optional: false
+          - name: gas
+            description:
+              QUANTITY - (optional) Integer of the gas provided for the transaction execution.
+              eth_call consumes zero gas, but this parameter may be needed by some executions.
+            example: "0x76c0" # 30400
+            type: string
+            optional: true
+          - name: gasPrice
+            description: QUANTITY - (optional) Integer of the gasPrice used for each paid gas, in Wei.
+            example: "0x9184e72a000" # 10000000000000
+            type: string
+            optional: true
+          - name: value
+            description: QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
+            example: "0x9184e72a" # 2441406250
+            type: string
+            optional: true
+          - name: data
+            description:
+              DATA - (optional) Hash of the method signature and encoded parameters. For details see
+              etdereum Contract ABI in the Solidity documentation.
+            example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+            type: string
+            optional: true
+      - name: QUANTITY_TAG
+        description:
+          The integer block number, or the string "latest", "earliest" or "pending", see the default
+          block parameter.
+        example: "latest"
+        type: string
+        optional: false
+    returns:
+      - name: QUANTITY
+        description: The amount of gas used.
+        example: "0x5208" # 21000
+        type: string
+
+  - name: getBlockByHash
+    description: Returns information about a block by hash.
+    rpc_method: eth_getBlockByHash
+    params:
+      - name: DATA
+        description: 32 Bytes - Hash of a block.
+        example: "0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae"
+        type: string
+        optional: false
+      - name: Bool
+        description: If true it returns the full transaction objects, if false only the hashes of the transactions.
+        example: "false"
+        type: boolean
+        optional: false
+    returns:
+      - name: Object
+        description: A block object, or null when no block was found
+        example: ""
+        type: object
+        objectType:
+          - name: number
+            description: QUANTITY - The block number. null when its pending block.
+            example: "0x1b4"
+            type: string
+          - name: hash
+            description: DATA, 32 Bytes - hash of the block. null when its pending block.
+            example: "0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae"
+            type: string
+          - name: parnetHash
+            description: DATA, 32 Bytes - hash of the parent block.
+            example: "0xe99e022112df268087ea7eafaf4790497fd21dbeeb6bd7a1721df161a6657a54"
+            type: string
+          - name: nonce
+            description: DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+            example: "0x689056015818adbe"
+            type: string
+          - name: sha3Uncles
+            description: DATA, 32 Bytes - SHA3 of the uncles data in the block.
+            example: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+            type: string
+          - name: logsBloom
+            description: DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+            example: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            type: string
+          - name: transactionsRoot
+            description: DATA, 32 Bytes - the root of the transaction trie of the block.
+            example: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+            type: string
+          - name: miner
+            description: DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+            example: "0xbb7b8287f3f0a933474a79eae42cbca977791171"
+            type: string
+          - name: difficulty
+            description: QUANTITY - integer of the difficulty for this block.
+            example: "0x4ea3f27bc"
+            type: string
+          - name: totalDifficulty
+            description: QUANTITY - integer of the total difficulty of the chain until this block.
+            example: "0x78ed983323d"
+            type: string
+          - name: extraData
+            description: DATA - the “extra data” field of this block.
+            example: "0x476574682f4c5649562f76312e302e302f6c696e75782f676f312e342e32"
+            type: string
+          - name: size
+            description: QUANTITY - integer the size of this block in bytes.
+            example: "0x220"
+            type: string
+          - name: gasLimit
+            description: QUANTITY - the maximum gas allowed in this block.
+            example: "0x1388"
+            type: string
+          - name: gasUsed
+            description: QUANTITY - the total used gas by all transactions in this block.
+            example: "0x0"
+            type: string
+          - name: timestamp
+            description: QUANTITY - the unix timestamp for when the block was collated.
+            example: "0x55ba467c"
+            type: string
+          - name: transaction
+            description:
+              Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the
+              last given parameter.
+            example: "[]"
+            type: array
+            arrayType: string
+          - name: uncles
+            description: Array - Array of uncle hashes.
+            example: "[]"
+            type: array
+            arrayType: string
+
+  - name: getBlockByNumber
+    description: Returns information about a block by block number.
+    rpc_method: eth_getBlockByNumber
+    params:
+      - name: QUANTITY_TAG
+        description:
+          The integer of a block number, or the string "earliest", "latest" or "pending", as in the
+          default block parameter.
+        example: "0x1b4" # 436
+        type: string
+        optional: false
+      - name: Bool
+        description: If true it returns the full transaction objects, if false only the hashes of the transactions.
+        example: "true"
+        type: boolean
+        optional: false
+    returns:
+      - name: Object
+        description: A block object, or null when no block was found
+        example: ""
+        type: object
+        objectType:
+          - name: number
+            description: QUANTITY - The block number. null when its pending block.
+            example: "0x1b4"
+            type: string
+          - name: hash
+            description: DATA, 32 Bytes - hash of the block. null when its pending block.
+            example: "0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae"
+            type: string
+          - name: parnetHash
+            description: DATA, 32 Bytes - hash of the parent block.
+            example: "0xe99e022112df268087ea7eafaf4790497fd21dbeeb6bd7a1721df161a6657a54"
+            type: string
+          - name: nonce
+            description: DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+            example: "0x689056015818adbe"
+            type: string
+          - name: sha3Uncles
+            description: DATA, 32 Bytes - SHA3 of the uncles data in the block.
+            example: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+            type: string
+          - name: logsBloom
+            description: DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+            example: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            type: string
+          - name: transactionsRoot
+            description: DATA, 32 Bytes - the root of the transaction trie of the block.
+            example: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+            type: string
+          - name: miner
+            description: DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+            example: "0xbb7b8287f3f0a933474a79eae42cbca977791171"
+            type: string
+          - name: difficulty
+            description: QUANTITY - integer of the difficulty for this block.
+            example: "0x4ea3f27bc"
+            type: string
+          - name: totalDifficulty
+            description: QUANTITY - integer of the total difficulty of the chain until this block.
+            example: "0x78ed983323d"
+            type: string
+          - name: extraData
+            description: DATA - the “extra data” field of this block.
+            example: "0x476574682f4c5649562f76312e302e302f6c696e75782f676f312e342e32"
+            type: string
+          - name: size
+            description: QUANTITY - integer the size of this block in bytes.
+            example: "0x220"
+            type: string
+          - name: gasLimit
+            description: QUANTITY - the maximum gas allowed in this block.
+            example: "0x1388"
+            type: string
+          - name: gasUsed
+            description: QUANTITY - the total used gas by all transactions in this block.
+            example: "0x0"
+            type: string
+          - name: timestamp
+            description: QUANTITY - the unix timestamp for when the block was collated.
+            example: "0x55ba467c"
+            type: string
+          - name: transaction
+            description:
+              Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the
+              last given parameter.
+            example: "[]"
+            type: array
+            arrayType: string
+          - name: uncles
+            description: Array - Array of uncle hashes.
+            example: "[]"
+            type: array
+            arrayType: string
+
+  - name: getTransactionByHash
+    description: Returns the information about a transaction requested by transaction hash.
+    rpc_method: eth_getTransactionByHash
+    params:
+      - name: DATA
+        description: 32 Bytes - hash of a transaction
+        example: "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: A transaction object, or null when no transaction was found
+        example: ""
+        type: object
+        objectType:
+          - name: blockHash
+            description: DATA, 32 Bytes - hash of the block where this transaction was in. null when its pending.
+            example: "0x1d59ff54b1eb26b013ce3cb5fc9dab3705b415a67127a003c3e61eb445bb8df2"
+            type: string
+          - name: blockNumber
+            description: QUANTITY - block number where this transaction was in. null when its pending.
+            example: "0x5daf3b" # 6139707
+            type: string
+          - name: from
+            description: DATA, 20 Bytes - address of the sender.
+            example: "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d"
+            type: string
+          - name: gas
+            description: QUANTITY - gas provided by the sender.
+            example: "0xc350" # 50000
+            type: string
+          - name: gasParice
+            description: QUANTITY - gas price provided by the sender in Wei.
+            example: "0x4a817c800" # 20000000000
+            type: string
+          - name: hash
+            description: DATA, 32 Bytes - hash of the transaction.
+            example: "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
+            type: string
+          - name: input
+            description: DATA - the data send along with the transaction.
+            example: "0x68656c6c6f21"
+            type: string
+          - name: nonce
+            description: QUANTITY - the number of transactions made by the sender prior to this one.
+            example: "0x15" # 21
+            type: string
+          - name: to
+            description: DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+            example: "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb"
+            type: string
+          - name: transactionIndex
+            description: QUANTITY - integer of the transactions index position in the block. null when its pending.
+            example: "0x41" # 65
+            type: string
+          - name: value
+            description: QUANTITY - value transferred in Wei.
+            example: "0xf3dbb76162000" # 4290000000000000
+            type: string
+          - name: v
+            description: QUANTITY - ECDSA recovery id
+            example: "0x25" # 37
+            type: string
+          - name: r
+            description: DATA, 32 Bytes - ECDSA signature r
+            example: "0x1b5e176d927f8e9ab405058b2d2457392da3e20f328b16ddabcebc33eaac5fea"
+            type: string
+          - name: s
+            description: DATA, 32 Bytes - ECDSA signature s
+            example: "0x4ba69724e8f69de52f0125ad8b3c5c2cef33019bac3249e2c0a2192766d1721c"
+            type: string
+
+  - name: getTransactionByHashAndIndex
+    description: Returns information about a transaction by block hash and transaction index position.
+    rpc_method: eth_getTransactionByHashAndIndex
+    params:
+      - name: DATA
+        description: 32 Bytes - hash of a block.
+        example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+        type: string
+        optional: false
+      - name: QUANTITY
+        description: The integer of the transaction index position.
+        example: "0x0" # 0
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: See eth_getTransactionByHash
+        example: ""
+        type: object
+        objectType:
+          - name: "data"
+            description: ""
+            example: ""
+            type: any
+
+  - name: getTransactionByBlockNumberAndIndex
+    description: Returns information about a transaction by block number and transaction index position.
+    rpc_method: eth_getTransactionByBlockNumberAndIndex
+    params:
+      - name: QUANTITY_TAG
+        description: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+        example: "0x29c" # 668
+        type: string
+        optional: false
+      - name: QUANTITY
+        description: The transaction index position.
+        example: "0x0" # 0
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: See eth_getTransactionByHash
+        example: ""
+        type: object
+        objectType:
+          - name: "data"
+            description: ""
+            example: ""
+            type: any
+
+  - name: getTransactionReceipt
+    description: Returns the receipt of a transaction by transaction hash.
+      Note That the receipt is not available for pending transactions.
+    rpc_method: eth_getTransactionReceipt
+    params:
+      - name: DATA
+        description: 32 Bytes - hash of a transaction
+        example: "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: A transaction receipt object, or null when no receipt was found
+        example: ""
+        type: object
+        objectType:
+          - name: transactionHash
+            description: DATA, 32 Bytes - hash of the transaction.
+            example: "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+            type: string
+          - name: transactionIndex
+            description: QUANTITY - integer of the transactions index position in the block.
+            example: "0x1" # 1
+            type: string
+          - name: blockHash
+            description: DATA, 32 Bytes - hash of the block where this transaction was in.
+            example: "0xc6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b"
+            type: string
+          - name: blockNumber
+            description: QUANTITY - block number where this transaction was in.
+            example: "0xb" # 11
+            type: string
+          - name: from
+            description: DATA, 20 Bytes - address of the sender.
+            example: "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d"
+            type: string
+          - name: to
+            description: DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+            example: "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb"
+            type: string
+          - name: cumulativeGasUsed
+            description: QUANTITY - The total amount of gas used when this transaction was executed in the block.
+            example: "0x33bc" # 13244
+            type: string
+          - name: gasUsed
+            description: QUANTITY - The amount of gas used by this specific transaction alone.
+            example: "0x4dc" #1244
+            type: string
+          - name: contractAddress
+            description:
+              DATA, 20 Bytes - The contract address created, if the transaction was a contract
+              creation, otherwise null.
+            example: "0xb60e8dd61c5d32be8058bb8eb970870f07233155"
+            type: string
+          - name: logs
+            description: Array - Array of log objects, which this transaction generated.
+            example: "[{
+              // logs as returned by getFilterLogs, etc.
+              }, ...]"
+            type: array
+            arrayType: string
+          - name: logsBloom
+            description: DATA, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+            example: "0x00...0" # 256 byte bloom filter
+            type: string
+          - name: root
+            description: Either this or "status" is returned
+              DATA 32 bytes of post-transaction stateroot (pre Byzantium)
+            example: "no example"
+            type: string
+          - name: status
+            description: Either this or "root" is returned
+              QUANTITY either 1 (success) or 0 (failure)
+            example: 0x1""
+            type: string
+
+  - name: getUncleByBlockHashAndIndex
+    description: eturns information about a uncle of a block by hash and uncle index position.
+    rpc_method: eth_getUncleByBlockHashAndIndex
+    params:
+      - name: DATA
+        description: 32 Bytes - The hash of a block.
+        example: "0xc6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b"
+        type: string
+        optional: false
+      - name: QUANTITY
+        description: The uncle’s index position.
+        example: "0x0" # 0
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: See eth_getTransactionByHash
+          Note - An uncle doesn’t contain individual transactions.
+        example: ""
+        type: object
+        objectType:
+          - name: "data"
+            description: ""
+            example: ""
+            type: any
+
+  - name: getUncleByBlockNumberAndIndex
+    description: Returns information about a uncle of a block by number and uncle index position.
+    rpc_method: eth_getUncleByBlockNumberAndIndex
+    params:
+      - name: QUANTITY_TAG
+        description:
+          a block number, or the string "earliest", "latest" or "pending", as in the default block
+          parameter.
+        example: "0x29c" # 668
+        type: string
+        optional: false
+      - name: QUANTITY
+        description: the uncle’s index position.
+        example: "0x0" # 0
+        type: string
+        optional: false
+    returns:
+      - name: Object
+        description: See eth_getTransactionByHash
+          Note - An uncle doesn’t contain individual transactions.
+        example: ""
+        type: object
+        objectType:
+          - name: "data"
+            description: ""
+            example: ""
+            type: any
+
+  - name: getCompliers
+    description: Returns a list of available compilers in the client.
+    rpc_method: eth_getCompliers
+    params: []
+    returns:
+      - name: Array
+        description: Array of available compilers.
+        example: '["solidity", "lll", "serpent"]'
+        type: array
+        arrayType: string
+
+  - name: compileSolidity
+    description: Returns compiled solidity code.
+    rpc_method: eth_compileSolidity
+    params:
+      - name: String
+        description: The source code.
+        example: "contract test { function multiply(uint a) returns(uint d) {   return a * 7;   } }"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description: The compiled source code.
+        example: '{
+          "code"- "0x605880600c6000396000f3006000357c010000000000000000000000000000000000000000000000000000000090048063c6888fa114602e57005b603d6004803590602001506047565b8060005260206000f35b60006007820290506053565b91905056"
+          // diierent fields of the source code
+          }'
+        type: string
+
+  - name: complpieLLL
+    description: Returns compiled LLL code.
+    rpc_method: eth_complpieLLL
+    params:
+      - name: String
+        description: The source code.
+        example: "(returnlll (suicide (caller)))"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description: The compiled source code.
+        example: "0x603880600c6000396000f3006001600060e060020a600035048063c6888fa114601857005b6021600435602b565b8060005260206000f35b600081600702905091905056"
+        type: string
+
+  - name: complieSerpent
+    description: Returns compiled serpent code.
+    rpc_method: eth_complieSerpent
+    params:
+      - name: String
+        description: The source code.
+        example: "/* some serpent */"
+        type: string
+        optional: false
+    returns:
+      - name: DATA
+        description: The compiled source code.
+        example: "0x603880600c6000396000f3006001600060e060020a600035048063c6888fa114601857005b6021600435602b565b8060005260206000f35b600081600702905091905056"
+        type: string
+
+  - name: newFilter
+    description:
+      Creates a filter object, based on filter options, to notify when the state changes (logs).
+      To check if the state has changed, call eth_getFilterChanges.
+
+      A note on specifying topic filters
+      Topics are order-dependent. A transaction with a log with topics [A, B] will be matched by the following topic filters
+
+      -[] “anything”
+      -[A] “A in first position (and anything after)”
+      -[null, B] “anything in first position AND B in second position (and anything after)”
+      -[A, B] “A in first position AND B in second position (and anything after)”
+      -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”
+    rpc_method: eth_newFilter
+    params:
+      - name: Object
+        description: The filter options
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: fromBlock
+            description:
+              QUANTITY_TAG - (optional, default "latest") Integer block number, or "latest" for the
+              last mined block or "pending", "earliest" for not yet mined transactions.
+            example: "0x1"
+            type: string
+            optional: true
+          - name: toBlock
+            description:
+              QUANTITY_TAG - (optional, default "latest") Integer block number, or "latest" for the
+              last mined block or "pending", "earliest" for not yet mined transactions.
+            example: "0x2"
+            type: string
+            optional: true
+          - name: address
+            description:
+              DATA_Array, 20 Bytes - (optional) Contract address or a list of addresses from which
+              logs should originate.
+            example: "0x8888f1f195afa192cfee860698584c030f4c9db1"
+            type: string
+            optional: true
+          - name: topics
+            description:
+              Array of DATA, - (optional) Array of 32 Bytes DATA topics. Topics are order-dependent.
+              Each topic can also be an array of ``DATA with “or” options.
+            example: '["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null, ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}]'
+            type: array
+            optional: true
+            arrayType: string
+    returns:
+      - name: QUANTITY
+        description: A filter id.
+        example: "0x1"
+        type: string
+
+  - name: newBlockFilter
+    description:
+      Creates a filter in the node, to notify when a new block arrives. To check if the state has
+      changed, call eth_getFilterChanges.
+    rpc_method: eth_newBlockFilter
+    params: []
+    returns:
+      - name: QUANTITY
+        description: A filter id.
+        example: "0x1" # 1
+        type: string
+
+  - name: newPendingTransactionFilter
+    description:
+      Creates a filter in the node, to notify when new pending transactions arrive. To check if the
+      state has changed, call eth_getFilterChanges.
+    rpc_method: eth_newPendingTransactionFilter
+    params: []
+    returns:
+      - name: QUANTITY
+        description: A filter id.
+        example: "0x1"
+        type: string
+
+  - name: uninstallFilter
+    description:
+      Uninstalls a filter with given id. Should always be called when watch is no longer needed.
+      Additonally Filters timeout when they aren’t requested with eth_getFilterChanges. for a period
+      of time.
+    rpc_method: eth_uninstallFilter
+    params:
+      - name: QUANTITY
+        description: The filter id.
+        example: "0xb" # 11
+        type: string
+        optional: false
+    returns:
+      - name: Bool
+        description: true if the filter was successfully uninstalled, otherwise false.
+        example: "true"
+        type: boolean
+
+  - name: getFilterChanges
+    description: Polling method for a filter, which returns an array of logs which occurred since last poll.
+    rpc_method: eth_getFilterChanges
+    params:
+      - name: QUANTITY
+        description: The filter id.
+        example: "0x16" # 22
+        type: string
+        optional: false
+    returns:
+      - name: Array
+        description:
+          Array of log objects, or an empty array if nothing has changed since last poll.
+          For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes),
+          e.g. ["0x3454645634534..."].
+          For filters created with eth_newPendingTransactionFilter the return are transaction
+          hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
+        example: ""
+        type: array
+        arrayType: object
+        objectType:
+          - name: removed
+            description: TAG - true when the log was removed, due to a chain reorganization. false if its a valid log.
+            example: "true"
+            type: boolean
+          - name: logIndex
+            description: QUANTITY - integer of the log index position in the block. null when its pending log.
+            example: "0x1" # 1
+            type: string
+          - name: transactionIndex
+            description:
+              QUANTITY - integer of the transactions index position log was created from.
+              null when its pending log.
+            example: "0x0" # 0
+            type: string
+          - name: transactionHash
+            description: DATA, 32 Bytes - hash of the transactions this log was created from. null when its pending log.
+            example: "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d"
+            type: string
+          - name: blockHash
+            description:
+              DATA, 32 Bytes - hash of the block where this log was in. null when its pending.
+              null when its pending log.
+            example: "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d"
+            type: string
+          - name: blockNumber
+            description:
+              QUANTITY - the block number where this log was in. null when its pending.
+              null when its pending log.
+            example: "0x1b4" # 436
+            type: string
+          - name: address
+            description: DATA, 20 Bytes - address from which this log originated.
+            example: "0x16c5785ac562ff41e2dcfdf829c5a142f1fccd7d"
+            type: string
+          - name: data
+            description: DATA - contains one or more 32 Bytes non-indexed arguments of the log.
+            example: "0x0000000000000000000000000000000000000000000000000000000000000000"
+            type: string
+          - name: topics
+            description:
+              Array of DATA - Array of 0 to 4 32 Bytes DATA of indexed log arguments.
+              (In solidity - The first topic is the hash of the signature of the
+              event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with
+              the anonymous specifier.)
+            example: '["0x59ebeb90bc63057b6515673c3ecf9438e5058bca0f92585014eced636878c9a5"]'
+            type: array
+            arrayType: string
+
+  - name: getFilterLogs
+    description: Returns an array of all logs matching filter with given id.
+    rpc_method: eth_getFilterLogs
+    params:
+      - name: QUANTITY
+        description: The filter id.
+        example: "0x16" # 22
+        type: string
+        optional: false
+    returns:
+      - name: Array
+        description: See eth_getFilterChanges.
+        example: ""
+        type: array
+        arrayType: any
+
+  - name: getLogs
+    description: Returns an array of all logs matching a given filter object.
+    rpc_method: eth_getLogs
+    params:
+      - name: Object
+        description: The filter options
+        example: ""
+        type: object
+        optional: false
+        objectType:
+          - name: fromBlock
+            description:
+              QUANTITY_TAG - (optional, default - "latest") Integer block number, or "latest" for the
+              last mined block or "pending", "earliest" for not yet mined transactions.
+            example: "0x1"
+            type: string
+            optional: true
+          - name: toBlock
+            description:
+              QUANTITY_TAG - (optional, default - "latest") Integer block number, or "latest" for the
+              last mined block or "pending", "earliest" for not yet mined transactions.
+            example: "0x2"
+            type: string
+            optional: true
+          - name: address
+            description:
+              DATA_Array, 20 Bytes - (optional) Contract address or a list of addresses from which
+              logs should originate.
+            example: "0x16c5785ac562ff41e2dcfdf829c5a142f1fccd7d"
+            type: string
+            optional: true
+          - name: topics
+            description:
+              Array of DATA, - (optional) Array of 32 Bytes DATA topics. Topics are order-dependent.
+              Each topic can also be an array of DATA with “or” options.
+            example: '["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]'
+            type: array
+            optional: true
+            arrayType: string
+          - name: blockhash
+            description:
+              DATA, 32 Bytes - (optional, future) With the addition of EIP-234, blockHash will be a
+              new filter option which restricts the logs returned to the single block with
+              the 32-byte hash blockHash. Using blockHash is equivalent to
+              fromBlock = toBlock = the block number with hash blockHash.
+              If blockHash is present in in the filter criteria, then neither fromBlock nor
+              toBlock are allowed.
+            example: "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+            type: string
+            optional: true
+    returns:
+      - name: Array
+        description: See eth_getFilterChanges.
+        example: ""
+        type: array
+        arrayType: any
+
+  - name: getWork
+    description: Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”).
+    rpc_method: eth_getWork
+    params: []
+    returns:
+      - name: Array
+        description: Array with the following properties
+          -DATA, 32 Bytes - current block header pow-hash
+          -DATA, 32 Bytes - the seed hash used for the DAG.
+          -DATA, 32 Bytes - the boundary condition (“target”), 2^256 / difficulty.
+        example: '[
+          "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+          "0x5EED00000000000000000000000000005EED0000000000000000000000000000",
+          "0xd1ff1c01710000000000000000000000d1ff1c01710000000000000000000000"
+          ]'
+        type: array
+        arrayType: string
+
+  - name: submitWork
+    description: Used for submitting a proof-of-work solution.
+    rpc_method: eth_submitWork
+    params:
+      - name: a
+        description: 8 Bytes - The nonce found (64 bits)
+        example: "0x0000000000000001"
+        type: string
+        optional: false
+      - name: b
+        description: 32 Bytes - The header’s pow-hash (256 bits)
+        example: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+        type: string
+        optional: false
+      - name: c
+        description: 32 Bytes - The mix digest (256 bits)
+        example: "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"
+        type: string
+        optional: false
+    returns:
+      - name: Bool
+        description: returns true if the provided solution is valid, otherwise false.
+        example: "true"
+        type: boolean
+
+  - name: submitHashrate
+    description: Used for submitting mining hashrate.
+    rpc_method: eth_submitHashrate
+    params:
+      - name: Hashrate
+        description: A hexadecimal string representation (32 bytes) of the hash rate
+        example: "0x0000000000000000000000000000000000000000000000000000000000500000"
+        type: string
+        optional: false
+      - name: ID
+        description: String - A random hexadecimal(32 bytes) ID identifying the client
+        example: "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"
+        type: string
+        optional: false
+    returns:
+      - name: Bool
+        description: Returns `true` if submitting went through succesfully and `false` otherwise.
+        example: "true"
+        type: boolean

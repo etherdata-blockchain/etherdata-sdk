@@ -1,0 +1,22 @@
+import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+
+{{ methodComment }}
+export class {{ methodName }}{
+    client: Client
+    baseURL: string
+    port: number
+
+    constructor(baseURL: string, port: number) {
+        this.baseURL = baseURL
+        this.port = port
+        
+        const transport = new HTTPTransport( `${baseURL}:${port}`);
+        this.client = new Client(new RequestManager([transport]));
+    }
+
+
+{%- for function in functions %}
+{{ function[1] | safe }}
+{% endfor %}
+
+}

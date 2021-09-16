@@ -1,0 +1,91 @@
+{
+  "$id": "param",
+  "type": "object",
+  "title": "Parameter",
+  "required": ["name", "type", "optional", "description", "example"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Parameter name",
+      "description": "Name of the parameter"
+    },
+    "description": {
+      "type": "string",
+      "title": "Parameter description",
+      "description": "Parameter description"
+    },
+
+    "example": {
+      "type": "string",
+      "title": "Example"
+    },
+    "type": {
+      "type": "string",
+      "title": "Parameter type",
+      "description": "Parameter type",
+      "enum": ["string", "number", "boolean", "array", "object", "any"],
+      "default": "string"
+    },
+    "default": {
+      "type": "string",
+      "title": "Parameter default value",
+      "description": "Parameter default value"
+    },
+    "optional": {
+      "type": "boolean",
+      "title": "Parameter optional",
+      "description": "True if the parameter accept null value"
+    },
+    "objectType": {
+      "$id": "objectType",
+      "type": "array",
+      "title": "Param's object value",
+      "description": "Used only when parameter type is object",
+      "items": {
+        "$ref": "#"
+      }
+    },
+    "arrayType": {
+      "type": "string",
+      "title": "Array type",
+      "description": "Array type",
+      "enum": ["string", "number", "boolean", "object", "any"]
+    }
+  },
+
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "object" } }
+      },
+      "then": {
+        "required": ["objectType"]
+      },
+      "else": {
+        "required": []
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "array" } }
+      },
+      "then": {
+        "required": ["arrayType"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": { "const": "array" },
+          "arrayType": { "const": "object" }
+        }
+      },
+      "then": {
+        "required": ["objectType"]
+      },
+      "else": {
+        "required": []
+      }
+    }
+  ]
+}

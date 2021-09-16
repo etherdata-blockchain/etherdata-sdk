@@ -1,0 +1,55 @@
+title: "miner"
+description:
+  "The miner API allows you to remote control the node’s mining operation and set various mining
+  specific settings."
+functions:
+  - name: Getdashrate
+    description: Get your hashrate in H/s (Hash operations per second).
+    rpc_method: miner_Getdashrate
+    params: []
+    returns:
+      - name: dashRate
+        description: The hashrate in H/s (Hash operations per second)
+        example: "" # not provided
+        type: string
+
+  - name: setExtra
+    description: Sets the extra data a miner can include when miner blocks. This is capped at 32 bytes.
+    rpc_method: miner_setExtra
+    params: [] # not provided
+    returns: []
+
+  - name: setGasPrice
+    description: Sets the minimal accepted gas price when mining transactions.
+      Any transactions that are below this limit are excluded from the mining process.
+    rpc_method: miner_setGasPrice
+    params:
+      - name: price
+        description: The new minimal accepted gas price when mining transactions.
+        example: "1000"
+        type: number
+        optional: false
+    returns: []
+
+  - name: start
+    description: Start the CPU mining process with the given number of threads and generate a new DAG if need be.
+    rpc_method: miner_start
+    params: [] # not provided
+    returns: [] # not provided
+
+  - name: stop
+    description: Stop the CPU mining operation.
+    rpc_method: miner_stop
+    params: []
+    returns: []
+
+  - name: setEtherbase
+    description: Sets the etherbase, where mining rewards will go.
+    rpc_method: miner_setEtherbase
+    params:
+      - name: etherbase
+        description: The new etherbase.
+        example: "" # not provided
+        type: string # not provided
+        optional: false
+    returns: [] # not provided

@@ -1,0 +1,79 @@
+{
+  "$id": "return",
+  "type": "object",
+  "title": "Return",
+  "required": ["name", "description", "type", "example"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Return name",
+      "description": "Name of the return"
+    },
+    "description": {
+      "type": "string",
+      "title": "Return description",
+      "description": "Return description"
+    },
+    "example": {
+      "type": "string",
+      "title": "Example"
+    },
+    "type": {
+      "type": "string",
+      "title": "Return type",
+      "description": "Return type",
+      "enum": ["string", "number", "boolean", "array", "any", "void", "object"],
+      "default": "string"
+    },
+    "objectType": {
+      "$id": "objectType",
+      "type": "array",
+      "title": "Return's object value",
+      "description": "Used only when parameter type is object",
+      "items": {
+        "$ref": "#"
+      }
+    },
+    "arrayType": {
+      "type": "string",
+      "title": "Array type",
+      "description": "Array type",
+      "enum": ["string", "number", "boolean", "object", "any"]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "object" } }
+      },
+      "then": {
+        "required": ["objectType"]
+      },
+      "else": {
+        "required": []
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "array" } }
+      },
+      "then": {
+        "required": ["arrayType"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": { "const": "array" },
+          "arrayType": { "const": "object" }
+        }
+      },
+      "then": {
+        "required": ["objectType"]
+      },
+      "else": {
+        "required": []
+      }
+    }
+  ]
+}
