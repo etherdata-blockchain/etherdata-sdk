@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "release": "standard-version",
-    "postrelease": "node scripts/update-sdk-version.js"
+    "dry": "standard-version --dry-run"
   },
   "dependencies": {
     "prettier": "^2.4.1",
@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "typescript": "^4.4.3"
+  },
+  "standard-version": {
+    "scripts": {
+      "pretag": "node scripts/update-sdk-version.js"
+    }
   }
 }
