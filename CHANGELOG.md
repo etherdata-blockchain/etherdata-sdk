@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.9](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.2.8...v1.2.9) (2021-09-16)
+
+
+### Bug Fixes
+
+* Fix typescript package ([abd1715](https://github.com/etherdata-blockchain/etherdata-sdk/commit/abd17158284924adbf4cbf268f98b240f2de8ca7))
+
 ### [1.2.8](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.2.7...v1.2.8) (2021-09-16)
 
 ### [1.2.7](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.2.6...v1.2.7) (2021-09-16)
