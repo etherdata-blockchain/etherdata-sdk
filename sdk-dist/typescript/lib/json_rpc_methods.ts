@@ -27,6 +27,17 @@ export class Json_rpc_methods {
   }
 
   /**
+   * Returns the current block number
+   * @return blockNumber The current blockNumber
+   */
+  async blockNumber(): Promise<string> {
+    return await this.client.request({
+      method: "eth_blockNumber",
+      params: undefined,
+    });
+  }
+
+  /**
    * Returns an object with data about the sync status or false
    * @return syncObject return this ONLY when syncing
    * @return syncStatus return this ONLY when not syncing

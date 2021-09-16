@@ -68,6 +68,54 @@ export function Protocalversion({ call }: Props) {
   );
 }
 
+export function Blocknumber({ call }: Props) {
+  const [values, setValues] = React.useState<any>();
+  const [errors, setErrors] = React.useState<any>();
+
+  let schema: any = {
+    "title": "blockNumber",
+    "description": "Returns the current block number",
+    "type": "object",
+    "properties": {},
+    "required": [],
+  };
+
+  return (
+    <Card className="form-item" variant="outlined">
+      {values && (
+        <Alert>
+          <div>{values}</div>
+        </Alert>
+      )}
+      {errors && (
+        <Alert severity="error">
+          <div>{errors}</div>
+        </Alert>
+      )}
+      <Form
+        schema={schema}
+        onSubmit={async (v: any) => {
+          setErrors(undefined);
+          setValues(undefined);
+          try {
+            let result = await call({
+              params: Object.values(v.formData as any),
+              methodName: "eth_blockNumber",
+            });
+            if (typeof result === "object") {
+              setValues(JSON.stringify(result, undefined, 2));
+            } else {
+              setValues(result ? result.toString() : "ok");
+            }
+          } catch (err) {
+            setErrors(err ? err.toString() : "error");
+          }
+        }}
+      />
+    </Card>
+  );
+}
+
 export function Syncing({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
@@ -2300,6 +2348,8 @@ export function Json_rpc_methods({ call, host, port }: MethodProps) {
   return (
     <div>
       <Protocalversion call={callRPC} />
+
+      <Blocknumber call={callRPC} />
 
       <Syncing call={callRPC} />
 
