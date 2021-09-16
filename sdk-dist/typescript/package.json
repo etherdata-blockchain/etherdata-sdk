@@ -1,9 +1,13 @@
 {
   "name": "etherdata-typescript",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "main": "lib/index.ts",
   "license": "MIT",
   "private": false,
-  "dependencies": { "@open-rpc/client-js": "^1.7.0" },
-  "scripts": { "build": "tsc" }
+  "dependencies": {
+    "@open-rpc/client-js": "^1.7.0"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
 }
