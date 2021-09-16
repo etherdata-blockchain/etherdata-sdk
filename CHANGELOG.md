@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.2.1...v1.2.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* Update dependencies ([5b04f62](https://github.com/etherdata-blockchain/etherdata-sdk/commit/5b04f6253bda1bc78c15bf281fbf85a0b9cd3040))
+
 ### 1.2.1 (2021-09-16)
 
 ## 1.2.0 (2021-09-16)
