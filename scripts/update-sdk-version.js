@@ -30,4 +30,4 @@ for (let p of sdkPaths) {
 }
 
 exec('git add .');
-exec(`git commit -m \"update sdk-dist version\"`);
+// exec(`git commit -m \"update sdk-dist version\"`);
