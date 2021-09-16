@@ -11,7 +11,15 @@ functions:
         description: The current etdereum protocol version
         example: "54"
         type: string
-
+  - name: blockNumber
+    description: Returns the current block number
+    rpc_method: eth_blockNumber
+    params: []
+    returns:
+      - name: blockNumber
+        description: The current blockNumber
+        example: "0x5d6e5"
+        type: string
   - name: syncing
     description: Returns an object with data about the sync status or false.
     rpc_method: eth_syncing
