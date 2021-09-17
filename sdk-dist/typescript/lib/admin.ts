@@ -6,13 +6,14 @@ import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
 export class Admin {
   client: Client;
   baseURL: string;
-  port: number;
+  port?: number;
 
-  constructor(baseURL: string, port: number) {
+  constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
 
-    const transport = new HTTPTransport(`${baseURL}:${port}`);
+    let url = port ? `${baseURL}:${port}` : baseURL;
+    const transport = new HTTPTransport(url);
     this.client = new Client(new RequestManager([transport]));
   }
   /**
