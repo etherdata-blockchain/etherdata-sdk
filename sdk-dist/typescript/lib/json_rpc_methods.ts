@@ -21,7 +21,7 @@ export class Json_rpc_methods {
    */
   async protocalVersion(): Promise<string> {
     return await this.client.request({
-      method: "eth_protocalVersion",
+      method: "etd_protocalVersion",
       params: undefined,
     });
   }
@@ -32,7 +32,7 @@ export class Json_rpc_methods {
    */
   async blockNumber(): Promise<string> {
     return await this.client.request({
-      method: "eth_blockNumber",
+      method: "etd_blockNumber",
       params: undefined,
     });
   }
@@ -49,7 +49,7 @@ export class Json_rpc_methods {
     ]
   > {
     return await this.client.request({
-      method: "eth_syncing",
+      method: "etd_syncing",
       params: undefined,
     });
   }
@@ -60,7 +60,7 @@ export class Json_rpc_methods {
    */
   async coinbase(): Promise<any> {
     return await this.client.request({
-      method: "eth_coinbase",
+      method: "etd_coinbase",
       params: undefined,
     });
   }
@@ -71,7 +71,7 @@ export class Json_rpc_methods {
    */
   async mining(): Promise<boolean> {
     return await this.client.request({
-      method: "eth_mining",
+      method: "etd_mining",
       params: undefined,
     });
   }
@@ -82,7 +82,7 @@ export class Json_rpc_methods {
    */
   async hashrate(): Promise<any> {
     return await this.client.request({
-      method: "eth_hashrate",
+      method: "etd_hashrate",
       params: undefined,
     });
   }
@@ -93,7 +93,7 @@ export class Json_rpc_methods {
    */
   async gasPrice(): Promise<any> {
     return await this.client.request({
-      method: "eth_gasPrice",
+      method: "etd_gasPrice",
       params: undefined,
     });
   }
@@ -104,7 +104,7 @@ export class Json_rpc_methods {
    */
   async accounts(): Promise<any[]> {
     return await this.client.request({
-      method: "eth_accounts",
+      method: "etd_accounts",
       params: undefined,
     });
   }
@@ -117,7 +117,7 @@ export class Json_rpc_methods {
    */
   async getBalance(address: string, tag: string): Promise<number> {
     return await this.client.request({
-      method: "eth_getBalance",
+      method: "etd_getBalance",
       params: [address, tag],
     });
   }
@@ -131,7 +131,7 @@ export class Json_rpc_methods {
    */
   async getStorageAt(address: any, position: any, tag: string): Promise<any> {
     return await this.client.request({
-      method: "eth_getStorageAt",
+      method: "etd_getStorageAt",
       params: [address, position, tag],
     });
   }
@@ -144,7 +144,7 @@ export class Json_rpc_methods {
    */
   async getTransactionCount(address: any, state: string): Promise<number> {
     return await this.client.request({
-      method: "eth_getTransactionCount",
+      method: "etd_getTransactionCount",
       params: [address, state],
     });
   }
@@ -160,7 +160,7 @@ export class Json_rpc_methods {
     QUANTITY_TAG: string
   ): Promise<string> {
     return await this.client.request({
-      method: "eth_getTransactionCountByHash",
+      method: "etd_getTransactionCountByHash",
       params: [data, QUANTITY_TAG],
     });
   }
@@ -172,7 +172,7 @@ export class Json_rpc_methods {
    */
   async getBlockTransactionCountByHash(DATA: string): Promise<string> {
     return await this.client.request({
-      method: "eth_getBlockTransactionCountByHash",
+      method: "etd_getBlockTransactionCountByHash",
       params: [DATA],
     });
   }
@@ -186,7 +186,7 @@ export class Json_rpc_methods {
     QUANTITY_TAG: string
   ): Promise<string> {
     return await this.client.request({
-      method: "eth_getBlockTransactionCountByNumber",
+      method: "etd_getBlockTransactionCountByNumber",
       params: [QUANTITY_TAG],
     });
   }
@@ -198,7 +198,7 @@ export class Json_rpc_methods {
    */
   async getUncleCountByBlockHash(DATA: string): Promise<string> {
     return await this.client.request({
-      method: "eth_getUncleCountByBlockHash",
+      method: "etd_getUncleCountByBlockHash",
       params: [DATA],
     });
   }
@@ -210,7 +210,7 @@ export class Json_rpc_methods {
    */
   async getUncleCountByBlockNumber(QUANTITY_TAG: string): Promise<string> {
     return await this.client.request({
-      method: "eth_getUncleCountByBlockNumber",
+      method: "etd_getUncleCountByBlockNumber",
       params: [QUANTITY_TAG],
     });
   }
@@ -223,7 +223,7 @@ export class Json_rpc_methods {
    */
   async getCode(DATA: string, QUANTITY_TAG: string): Promise<string> {
     return await this.client.request({
-      method: "eth_code",
+      method: "etd_code",
       params: [DATA, QUANTITY_TAG],
     });
   }
@@ -242,11 +242,11 @@ Note the address to sign with must be unlocked
 * @return value The signature
 */
   async sign(a: string, b: string): Promise<string> {
-    return await this.client.request({ method: "eth_sign", params: [a, b] });
+    return await this.client.request({ method: "etd_sign", params: [a, b] });
   }
 
   /**
-   * Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
+   * Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction
    * @param Object The transaction object
    * @return DATA The signed transaction object.
    */
@@ -260,7 +260,7 @@ Note the address to sign with must be unlocked
     nonce: string | undefined;
   }): Promise<string> {
     return await this.client.request({
-      method: "eth_signTransaction",
+      method: "etd_signTransaction",
       params: [Object],
     });
   }
@@ -268,7 +268,7 @@ Note the address to sign with must be unlocked
   /**
    * Creates new message call transaction or a contract creation, if the data field contains code
    * @param Object The transaction object
-   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
   async sendTranscation(Object: {
     from: string;
@@ -280,7 +280,7 @@ Note the address to sign with must be unlocked
     nonce: string | undefined;
   }): Promise<string> {
     return await this.client.request({
-      method: "eth_sendTranscation",
+      method: "etd_sendTranscation",
       params: [Object],
     });
   }
@@ -288,11 +288,11 @@ Note the address to sign with must be unlocked
   /**
    * Creates new message call transaction or a contract creation for signed transactions
    * @param DATA The signed transaction data.
-   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
   async sendRawTransaction(DATA: string): Promise<string> {
     return await this.client.request({
-      method: "eth_sendRawTransaction",
+      method: "etd_sendRawTransaction",
       params: [DATA],
     });
   }
@@ -315,7 +315,7 @@ Note the address to sign with must be unlocked
     QUANTITY_TAG: string
   ): Promise<string> {
     return await this.client.request({
-      method: "eth_call",
+      method: "etd_call",
       params: [Object, QUANTITY_TAG],
     });
   }
@@ -340,7 +340,7 @@ Note the address to sign with must be unlocked
     QUANTITY_TAG: string
   ): Promise<string> {
     return await this.client.request({
-      method: "eth_estimateGas",
+      method: "etd_estimateGas",
       params: [Object, QUANTITY_TAG],
     });
   }
@@ -374,7 +374,7 @@ Note the address to sign with must be unlocked
     uncles: string[];
   }> {
     return await this.client.request({
-      method: "eth_getBlockByHash",
+      method: "etd_getBlockByHash",
       params: [DATA, Bool],
     });
   }
@@ -408,7 +408,7 @@ Note the address to sign with must be unlocked
     uncles: string[];
   }> {
     return await this.client.request({
-      method: "eth_getBlockByNumber",
+      method: "etd_getBlockByNumber",
       params: [QUANTITY_TAG, Bool],
     });
   }
@@ -437,7 +437,7 @@ Note the address to sign with must be unlocked
     s: string;
   }> {
     return await this.client.request({
-      method: "eth_getTransactionByHash",
+      method: "etd_getTransactionByHash",
       params: [DATA],
     });
   }
@@ -446,14 +446,14 @@ Note the address to sign with must be unlocked
    * Returns information about a transaction by block hash and transaction index position
    * @param DATA 32 Bytes - hash of a block.
    * @param QUANTITY The integer of the transaction index position.
-   * @return Object See eth_getTransactionByHash
+   * @return Object See etd_getTransactionByHash
    */
   async getTransactionByHashAndIndex(
     DATA: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
     return await this.client.request({
-      method: "eth_getTransactionByHashAndIndex",
+      method: "etd_getTransactionByHashAndIndex",
       params: [DATA, QUANTITY],
     });
   }
@@ -462,14 +462,14 @@ Note the address to sign with must be unlocked
    * Returns information about a transaction by block number and transaction index position
    * @param QUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
    * @param QUANTITY The transaction index position.
-   * @return Object See eth_getTransactionByHash
+   * @return Object See etd_getTransactionByHash
    */
   async getTransactionByBlockNumberAndIndex(
     QUANTITY_TAG: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
     return await this.client.request({
-      method: "eth_getTransactionByBlockNumberAndIndex",
+      method: "etd_getTransactionByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
     });
   }
@@ -498,7 +498,7 @@ Note the address to sign with must be unlocked
     status: string;
   }> {
     return await this.client.request({
-      method: "eth_getTransactionReceipt",
+      method: "etd_getTransactionReceipt",
       params: [DATA],
     });
   }
@@ -507,14 +507,14 @@ Note the address to sign with must be unlocked
    * eturns information about a uncle of a block by hash and uncle index position
    * @param DATA 32 Bytes - The hash of a block.
    * @param QUANTITY The uncle’s index position.
-   * @return Object See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @return Object See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockHashAndIndex(
     DATA: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
     return await this.client.request({
-      method: "eth_getUncleByBlockHashAndIndex",
+      method: "etd_getUncleByBlockHashAndIndex",
       params: [DATA, QUANTITY],
     });
   }
@@ -523,14 +523,14 @@ Note the address to sign with must be unlocked
    * Returns information about a uncle of a block by number and uncle index position
    * @param QUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
    * @param QUANTITY the uncle’s index position.
-   * @return Object See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @return Object See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockNumberAndIndex(
     QUANTITY_TAG: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
     return await this.client.request({
-      method: "eth_getUncleByBlockNumberAndIndex",
+      method: "etd_getUncleByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
     });
   }
@@ -541,7 +541,7 @@ Note the address to sign with must be unlocked
    */
   async getCompliers(): Promise<string[]> {
     return await this.client.request({
-      method: "eth_getCompliers",
+      method: "etd_getCompliers",
       params: undefined,
     });
   }
@@ -553,7 +553,7 @@ Note the address to sign with must be unlocked
    */
   async compileSolidity(String: string): Promise<string> {
     return await this.client.request({
-      method: "eth_compileSolidity",
+      method: "etd_compileSolidity",
       params: [String],
     });
   }
@@ -565,7 +565,7 @@ Note the address to sign with must be unlocked
    */
   async complpieLLL(String: string): Promise<string> {
     return await this.client.request({
-      method: "eth_complpieLLL",
+      method: "etd_complpieLLL",
       params: [String],
     });
   }
@@ -577,14 +577,14 @@ Note the address to sign with must be unlocked
    */
   async complieSerpent(String: string): Promise<string> {
     return await this.client.request({
-      method: "eth_complieSerpent",
+      method: "etd_complieSerpent",
       params: [String],
     });
   }
 
   /**
 * Creates a filter object, based on filter options, to notify when the state changes (logs)
-*  To check if the state has changed, call eth_getFilterChanges
+*  To check if the state has changed, call etd_getFilterChanges
 * 
 A note on specifying topic filters Topics are order-dependent
 *  A transaction with a log with topics [A, B] will be matched by the following topic filters
@@ -599,31 +599,31 @@ A note on specifying topic filters Topics are order-dependent
     topics: string | undefined[] | undefined;
   }): Promise<string> {
     return await this.client.request({
-      method: "eth_newFilter",
+      method: "etd_newFilter",
       params: [Object],
     });
   }
 
   /**
    * Creates a filter in the node, to notify when a new block arrives
-   *  To check if the state has changed, call eth_getFilterChanges
+   *  To check if the state has changed, call etd_getFilterChanges
    * @return QUANTITY A filter id.
    */
   async newBlockFilter(): Promise<string> {
     return await this.client.request({
-      method: "eth_newBlockFilter",
+      method: "etd_newBlockFilter",
       params: undefined,
     });
   }
 
   /**
    * Creates a filter in the node, to notify when new pending transactions arrive
-   *  To check if the state has changed, call eth_getFilterChanges
+   *  To check if the state has changed, call etd_getFilterChanges
    * @return QUANTITY A filter id.
    */
   async newPendingTransactionFilter(): Promise<string> {
     return await this.client.request({
-      method: "eth_newPendingTransactionFilter",
+      method: "etd_newPendingTransactionFilter",
       params: undefined,
     });
   }
@@ -631,14 +631,14 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Uninstalls a filter with given id
    *  Should always be called when watch is no longer needed
-   *  Additonally Filters timeout when they aren’t requested with eth_getFilterChanges
+   *  Additonally Filters timeout when they aren’t requested with etd_getFilterChanges
    *  for a period of time
    * @param QUANTITY The filter id.
    * @return Bool true if the filter was successfully uninstalled, otherwise false.
    */
   async uninstallFilter(QUANTITY: string): Promise<boolean> {
     return await this.client.request({
-      method: "eth_uninstallFilter",
+      method: "etd_uninstallFilter",
       params: [QUANTITY],
     });
   }
@@ -646,7 +646,7 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Polling method for a filter, which returns an array of logs which occurred since last poll
    * @param QUANTITY The filter id.
-   * @return Array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+   * @return Array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
    */
   async getFilterChanges(
     QUANTITY: string
@@ -664,7 +664,7 @@ A note on specifying topic filters Topics are order-dependent
     }[]
   > {
     return await this.client.request({
-      method: "eth_getFilterChanges",
+      method: "etd_getFilterChanges",
       params: [QUANTITY],
     });
   }
@@ -672,11 +672,11 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Returns an array of all logs matching filter with given id
    * @param QUANTITY The filter id.
-   * @return Array See eth_getFilterChanges.
+   * @return Array See etd_getFilterChanges.
    */
   async getFilterLogs(QUANTITY: string): Promise<any[]> {
     return await this.client.request({
-      method: "eth_getFilterLogs",
+      method: "etd_getFilterLogs",
       params: [QUANTITY],
     });
   }
@@ -684,7 +684,7 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Returns an array of all logs matching a given filter object
    * @param Object The filter options
-   * @return Array See eth_getFilterChanges.
+   * @return Array See etd_getFilterChanges.
    */
   async getLogs(Object: {
     fromBlock: string | undefined;
@@ -694,7 +694,7 @@ A note on specifying topic filters Topics are order-dependent
     blockhash: string | undefined;
   }): Promise<any[]> {
     return await this.client.request({
-      method: "eth_getLogs",
+      method: "etd_getLogs",
       params: [Object],
     });
   }
@@ -705,7 +705,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async getWork(): Promise<string[]> {
     return await this.client.request({
-      method: "eth_getWork",
+      method: "etd_getWork",
       params: undefined,
     });
   }
@@ -719,7 +719,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async submitWork(a: string, b: string, c: string): Promise<boolean> {
     return await this.client.request({
-      method: "eth_submitWork",
+      method: "etd_submitWork",
       params: [a, b, c],
     });
   }
@@ -732,7 +732,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async submitHashrate(Hashrate: string, ID: string): Promise<boolean> {
     return await this.client.request({
-      method: "eth_submitHashrate",
+      method: "etd_submitHashrate",
       params: [Hashrate, ID],
     });
   }

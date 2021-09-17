@@ -4,7 +4,7 @@ description: "different methods to perform etd control"
 functions:
   - name: protocalVersion
     description: Returns the current etdereum protocol version.
-    rpc_method: eth_protocalVersion
+    rpc_method: etd_protocalVersion
     params: []
     returns:
       - name: version
@@ -13,7 +13,7 @@ functions:
         type: string
   - name: blockNumber
     description: Returns the current block number
-    rpc_method: eth_blockNumber
+    rpc_method: etd_blockNumber
     params: []
     returns:
       - name: blockNumber
@@ -22,7 +22,7 @@ functions:
         type: string
   - name: syncing
     description: Returns an object with data about the sync status or false.
-    rpc_method: eth_syncing
+    rpc_method: etd_syncing
     params: []
     returns: # either of the return
       - name: syncObject
@@ -37,7 +37,7 @@ functions:
             example: "0x384"
             type: number # "QUANTITY"
           - name: currentBlock
-            description: The current block, same as eth_blockNumber
+            description: The current block, same as etd_blockNumber
             example: "0x386"
             type: number # "QUANTITY"
           - name: highestBlock
@@ -51,7 +51,7 @@ functions:
 
   - name: coinbase
     description: Returns the client coinbase address.
-    rpc_method: eth_coinbase
+    rpc_method: etd_coinbase
     params: []
     returns:
       - name: coinbase
@@ -61,7 +61,7 @@ functions:
 
   - name: mining
     description: Returns true if client is actively mining new blocks.
-    rpc_method: eth_mining
+    rpc_method: etd_mining
     params: []
     returns:
       - name: isMining
@@ -71,7 +71,7 @@ functions:
 
   - name: hashrate
     description: Returns the number of hashes per second that the node is mining with.
-    rpc_method: eth_hashrate
+    rpc_method: etd_hashrate
     params: []
     returns:
       - name: hashrate
@@ -81,7 +81,7 @@ functions:
 
   - name: gasPrice
     description: Returns the current price per gas in wei.
-    rpc_method: eth_gasPrice
+    rpc_method: etd_gasPrice
     params: []
     returns:
       - name: gasPrice
@@ -91,7 +91,7 @@ functions:
 
   - name: accounts
     description: Returns a list of addresses owned by client.
-    rpc_method: eth_accounts
+    rpc_method: etd_accounts
     params: []
     returns:
       - name: addressAccount
@@ -102,7 +102,7 @@ functions:
 
   - name: getBalance
     description: Returns the balance of the account of given address.
-    rpc_method: eth_getBalance
+    rpc_method: etd_getBalance
     params:
       - name: address
         description: DATA, 20 Bytes - address to check for balance
@@ -126,7 +126,7 @@ functions:
     description:
       "Returns the value from a storage position at a given address."
       # more description added on Monday
-    rpc_method: eth_getStorageAt
+    rpc_method: etd_getStorageAt
     params:
       - name: address
         description: DATA, 20 Bytes - address of the storage.
@@ -153,7 +153,7 @@ functions:
 
   - name: getTransactionCount
     description: Returns the number of transactions sent from an address.
-    rpc_method: eth_getTransactionCount
+    rpc_method: etd_getTransactionCount
     params:
       - name: address
         description: The address.
@@ -175,7 +175,7 @@ functions:
 
   - name: getTransactionCountByHash
     description: Returns the number of transactions in a block from a block matching the given block hash.
-    rpc_method: eth_getTransactionCountByHash
+    rpc_method: etd_getTransactionCountByHash
     params:
       - name: data
         description: 20 Bytes - The address
@@ -197,7 +197,7 @@ functions:
 
   - name: getBlockTransactionCountByHash
     description: Returns the number of transactions in a block from a block matching the given block hash.
-    rpc_method: eth_getBlockTransactionCountByHash
+    rpc_method: etd_getBlockTransactionCountByHash
     params:
       - name: DATA
         description: 32 Bytes - The hash of a block
@@ -212,7 +212,7 @@ functions:
 
   - name: getBlockTransactionCountByNumber
     description: Returns the number of transactions in a block matching the given block number.
-    rpc_method: eth_getBlockTransactionCountByNumber
+    rpc_method: etd_getBlockTransactionCountByNumber
     params:
       - name: QUANTITY_TAG
         description:
@@ -229,7 +229,7 @@ functions:
 
   - name: getUncleCountByBlockHash
     description: Returns the number of uncles in a block from a block matching the given block hash.
-    rpc_method: eth_getUncleCountByBlockHash
+    rpc_method: etd_getUncleCountByBlockHash
     params:
       - name: DATA
         description: 32 Bytes - The hash of a block
@@ -244,7 +244,7 @@ functions:
 
   - name: getUncleCountByBlockNumber
     description: Returns the number of uncles in a block from a block matching the given block number.
-    rpc_method: eth_getUncleCountByBlockNumber
+    rpc_method: etd_getUncleCountByBlockNumber
     params:
       - name: QUANTITY_TAG
         description:
@@ -261,7 +261,7 @@ functions:
 
   - name: getCode
     description: Returns code at a given address.
-    rpc_method: eth_code
+    rpc_method: etd_code
     params:
       - name: DATA
         description: 20 Byter - The address
@@ -290,7 +290,7 @@ functions:
       data (e.g. transaction) and use the signature to impersonate the victim.
 
       Note the address to sign with must be unlocked.
-    rpc_method: eth_sign
+    rpc_method: etd_sign
     params:
       - name: a
         description: 20 Bytes - The address
@@ -311,8 +311,8 @@ functions:
   - name: signTransaction
     description:
       Signs a transaction that can be submitted to the network at a later time using with
-      eth_sendRawTransaction.
-    rpc_method: eth_signTransaction
+      etd_sendRawTransaction.
+    rpc_method: etd_signTransaction
     params:
       - name: Object
         description: The transaction object
@@ -373,7 +373,7 @@ functions:
 
   - name: sendTranscation
     description: Creates new message call transaction or a contract creation, if the data field contains code.
-    rpc_method: eth_sendTranscation
+    rpc_method: etd_sendTranscation
     params:
       - name: Object
         description: The transaction object
@@ -430,14 +430,14 @@ functions:
       - name: DATA
         description:
           32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
-          Use eth_getTransactionReceipt to get the contract address, after the transaction was mined,
+          Use etd_getTransactionReceipt to get the contract address, after the transaction was mined,
           when you created a contract.
         example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
         type: string
 
   - name: sendRawTransaction
     description: Creates new message call transaction or a contract creation for signed transactions.
-    rpc_method: eth_sendRawTransaction
+    rpc_method: etd_sendRawTransaction
     params:
       - name: DATA
         description: The signed transaction data.
@@ -448,14 +448,14 @@ functions:
       - name: DATA
         description:
           32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
-          Use eth_getTransactionReceipt to get the contract address, after the transaction was mined,
+          Use etd_getTransactionReceipt to get the contract address, after the transaction was mined,
           when you created a contract.
         example: "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
         type: string
 
   - name: call
     description: Executes a new message call immediately without creating a transaction on the block chain.
-    rpc_method: eth_call
+    rpc_method: etd_call
     params:
       - name: Object
         description: The transaction object
@@ -476,7 +476,7 @@ functions:
           - name: gas
             description:
               QUANTITY - (optional) Integer of the gas provided for the transaction execution.
-              eth_call consumes zero gas, but this parameter may be needed by some executions.
+              etd_call consumes zero gas, but this parameter may be needed by some executions.
             example: "0x76c0" # 30400
             type: string
             optional: true
@@ -516,7 +516,7 @@ functions:
       complete. The transaction will not be added to the blockchain. Note that the estimate may be
       significantly more than the amount of gas actually used by the transaction, for a variety of
       reasons including EVM mechanics and node performance.
-    rpc_method: eth_estimateGas
+    rpc_method: etd_estimateGas
     params:
       - name: Object
         description: The transaction object
@@ -537,7 +537,7 @@ functions:
           - name: gas
             description:
               QUANTITY - (optional) Integer of the gas provided for the transaction execution.
-              eth_call consumes zero gas, but this parameter may be needed by some executions.
+              etd_call consumes zero gas, but this parameter may be needed by some executions.
             example: "0x76c0" # 30400
             type: string
             optional: true
@@ -573,7 +573,7 @@ functions:
 
   - name: getBlockByHash
     description: Returns information about a block by hash.
-    rpc_method: eth_getBlockByHash
+    rpc_method: etd_getBlockByHash
     params:
       - name: DATA
         description: 32 Bytes - Hash of a block.
@@ -666,7 +666,7 @@ functions:
 
   - name: getBlockByNumber
     description: Returns information about a block by block number.
-    rpc_method: eth_getBlockByNumber
+    rpc_method: etd_getBlockByNumber
     params:
       - name: QUANTITY_TAG
         description:
@@ -761,7 +761,7 @@ functions:
 
   - name: getTransactionByHash
     description: Returns the information about a transaction requested by transaction hash.
-    rpc_method: eth_getTransactionByHash
+    rpc_method: etd_getTransactionByHash
     params:
       - name: DATA
         description: 32 Bytes - hash of a transaction
@@ -833,7 +833,7 @@ functions:
 
   - name: getTransactionByHashAndIndex
     description: Returns information about a transaction by block hash and transaction index position.
-    rpc_method: eth_getTransactionByHashAndIndex
+    rpc_method: etd_getTransactionByHashAndIndex
     params:
       - name: DATA
         description: 32 Bytes - hash of a block.
@@ -847,7 +847,7 @@ functions:
         optional: false
     returns:
       - name: Object
-        description: See eth_getTransactionByHash
+        description: See etd_getTransactionByHash
         example: ""
         type: object
         objectType:
@@ -858,7 +858,7 @@ functions:
 
   - name: getTransactionByBlockNumberAndIndex
     description: Returns information about a transaction by block number and transaction index position.
-    rpc_method: eth_getTransactionByBlockNumberAndIndex
+    rpc_method: etd_getTransactionByBlockNumberAndIndex
     params:
       - name: QUANTITY_TAG
         description: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
@@ -872,7 +872,7 @@ functions:
         optional: false
     returns:
       - name: Object
-        description: See eth_getTransactionByHash
+        description: See etd_getTransactionByHash
         example: ""
         type: object
         objectType:
@@ -884,7 +884,7 @@ functions:
   - name: getTransactionReceipt
     description: Returns the receipt of a transaction by transaction hash.
       Note That the receipt is not available for pending transactions.
-    rpc_method: eth_getTransactionReceipt
+    rpc_method: etd_getTransactionReceipt
     params:
       - name: DATA
         description: 32 Bytes - hash of a transaction
@@ -959,7 +959,7 @@ functions:
 
   - name: getUncleByBlockHashAndIndex
     description: eturns information about a uncle of a block by hash and uncle index position.
-    rpc_method: eth_getUncleByBlockHashAndIndex
+    rpc_method: etd_getUncleByBlockHashAndIndex
     params:
       - name: DATA
         description: 32 Bytes - The hash of a block.
@@ -973,7 +973,7 @@ functions:
         optional: false
     returns:
       - name: Object
-        description: See eth_getTransactionByHash
+        description: See etd_getTransactionByHash
           Note - An uncle doesn’t contain individual transactions.
         example: ""
         type: object
@@ -985,7 +985,7 @@ functions:
 
   - name: getUncleByBlockNumberAndIndex
     description: Returns information about a uncle of a block by number and uncle index position.
-    rpc_method: eth_getUncleByBlockNumberAndIndex
+    rpc_method: etd_getUncleByBlockNumberAndIndex
     params:
       - name: QUANTITY_TAG
         description:
@@ -1001,7 +1001,7 @@ functions:
         optional: false
     returns:
       - name: Object
-        description: See eth_getTransactionByHash
+        description: See etd_getTransactionByHash
           Note - An uncle doesn’t contain individual transactions.
         example: ""
         type: object
@@ -1013,7 +1013,7 @@ functions:
 
   - name: getCompliers
     description: Returns a list of available compilers in the client.
-    rpc_method: eth_getCompliers
+    rpc_method: etd_getCompliers
     params: []
     returns:
       - name: Array
@@ -1024,7 +1024,7 @@ functions:
 
   - name: compileSolidity
     description: Returns compiled solidity code.
-    rpc_method: eth_compileSolidity
+    rpc_method: etd_compileSolidity
     params:
       - name: String
         description: The source code.
@@ -1042,7 +1042,7 @@ functions:
 
   - name: complpieLLL
     description: Returns compiled LLL code.
-    rpc_method: eth_complpieLLL
+    rpc_method: etd_complpieLLL
     params:
       - name: String
         description: The source code.
@@ -1057,7 +1057,7 @@ functions:
 
   - name: complieSerpent
     description: Returns compiled serpent code.
-    rpc_method: eth_complieSerpent
+    rpc_method: etd_complieSerpent
     params:
       - name: String
         description: The source code.
@@ -1073,7 +1073,7 @@ functions:
   - name: newFilter
     description:
       Creates a filter object, based on filter options, to notify when the state changes (logs).
-      To check if the state has changed, call eth_getFilterChanges.
+      To check if the state has changed, call etd_getFilterChanges.
 
       A note on specifying topic filters
       Topics are order-dependent. A transaction with a log with topics [A, B] will be matched by the following topic filters
@@ -1083,7 +1083,7 @@ functions:
       -[null, B] “anything in first position AND B in second position (and anything after)”
       -[A, B] “A in first position AND B in second position (and anything after)”
       -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”
-    rpc_method: eth_newFilter
+    rpc_method: etd_newFilter
     params:
       - name: Object
         description: The filter options
@@ -1129,8 +1129,8 @@ functions:
   - name: newBlockFilter
     description:
       Creates a filter in the node, to notify when a new block arrives. To check if the state has
-      changed, call eth_getFilterChanges.
-    rpc_method: eth_newBlockFilter
+      changed, call etd_getFilterChanges.
+    rpc_method: etd_newBlockFilter
     params: []
     returns:
       - name: QUANTITY
@@ -1141,8 +1141,8 @@ functions:
   - name: newPendingTransactionFilter
     description:
       Creates a filter in the node, to notify when new pending transactions arrive. To check if the
-      state has changed, call eth_getFilterChanges.
-    rpc_method: eth_newPendingTransactionFilter
+      state has changed, call etd_getFilterChanges.
+    rpc_method: etd_newPendingTransactionFilter
     params: []
     returns:
       - name: QUANTITY
@@ -1153,9 +1153,9 @@ functions:
   - name: uninstallFilter
     description:
       Uninstalls a filter with given id. Should always be called when watch is no longer needed.
-      Additonally Filters timeout when they aren’t requested with eth_getFilterChanges. for a period
+      Additonally Filters timeout when they aren’t requested with etd_getFilterChanges. for a period
       of time.
-    rpc_method: eth_uninstallFilter
+    rpc_method: etd_uninstallFilter
     params:
       - name: QUANTITY
         description: The filter id.
@@ -1170,7 +1170,7 @@ functions:
 
   - name: getFilterChanges
     description: Polling method for a filter, which returns an array of logs which occurred since last poll.
-    rpc_method: eth_getFilterChanges
+    rpc_method: etd_getFilterChanges
     params:
       - name: QUANTITY
         description: The filter id.
@@ -1181,9 +1181,9 @@ functions:
       - name: Array
         description:
           Array of log objects, or an empty array if nothing has changed since last poll.
-          For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes),
+          For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes),
           e.g. ["0x3454645634534..."].
-          For filters created with eth_newPendingTransactionFilter the return are transaction
+          For filters created with etd_newPendingTransactionFilter the return are transaction
           hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
         example: ""
         type: array
@@ -1239,7 +1239,7 @@ functions:
 
   - name: getFilterLogs
     description: Returns an array of all logs matching filter with given id.
-    rpc_method: eth_getFilterLogs
+    rpc_method: etd_getFilterLogs
     params:
       - name: QUANTITY
         description: The filter id.
@@ -1248,14 +1248,14 @@ functions:
         optional: false
     returns:
       - name: Array
-        description: See eth_getFilterChanges.
+        description: See etd_getFilterChanges.
         example: ""
         type: array
         arrayType: any
 
   - name: getLogs
     description: Returns an array of all logs matching a given filter object.
-    rpc_method: eth_getLogs
+    rpc_method: etd_getLogs
     params:
       - name: Object
         description: The filter options
@@ -1305,14 +1305,14 @@ functions:
             optional: true
     returns:
       - name: Array
-        description: See eth_getFilterChanges.
+        description: See etd_getFilterChanges.
         example: ""
         type: array
         arrayType: any
 
   - name: getWork
     description: Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”).
-    rpc_method: eth_getWork
+    rpc_method: etd_getWork
     params: []
     returns:
       - name: Array
@@ -1330,7 +1330,7 @@ functions:
 
   - name: submitWork
     description: Used for submitting a proof-of-work solution.
-    rpc_method: eth_submitWork
+    rpc_method: etd_submitWork
     params:
       - name: a
         description: 8 Bytes - The nonce found (64 bits)
@@ -1355,7 +1355,7 @@ functions:
 
   - name: submitHashrate
     description: Used for submitting mining hashrate.
-    rpc_method: eth_submitHashrate
+    rpc_method: etd_submitHashrate
     params:
       - name: Hashrate
         description: A hexadecimal string representation (32 bytes) of the hash rate
