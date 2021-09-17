@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.0...v1.4.1) (2021-09-17)
+
+
+### Bug Fixes
+
+* Typescript sdk changed to optional port ([de821ac](https://github.com/etherdata-blockchain/etherdata-sdk/commit/de821ac097034c8b087963257a66580753daf6bc))
+
 ## [1.4.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.3.1...v1.4.0) (2021-09-17)
 
 
