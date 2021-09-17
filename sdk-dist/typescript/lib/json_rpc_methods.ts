@@ -1,30 +1,31 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * different methods to perform etd control
  */
 export class Json_rpc_methods {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * Returns the current etdereum protocol version
    * @return version The current etdereum protocol version
    */
   async protocalVersion(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_protocalVersion",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -32,10 +33,14 @@ export class Json_rpc_methods {
    * @return blockNumber The current blockNumber
    */
   async blockNumber(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_blockNumber",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -49,10 +54,14 @@ export class Json_rpc_methods {
       boolean
     ]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_syncing",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -60,10 +69,14 @@ export class Json_rpc_methods {
    * @return coinbase The client coinbase address
    */
   async coinbase(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_coinbase",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -71,10 +84,14 @@ export class Json_rpc_methods {
    * @return isMining True if client is actively mining new blocks.
    */
   async mining(): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_mining",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -82,10 +99,14 @@ export class Json_rpc_methods {
    * @return hashrate The number of hashes per second that the node is mining with
    */
   async hashrate(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_hashrate",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -93,10 +114,14 @@ export class Json_rpc_methods {
    * @return gasPrice The current price per gas in wei (8049999872 Wei in the example)
    */
   async gasPrice(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_gasPrice",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -104,10 +129,14 @@ export class Json_rpc_methods {
    * @return addressAccount The array of accouts
    */
   async accounts(): Promise<any[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_accounts",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -117,10 +146,14 @@ export class Json_rpc_methods {
    * @return balance QUANTITY - integer of the current balance in wei.
    */
   async getBalance(address: string, tag: string): Promise<number> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getBalance",
       params: [address, tag],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -131,10 +164,14 @@ export class Json_rpc_methods {
    * @return valur The value at this storage position.
    */
   async getStorageAt(address: any, position: any, tag: string): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getStorageAt",
       params: [address, position, tag],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -144,10 +181,14 @@ export class Json_rpc_methods {
    * @return number The number of transactions send from this address.
    */
   async getTransactionCount(address: any, state: string): Promise<number> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionCount",
       params: [address, state],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -160,10 +201,14 @@ export class Json_rpc_methods {
     data: string,
     QUANTITY_TAG: string
   ): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionCountByHash",
       params: [data, QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -172,10 +217,14 @@ export class Json_rpc_methods {
    * @return QUANTITY The integer of the number of transactions in this block.
    */
   async getBlockTransactionCountByHash(DATA: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getBlockTransactionCountByHash",
       params: [DATA],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -186,10 +235,14 @@ export class Json_rpc_methods {
   async getBlockTransactionCountByNumber(
     QUANTITY_TAG: string
   ): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getBlockTransactionCountByNumber",
       params: [QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -198,10 +251,14 @@ export class Json_rpc_methods {
    * @return QUANTITY_TAG The integer of the number of uncles in this block.
    */
   async getUncleCountByBlockHash(DATA: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getUncleCountByBlockHash",
       params: [DATA],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -210,10 +267,14 @@ export class Json_rpc_methods {
    * @return QUANTITY The integer of the number of uncles in this block.
    */
   async getUncleCountByBlockNumber(QUANTITY_TAG: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getUncleCountByBlockNumber",
       params: [QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -223,10 +284,14 @@ export class Json_rpc_methods {
    * @return DATA The code from the given address.
    */
   async getCode(DATA: string, QUANTITY_TAG: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_code",
       params: [DATA, QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -243,7 +308,14 @@ Note the address to sign with must be unlocked
 * @return value The signature
 */
   async sign(a: string, b: string): Promise<string> {
-    return await this.client.request({ method: "etd_sign", params: [a, b] });
+    let response = await axios.post(this.url, {
+      method: "etd_sign",
+      params: [a, b],
+      jsonrpc: "2.0",
+      id: 1,
+    });
+
+    return response.data.result;
   }
 
   /**
@@ -260,10 +332,14 @@ Note the address to sign with must be unlocked
     data: string;
     nonce: string | undefined;
   }): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_signTransaction",
       params: [Object],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -280,10 +356,14 @@ Note the address to sign with must be unlocked
     data: string;
     nonce: string | undefined;
   }): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_sendTranscation",
       params: [Object],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -292,10 +372,14 @@ Note the address to sign with must be unlocked
    * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
   async sendRawTransaction(DATA: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_sendRawTransaction",
       params: [DATA],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -315,10 +399,14 @@ Note the address to sign with must be unlocked
     },
     QUANTITY_TAG: string
   ): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_call",
       params: [Object, QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -340,10 +428,14 @@ Note the address to sign with must be unlocked
     },
     QUANTITY_TAG: string
   ): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_estimateGas",
       params: [Object, QUANTITY_TAG],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -374,10 +466,14 @@ Note the address to sign with must be unlocked
     transaction: string[];
     uncles: string[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getBlockByHash",
       params: [DATA, Bool],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -408,10 +504,14 @@ Note the address to sign with must be unlocked
     transaction: string[];
     uncles: string[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getBlockByNumber",
       params: [QUANTITY_TAG, Bool],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -437,10 +537,14 @@ Note the address to sign with must be unlocked
     r: string;
     s: string;
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionByHash",
       params: [DATA],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -453,10 +557,14 @@ Note the address to sign with must be unlocked
     DATA: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionByHashAndIndex",
       params: [DATA, QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -469,10 +577,14 @@ Note the address to sign with must be unlocked
     QUANTITY_TAG: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -498,10 +610,14 @@ Note the address to sign with must be unlocked
     root: string;
     status: string;
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getTransactionReceipt",
       params: [DATA],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -514,10 +630,14 @@ Note the address to sign with must be unlocked
     DATA: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockHashAndIndex",
       params: [DATA, QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -530,10 +650,14 @@ Note the address to sign with must be unlocked
     QUANTITY_TAG: string,
     QUANTITY: string
   ): Promise<{ data: any }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -541,10 +665,14 @@ Note the address to sign with must be unlocked
    * @return Array Array of available compilers.
    */
   async getCompliers(): Promise<string[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getCompliers",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -553,10 +681,14 @@ Note the address to sign with must be unlocked
    * @return DATA The compiled source code.
    */
   async compileSolidity(String: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_compileSolidity",
       params: [String],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -565,10 +697,14 @@ Note the address to sign with must be unlocked
    * @return DATA The compiled source code.
    */
   async complpieLLL(String: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_complpieLLL",
       params: [String],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -577,10 +713,14 @@ Note the address to sign with must be unlocked
    * @return DATA The compiled source code.
    */
   async complieSerpent(String: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_complieSerpent",
       params: [String],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -599,10 +739,14 @@ A note on specifying topic filters Topics are order-dependent
     address: string | undefined;
     topics: string | undefined[] | undefined;
   }): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_newFilter",
       params: [Object],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -611,10 +755,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return QUANTITY A filter id.
    */
   async newBlockFilter(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_newBlockFilter",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -623,10 +771,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return QUANTITY A filter id.
    */
   async newPendingTransactionFilter(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_newPendingTransactionFilter",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -638,10 +790,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return Bool true if the filter was successfully uninstalled, otherwise false.
    */
   async uninstallFilter(QUANTITY: string): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_uninstallFilter",
       params: [QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -664,10 +820,14 @@ A note on specifying topic filters Topics are order-dependent
       topics: string[];
     }[]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getFilterChanges",
       params: [QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -676,10 +836,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return Array See etd_getFilterChanges.
    */
   async getFilterLogs(QUANTITY: string): Promise<any[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getFilterLogs",
       params: [QUANTITY],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -694,10 +858,14 @@ A note on specifying topic filters Topics are order-dependent
     topics: string | undefined[] | undefined;
     blockhash: string | undefined;
   }): Promise<any[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getLogs",
       params: [Object],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -705,10 +873,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return Array Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
    */
   async getWork(): Promise<string[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_getWork",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -719,10 +891,14 @@ A note on specifying topic filters Topics are order-dependent
    * @return Bool returns true if the provided solution is valid, otherwise false.
    */
   async submitWork(a: string, b: string, c: string): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_submitWork",
       params: [a, b, c],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -732,9 +908,13 @@ A note on specifying topic filters Topics are order-dependent
    * @return Bool Returns `true` if submitting went through succesfully and `false` otherwise.
    */
   async submitHashrate(Hashrate: string, ID: string): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "etd_submitHashrate",
       params: [Hashrate, ID],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

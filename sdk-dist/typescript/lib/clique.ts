@@ -1,21 +1,18 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * The clique API provides access to the state of the clique consensus engine
  *  You can use this API to manage signer votes and to check the health of a private network
  */
 export class Clique {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * Retrieves a snapshot of all clique state at a given block
@@ -30,10 +27,14 @@ export class Clique {
     recents: { number: string[] };
     signers: { signer: string[] };
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique.getSnapshot",
       params: [number],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -41,10 +42,14 @@ export class Clique {
    * @return ststeSnapshot The tate snapshot at the block.
    */
   async getSnapshotAtHash(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_getSnapshotAtHash",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -52,10 +57,14 @@ export class Clique {
    * @return signerArray The list of authorized signers
    */
   async getSigners(): Promise<string[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_getSigners",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -63,10 +72,14 @@ export class Clique {
    * @return proposal The current proposals
    */
   async proposals(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_proposals",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -75,10 +88,14 @@ export class Clique {
    *  With auth set to false, the vote is against the address
    */
   async propose(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_propose",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -86,10 +103,14 @@ export class Clique {
    *  The signer will not cast further votes (either for or against) the address
    */
   async discard(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_discard",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -101,9 +122,13 @@ export class Clique {
   async status(): Promise<
     [number, { signerAddresses: string; numBlocksSigned: number }, number]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "clique_status",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

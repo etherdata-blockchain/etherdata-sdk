@@ -1,4 +1,4 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
 * Getd v1
@@ -26,17 +26,14 @@ Considerations 1
 *  listening for all logs/blocks when the node starts to  synchronize
 */
 export class Real_time {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
@@ -49,10 +46,14 @@ export class Real_time {
     subscriptionName: string,
     aaaaa: any | undefined
   ): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "real-time_createSubscription",
       params: [subscriptionName, aaaaa],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -62,10 +63,14 @@ export class Real_time {
    * @return cancelled Indicating if the subscription was cancelled successful.
    */
   async cancelSubscription(subscriptionID: string): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "real-time_cancelSubscription",
       params: [subscriptionID],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -94,10 +99,14 @@ logs -Returns logs that are included in new imported blocks and match the given 
     transactionHash: string;
     transactionIndex: string;
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "real-time_supportedSubscriptions",
       params: [subscriptionObject],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -116,10 +125,14 @@ logs -Returns logs that are included in new imported blocks and match the given 
       }
     ]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "real-time_newPendingTransactions",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -140,9 +153,13 @@ logs -Returns logs that are included in new imported blocks and match the given 
       }
     ]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "real-time_syncing",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

@@ -1,30 +1,31 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * Getd provides several extensions to the standard etd JSON-RPC namespace
  */
 export class Etd {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * This method is used for real-time events through subscriptions
    *  See the subscription documentation for more information
    */
   async subscribe(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "eth_subscribe",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -32,9 +33,13 @@ export class Etd {
    *  See the subscription documentation for more information
    */
   async unsubscribe(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "eth_unsubscribe",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

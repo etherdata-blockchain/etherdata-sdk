@@ -1,20 +1,17 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * The debug API gives you access to several non-standard RPC methods, which will allow you to inspect, debug and set certain debugging flags during runtime
  */
 export class Debug {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * Sets the logging backtrace location
@@ -23,10 +20,14 @@ export class Debug {
    * @param locationJavascript_based The logging backtrace location, which is specified as &lt;filename&gt;:&lt;line&gt;.
    */
   async backtraceAt(locationJavascript_based: any): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_backtraceAt",
       params: [locationJavascript_based],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -35,20 +36,28 @@ export class Debug {
    *  If a different rate is desired, set the rate and write the profile manually using debug_writeBlockProfile
    */
   async blockProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_blockProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Turns on CPU profiling for the given duration and writes profile data to disk
    */
   async cpuProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_cpuProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -69,10 +78,14 @@ export class Debug {
     }[];
     root: string;
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_dumpBlock",
       params: [blockNum],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -81,10 +94,14 @@ export class Debug {
    * org/pkg/runtime/debug/#GCStats for information about the fields of the returned object
    */
   async gcStats(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_gcStats",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -92,20 +109,28 @@ export class Debug {
    *  References -&gt; RLP
    */
   async getBlockRlp(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_getBlockRlp",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Turns on Go runtime tracing for the given duration and writes trace data to disk
    */
   async goTrace(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_goTrace",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -114,20 +139,28 @@ export class Debug {
    * org/pkg/runtime/#MemStats for information about the fields of the returned object
    */
   async memStats(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_memStats",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Fetches and retrieves the seed hash of the block by number
    */
   async seedHash(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "dubug_seedHash",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -137,10 +170,14 @@ export class Debug {
    *  References -&gt; Ethash
    */
   async setHead(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_setHead",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -150,10 +187,14 @@ export class Debug {
    * @param rate The rate (in samplessec) of goroutine block profile data collection
    */
   async setBlockProfileRate(rate: number): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_setBlockProfileRate",
       params: [rate],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -162,50 +203,70 @@ export class Debug {
    * @return printedStacks A printed representation of the stacks of all goroutines
    */
   async stacks(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_stacks",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Turns on CPU profiling indefinitely, writing to the given file
    */
   async startCPUProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_startCPUProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Starts writing a Go runtime trace to the given file
    */
   async startGoTrace(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_startGoTrace",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Stops an ongoing CPU profile
    */
   async stopCPUProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_stopCPUProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Stops writing the Go runtime trace
    */
   async stopGoTrace(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_stopGoTrace",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -232,10 +293,14 @@ export class Debug {
       storage: { storage: { storageName: string }[] };
     }[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceBlock",
       params: [blockName],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -245,10 +310,14 @@ export class Debug {
    * @return block Replaying the block that is already present in the database
    */
   async traceBlockByNumber(blockNum: string): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceBlockByNumber",
       params: [blockNum],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -258,10 +327,14 @@ export class Debug {
    * @return block Replaying the block that is already present in the database
    */
   async traceBlockByHash(blockHash: string): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceBlockByHash",
       params: [blockHash],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -271,10 +344,14 @@ export class Debug {
    * @return block Replaying the block that is already present in the database
    */
   async traceBlockFromFile(file: any): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceBlockByHash",
       params: [file],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -299,20 +376,28 @@ The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uin
     txHash: string | undefined,
     disableMemory: boolean | undefined
   ): Promise<string[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_standardTraceBlockToFile",
       params: [block, txHash, disableMemory],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * This method is similar to debug_standardTraceBlockToFile, but can be used to obtain info about a block which has been rejected as invalid (for some reason)
    */
   async standardTraceBadBlockToFile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_standardTraceBadBlockToFile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -364,7 +449,7 @@ disableStorage: BOOL
       storage: { storage: string[] };
     }[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceTransaction",
       params: [
         hash,
@@ -374,17 +459,25 @@ disableStorage: BOOL
         tracer,
         timeout,
       ],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Javascript
    */
   async JavaScriptBasedTracing(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "JavaScript-based tracing",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -417,10 +510,14 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
     value: number | undefined,
     data: string | undefined
   ): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_traceCall",
       params: [to, from, gas, gasPrice, value, data],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -430,10 +527,14 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
    * @return message Log messages with level up to and including the given level will be printed.
    */
   async verbosity(): Promise<any> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_verbosity",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -442,20 +543,28 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
    * @return message
    */
   async vmodule(messageRestrictions: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_vmodule",
       params: [messageRestrictions],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
    * Writes a goroutine blocking profile to the given file
    */
   async writeBlockProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_writeBlockProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -464,9 +573,13 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
    * memprofilerate flag
    */
   async writeMemProfile(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "debug_writeMenProfile",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

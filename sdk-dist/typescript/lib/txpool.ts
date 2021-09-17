@@ -1,20 +1,17 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * The txpool API gives you access to several non-standard RPC methods to inspect the contents of  the transaction pool containing all the currently pending transactions as well as the ones queued  for future processing
  */
 export class Txpool {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
 * The content inspection property can be queried to list the exact details of all the transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
@@ -59,10 +56,14 @@ Please note, there may be multiple transactions associated with the same account
       }[];
     }[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "txpool_content",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -81,10 +82,14 @@ Please note, there may be multiple transactions associated with the same account
     pendingTransactions: { transactionArray: { transaction: string }[] }[];
     queuedTransactions: { transactionArray: { transaction: string }[] }[];
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "txpool_inspect",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -94,9 +99,13 @@ The result is an object with two fields pending and queued, each of which is a c
 * @return statusObject An object containing transaction status
 */
   async status(): Promise<{ pending: number; queued: number }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "txpool_status",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

@@ -178,9 +178,14 @@ export class TypeScriptGenerator extends Generator {
 
   protected generateFunctionBody(rpcFunction: RPCFunction): string {
     return `
-         return await this.client.request({ method: "${
-           rpcFunction.rpc_method
-         }", params: ${this.generateRpcMethodParams(rpcFunction.params)} });
+        let response = await axios.post(this.url, {
+          method: "${rpcFunction.rpc_method}",
+          params: ${this.generateRpcMethodParams(rpcFunction.params)},
+          jsonrpc: "2.0",
+          id: 1
+        });
+
+        return response.data.result
         `;
   }
 

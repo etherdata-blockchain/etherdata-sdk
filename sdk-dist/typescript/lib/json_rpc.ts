@@ -1,4 +1,4 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
 * Getd supports all standard web3 JSON-RPC APIs
@@ -17,17 +17,14 @@ Access to RPC methods can be enabled on a per-namespace basis
 *  Find documentation for individual  namespaces in the sidebar
 */
 export class Json_rpc {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
 * To enable the HTTP server, use the --http flag
@@ -62,10 +59,14 @@ Example: if you want to use Remix with Getd, allow requests from the remix domai
 * corsdomain &#39;*&#39; to enable access from any origin
 */
   async HTTPServer(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "json_rpc_HTTP Server",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -90,10 +91,14 @@ As with --http
 * origins &#39;*&#39; allows access from any origin
 */
   async WebSocketServer(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "json_rpc_WebSocket Server",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -112,9 +117,13 @@ You can configure the location of the socket using the --ipcpath flag
 *  IPC can be disabled  using the --ipcdisable flag
 */
   async IPCServer(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "json_rpc_IPC Server",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

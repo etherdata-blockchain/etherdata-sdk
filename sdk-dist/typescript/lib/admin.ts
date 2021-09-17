@@ -1,20 +1,17 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * The admin API gives you access to several non-standard RPC methods,  which will allow you to have a fine grained control over your Getd instance,  including but not limited to network peer and RPC endpoint management
  */
 export class Admin {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * The addPeer administrative method requests adding a new remote node to the list of tracked static nodes
@@ -24,10 +21,14 @@ export class Admin {
    * @return accepted Indicating whether the peer was accepted for tracking or some error occurred.
    */
   async addPeer(enode: string): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_addPeer",
       params: [enode],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -35,10 +36,14 @@ export class Admin {
    * @return absPath The absolute path that the running Getd node is currently using to store all its databases
    */
   async datadir(): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_datadir",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -55,10 +60,14 @@ export class Admin {
     listenAddr: string;
     ports: { discovery: number; listener: number };
   }> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_nodeInfo",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -79,10 +88,14 @@ export class Admin {
       }[];
     }[]
   > {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_peers",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -100,10 +113,14 @@ export class Admin {
     cors: string | undefined,
     apis: string | undefined
   ): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_startRPC",
       params: [host, port, cors, apis],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -121,10 +138,14 @@ export class Admin {
     cors: string | undefined,
     apis: string | undefined
   ): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_startRPC",
       params: [host, port, cors, apis],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -133,10 +154,14 @@ export class Admin {
    * @return HTTPendpointClosed A boolean indicating whether the endpoint was closed or not.
    */
   async stopRPC(): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_stopRPC",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -145,9 +170,13 @@ export class Admin {
    * @return WEBendpointClosed A boolean indicating whether the endpoint was closed or not.
    */
   async stopWS(): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "admin_stopWS",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }

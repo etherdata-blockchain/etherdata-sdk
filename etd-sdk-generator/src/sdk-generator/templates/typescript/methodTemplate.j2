@@ -1,18 +1,15 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios"
 
 {{ methodComment }}
 export class {{ methodName }}{
-    client: Client
     baseURL: string
     port?: number
+    url: string
 
     constructor(baseURL: string, port?: number) {
         this.baseURL = baseURL;
         this.port = port;
-        
-        let url = port ? `${baseURL}:${port}` : baseURL;
-        const transport = new HTTPTransport(url);
-        this.client = new Client(new RequestManager([transport]));
+        this.url = port ? `${baseURL}:${port}` : baseURL;
     }
 
 

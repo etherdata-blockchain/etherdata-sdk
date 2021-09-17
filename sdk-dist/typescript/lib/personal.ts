@@ -1,20 +1,17 @@
-import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
+import axios from "axios";
 
 /**
  * The personal API manages private keys in the key store
  */
 export class Personal {
-  client: Client;
   baseURL: string;
   port?: number;
+  url: string;
 
   constructor(baseURL: string, port?: number) {
     this.baseURL = baseURL;
     this.port = port;
-
-    let url = port ? `${baseURL}:${port}` : baseURL;
-    const transport = new HTTPTransport(url);
-    this.client = new Client(new RequestManager([transport]));
+    this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
    * Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
@@ -23,10 +20,14 @@ export class Personal {
    * @return accountAddress The address of the new account.
    */
   async importRawKey(priveteKey: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_importRawKey",
       params: [priveteKey],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -34,10 +35,14 @@ export class Personal {
    * @return accountAddress The list of ethereum account addresses
    */
   async listAccounts(): Promise<string[]> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_listAccounts",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -45,10 +50,14 @@ export class Personal {
    *  The account can no longer be used to send transactions
    */
   async lockAccount(): Promise<void> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_lockAccount",
       params: undefined,
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -61,10 +70,14 @@ At the Getd console, newAccount will prompt for a passphrase when it is not supp
 * @return priveteKey The generated priveteKey
 */
   async newAccount(passphrase: string | undefined): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_newAccount",
       params: [passphrase],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -88,10 +101,14 @@ The account can be used with etd_sign and etd_sendTransaction while it is unlock
     passphrase: string | undefined,
     unlockDuration: number | undefined
   ): Promise<boolean> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_unlockAccount",
       params: [accountAddress, passphrase, unlockDuration],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -117,10 +134,14 @@ Example &#39;&gt; var tx = {from&#39;:&#39; &quot;0x391694e7e0b0cce554cb130d723a
     to: string;
     value: any;
   }): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_sendTransaction",
       params: [tx],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -138,10 +159,14 @@ See ecRecover to verify the signature
 * @return value abcde
 */
   async sign(a: string, b: string, c: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_sign",
       params: [a, b, c],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 
   /**
@@ -151,9 +176,13 @@ See ecRecover to verify the signature
    * @return address The address associated with the private key
    */
   async ecRecover(a: string, b: string): Promise<string> {
-    return await this.client.request({
+    let response = await axios.post(this.url, {
       method: "personal_ecRecover",
       params: [a, b],
+      jsonrpc: "2.0",
+      id: 1,
     });
+
+    return response.data.result;
   }
 }
