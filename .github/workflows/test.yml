@@ -17,3 +17,11 @@ jobs:
         working-directory: etd-sdk-generator
       - run: yarn start
         working-directory: etd-sdk-generator
+      - run: yarn
+        name: Installing Typescript SDK Dependencies
+        working-directory: sdk-dist/typescript
+      - run: yarn test
+        name: Testing Typescript SDK
+        working-directory: sdk-dist/typescript
+        env:
+          httpsUrl: https://debug.etdchain.net/hdkEtd@Themoon
