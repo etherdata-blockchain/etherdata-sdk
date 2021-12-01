@@ -1,62 +1,55 @@
 import fs from "fs";
-import {
-  RPCFunction,
-  Method,
-  Param,
-  Return,
-  Variable,
-  AcceptedType,
-} from "./interfaces/schema";
+import {Method, Param, Return, RPCFunction, Variable,} from "./interfaces/schema";
 import yml from "js-yaml";
-import { Validator } from "jsonschema";
+import {Validator} from "jsonschema";
 import path from "path";
 import nunjucks from "nunjucks";
-import { Type } from "ajv/dist/compile/util";
 
+/**
+ * Given a string, will return to capitalize version of the string.
+ * For example, given hello-world, will return Hello-world
+ * @param string
+ */
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export abstract class Generator {
-  protected fileList: string[] = [];
-  protected schemaPath?: string;
-  protected methods?: Method[];
-  // Output extension name
-  protected abstract extension: string;
-  protected abstract functionTemplatePath: string;
-  protected abstract methodTemplatePath: string;
-  protected abstract libraryTemplatePath: string;
-
-  protected validate(filename: string): [boolean, Method] {
-    // Read schema
-    const schema = this.getSchema();
-    const data = this.getYmlFile(filename);
-    const validator = new Validator();
-    //TODO: Add validation
-    // const valid = validator.validate(data, schema, {base: "https://etherdata-blockchain.github.io/etherdata-sdk/"})
-    return [true, data];
-  }
-
   /**
-   * Read schema from file
+   * List of schema files
+   * @protected
    */
-  protected getSchema(): any {
-    if (!this.schemaPath) {
-      throw new Error("Schema path not set");
-    }
-    const appDir = path.resolve(__dirname);
-    const schema = fs.readFileSync(path.join(appDir, this.schemaPath), "utf8");
-    return JSON.parse(schema);
-  }
-
-  // Read yml file from disk
-  protected getYmlFile(filename: string): Method {
-    const appDir = path.resolve(__dirname);
-    const ymlPath = path.join(appDir, filename);
-
-    const data = yml.load(fs.readFileSync(ymlPath, "utf8")) as Method;
-    return data;
-  }
+  protected fileList: string[] = [];
+  /**
+   * Schema.json path for validation purpose
+   * @protected
+   */
+  protected schemaPath?: string;
+  /**
+   * JSON RPC methods
+   * @protected
+   */
+  protected methods?: Method[];
+  /**
+   * Output extension name. For example ts for typescript file
+   * @protected
+   */
+  protected abstract extension: string;
+  /**
+   * Template file path for function
+   * @protected
+   */
+  protected abstract functionTemplatePath: string;
+  /**
+   * Template file path for method
+   * @protected
+   */
+  protected abstract methodTemplatePath: string;
+  /**
+   * Template file path for library
+   * @protected
+   */
+  protected abstract libraryTemplatePath: string;
 
   /**
    * Read file from file list and get the parsed data from it
@@ -104,6 +97,37 @@ export abstract class Generator {
     let headerFile = path.join(appDir, outputFolder, `index.${this.extension}`);
     // Write header content to file
     fs.writeFileSync(headerFile, this.generateLibHeader(this.methods));
+  }
+
+  protected validate(filename: string): [boolean, Method] {
+    // Read schema
+    const schema = this.getSchema();
+    const data = this.getYmlFile(filename);
+    const validator = new Validator();
+    //TODO: Add validation
+    // const valid = validator.validate(data, schema, {base: "https://etherdata-blockchain.github.io/etherdata-sdk/"})
+    return [true, data];
+  }
+
+  /**
+   * Read schema from file
+   */
+  protected getSchema(): any {
+    if (!this.schemaPath) {
+      throw new Error("Schema path not set");
+    }
+    const appDir = path.resolve(__dirname);
+    const schema = fs.readFileSync(path.join(appDir, this.schemaPath), "utf8");
+    return JSON.parse(schema);
+  }
+
+  // Read yml file from disk
+  protected getYmlFile(filename: string): Method {
+    const appDir = path.resolve(__dirname);
+    const ymlPath = path.join(appDir, filename);
+
+    const data = yml.load(fs.readFileSync(ymlPath, "utf8")) as Method;
+    return data;
   }
 
   /**
@@ -199,8 +223,17 @@ export abstract class Generator {
   protected abstract generateVariable(variable: Variable): string;
 
   /**
-   * Generate return types for function
+   * Generate return types for function.
+   * In most cases, we will define a custom type at the begining of the file.
+   * For example,
+   * ```typescript
+   * export interface ReturnType{
+   *     name: string;
+   *     value: string
+   * }
+   * ```
    * @param returns Return variables
+   * @return string Generated code
    */
   protected abstract generateReturnType(returns: Return[]): string;
 

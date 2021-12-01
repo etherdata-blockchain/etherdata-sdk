@@ -4,3 +4,4 @@ dist
 .idea
 .vs
 .vscode
+etd-sdk-generator/yarn.lock

@@ -1,17 +1,13 @@
 import { capitalizeFirstLetter, Generator } from "../generator";
 import {
+  Method,
+  Param,
+  Return,
   RPCFunction,
   Variable,
-  Return,
-  Param,
-  AcceptedType,
-  Method,
 } from "../interfaces/schema";
 import prettier from "prettier";
 import { ESLint } from "eslint";
-import path from "path";
-import fs from "fs";
-import nunjucks from "nunjucks";
 
 export class TypeScriptGenerator extends Generator {
   protected libraryTemplatePath: string;
