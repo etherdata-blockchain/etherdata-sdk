@@ -212,7 +212,7 @@ export abstract class Generator {
     }
 
     const uniqueTypes = types.filter(
-      (t1, i) => types.findIndex((t2) => t2.type === t1.type) === i
+      (t1, i) => types.findIndex((t2) => t2.type === t1.type) === i && t1.code
     );
 
     const context: FunctionToCodeContext = {

@@ -145,7 +145,9 @@ export class TypeScriptGenerator extends Generator {
     }
 
     const uniqueTypes = returnTypes.filter(
-      (t1, i) => returnTypes.findIndex((t2) => t2.type === t1.type) === i
+      (t1, i) =>
+        returnTypes.findIndex((t2) => t2.type === t1.type) === i &&
+        !t1.type.endsWith("[]")
     );
 
     return {

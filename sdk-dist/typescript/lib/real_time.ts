@@ -1,4 +1,48 @@
 import axios from "axios";
+export interface SubscriptionObject {
+  address: string | undefined[] | undefined;
+  topics: string | undefined[] | undefined;
+}
+
+export interface SupportedSubscriptionsResponseOutputObject {
+  address: string;
+  blockHash: string;
+  blockNumber: string;
+  data: string;
+  logIndex: string;
+  topics: string[];
+  transactionHash: string;
+  transactionIndex: string;
+}
+
+export interface NewPendingTransactionsResponseParams {
+  subscription: string;
+  result: string;
+}
+
+export interface NewPendingTransactionsResponseTranscation {
+  jsonrpc: string;
+  method: string;
+  params: NewPendingTransactionsResponseParams;
+}
+
+export interface NewPendingTransactionsResponse {
+  hash: string;
+  transcation: NewPendingTransactionsResponseTranscation;
+}
+
+export interface SyncingResponseStatus {
+  startingBlock: number;
+  currentBlock: number;
+  highestBlock: number;
+  pulledStates: number;
+  knownStates: number;
+}
+
+export interface SyncingResponse {
+  synchronized: boolean;
+  status: SyncingResponseStatus;
+}
 
 /**
 * Getd v1
@@ -86,19 +130,9 @@ logs -Returns logs that are included in new imported blocks and match the given 
 * @param subscriptionObject The object containing different opotional transcation fields
 * @return outputObject The return Object of the function
 */
-  async supportedSubscriptions(subscriptionObject: {
-    address: string | undefined[] | undefined;
-    topics: string | undefined[] | undefined;
-  }): Promise<{
-    address: string;
-    blockHash: string;
-    blockNumber: string;
-    data: string;
-    logIndex: string;
-    topics: string[];
-    transactionHash: string;
-    transactionIndex: string;
-  }> {
+  async supportedSubscriptions(
+    subscriptionObject: SubscriptionObject
+  ): Promise<SupportedSubscriptionsResponseOutputObject> {
     let response = await axios.post(this.url, {
       method: "real-time_supportedSubscriptions",
       params: [subscriptionObject],

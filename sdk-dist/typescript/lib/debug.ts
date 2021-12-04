@@ -1,4 +1,61 @@
 import axios from "axios";
+export interface Accounts {
+  balance: string;
+  code: string;
+  codeHash: string;
+  nonce: number;
+  root: string;
+  storage: any[];
+}
+
+export interface DumpBlockResponseBlockDetails {
+  accounts: Accounts[];
+  root: string;
+}
+
+export interface Storage {
+  storageName: string;
+}
+
+export interface StrucrtLogs {
+  depth: number;
+  error: string;
+  gas: number;
+  gasCost: number;
+  memory: string[];
+  op: string;
+  pc: number;
+  stackArray: string[];
+  storage: Storage;
+}
+
+export interface TraceBlockResponseBlcok {
+  gas: number;
+  returnValue: string;
+  strucrtLogs: StrucrtLogs[];
+}
+
+export interface Storage {
+  storage: string[];
+}
+
+export interface StrucrtLogs {
+  depth: number;
+  error: string;
+  gas: number;
+  gasCost: number;
+  memory: string[];
+  op: string;
+  pc: number;
+  stackArray: string[];
+  storage: Storage;
+}
+
+export interface TraceTransactionResponseTransaction {
+  gas: number;
+  returnValue: string;
+  strucrtLogs: StrucrtLogs[];
+}
 
 /**
  * The debug API gives you access to several non-standard RPC methods, which will allow you to inspect, debug and set certain debugging flags during runtime
@@ -65,19 +122,7 @@ export class Debug {
    * @param blockNum The block number
    * @return blockDetails The block number and list of accounts
    */
-  async dumpBlock(
-    blockNum: number
-  ): Promise<{
-    accounts: {
-      balance: string;
-      code: string;
-      codeHash: string;
-      nonce: number;
-      root: string;
-      storage: any[];
-    }[];
-    root: string;
-  }> {
+  async dumpBlock(blockNum: number): Promise<DumpBlockResponseBlockDetails> {
     let response = await axios.post(this.url, {
       method: "debug_dumpBlock",
       params: [blockNum],
@@ -276,23 +321,7 @@ export class Debug {
    * @param blockName The name of the traced block
    * @return blcok The stack trace of transcation of the block
    */
-  async traceBlock(
-    blockName: string
-  ): Promise<{
-    gas: number;
-    returnValue: string;
-    strucrtLogs: {
-      depth: number;
-      error: string;
-      gas: number;
-      gasCost: number;
-      memory: string[];
-      op: string;
-      pc: number;
-      stackArray: string[];
-      storage: { storage: { storageName: string }[] };
-    }[];
-  }> {
+  async traceBlock(blockName: string): Promise<TraceBlockResponseBlcok> {
     let response = await axios.post(this.url, {
       method: "debug_traceBlock",
       params: [blockName],
@@ -434,21 +463,7 @@ disableStorage: BOOL
     disableStack: boolean | undefined,
     tracer: string | undefined,
     timeout: string | undefined
-  ): Promise<{
-    gas: number;
-    returnValue: string;
-    strucrtLogs: {
-      depth: number;
-      error: string;
-      gas: number;
-      gasCost: number;
-      memory: string[];
-      op: string;
-      pc: number;
-      stackArray: string[];
-      storage: { storage: string[] };
-    }[];
-  }> {
+  ): Promise<TraceTransactionResponseTransaction> {
     let response = await axios.post(this.url, {
       method: "debug_traceTransaction",
       params: [

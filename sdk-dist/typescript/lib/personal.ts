@@ -1,4 +1,9 @@
 import axios from "axios";
+export interface Tx {
+  from: string;
+  to: string;
+  value: any;
+}
 
 /**
  * The personal API manages private keys in the key store
@@ -129,11 +134,7 @@ Example &#39;&gt; var tx = {from&#39;:&#39; &quot;0x391694e7e0b0cce554cb130d723a
 * @param tx The transaction
 * @return address The address
 */
-  async sendTransaction(tx: {
-    from: string;
-    to: string;
-    value: any;
-  }): Promise<string> {
+  async sendTransaction(tx: Tx): Promise<string> {
     let response = await axios.post(this.url, {
       method: "personal_sendTransaction",
       params: [tx],

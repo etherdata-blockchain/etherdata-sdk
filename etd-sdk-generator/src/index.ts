@@ -1,16 +1,16 @@
 import { TypeScriptGenerator } from "./sdk-generator/generators/typescriptGenerator";
 
 let filePaths = [
-  // "../../../sdk/admin.yml",
+  "../../../sdk/admin.yml",
   "../../../sdk/clique.yml",
-  // "../../../sdk/debug.yml",
-  // "../../../sdk/etd.yml",
-  // "../../../sdk/personal.yml",
-  // "../../../sdk/real-time.yml",
-  // "../../../sdk/txpool.yml",
-  // "../../../sdk/json_rpc.yml",
-  // "../../../sdk/json_rpc_methods.yml",
-  // "../../../sdk/miner.yml",
+  "../../../sdk/debug.yml",
+  "../../../sdk/etd.yml",
+  "../../../sdk/personal.yml",
+  "../../../sdk/real-time.yml",
+  "../../../sdk/txpool.yml",
+  "../../../sdk/json_rpc.yml",
+  "../../../sdk/json_rpc_methods.yml",
+  "../../../sdk/miner.yml",
 ];
 
 let outputPaths = [

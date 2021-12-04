@@ -1,4 +1,39 @@
 import axios from "axios";
+export interface NodeInfoResponsePorts {
+  discovery: number;
+  listener: number;
+}
+
+export interface NodeInfoResponseNodeInfo {
+  enode: string;
+  id: string;
+  ip: string;
+  listenAddr: string;
+  ports: NodeInfoResponsePorts;
+}
+
+export interface Network {
+  localAddress: string;
+  remoteAddress: string;
+}
+
+export interface Etd {
+  difficulty: number;
+  head: string;
+  version: number;
+}
+
+export interface Protocols {
+  etd: Etd;
+}
+
+export interface PeersArray {
+  caps: string[];
+  id: string;
+  name: string;
+  network: Network;
+  protocols: Protocols[];
+}
 
 /**
  * The admin API gives you access to several non-standard RPC methods,  which will allow you to have a fine grained control over your Getd instance,  including but not limited to network peer and RPC endpoint management
@@ -53,13 +88,7 @@ export class Admin {
    *  etd, les, shh, bzz)
    * @return nodeInfo Get all the information known about the running Getd node at the networking granularity
    */
-  async nodeInfo(): Promise<{
-    enode: string;
-    id: string;
-    ip: string;
-    listenAddr: string;
-    ports: { discovery: number; listener: number };
-  }> {
+  async nodeInfo(): Promise<NodeInfoResponseNodeInfo> {
     let response = await axios.post(this.url, {
       method: "admin_nodeInfo",
       params: undefined,
@@ -77,17 +106,7 @@ export class Admin {
    *  etd, les, shh, bzz)
    * @return peersArray All the information known about the connected remote nodes
    */
-  async peers(): Promise<
-    {
-      caps: string[];
-      id: string;
-      name: string;
-      network: { localAddress: string; remoteAddress: string };
-      protocols: {
-        etd: { difficulty: number; head: string; version: number };
-      }[];
-    }[]
-  > {
+  async peers(): Promise<PeersArray[]> {
     let response = await axios.post(this.url, {
       method: "admin_peers",
       params: undefined,

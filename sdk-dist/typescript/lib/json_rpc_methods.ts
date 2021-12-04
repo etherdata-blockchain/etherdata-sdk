@@ -1,4 +1,168 @@
 import axios from "axios";
+export interface SyncingResponseSyncObject {
+  startingBlock: number;
+  currentBlock: number;
+  highestBlock: number;
+}
+
+export interface SyncingResponse {
+  syncObject: SyncingResponseSyncObject;
+  syncStatus: boolean;
+}
+
+export interface Object {
+  from: string;
+  to: string | undefined;
+  gas: string | undefined;
+  gasPrice: string | undefined;
+  value: string | undefined;
+  data: string;
+  nonce: string | undefined;
+}
+
+export interface Object {
+  from: string;
+  to: string | undefined;
+  gas: string | undefined;
+  gasPrice: string | undefined;
+  value: string | undefined;
+  data: string;
+  nonce: string | undefined;
+}
+
+export interface Object {
+  from: string;
+  to: string;
+  gas: string | undefined;
+  gasPrice: string | undefined;
+  value: string | undefined;
+  data: string | undefined;
+}
+
+export interface Object {
+  from: string;
+  to: string;
+  gas: string | undefined;
+  gasPrice: string | undefined;
+  value: string | undefined;
+  data: string | undefined;
+}
+
+export interface GetBlockByHashResponseObject {
+  number: string;
+  hash: string;
+  parnetHash: string;
+  nonce: string;
+  sha3Uncles: string;
+  logsBloom: string;
+  transactionsRoot: string;
+  miner: string;
+  difficulty: string;
+  totalDifficulty: string;
+  extraData: string;
+  size: string;
+  gasLimit: string;
+  gasUsed: string;
+  timestamp: string;
+  transaction: string[];
+  uncles: string[];
+}
+
+export interface GetBlockByNumberResponseObject {
+  number: string;
+  hash: string;
+  parnetHash: string;
+  nonce: string;
+  sha3Uncles: string;
+  logsBloom: string;
+  transactionsRoot: string;
+  miner: string;
+  difficulty: string;
+  totalDifficulty: string;
+  extraData: string;
+  size: string;
+  gasLimit: string;
+  gasUsed: string;
+  timestamp: string;
+  transaction: string[];
+  uncles: string[];
+}
+
+export interface GetTransactionByHashResponseObject {
+  blockHash: string;
+  blockNumber: string;
+  from: string;
+  gas: string;
+  gasParice: string;
+  hash: string;
+  input: string;
+  nonce: string;
+  to: string;
+  transactionIndex: string;
+  value: string;
+  v: string;
+  r: string;
+  s: string;
+}
+
+export interface GetTransactionByHashAndIndexResponseObject {
+  data: any;
+}
+
+export interface GetTransactionByBlockNumberAndIndexResponseObject {
+  data: any;
+}
+
+export interface GetTransactionReceiptResponseObject {
+  transactionHash: string;
+  transactionIndex: string;
+  blockHash: string;
+  blockNumber: string;
+  from: string;
+  to: string;
+  cumulativeGasUsed: string;
+  gasUsed: string;
+  contractAddress: string;
+  logs: string[];
+  logsBloom: string;
+  root: string;
+  status: string;
+}
+
+export interface GetUncleByBlockHashAndIndexResponseObject {
+  data: any;
+}
+
+export interface GetUncleByBlockNumberAndIndexResponseObject {
+  data: any;
+}
+
+export interface Object {
+  fromBlock: string | undefined;
+  toBlock: string | undefined;
+  address: string | undefined;
+  topics: string | undefined[] | undefined;
+}
+
+export interface Array {
+  removed: boolean;
+  logIndex: string;
+  transactionIndex: string;
+  transactionHash: string;
+  blockHash: string;
+  blockNumber: string;
+  address: string;
+  data: string;
+  topics: string[];
+}
+
+export interface Object {
+  fromBlock: string | undefined;
+  toBlock: string | undefined;
+  address: string | undefined;
+  topics: string | undefined[] | undefined;
+  blockhash: string | undefined;
+}
 
 /**
  * different methods to perform etd control
@@ -318,15 +482,7 @@ Note the address to sign with must be unlocked
    * @param Object The transaction object
    * @return DATA The signed transaction object.
    */
-  async signTransaction(Object: {
-    from: string;
-    to: string | undefined;
-    gas: string | undefined;
-    gasPrice: string | undefined;
-    value: string | undefined;
-    data: string;
-    nonce: string | undefined;
-  }): Promise<string> {
+  async signTransaction(Object: Object): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_signTransaction",
       params: [Object],
@@ -342,15 +498,7 @@ Note the address to sign with must be unlocked
    * @param Object The transaction object
    * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
-  async sendTranscation(Object: {
-    from: string;
-    to: string | undefined;
-    gas: string | undefined;
-    gasPrice: string | undefined;
-    value: string | undefined;
-    data: string;
-    nonce: string | undefined;
-  }): Promise<string> {
+  async sendTranscation(Object: Object): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_sendTranscation",
       params: [Object],
@@ -383,17 +531,7 @@ Note the address to sign with must be unlocked
    * @param QUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
    * @return DATA The return value of executed contract.
    */
-  async call(
-    Object: {
-      from: string;
-      to: string;
-      gas: string | undefined;
-      gasPrice: string | undefined;
-      value: string | undefined;
-      data: string | undefined;
-    },
-    QUANTITY_TAG: string
-  ): Promise<string> {
+  async call(Object: Object, QUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_call",
       params: [Object, QUANTITY_TAG],
@@ -412,17 +550,7 @@ Note the address to sign with must be unlocked
    * @param QUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
    * @return QUANTITY The amount of gas used.
    */
-  async estimateGas(
-    Object: {
-      from: string;
-      to: string;
-      gas: string | undefined;
-      gasPrice: string | undefined;
-      value: string | undefined;
-      data: string | undefined;
-    },
-    QUANTITY_TAG: string
-  ): Promise<string> {
+  async estimateGas(Object: Object, QUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_estimateGas",
       params: [Object, QUANTITY_TAG],
@@ -442,25 +570,7 @@ Note the address to sign with must be unlocked
   async getBlockByHash(
     DATA: string,
     Bool: boolean
-  ): Promise<{
-    number: string;
-    hash: string;
-    parnetHash: string;
-    nonce: string;
-    sha3Uncles: string;
-    logsBloom: string;
-    transactionsRoot: string;
-    miner: string;
-    difficulty: string;
-    totalDifficulty: string;
-    extraData: string;
-    size: string;
-    gasLimit: string;
-    gasUsed: string;
-    timestamp: string;
-    transaction: string[];
-    uncles: string[];
-  }> {
+  ): Promise<GetBlockByHashResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockByHash",
       params: [DATA, Bool],
@@ -480,25 +590,7 @@ Note the address to sign with must be unlocked
   async getBlockByNumber(
     QUANTITY_TAG: string,
     Bool: boolean
-  ): Promise<{
-    number: string;
-    hash: string;
-    parnetHash: string;
-    nonce: string;
-    sha3Uncles: string;
-    logsBloom: string;
-    transactionsRoot: string;
-    miner: string;
-    difficulty: string;
-    totalDifficulty: string;
-    extraData: string;
-    size: string;
-    gasLimit: string;
-    gasUsed: string;
-    timestamp: string;
-    transaction: string[];
-    uncles: string[];
-  }> {
+  ): Promise<GetBlockByNumberResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockByNumber",
       params: [QUANTITY_TAG, Bool],
@@ -516,22 +608,7 @@ Note the address to sign with must be unlocked
    */
   async getTransactionByHash(
     DATA: string
-  ): Promise<{
-    blockHash: string;
-    blockNumber: string;
-    from: string;
-    gas: string;
-    gasParice: string;
-    hash: string;
-    input: string;
-    nonce: string;
-    to: string;
-    transactionIndex: string;
-    value: string;
-    v: string;
-    r: string;
-    s: string;
-  }> {
+  ): Promise<GetTransactionByHashResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByHash",
       params: [DATA],
@@ -551,7 +628,7 @@ Note the address to sign with must be unlocked
   async getTransactionByHashAndIndex(
     DATA: string,
     QUANTITY: string
-  ): Promise<{ data: any }> {
+  ): Promise<GetTransactionByHashAndIndexResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByHashAndIndex",
       params: [DATA, QUANTITY],
@@ -571,7 +648,7 @@ Note the address to sign with must be unlocked
   async getTransactionByBlockNumberAndIndex(
     QUANTITY_TAG: string,
     QUANTITY: string
-  ): Promise<{ data: any }> {
+  ): Promise<GetTransactionByBlockNumberAndIndexResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
@@ -590,21 +667,7 @@ Note the address to sign with must be unlocked
    */
   async getTransactionReceipt(
     DATA: string
-  ): Promise<{
-    transactionHash: string;
-    transactionIndex: string;
-    blockHash: string;
-    blockNumber: string;
-    from: string;
-    to: string;
-    cumulativeGasUsed: string;
-    gasUsed: string;
-    contractAddress: string;
-    logs: string[];
-    logsBloom: string;
-    root: string;
-    status: string;
-  }> {
+  ): Promise<GetTransactionReceiptResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionReceipt",
       params: [DATA],
@@ -624,7 +687,7 @@ Note the address to sign with must be unlocked
   async getUncleByBlockHashAndIndex(
     DATA: string,
     QUANTITY: string
-  ): Promise<{ data: any }> {
+  ): Promise<GetUncleByBlockHashAndIndexResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockHashAndIndex",
       params: [DATA, QUANTITY],
@@ -644,7 +707,7 @@ Note the address to sign with must be unlocked
   async getUncleByBlockNumberAndIndex(
     QUANTITY_TAG: string,
     QUANTITY: string
-  ): Promise<{ data: any }> {
+  ): Promise<GetUncleByBlockNumberAndIndexResponseObject> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockNumberAndIndex",
       params: [QUANTITY_TAG, QUANTITY],
@@ -728,12 +791,7 @@ A note on specifying topic filters Topics are order-dependent
 * @param Object The filter options
 * @return QUANTITY A filter id.
 */
-  async newFilter(Object: {
-    fromBlock: string | undefined;
-    toBlock: string | undefined;
-    address: string | undefined;
-    topics: string | undefined[] | undefined;
-  }): Promise<string> {
+  async newFilter(Object: Object): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_newFilter",
       params: [Object],
@@ -800,21 +858,7 @@ A note on specifying topic filters Topics are order-dependent
    * @param QUANTITY The filter id.
    * @return Array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
    */
-  async getFilterChanges(
-    QUANTITY: string
-  ): Promise<
-    {
-      removed: boolean;
-      logIndex: string;
-      transactionIndex: string;
-      transactionHash: string;
-      blockHash: string;
-      blockNumber: string;
-      address: string;
-      data: string;
-      topics: string[];
-    }[]
-  > {
+  async getFilterChanges(QUANTITY: string): Promise<Array[]> {
     let response = await axios.post(this.url, {
       method: "etd_getFilterChanges",
       params: [QUANTITY],
@@ -846,13 +890,7 @@ A note on specifying topic filters Topics are order-dependent
    * @param Object The filter options
    * @return Array See etd_getFilterChanges.
    */
-  async getLogs(Object: {
-    fromBlock: string | undefined;
-    toBlock: string | undefined;
-    address: string | undefined;
-    topics: string | undefined[] | undefined;
-    blockhash: string | undefined;
-  }): Promise<any[]> {
+  async getLogs(Object: Object): Promise<any[]> {
     let response = await axios.post(this.url, {
       method: "etd_getLogs",
       params: [Object],

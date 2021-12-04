@@ -149,10 +149,9 @@ describe("Given a typescript generator test returns", () => {
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
     expect(result.type).toBe("MyFunctionResponse");
-    expect(result.types.length).toBe(3);
+    expect(result.types.length).toBe(2);
     expect(result.isCustomType).toBe(true);
     expect(result.types[0].type).toBe("User");
-    expect(result.types[1].type).toBe("User[]");
   });
 });
 

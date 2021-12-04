@@ -1,4 +1,52 @@
 import axios from "axios";
+export interface Transaction {
+  blockHash: string;
+  blockNumber: number;
+  from: string;
+  gas: string;
+  gasPrice: string;
+  hash: string;
+  input: string;
+  nonce: string;
+  to: string;
+  transactionIndex: number;
+  value: string;
+}
+
+export interface PendingTransactions {
+  transaction: Transaction[];
+}
+
+export interface QueuedTransactions {
+  transaction: Transaction[];
+}
+
+export interface ContentResponseTransactionObject {
+  pendingTransactions: PendingTransactions[];
+  queuedTransactions: QueuedTransactions[];
+}
+
+export interface TransactionArray {
+  transaction: string;
+}
+
+export interface PendingTransactions {
+  transactionArray: TransactionArray[];
+}
+
+export interface QueuedTransactions {
+  transactionArray: TransactionArray[];
+}
+
+export interface InspectResponseTransactionObject {
+  pendingTransactions: PendingTransactions[];
+  queuedTransactions: QueuedTransactions[];
+}
+
+export interface StatusResponseStatusObject {
+  pending: number;
+  queued: number;
+}
 
 /**
  * The txpool API gives you access to several non-standard RPC methods to inspect the contents of  the transaction pool containing all the currently pending transactions as well as the ones queued  for future processing
@@ -24,38 +72,7 @@ Please note, there may be multiple transactions associated with the same account
 *  This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
 * @return transactionObject The return transaction object
 */
-  async content(): Promise<{
-    pendingTransactions: {
-      transaction: {
-        blockHash: string;
-        blockNumber: number;
-        from: string;
-        gas: string;
-        gasPrice: string;
-        hash: string;
-        input: string;
-        nonce: string;
-        to: string;
-        transactionIndex: number;
-        value: string;
-      }[];
-    }[];
-    queuedTransactions: {
-      transaction: {
-        blockHash: string;
-        blockNumber: number;
-        from: string;
-        gas: string;
-        gasPrice: string;
-        hash: string;
-        input: string;
-        nonce: string;
-        to: string;
-        transactionIndex: number;
-        value: string;
-      }[];
-    }[];
-  }> {
+  async content(): Promise<ContentResponseTransactionObject> {
     let response = await axios.post(this.url, {
       method: "txpool_content",
       params: undefined,
@@ -78,10 +95,7 @@ Please note, there may be multiple transactions associated with the same account
 *  This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
 * @return transactionObject the return transcation object
 */
-  async inspect(): Promise<{
-    pendingTransactions: { transactionArray: { transaction: string }[] }[];
-    queuedTransactions: { transactionArray: { transaction: string }[] }[];
-  }> {
+  async inspect(): Promise<InspectResponseTransactionObject> {
     let response = await axios.post(this.url, {
       method: "txpool_inspect",
       params: undefined,
@@ -98,7 +112,7 @@ Please note, there may be multiple transactions associated with the same account
 The result is an object with two fields pending and queued, each of which is a counter representing the number of transactions in that particular state
 * @return statusObject An object containing transaction status
 */
-  async status(): Promise<{ pending: number; queued: number }> {
+  async status(): Promise<StatusResponseStatusObject> {
     let response = await axios.post(this.url, {
       method: "txpool_status",
       params: undefined,
