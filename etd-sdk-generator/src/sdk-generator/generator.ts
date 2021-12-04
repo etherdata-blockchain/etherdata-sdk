@@ -1,7 +1,13 @@
 import fs from "fs";
-import {Method, Param, Return, RPCFunction, Variable,} from "./interfaces/schema";
+import {
+  Method,
+  Param,
+  Return,
+  RPCFunction,
+  Variable,
+} from "./interfaces/schema";
 import yml from "js-yaml";
-import {Validator} from "jsonschema";
+import { Validator } from "jsonschema";
 import path from "path";
 import nunjucks from "nunjucks";
 import {
@@ -128,10 +134,12 @@ export abstract class Generator {
    * Generate code for variable based on its type
    * @param prevReturnTypes Variable
    * @param variable
+   * @param functionReturnTypeName
    */
   abstract generateType(
     variable: Variable,
-    prevReturnTypes: TypeResult[]
+    prevReturnTypes: TypeResult[],
+    functionReturnTypeName: string | undefined
   ): TypeResult;
 
   /**
@@ -177,6 +185,10 @@ export abstract class Generator {
   functionToCode(
     rpcFunction: RPCFunction
   ): [FunctionToCodeContext, string, TypeResult[]] {
+    if (rpcFunction.name === "getSnapshot") {
+      console.log("s");
+    }
+
     const template = this.getTemplate(this.functionTemplatePath);
     const functionComment = this.generateComment(rpcFunction, undefined);
     const functionInputTypes = this.generateInputTypes(rpcFunction.params);
@@ -194,6 +206,19 @@ export abstract class Generator {
     types = types.concat(functionInputTypes.types);
     types = types.concat(functionReturnType.types);
 
+    if (functionReturnType.isCustomType) {
+      types.push({
+        isCustomType: true,
+        type: functionReturnType.type,
+        types: [],
+        code: functionReturnType.code,
+      });
+    }
+
+    const uniqueTypes = types.filter(
+      (t1, i) => types.findIndex((t2) => t2.type === t1.type) === i
+    );
+
     const context: FunctionToCodeContext = {
       functionBody: functionBody,
       functionComment: functionComment,
@@ -204,7 +229,7 @@ export abstract class Generator {
     };
 
     const code = template.render(context);
-    return [context, code, types];
+    return [context, code, uniqueTypes];
   }
 
   protected validate(filename: string): [boolean, Method] {
@@ -313,21 +338,29 @@ export abstract class Generator {
    * Generate representation for arrays
    * @param objectTypeName
    * @param variable Array type variable
+   * @param prevResults
+   * @param functionReturnTypeName
    * @returns isCustomObject, typeCode
    */
   protected abstract generateArrayType(
     objectTypeName: string,
-    variable: Variable
+    variable: Variable,
+    prevResults: TypeResult[],
+    functionReturnTypeName: string | undefined
   ): TypeResult;
 
   /**
    * Generate representation for object type variable
    * @param objectTypeName
    * @param variable Object type variable
+   * @param prevResults
+   * @param functionReturnTypeName
    */
   protected abstract generateObjectType(
     objectTypeName: string,
-    variable: Variable
+    variable: Variable,
+    prevResults: TypeResult[],
+    functionReturnTypeName: string | undefined
   ): TypeResult;
 
   /**

@@ -27,12 +27,17 @@ export class TypeScriptGenerator extends Generator {
     this.schemaPath = "../../../schema.json";
   }
 
-  generateType(variable: Variable, prevResults: TypeResult[] = []): TypeResult {
+  generateType(
+    variable: Variable,
+    prevResults: TypeResult[] = [],
+    functionReturnTypeName: string | undefined = undefined
+  ): TypeResult {
     let returnType = "";
     let isCustomType = false;
     if (variable === undefined) {
       return { isCustomType, type: "void", types: [] };
     }
+    let code: string | undefined = undefined;
     const { type, optional } = variable;
     //Deep copy of prev results
     let types: TypeResult[] = JSON.parse(JSON.stringify(prevResults));
@@ -48,16 +53,31 @@ export class TypeScriptGenerator extends Generator {
         returnType = "boolean";
         break;
       case "array":
-        const arrayTypeResult = this.generateArrayType(variable.name, variable);
+        const arrayTypeResult = this.generateArrayType(
+          variable.name,
+          variable,
+          prevResults,
+          functionReturnTypeName
+        );
         isCustomType = arrayTypeResult.isCustomType;
         types = types.concat(arrayTypeResult.types);
         returnType = arrayTypeResult.type;
+        code = arrayTypeResult.code;
         break;
       case "object":
-        const objectResult = this.generateObjectType(variable.name, variable);
+        const objectResult = this.generateObjectType(
+          variable.name,
+          variable,
+          prevResults,
+          functionReturnTypeName
+        );
         isCustomType = objectResult.isCustomType;
         types = types.concat(objectResult.types);
+        if (isCustomType) {
+          types.push(objectResult);
+        }
         returnType = objectResult.type;
+        code = objectResult.code;
         break;
       case "any":
         returnType = "any";
@@ -76,7 +96,8 @@ export class TypeScriptGenerator extends Generator {
     return {
       isCustomType,
       type: returnType,
-      types: prevResults,
+      types: types,
+      code: code,
     };
   }
 
@@ -84,14 +105,18 @@ export class TypeScriptGenerator extends Generator {
     let returnValues = "";
     let isCustomType = true;
     let returnTypes: TypeResult[] = [];
-    let code: string | undefined = undefined;
+    let returnCode: string | undefined = undefined;
 
     if (returns.length > 1) {
       returnValues = returnTypeName;
-      code = "{";
+      returnCode = "{";
       for (let ret of returns) {
-        const { isCustomType, type, types } = this.generateType(ret);
-        code += `${ret.name}:${type}`;
+        const { isCustomType, type, types, code } = this.generateType(
+          ret,
+          [],
+          returnTypeName
+        );
+        returnCode += `${ret.name}:${type}`;
         returnTypes = returnTypes.concat(types);
 
         if (isCustomType) {
@@ -99,19 +124,21 @@ export class TypeScriptGenerator extends Generator {
             types: [],
             isCustomType: isCustomType,
             type: type,
+            code: code,
           });
         }
 
         if (returns.length > 1) {
-          code += ", ";
+          returnCode += ", ";
         }
       }
-      code += "}";
+      returnCode += "}";
     } else if (returns.length === 1) {
-      const result = this.generateType(returns[0]);
+      const result = this.generateType(returns[0], returnTypes, returnTypeName);
       returnValues = result.type;
       isCustomType = result.isCustomType;
       returnTypes = result.types;
+      returnCode = result.code;
     } else {
       returnValues = "void";
       isCustomType = false;
@@ -119,9 +146,9 @@ export class TypeScriptGenerator extends Generator {
 
     return {
       isCustomType: isCustomType,
-      type: `Promise<${returnValues}>`,
+      type: `${returnValues}`,
       types: returnTypes,
-      code: code,
+      code: returnCode,
     };
   }
 
@@ -249,10 +276,15 @@ export class TypeScriptGenerator extends Generator {
 
   protected generateArrayType(
     objectTypeName: string,
-    variable: Variable
+    variable: Variable,
+    prevResults: TypeResult[],
+    functionReturnTypeName: string | undefined
   ): TypeResult {
     let arrayType: Variable = { ...variable, type: variable.arrayType! };
-    const { isCustomType, type, types } = this.generateType(arrayType);
+    const { isCustomType, type, types } = this.generateType(
+      arrayType,
+      prevResults
+    );
     return {
       isCustomType: isCustomType,
       type: type + "[]",
@@ -262,14 +294,15 @@ export class TypeScriptGenerator extends Generator {
 
   protected generateObjectType(
     objectTypeName: string,
-    variable: Variable
+    variable: Variable,
+    prevResults: TypeResult[],
+    functionReturnTypeName: string | undefined
   ): TypeResult {
     let code = "{";
-    let types: TypeResult[] = [];
+    let types: TypeResult[] = JSON.parse(JSON.stringify(prevResults));
     let index = 0;
     for (let property of variable.objectType!) {
-      const result = this.generateType(property);
-
+      const result = this.generateType(property, types, functionReturnTypeName);
       code += `${property.name}:${result.type}`;
       types = types.concat(result.types);
 
@@ -283,7 +316,9 @@ export class TypeScriptGenerator extends Generator {
     return {
       isCustomType: true,
       types: types,
-      type: capitalizeFirstLetter(objectTypeName),
+      type: `${functionReturnTypeName ?? ""}${capitalizeFirstLetter(
+        objectTypeName
+      )}`,
       code: code,
     };
   }
@@ -302,6 +337,6 @@ export class TypeScriptGenerator extends Generator {
   }
 
   protected generateReturnTypeName(functionName: string): string {
-    return `Promise<${capitalizeFirstLetter(functionName)}Response>`;
+    return `${capitalizeFirstLetter(functionName)}Response`;
   }
 }

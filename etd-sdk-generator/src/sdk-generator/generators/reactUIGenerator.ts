@@ -7,6 +7,10 @@ import {
   Variable,
 } from "../interfaces/schema";
 import prettier from "prettier";
+import {
+  InputParamResult,
+  TypeResult,
+} from "../interfaces/generator_interface";
 
 export class ReactUIGenerator extends Generator {
   protected extension: string = "tsx";
@@ -20,6 +24,59 @@ export class ReactUIGenerator extends Generator {
     this.methodTemplatePath = "templates/react/methodTemplate.j2";
     this.libraryTemplatePath = "templates/react/libraryTemplate.j2";
     this.schemaPath = "../../../schema.json";
+  }
+
+  generateInputTypes(params: Param[]): InputParamResult {
+    let code: { [key: string]: string } = {};
+
+    return {
+      code: `${JSON.stringify(code)}`,
+      types: [],
+    };
+  }
+
+  generateReturnType(functionName: string, returns: Return[]): TypeResult {
+    return { isCustomType: false, type: "", types: [] };
+  }
+
+  generateType(variable: Variable, prev: TypeResult[]): TypeResult {
+    let returnType = "";
+    if (variable === undefined) {
+      return { isCustomType: false, type: "void", types: [] };
+    }
+    const { type, optional } = variable;
+
+    switch (type) {
+      case "string":
+        returnType = "string";
+        break;
+      case "number":
+        returnType = "number";
+        break;
+      case "boolean":
+        returnType = "boolean";
+        break;
+      case "array":
+        returnType = this.generateArrayType(variable.name, variable).type;
+        break;
+      case "object":
+        returnType = this.generateObjectType(variable.name, variable);
+        break;
+      case "any":
+        returnType = "string";
+        break;
+      case "void":
+        returnType = "void";
+        break;
+      default:
+        throw new Error(`Type ${type} not implemented.`);
+    }
+
+    return {
+      isCustomType: false,
+      type: returnType,
+      types: [],
+    };
   }
 
   protected generateLibHeader(methods: Method[]): string {
@@ -59,19 +116,10 @@ export class ReactUIGenerator extends Generator {
   }
 
   protected generateVariable(variable: Variable): string | any {
-    let code = {
-      type: this.generateType(variable),
+    return {
+      type: this.generateType(variable, []).type,
       title: variable.name,
     };
-
-    return code;
-  }
-
-  protected generateReturnType(
-    functionName: string,
-    returns: Return[]
-  ): [boolean, string] {
-    return [false, ""];
   }
 
   protected generateRpcMethodParams(params: Param[]): string | any {
@@ -98,18 +146,19 @@ export class ReactUIGenerator extends Generator {
     return code;
   }
 
-  protected generateArrayType(variable: Variable): string {
-    return "array";
+  protected generateArrayType(
+    objectTypeName: string,
+    variable: Variable
+  ): TypeResult {
+    return {
+      isCustomType: false,
+      type: "",
+      types: [],
+    };
   }
 
-  protected generateObjectType(variable: Variable): string | any {
+  protected generateObjectType(name: string, variable: Variable): string | any {
     return "object";
-  }
-
-  protected generateInputTypes(params: Param[]): string {
-    let code: { [key: string]: string } = {};
-
-    return `${JSON.stringify(code)}`;
   }
 
   protected generateFunctionBody(rpcFunction: RPCFunction): string {
@@ -129,42 +178,6 @@ export class ReactUIGenerator extends Generator {
     let schema: any = ${JSON.stringify(code)}
     
     `;
-  }
-
-  protected generateType(variable: Variable): string {
-    let returnType = "";
-    if (variable === undefined) {
-      return "void";
-    }
-    const { type, optional } = variable;
-
-    switch (type) {
-      case "string":
-        returnType = "string";
-        break;
-      case "number":
-        returnType = "number";
-        break;
-      case "boolean":
-        returnType = "boolean";
-        break;
-      case "array":
-        returnType = this.generateArrayType(variable);
-        break;
-      case "object":
-        returnType = this.generateObjectType(variable);
-        break;
-      case "any":
-        returnType = "string";
-        break;
-      case "void":
-        returnType = "void";
-        break;
-      default:
-        throw new Error(`Type ${type} not implemented.`);
-    }
-
-    return returnType;
   }
 
   protected generateReturnTypeName(functionName: string): string {

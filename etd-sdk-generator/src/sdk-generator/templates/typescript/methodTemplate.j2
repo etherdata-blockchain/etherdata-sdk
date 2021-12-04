@@ -1,7 +1,7 @@
 import axios from "axios"
 
 {%- for returnType in functionReturnTypes %}
-{{ retrunType | safe }}
+export interface {{returnType.type}} {{ returnType.code | safe }}
 {% endfor %}
 
 {{ methodComment }}

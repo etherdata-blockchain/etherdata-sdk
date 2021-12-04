@@ -1,10 +1,12 @@
 import { TypeScriptGenerator } from "../../sdk-generator/generators/typescriptGenerator";
 import {
+  Method,
   Param,
   Return,
   RPCFunction,
 } from "../../sdk-generator/interfaces/schema";
-import { MockDataRpcBalance } from "../mockdata/const";
+import { MockDataRpcBalance, MockDataRpcMethod } from "../mockdata/const";
+import { capitalizeFirstLetter } from "../../sdk-generator/generator";
 
 describe("Given a typescript generator test returns", () => {
   let generator: TypeScriptGenerator;
@@ -22,7 +24,7 @@ describe("Given a typescript generator test returns", () => {
       },
     ];
     const result = generator.generateReturnType("myFunction", returns);
-    expect(result.type).toBe("Promise<string>");
+    expect(result.type).toBe("string");
     expect(result.types.length).toBe(0);
     expect(result.isCustomType).toBe(false);
   });
@@ -43,7 +45,7 @@ describe("Given a typescript generator test returns", () => {
       },
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
-    expect(result.type).toBe("Promise<MyFunctionResponse>");
+    expect(result.type).toBe("MyFunctionResponse");
     expect(result.types.length).toBe(0);
     expect(result.isCustomType).toBe(true);
   });
@@ -86,7 +88,7 @@ describe("Given a typescript generator test returns", () => {
       },
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
-    expect(result.type).toBe("Promise<MyFunctionResponse>");
+    expect(result.type).toBe("MyFunctionResponse");
     expect(result.types.length).toBe(2);
     expect(result.isCustomType).toBe(true);
   });
@@ -102,7 +104,7 @@ describe("Given a typescript generator test returns", () => {
       },
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
-    expect(result.type).toBe("Promise<string[]>");
+    expect(result.type).toBe("string[]");
     expect(result.types.length).toBe(0);
     expect(result.isCustomType).toBe(false);
   });
@@ -146,7 +148,7 @@ describe("Given a typescript generator test returns", () => {
       },
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
-    expect(result.type).toBe("Promise<MyFunctionResponse>");
+    expect(result.type).toBe("MyFunctionResponse");
     expect(result.types.length).toBe(2);
     expect(result.isCustomType).toBe(true);
     expect(result.types[0].type).toBe("User[]");
@@ -273,7 +275,7 @@ describe("Given a typescript generator test function to code", () => {
     generator = new TypeScriptGenerator();
   });
 
-  test("When generating an simple function", () => {
+  test("When generating a simple function", () => {
     const rpcFunction: RPCFunction = {
       description: MockDataRpcBalance.functionDescription,
       name: MockDataRpcBalance.functionName,
@@ -300,9 +302,140 @@ describe("Given a typescript generator test function to code", () => {
     expect(context.functionComment).toContain(
       MockDataRpcBalance.functionDescription
     );
-    expect(context.functionReturns).toBe("Promise<string>");
+    expect(context.functionReturns).toBe("string");
     expect(context.functionInputs).toBe(
       `${MockDataRpcBalance.parameterName}:string`
     );
+  });
+
+  test("When generating a nested custom object function", () => {
+    const rpcFunction: RPCFunction = {
+      description: MockDataRpcBalance.functionDescription,
+      name: MockDataRpcBalance.functionName,
+      params: [
+        {
+          name: MockDataRpcBalance.parameterName,
+          description: MockDataRpcBalance.parameterDescription,
+          type: "string",
+          optional: false,
+        },
+      ],
+      returns: [
+        {
+          name: MockDataRpcBalance.returnName,
+          description: MockDataRpcBalance.returnDescription,
+          type: "object",
+          optional: false,
+          objectType: [
+            {
+              name: MockDataRpcBalance.returnName2,
+              description: MockDataRpcBalance.returnDescription2,
+              type: "object",
+              optional: false,
+              objectType: [
+                {
+                  name: MockDataRpcBalance.returnName3,
+                  description: MockDataRpcBalance.returnDescription3,
+                  type: "string",
+                  optional: false,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      rpc_method: MockDataRpcBalance.rpcMethodName,
+    };
+    const [context, code, types] = generator.functionToCode(rpcFunction);
+    expect(types.length).toBe(3);
+    expect(types[0].code?.length).toBeGreaterThan(0);
+    expect(types[1].code?.length).toBeGreaterThan(0);
+  });
+});
+
+describe("Given a typescript generator test method to code", () => {
+  let generator: TypeScriptGenerator;
+  beforeEach(() => {
+    generator = new TypeScriptGenerator();
+  });
+
+  test("When generating an simple method", () => {
+    const rpcFunction: RPCFunction = {
+      description: MockDataRpcBalance.functionDescription,
+      name: MockDataRpcBalance.functionName,
+      params: [
+        {
+          name: MockDataRpcBalance.parameterName,
+          description: MockDataRpcBalance.parameterDescription,
+          type: "string",
+          optional: false,
+        },
+      ],
+      returns: [
+        {
+          name: MockDataRpcBalance.returnName,
+          description: MockDataRpcBalance.returnDescription,
+          type: "string",
+          optional: false,
+        },
+      ],
+      rpc_method: MockDataRpcBalance.rpcMethodName,
+    };
+    const rpcMethod: Method = {
+      description: MockDataRpcMethod.methodDescription,
+      functions: [rpcFunction],
+      title: MockDataRpcMethod.methodName,
+    };
+    const [context, _] = generator.methodToCode(rpcMethod);
+    expect(context.methodName).toBe(
+      capitalizeFirstLetter(MockDataRpcMethod.methodName)
+    );
+    expect(context.methodComment).toContain(rpcMethod.description);
+    expect(context.functions.length).toBe(1);
+    expect(context.functionReturnTypes.length).toBe(0);
+  });
+
+  test("When generating an simple method with custom return", () => {
+    const rpcFunction: RPCFunction = {
+      description: MockDataRpcBalance.functionDescription,
+      name: MockDataRpcBalance.functionName,
+      params: [
+        {
+          name: MockDataRpcBalance.parameterName,
+          description: MockDataRpcBalance.parameterDescription,
+          type: "string",
+          optional: false,
+        },
+      ],
+      returns: [
+        {
+          name: MockDataRpcBalance.returnName,
+          description: MockDataRpcBalance.returnDescription,
+          type: "object",
+          objectType: [
+            {
+              name: MockDataRpcBalance.returnName,
+              description: MockDataRpcBalance.returnDescription,
+              type: "string",
+              optional: false,
+            },
+          ],
+          optional: false,
+        },
+      ],
+      rpc_method: MockDataRpcBalance.rpcMethodName,
+    };
+    const rpcMethod: Method = {
+      description: MockDataRpcMethod.methodDescription,
+      functions: [rpcFunction],
+      title: MockDataRpcMethod.methodName,
+    };
+    const [context, _] = generator.methodToCode(rpcMethod);
+    expect(context.methodName).toBe(
+      capitalizeFirstLetter(MockDataRpcMethod.methodName)
+    );
+    expect(context.methodComment).toContain(rpcMethod.description);
+    expect(context.functions.length).toBe(1);
+    expect(context.functionReturnTypes.length).toBe(1);
   });
 });

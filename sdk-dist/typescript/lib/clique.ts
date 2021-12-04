@@ -1,4 +1,29 @@
 import axios from "axios";
+export interface GetSnapshotResponseRecents {
+  number: string[];
+}
+
+export interface GetSnapshotResponseSigners {
+  signer: string[];
+}
+
+export interface GetSnapshotResponseSnapshot {
+  hash: string;
+  number: number;
+  recents: GetSnapshotResponseRecents;
+  signers: GetSnapshotResponseSigners;
+}
+
+export interface StatusResponseSealerActivity {
+  signerAddresses: string;
+  numBlocksSigned: number;
+}
+
+export interface StatusResponse {
+  inturnPercent: number;
+  sealerActivity: StatusResponseSealerActivity;
+  numBlocks: number;
+}
 
 /**
  * The clique API provides access to the state of the clique consensus engine
@@ -19,7 +44,7 @@ export class Clique {
    * @param number The number of the block
    * @return snapshot Snapshot of all clique state at the given block
    */
-  async getSnapshot(number: false, number): Promise<GetSnapshotResponse> {
+  async getSnapshot(number: number): Promise<GetSnapshotResponseSnapshot> {
     let response = await axios.post(this.url, {
       method: "clique.getSnapshot",
       params: [number],
@@ -112,13 +137,7 @@ export class Clique {
    * @return sealerActivity A object containing signer addresses and the number of blocks signed by them
    * @return numBlocks The number of blocks analyzed
    */
-  async status(): Promise<
-    [
-      number,
-      { signerAddresses: false; string; numBlocksSigned: false; number },
-      number
-    ]
-  > {
+  async status(): Promise<StatusResponse> {
     let response = await axios.post(this.url, {
       method: "clique_status",
       params: undefined,
