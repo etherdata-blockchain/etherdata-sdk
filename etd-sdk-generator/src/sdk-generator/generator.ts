@@ -4,6 +4,12 @@ import yml from "js-yaml";
 import {Validator} from "jsonschema";
 import path from "path";
 import nunjucks from "nunjucks";
+import {
+  FunctionToCodeContext,
+  InputParamResult,
+  MethodToCodeContext,
+  TypeResult,
+} from "./interfaces/generator_interface";
 
 /**
  * Given a string, will return to capitalize version of the string.
@@ -82,14 +88,14 @@ export abstract class Generator {
     for (let method of this.methods) {
       const filename = method.title + "." + this.extension;
       console.log(`Generating file ${filename}`);
-      const code = this.methodToCode(method);
+      const [_, code] = this.methodToCode(method);
       // Generate beautiful code
       let prettyCode = this.beautify(code);
       // Output path
       const outputPath = path.join(appDir, outputFolder, filename);
       fs.writeFileSync(outputPath, prettyCode);
-      const isvalidated = await this.validateGeneratedCode(prettyCode);
-      if (!isvalidated) {
+      const isValid = await this.validateGeneratedCode(prettyCode);
+      if (!isValid) {
         throw new Error(`Generated ${filename} is not valid`);
       }
       this.fileList.push(filename);
@@ -97,6 +103,108 @@ export abstract class Generator {
     let headerFile = path.join(appDir, outputFolder, `index.${this.extension}`);
     // Write header content to file
     fs.writeFileSync(headerFile, this.generateLibHeader(this.methods));
+  }
+
+  /**
+   * Generate return types for function.
+   * In most cases, we will define a custom type at the begining of the file.
+   * For example,
+   * ```typescript
+   * export interface ReturnType{
+   *     name: string;
+   *     value: string
+   * }
+   * ```
+   * @param returns Return variables
+   * @param returnTypeName The name of the return type
+   * @return boolean, string Is custom type, and Generated code
+   */
+  abstract generateReturnType(
+    returnTypeName: string,
+    returns: Return[]
+  ): TypeResult;
+
+  /**
+   * Generate code for variable based on its type
+   * @param prevReturnTypes Variable
+   * @param variable
+   */
+  abstract generateType(
+    variable: Variable,
+    prevReturnTypes: TypeResult[]
+  ): TypeResult;
+
+  /**
+   * Generate function input parameters
+   * @param params Input parameters
+   */
+  abstract generateInputTypes(params: Param[]): InputParamResult;
+
+  /**
+   * Generate code from RPC Method
+   * @param method RPC Method
+   * @returns Generated code
+   */
+  methodToCode(method: Method): [MethodToCodeContext, string] {
+    const appDir = path.resolve(__dirname);
+    const template = this.getTemplate(this.methodTemplatePath);
+
+    const methodComment = this.generateComment(undefined, method);
+    let functionReturnTypes: TypeResult[] = [];
+
+    let functions = [];
+    for (let func of method.functions) {
+      const [_, code, types] = this.functionToCode(func);
+      functions.push([func.name, code, func.rpc_method]);
+      functionReturnTypes = functionReturnTypes.concat(types);
+    }
+
+    const context: MethodToCodeContext = {
+      functionReturnTypes: functionReturnTypes,
+      functions: functions,
+      methodComment: methodComment,
+      methodName: capitalizeFirstLetter(method.title),
+    };
+
+    return [context, template.render(context)];
+  }
+
+  /**
+   * Generate code for function
+   *
+   * @return function code and function return type
+   */
+  functionToCode(
+    rpcFunction: RPCFunction
+  ): [FunctionToCodeContext, string, TypeResult[]] {
+    const template = this.getTemplate(this.functionTemplatePath);
+    const functionComment = this.generateComment(rpcFunction, undefined);
+    const functionInputTypes = this.generateInputTypes(rpcFunction.params);
+    const functionReturnTypeName = this.generateReturnTypeName(
+      rpcFunction.name
+    );
+    const functionReturnType = this.generateReturnType(
+      functionReturnTypeName,
+      rpcFunction.returns
+    );
+    const functionBody = this.generateFunctionBody(rpcFunction);
+
+    let types: TypeResult[] = [];
+
+    types = types.concat(functionInputTypes.types);
+    types = types.concat(functionReturnType.types);
+
+    const context: FunctionToCodeContext = {
+      functionBody: functionBody,
+      functionComment: functionComment,
+      functionInputs: functionInputTypes.code,
+      functionName: rpcFunction.name.replace("-", "").replace(" ", ""),
+      functionReturns: functionReturnType.type,
+      functionRpcMethod: rpcFunction.rpc_method,
+    };
+
+    const code = template.render(context);
+    return [context, code, types];
   }
 
   protected validate(filename: string): [boolean, Method] {
@@ -156,50 +264,6 @@ export abstract class Generator {
   protected abstract beautify(code: string): string;
 
   /**
-   * Generate code from RPC Method
-   * @param method RPC Method
-   * @returns Generated code
-   */
-  protected methodToCode(method: Method): string {
-    const appDir = path.resolve(__dirname);
-    const template = this.getTemplate(this.methodTemplatePath);
-
-    const methodComment = this.generateComment(undefined, method);
-
-    let functions = [];
-    for (let func of method.functions) {
-      const code = this.functionToCode(func);
-      functions.push([func.name, code, func.rpc_method]);
-    }
-    return template.render({
-      functions,
-      methodName: capitalizeFirstLetter(method.title),
-      methodComment,
-    });
-  }
-
-  /**
-   * Generate code for function
-   */
-  protected functionToCode(rpcFunction: RPCFunction): string {
-    const template = this.getTemplate(this.functionTemplatePath);
-    const functionComment = this.generateComment(rpcFunction, undefined);
-    const functionInputTypes = this.generateInputTypes(rpcFunction.params);
-    const functionReturnTypes = this.generateReturnType(rpcFunction.returns);
-    const functionBody = this.generateFunctionBody(rpcFunction);
-
-    const code = template.render({
-      functionComment,
-      functionInputTypes,
-      functionReturnTypes,
-      functionBody,
-      functionName: rpcFunction.name.replace("-", "").replace(" ", ""),
-      rpcMethodName: rpcFunction.rpc_method,
-    });
-    return code;
-  }
-
-  /**
    * Validate language syntax by given code
    * @param code Input Code
    * @returns validation status
@@ -223,19 +287,21 @@ export abstract class Generator {
   protected abstract generateVariable(variable: Variable): string;
 
   /**
-   * Generate return types for function.
-   * In most cases, we will define a custom type at the begining of the file.
-   * For example,
+   * Generate the name of the return
+   * @param functionName function name.
+   *
+   * Given a function
    * ```typescript
-   * export interface ReturnType{
-   *     name: string;
-   *     value: string
+   * function someFunction(){
+   *
    * }
+   *
    * ```
-   * @param returns Return variables
-   * @return string Generated code
+   *
+   * Will generate a return type name like `SomeFunctionResponse`
+   * @protected
    */
-  protected abstract generateReturnType(returns: Return[]): string;
+  protected abstract generateReturnTypeName(functionName: string): string;
 
   /**
    * Generate params for rpc method calls
@@ -245,31 +311,28 @@ export abstract class Generator {
 
   /**
    * Generate representation for arrays
+   * @param objectTypeName
    * @param variable Array type variable
+   * @returns isCustomObject, typeCode
    */
-  protected abstract generateArrayType(variable: Variable): string;
+  protected abstract generateArrayType(
+    objectTypeName: string,
+    variable: Variable
+  ): TypeResult;
 
   /**
    * Generate representation for object type variable
+   * @param objectTypeName
    * @param variable Object type variable
    */
-  protected abstract generateObjectType(variable: Variable): string;
-
-  /**
-   * Generate function input parameters
-   * @param params Input parameters
-   */
-  protected abstract generateInputTypes(params: Param[]): string;
+  protected abstract generateObjectType(
+    objectTypeName: string,
+    variable: Variable
+  ): TypeResult;
 
   /**
    * Generate function body
    * @param rpcFunction RPC Function
    */
   protected abstract generateFunctionBody(rpcFunction: RPCFunction): string;
-
-  /**
-   * Generate code for variable based on its type
-   * @param variable Variable
-   */
-  protected abstract generateType(variable: Variable): string;
 }

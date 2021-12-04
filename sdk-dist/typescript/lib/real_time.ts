@@ -115,16 +115,7 @@ logs -Returns logs that are included in new imported blocks and match the given 
    * @return hash The hash for all transactions
    * @return transcation The transaction
    */
-  async newPendingTransactions(): Promise<
-    [
-      string,
-      {
-        jsonrpc: string;
-        method: string;
-        params: { subscription: string; result: string };
-      }
-    ]
-  > {
+  async newPendingTransactions(): Promise<NewPendingTransactionsResponse> {
     let response = await axios.post(this.url, {
       method: "real-time_newPendingTransactions",
       params: undefined,
@@ -141,18 +132,7 @@ logs -Returns logs that are included in new imported blocks and match the given 
    * @return synchronized Indicating that the synchronization has started (true) or finished (false)
    * @return status An object with various progress indicators regarding the synchronization
    */
-  async syncing(): Promise<
-    [
-      boolean,
-      {
-        startingBlock: number;
-        currentBlock: number;
-        highestBlock: number;
-        pulledStates: number;
-        knownStates: number;
-      }
-    ]
-  > {
+  async syncing(): Promise<SyncingResponse> {
     let response = await axios.post(this.url, {
       method: "real-time_syncing",
       params: undefined,

@@ -19,14 +19,7 @@ export class Clique {
    * @param number The number of the block
    * @return snapshot Snapshot of all clique state at the given block
    */
-  async getSnapshot(
-    number: number
-  ): Promise<{
-    hash: string;
-    number: number;
-    recents: { number: string[] };
-    signers: { signer: string[] };
-  }> {
+  async getSnapshot(number: false, number): Promise<GetSnapshotResponse> {
     let response = await axios.post(this.url, {
       method: "clique.getSnapshot",
       params: [number],
@@ -120,7 +113,11 @@ export class Clique {
    * @return numBlocks The number of blocks analyzed
    */
   async status(): Promise<
-    [number, { signerAddresses: string; numBlocksSigned: number }, number]
+    [
+      number,
+      { signerAddresses: false; string; numBlocksSigned: false; number },
+      number
+    ]
   > {
     let response = await axios.post(this.url, {
       method: "clique_status",

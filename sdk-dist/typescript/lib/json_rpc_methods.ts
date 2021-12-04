@@ -48,12 +48,7 @@ export class Json_rpc_methods {
    * @return syncObject return this ONLY when syncing
    * @return syncStatus return this ONLY when not syncing
    */
-  async syncing(): Promise<
-    [
-      { startingBlock: number; currentBlock: number; highestBlock: number },
-      boolean
-    ]
-  > {
+  async syncing(): Promise<SyncingResponse> {
     let response = await axios.post(this.url, {
       method: "etd_syncing",
       params: undefined,

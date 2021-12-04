@@ -1,10 +1,10 @@
 import { capitalizeFirstLetter, Generator } from "../generator";
 import {
   Method,
+  Param,
+  Return,
   RPCFunction,
   Variable,
-  Return,
-  Param,
 } from "../interfaces/schema";
 import prettier from "prettier";
 
@@ -40,6 +40,7 @@ export class ReactUIGenerator extends Generator {
       exportClassNames,
     });
   }
+
   protected beautify(code: string): string {
     return prettier.format(code, {
       parser: "typescript",
@@ -48,12 +49,15 @@ export class ReactUIGenerator extends Generator {
     });
     // return code;
   }
+
   protected async validateGeneratedCode(code: string): Promise<boolean> {
     return true;
   }
+
   protected generateComment(func: RPCFunction, method: Method): string {
     return "";
   }
+
   protected generateVariable(variable: Variable): string | any {
     let code = {
       type: this.generateType(variable),
@@ -62,46 +66,52 @@ export class ReactUIGenerator extends Generator {
 
     return code;
   }
-  protected generateReturnType(returns: Return[]): string {
-    return "";
+
+  protected generateReturnType(
+    functionName: string,
+    returns: Return[]
+  ): [boolean, string] {
+    return [false, ""];
   }
+
   protected generateRpcMethodParams(params: Param[]): string | any {
-    let code: { [key: string]: any; } = {};
+    let code: { [key: string]: any } = {};
 
     for (let param of params) {
       if (param.objectType) {
         code[param.name] = {
           type: "object",
-          properties: this.generateRpcMethodParams(param.objectType)
+          properties: this.generateRpcMethodParams(param.objectType),
         };
       } else if (param.arrayType) {
         code[param.name] = {
           type: "array",
           items: {
             type: param.arrayType,
-
-          }
+          },
         };
-      }
-
-      else {
+      } else {
         code[param.name] = this.generateVariable(param);
       }
     }
 
     return code;
   }
+
   protected generateArrayType(variable: Variable): string {
     return "array";
   }
+
   protected generateObjectType(variable: Variable): string | any {
     return "object";
   }
+
   protected generateInputTypes(params: Param[]): string {
-    let code: { [key: string]: string; } = {};
+    let code: { [key: string]: string } = {};
 
     return `${JSON.stringify(code)}`;
   }
+
   protected generateFunctionBody(rpcFunction: RPCFunction): string {
     let required: string[] = rpcFunction.params
       .filter((v) => v.optional === false)
@@ -155,5 +165,9 @@ export class ReactUIGenerator extends Generator {
     }
 
     return returnType;
+  }
+
+  protected generateReturnTypeName(functionName: string): string {
+    return "";
   }
 }

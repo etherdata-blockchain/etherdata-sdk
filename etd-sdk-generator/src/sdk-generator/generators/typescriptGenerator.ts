@@ -8,6 +8,10 @@ import {
 } from "../interfaces/schema";
 import prettier from "prettier";
 import { ESLint } from "eslint";
+import {
+  InputParamResult,
+  TypeResult,
+} from "../interfaces/generator_interface";
 
 export class TypeScriptGenerator extends Generator {
   protected libraryTemplatePath: string;
@@ -21,6 +25,134 @@ export class TypeScriptGenerator extends Generator {
     this.methodTemplatePath = "templates/typescript/methodTemplate.j2";
     this.libraryTemplatePath = "templates/typescript/libraryTemplate.j2";
     this.schemaPath = "../../../schema.json";
+  }
+
+  generateType(variable: Variable, prevResults: TypeResult[] = []): TypeResult {
+    let returnType = "";
+    let isCustomType = false;
+    if (variable === undefined) {
+      return { isCustomType, type: "void", types: [] };
+    }
+    const { type, optional } = variable;
+    //Deep copy of prev results
+    let types: TypeResult[] = JSON.parse(JSON.stringify(prevResults));
+
+    switch (type) {
+      case "string":
+        returnType = "string";
+        break;
+      case "number":
+        returnType = "number";
+        break;
+      case "boolean":
+        returnType = "boolean";
+        break;
+      case "array":
+        const arrayTypeResult = this.generateArrayType(variable.name, variable);
+        isCustomType = arrayTypeResult.isCustomType;
+        types = types.concat(arrayTypeResult.types);
+        returnType = arrayTypeResult.type;
+        break;
+      case "object":
+        const objectResult = this.generateObjectType(variable.name, variable);
+        isCustomType = objectResult.isCustomType;
+        types = types.concat(objectResult.types);
+        returnType = objectResult.type;
+        break;
+      case "any":
+        returnType = "any";
+        break;
+      case "void":
+        returnType = "void";
+        break;
+      default:
+        throw new Error(`Type ${type} not implemented.`);
+    }
+
+    if (optional) {
+      returnType += "|" + "undefined";
+    }
+
+    return {
+      isCustomType,
+      type: returnType,
+      types: prevResults,
+    };
+  }
+
+  generateReturnType(returnTypeName: string, returns: Return[]): TypeResult {
+    let returnValues = "";
+    let isCustomType = true;
+    let returnTypes: TypeResult[] = [];
+    let code: string | undefined = undefined;
+
+    if (returns.length > 1) {
+      returnValues = returnTypeName;
+      code = "{";
+      for (let ret of returns) {
+        const { isCustomType, type, types } = this.generateType(ret);
+        code += `${ret.name}:${type}`;
+        returnTypes = returnTypes.concat(types);
+
+        if (isCustomType) {
+          returnTypes.push({
+            types: [],
+            isCustomType: isCustomType,
+            type: type,
+          });
+        }
+
+        if (returns.length > 1) {
+          code += ", ";
+        }
+      }
+      code += "}";
+    } else if (returns.length === 1) {
+      const result = this.generateType(returns[0]);
+      returnValues = result.type;
+      isCustomType = result.isCustomType;
+      returnTypes = result.types;
+    } else {
+      returnValues = "void";
+      isCustomType = false;
+    }
+
+    return {
+      isCustomType: isCustomType,
+      type: `Promise<${returnValues}>`,
+      types: returnTypes,
+      code: code,
+    };
+  }
+
+  generateInputTypes(params: Param[]): InputParamResult {
+    let code = "";
+    let index = 0;
+    let types: TypeResult[] = [];
+    for (let param of params) {
+      const result = this.generateType(param);
+      code += `${param.name}:${result.type}`;
+      types = types.concat(result.types);
+
+      if (result.isCustomType) {
+        types.push({
+          types: [],
+          type: result.type,
+          code: result.code,
+          isCustomType: true,
+        });
+      }
+
+      if (index < params.length - 1) {
+        code += ", ";
+      }
+      index++;
+    }
+
+    return {
+      types: types,
+      code: code,
+    };
   }
 
   protected generateLibHeader(methods: Method[]): string {
@@ -95,26 +227,6 @@ export class TypeScriptGenerator extends Generator {
     return code;
   }
 
-  protected generateReturnType(returns: Return[]): string {
-    let returnValues = "";
-    if (returns.length > 1) {
-      returnValues = "[";
-      for (let ret of returns) {
-        returnValues += `${this.generateType(ret)}`;
-        if (returns.length > 1) {
-          returnValues += ", ";
-        }
-      }
-      returnValues += "]";
-    } else if (returns.length === 1) {
-      returnValues = this.generateType(returns[0]);
-    } else {
-      returnValues = "void";
-    }
-
-    return `Promise<${returnValues}>`;
-  }
-
   protected generateRpcMethodParams(params: Param[]): string {
     let returnParams = "";
     if (params.length === 0) {
@@ -135,41 +247,45 @@ export class TypeScriptGenerator extends Generator {
     return returnParams;
   }
 
-  protected generateArrayType(variable: Variable): string {
-    let returnType = "";
+  protected generateArrayType(
+    objectTypeName: string,
+    variable: Variable
+  ): TypeResult {
     let arrayType: Variable = { ...variable, type: variable.arrayType! };
-    returnType = this.generateType(arrayType) + "[]";
-    return returnType;
+    const { isCustomType, type, types } = this.generateType(arrayType);
+    return {
+      isCustomType: isCustomType,
+      type: type + "[]",
+      types: types,
+    };
   }
 
-  protected generateObjectType(variable: Variable): string {
-    let returnType = "{";
+  protected generateObjectType(
+    objectTypeName: string,
+    variable: Variable
+  ): TypeResult {
+    let code = "{";
+    let types: TypeResult[] = [];
     let index = 0;
     for (let property of variable.objectType!) {
-      returnType += `${property.name}:${this.generateType(property)}`;
+      const result = this.generateType(property);
+
+      code += `${property.name}:${result.type}`;
+      types = types.concat(result.types);
+
       if (index < variable.objectType!.length - 1) {
-        returnType += ",";
+        code += ",";
       }
       index++;
     }
 
-    returnType += "}";
-    return returnType;
-  }
-
-  protected generateInputTypes(params: Param[]): string {
-    let inputTypes = "";
-    let index = 0;
-    for (let param of params) {
-      inputTypes += `${param.name}:${this.generateType(param)}`;
-
-      if (index < params.length - 1) {
-        inputTypes += ", ";
-      }
-      index++;
-    }
-
-    return inputTypes;
+    code += "}";
+    return {
+      isCustomType: true,
+      types: types,
+      type: capitalizeFirstLetter(objectTypeName),
+      code: code,
+    };
   }
 
   protected generateFunctionBody(rpcFunction: RPCFunction): string {
@@ -185,43 +301,7 @@ export class TypeScriptGenerator extends Generator {
         `;
   }
 
-  protected generateType(variable: Variable): string {
-    let returnType = "";
-    if (variable === undefined) {
-      return "void";
-    }
-    const { type, optional } = variable;
-
-    switch (type) {
-      case "string":
-        returnType = "string";
-        break;
-      case "number":
-        returnType = "number";
-        break;
-      case "boolean":
-        returnType = "boolean";
-        break;
-      case "array":
-        returnType = this.generateArrayType(variable);
-        break;
-      case "object":
-        returnType = this.generateObjectType(variable);
-        break;
-      case "any":
-        returnType = "any";
-        break;
-      case "void":
-        returnType = "void";
-        break;
-      default:
-        throw new Error(`Type ${type} not implemented.`);
-    }
-
-    if (optional) {
-      returnType += "|" + "undefined";
-    }
-
-    return returnType;
+  protected generateReturnTypeName(functionName: string): string {
+    return `Promise<${capitalizeFirstLetter(functionName)}Response>`;
   }
 }

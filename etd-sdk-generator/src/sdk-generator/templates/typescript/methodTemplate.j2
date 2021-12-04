@@ -1,5 +1,9 @@
 import axios from "axios"
 
+{%- for returnType in functionReturnTypes %}
+{{ retrunType | safe }}
+{% endfor %}
+
 {{ methodComment }}
 export class {{ methodName }}{
     baseURL: string
