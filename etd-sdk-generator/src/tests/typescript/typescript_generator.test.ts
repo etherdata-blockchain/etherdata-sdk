@@ -149,9 +149,10 @@ describe("Given a typescript generator test returns", () => {
     ];
     const result = generator.generateReturnType("MyFunctionResponse", returns);
     expect(result.type).toBe("MyFunctionResponse");
-    expect(result.types.length).toBe(2);
+    expect(result.types.length).toBe(3);
     expect(result.isCustomType).toBe(true);
-    expect(result.types[0].type).toBe("User[]");
+    expect(result.types[0].type).toBe("User");
+    expect(result.types[1].type).toBe("User[]");
   });
 });
 
@@ -264,7 +265,7 @@ describe("Given a typescript generator test input parameters to code", () => {
     ];
 
     const result = generator.generateInputTypes(params);
-    expect(result.types.length).toBe(1);
+    expect(result.types.length).toBe(2);
     expect(result.code).toBe("user:User[], balance:number");
   });
 });
@@ -347,9 +348,52 @@ describe("Given a typescript generator test function to code", () => {
       rpc_method: MockDataRpcBalance.rpcMethodName,
     };
     const [context, code, types] = generator.functionToCode(rpcFunction);
-    expect(types.length).toBe(3);
+    expect(types.length).toBe(2);
     expect(types[0].code?.length).toBeGreaterThan(0);
     expect(types[1].code?.length).toBeGreaterThan(0);
+  });
+
+  test("When generating a nested custom array function", () => {
+    const rpcFunction: RPCFunction = {
+      description: MockDataRpcBalance.functionDescription,
+      name: MockDataRpcBalance.functionName,
+      params: [
+        {
+          name: MockDataRpcBalance.parameterName,
+          description: MockDataRpcBalance.parameterDescription,
+          type: "string",
+          optional: false,
+        },
+      ],
+      returns: [
+        {
+          name: MockDataRpcBalance.returnName,
+          description: MockDataRpcBalance.returnDescription,
+          type: "array",
+          arrayType: "object",
+          optional: false,
+          objectType: [
+            {
+              name: MockDataRpcBalance.returnName2,
+              description: MockDataRpcBalance.returnDescription2,
+              type: "object",
+              optional: false,
+              objectType: [
+                {
+                  name: MockDataRpcBalance.returnName3,
+                  description: MockDataRpcBalance.returnDescription3,
+                  type: "string",
+                  optional: false,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      rpc_method: MockDataRpcBalance.rpcMethodName,
+    };
+    const [context, code, types] = generator.functionToCode(rpcFunction);
+    expect(types.length).toBe(3);
   });
 });
 

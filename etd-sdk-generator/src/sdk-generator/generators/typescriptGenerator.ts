@@ -144,10 +144,14 @@ export class TypeScriptGenerator extends Generator {
       isCustomType = false;
     }
 
+    const uniqueTypes = returnTypes.filter(
+      (t1, i) => returnTypes.findIndex((t2) => t2.type === t1.type) === i
+    );
+
     return {
       isCustomType: isCustomType,
       type: `${returnValues}`,
-      types: returnTypes,
+      types: uniqueTypes,
       code: returnCode,
     };
   }
@@ -176,8 +180,12 @@ export class TypeScriptGenerator extends Generator {
       index++;
     }
 
+    const uniqueTypes = types.filter(
+      (t1, i) => types.findIndex((t2) => t1.type === t2.type) === i
+    );
+
     return {
-      types: types,
+      types: uniqueTypes,
       code: code,
     };
   }

@@ -185,10 +185,6 @@ export abstract class Generator {
   functionToCode(
     rpcFunction: RPCFunction
   ): [FunctionToCodeContext, string, TypeResult[]] {
-    if (rpcFunction.name === "getSnapshot") {
-      console.log("s");
-    }
-
     const template = this.getTemplate(this.functionTemplatePath);
     const functionComment = this.generateComment(rpcFunction, undefined);
     const functionInputTypes = this.generateInputTypes(rpcFunction.params);
