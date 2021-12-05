@@ -1,4 +1,8 @@
-import { capitalizeFirstLetter, Generator } from "../generator";
+import {
+  capitalizeFirstLetter,
+  Generator,
+  lowercaseFirstLetter,
+} from "../generator";
 import {
   Method,
   Param,
@@ -13,7 +17,7 @@ import {
   TypeResult,
 } from "../interfaces/generator_interface";
 
-export class TypeScriptGenerator extends Generator {
+export class TypescriptGenerator extends Generator {
   protected libraryTemplatePath: string;
   protected extension: string = "ts";
   protected functionTemplatePath: string;
@@ -164,7 +168,7 @@ export class TypeScriptGenerator extends Generator {
     let types: TypeResult[] = [];
     for (let param of params) {
       const result = this.generateType(param);
-      code += `${param.name}:${result.type}`;
+      code += `${lowercaseFirstLetter(param.name)}:${result.type}`;
       types = types.concat(result.types);
 
       if (result.isCustomType) {
@@ -192,7 +196,7 @@ export class TypeScriptGenerator extends Generator {
     };
   }
 
-  protected generateLibHeader(methods: Method[]): string {
+  protected generateLibHeader(methods: Method[]): string | undefined {
     const template = this.getTemplate(this.libraryTemplatePath);
     let importPaths = [];
     let exportClassNames = [];
@@ -241,17 +245,15 @@ export class TypeScriptGenerator extends Generator {
 
     if (func) {
       for (let line of func.params) {
-        returnComment += `* @param ${line.name} ${line.description.replace(
-          "/",
-          ""
-        )}\n`;
+        returnComment += `* @param ${lowercaseFirstLetter(
+          line.name
+        )} ${line.description.replace("/", "")}\n`;
       }
 
       for (let line of func.returns) {
-        returnComment += `* @return ${line.name} ${line.description.replace(
-          "/",
-          ""
-        )}\n`;
+        returnComment += `* @return ${lowercaseFirstLetter(
+          line.name
+        )} ${line.description.replace("/", "")}\n`;
       }
     }
     returnComment += "*/";
@@ -260,7 +262,8 @@ export class TypeScriptGenerator extends Generator {
 
   protected generateVariable(variable: Variable): string {
     let code = "";
-    code = `${variable.name}:${this.generateType(variable)}`;
+    const result = this.generateType(variable);
+    code = `${variable.name}:${result.type}`;
     return code;
   }
 
@@ -272,7 +275,7 @@ export class TypeScriptGenerator extends Generator {
       returnParams += "[";
       let index = 0;
       for (let param of params) {
-        returnParams += `${param.name}`;
+        returnParams += `${lowercaseFirstLetter(param.name)}`;
         if (index < params.length - 1) {
           returnParams += ", ";
         }
@@ -333,7 +336,10 @@ export class TypeScriptGenerator extends Generator {
     };
   }
 
-  protected generateFunctionBody(rpcFunction: RPCFunction): string {
+  protected generateFunctionBody(
+    rpcFunction: RPCFunction,
+    returnTypeName: string
+  ): string {
     return `
         let response = await axios.post(this.url, {
           method: "${rpcFunction.rpc_method}",

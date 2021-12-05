@@ -161,7 +161,10 @@ export class ReactUIGenerator extends Generator {
     return "object";
   }
 
-  protected generateFunctionBody(rpcFunction: RPCFunction): string {
+  protected generateFunctionBody(
+    rpcFunction: RPCFunction,
+    returnTypeName: string
+  ): string {
     let required: string[] = rpcFunction.params
       .filter((v) => v.optional === false)
       .map((p) => p.name);

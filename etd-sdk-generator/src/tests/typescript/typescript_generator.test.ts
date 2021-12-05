@@ -1,4 +1,4 @@
-import { TypeScriptGenerator } from "../../sdk-generator/generators/typescriptGenerator";
+import { TypescriptGenerator } from "../../sdk-generator/generators/typescript_generator";
 import {
   Method,
   Param,
@@ -9,9 +9,9 @@ import { MockDataRpcBalance, MockDataRpcMethod } from "../mockdata/const";
 import { capitalizeFirstLetter } from "../../sdk-generator/generator";
 
 describe("Given a typescript generator test returns", () => {
-  let generator: TypeScriptGenerator;
+  let generator: TypescriptGenerator;
   beforeEach(() => {
-    generator = new TypeScriptGenerator();
+    generator = new TypescriptGenerator();
   });
 
   test("When input a single string return type for function", () => {
@@ -156,9 +156,9 @@ describe("Given a typescript generator test returns", () => {
 });
 
 describe("Given a typescript generator test input parameters to code", () => {
-  let generator: TypeScriptGenerator;
+  let generator: TypescriptGenerator;
   beforeEach(() => {
-    generator = new TypeScriptGenerator();
+    generator = new TypescriptGenerator();
   });
 
   test("When providing single input param", () => {
@@ -270,9 +270,9 @@ describe("Given a typescript generator test input parameters to code", () => {
 });
 
 describe("Given a typescript generator test function to code", () => {
-  let generator: TypeScriptGenerator;
+  let generator: TypescriptGenerator;
   beforeEach(() => {
-    generator = new TypeScriptGenerator();
+    generator = new TypescriptGenerator();
   });
 
   test("When generating a simple function", () => {
@@ -397,9 +397,9 @@ describe("Given a typescript generator test function to code", () => {
 });
 
 describe("Given a typescript generator test method to code", () => {
-  let generator: TypeScriptGenerator;
+  let generator: TypescriptGenerator;
   beforeEach(() => {
-    generator = new TypeScriptGenerator();
+    generator = new TypescriptGenerator();
   });
 
   test("When generating an simple method", () => {

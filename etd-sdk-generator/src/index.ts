@@ -1,4 +1,6 @@
-import { TypeScriptGenerator } from "./sdk-generator/generators/typescriptGenerator";
+import { TypescriptGenerator } from "./sdk-generator/generators/typescript_generator";
+import { ReactUIGenerator } from "./sdk-generator/generators/react_ui_generator";
+import { KotlinGenerator } from "./sdk-generator/generators/kotlin_generator";
 
 let filePaths = [
   "../../../sdk/admin.yml",
@@ -15,12 +17,14 @@ let filePaths = [
 
 let outputPaths = [
   "../../../sdk-dist/typescript/lib",
-  // "../../../sdk-dist/etd-react-ui/src",
+  "../../../sdk-dist/etd-react-ui/src",
+  "../../../sdk-dist/kotlin/src/main/kotlin/com/etd",
 ];
 
 let generators = [
-  new TypeScriptGenerator(),
-  // new ReactUIGenerator(),
+  new TypescriptGenerator(),
+  new ReactUIGenerator(),
+  new KotlinGenerator(),
 ];
 
 (async () => {

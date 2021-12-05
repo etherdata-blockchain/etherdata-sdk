@@ -26,7 +26,8 @@
     "js-yaml": "^4.1.0",
     "jsonschema": "^1.4.0",
     "nunjucks": "^3.2.3",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "prettier-plugin-kotlin": "^2.1.0"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

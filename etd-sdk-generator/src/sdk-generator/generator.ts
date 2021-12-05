@@ -26,6 +26,24 @@ export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Given a string, will return to lower the first letter of the string.
+ * For example, given Hello-world, will return hello-world.
+ * If all letters are uppercase, then it will lower all letters.
+ * @param string
+ */
+export function lowercaseFirstLetter(string: string) {
+  const re = new RegExp(/[A-Z]*/);
+  const result = re.exec(string);
+  if (result) {
+    const item = result[0];
+    if (item.length === string.length) {
+      return string.toLowerCase();
+    }
+  }
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}
+
 export abstract class Generator {
   /**
    * List of schema files
@@ -108,7 +126,10 @@ export abstract class Generator {
     }
     let headerFile = path.join(appDir, outputFolder, `index.${this.extension}`);
     // Write header content to file
-    fs.writeFileSync(headerFile, this.generateLibHeader(this.methods));
+    const libHeader = this.generateLibHeader(this.methods);
+    if (libHeader) {
+      fs.writeFileSync(headerFile, libHeader);
+    }
   }
 
   /**
@@ -167,8 +188,13 @@ export abstract class Generator {
       functionReturnTypes = functionReturnTypes.concat(types);
     }
 
+    const uniqueTypes = functionReturnTypes.filter(
+      (t1, i) =>
+        functionReturnTypes.findIndex((t2) => t1.type === t2.type) === i
+    );
+
     const context: MethodToCodeContext = {
-      functionReturnTypes: functionReturnTypes,
+      functionReturnTypes: uniqueTypes,
       functions: functions,
       methodComment: methodComment,
       methodName: capitalizeFirstLetter(method.title),
@@ -195,8 +221,6 @@ export abstract class Generator {
       functionReturnTypeName,
       rpcFunction.returns
     );
-    const functionBody = this.generateFunctionBody(rpcFunction);
-
     let types: TypeResult[] = [];
 
     types = types.concat(functionInputTypes.types);
@@ -210,6 +234,11 @@ export abstract class Generator {
         code: functionReturnType.code,
       });
     }
+
+    const functionBody = this.generateFunctionBody(
+      rpcFunction,
+      functionReturnType.type
+    );
 
     const uniqueTypes = types.filter(
       (t1, i) => types.findIndex((t2) => t2.type === t1.type) === i && t1.code
@@ -276,7 +305,7 @@ export abstract class Generator {
    * And for python library, it is called __init__.py file.
    * @param methods RPC Method
    */
-  protected abstract generateLibHeader(methods: Method[]): string;
+  protected abstract generateLibHeader(methods: Method[]): string | undefined;
 
   /**
    * Format the code
@@ -362,6 +391,10 @@ export abstract class Generator {
   /**
    * Generate function body
    * @param rpcFunction RPC Function
+   * @param returnTypeName
    */
-  protected abstract generateFunctionBody(rpcFunction: RPCFunction): string;
+  protected abstract generateFunctionBody(
+    rpcFunction: RPCFunction,
+    returnTypeName: string
+  ): string;
 }
