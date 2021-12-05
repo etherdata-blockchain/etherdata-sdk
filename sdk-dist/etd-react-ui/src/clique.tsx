@@ -52,7 +52,7 @@ export function Getsnapshot({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique.getSnapshot",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -100,7 +100,7 @@ export function Getsnapshotathash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_getSnapshotAtHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -149,7 +149,7 @@ export function Getsigners({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_getSigners",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -197,7 +197,7 @@ export function Proposals({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_proposals",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -246,7 +246,7 @@ export function Propose({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_propose",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -295,7 +295,7 @@ export function Discard({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_discard",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -344,7 +344,7 @@ export function Status({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "clique_status",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));

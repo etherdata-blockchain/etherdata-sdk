@@ -52,7 +52,7 @@ export function Protocalversion({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_protocalVersion",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -100,7 +100,7 @@ export function Blocknumber({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_blockNumber",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -149,7 +149,7 @@ export function Syncing({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_syncing",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -197,7 +197,7 @@ export function Coinbase({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_coinbase",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -245,7 +245,7 @@ export function Mining({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_mining",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -294,7 +294,7 @@ export function Hashrate({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_hashrate",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -342,7 +342,7 @@ export function Gasprice({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_gasPrice",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -390,7 +390,7 @@ export function Accounts({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_accounts",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -441,7 +441,7 @@ export function Getbalance({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getBalance",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -494,7 +494,7 @@ export function Getstorageat({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getStorageAt",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -545,7 +545,7 @@ export function Gettransactioncount({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionCount",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -597,7 +597,7 @@ export function Gettransactioncountbyhash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionCountByHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -646,7 +646,7 @@ export function Getblocktransactioncountbyhash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getBlockTransactionCountByHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -697,7 +697,7 @@ export function Getblocktransactioncountbynumber({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getBlockTransactionCountByNumber",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -746,7 +746,7 @@ export function Getunclecountbyblockhash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getUncleCountByBlockHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -797,7 +797,7 @@ export function Getunclecountbyblocknumber({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getUncleCountByBlockNumber",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -848,7 +848,7 @@ export function Getcode({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_code",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -900,7 +900,7 @@ export function Sign({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_sign",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -926,7 +926,7 @@ export function Signtransaction({ call }: Props) {
       "Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction.",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "from": { "type": "string", "title": "from" },
@@ -939,7 +939,7 @@ export function Signtransaction({ call }: Props) {
         },
       },
     },
-    "required": ["Object"],
+    "required": ["obj"],
   };
 
   return (
@@ -962,7 +962,7 @@ export function Signtransaction({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_signTransaction",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -988,7 +988,7 @@ export function Sendtranscation({ call }: Props) {
       "Creates new message call transaction or a contract creation, if the data field contains code.",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "from": { "type": "string", "title": "from" },
@@ -1001,7 +1001,7 @@ export function Sendtranscation({ call }: Props) {
         },
       },
     },
-    "required": ["Object"],
+    "required": ["obj"],
   };
 
   return (
@@ -1024,7 +1024,7 @@ export function Sendtranscation({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_sendTranscation",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1073,7 +1073,7 @@ export function Sendrawtransaction({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_sendRawTransaction",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1099,7 +1099,7 @@ export function Call({ call }: Props) {
       "Executes a new message call immediately without creating a transaction on the block chain.",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "from": { "type": "string", "title": "from" },
@@ -1112,7 +1112,7 @@ export function Call({ call }: Props) {
       },
       "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
     },
-    "required": ["Object", "QUANTITY_TAG"],
+    "required": ["obj", "QUANTITY_TAG"],
   };
 
   return (
@@ -1135,7 +1135,7 @@ export function Call({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_call",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1161,7 +1161,7 @@ export function Estimategas({ call }: Props) {
       "Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "from": { "type": "string", "title": "from" },
@@ -1174,7 +1174,7 @@ export function Estimategas({ call }: Props) {
       },
       "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
     },
-    "required": ["Object", "QUANTITY_TAG"],
+    "required": ["obj", "QUANTITY_TAG"],
   };
 
   return (
@@ -1197,7 +1197,7 @@ export function Estimategas({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_estimateGas",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1248,7 +1248,7 @@ export function Getblockbyhash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getBlockByHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1299,7 +1299,7 @@ export function Getblockbynumber({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getBlockByNumber",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1348,7 +1348,7 @@ export function Gettransactionbyhash({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionByHash",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1400,7 +1400,7 @@ export function Gettransactionbyhashandindex({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionByHashAndIndex",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1452,7 +1452,7 @@ export function Gettransactionbyblocknumberandindex({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionByBlockNumberAndIndex",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1501,7 +1501,7 @@ export function Gettransactionreceipt({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getTransactionReceipt",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1553,7 +1553,7 @@ export function Getunclebyblockhashandindex({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getUncleByBlockHashAndIndex",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1605,7 +1605,7 @@ export function Getunclebyblocknumberandindex({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getUncleByBlockNumberAndIndex",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1653,7 +1653,7 @@ export function Getcompliers({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getCompliers",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1701,7 +1701,7 @@ export function Compilesolidity({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_compileSolidity",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1749,7 +1749,7 @@ export function Complpielll({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_complpieLLL",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1797,7 +1797,7 @@ export function Complieserpent({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_complieSerpent",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1823,7 +1823,7 @@ export function Newfilter({ call }: Props) {
       "Creates a filter object, based on filter options, to notify when the state changes (logs). To check if the state has changed, call etd_getFilterChanges.\nA note on specifying topic filters Topics are order-dependent. A transaction with a log with topics [A, B] will be matched by the following topic filters\n-[] “anything” -[A] “A in first position (and anything after)” -[null, B] “anything in first position AND B in second position (and anything after)” -[A, B] “A in first position AND B in second position (and anything after)” -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "fromBlock": { "type": "string", "title": "fromBlock" },
@@ -1833,7 +1833,7 @@ export function Newfilter({ call }: Props) {
         },
       },
     },
-    "required": ["Object"],
+    "required": ["obj"],
   };
 
   return (
@@ -1856,7 +1856,7 @@ export function Newfilter({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_newFilter",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1905,7 +1905,7 @@ export function Newblockfilter({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_newBlockFilter",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -1954,7 +1954,7 @@ export function Newpendingtransactionfilter({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_newPendingTransactionFilter",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2003,7 +2003,7 @@ export function Uninstallfilter({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_uninstallFilter",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2052,7 +2052,7 @@ export function Getfilterchanges({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getFilterChanges",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2101,7 +2101,7 @@ export function Getfilterlogs({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getFilterLogs",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2127,7 +2127,7 @@ export function Getlogs({ call }: Props) {
       "Returns an array of all logs matching a given filter object.",
     "type": "object",
     "properties": {
-      "Object": {
+      "obj": {
         "type": "object",
         "properties": {
           "fromBlock": { "type": "string", "title": "fromBlock" },
@@ -2138,7 +2138,7 @@ export function Getlogs({ call }: Props) {
         },
       },
     },
-    "required": ["Object"],
+    "required": ["obj"],
   };
 
   return (
@@ -2161,7 +2161,7 @@ export function Getlogs({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getLogs",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2210,7 +2210,7 @@ export function Getwork({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_getWork",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2262,7 +2262,7 @@ export function Submitwork({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_submitWork",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -2313,7 +2313,7 @@ export function Submithashrate({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "etd_submitHashrate",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));

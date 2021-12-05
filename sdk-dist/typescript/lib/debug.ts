@@ -35,22 +35,6 @@ export interface TraceBlockResponseBlcok {
   strucrtLogs: StrucrtLogs[];
 }
 
-export interface Storage {
-  storage: string[];
-}
-
-export interface StrucrtLogs {
-  depth: number;
-  error: string;
-  gas: number;
-  gasCost: number;
-  memory: string[];
-  op: string;
-  pc: number;
-  stackArray: string[];
-  storage: Storage;
-}
-
 export interface TraceTransactionResponseTransaction {
   gas: number;
   returnValue: string;

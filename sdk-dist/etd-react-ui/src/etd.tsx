@@ -53,7 +53,7 @@ export function Subscribe({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "eth_subscribe",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -102,7 +102,7 @@ export function Unsubscribe({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "eth_unsubscribe",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));

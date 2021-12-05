@@ -30,14 +30,6 @@ export interface TransactionArray {
   transaction: string;
 }
 
-export interface PendingTransactions {
-  transactionArray: TransactionArray[];
-}
-
-export interface QueuedTransactions {
-  transactionArray: TransactionArray[];
-}
-
 export interface InspectResponseTransactionObject {
   pendingTransactions: PendingTransactions[];
   queuedTransactions: QueuedTransactions[];

@@ -53,7 +53,7 @@ export function Httpserver({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "json_rpc_HTTP Server",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -102,7 +102,7 @@ export function Websocketserver({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "json_rpc_WebSocket Server",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -151,7 +151,7 @@ export function Ipcserver({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "json_rpc_IPC Server",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));

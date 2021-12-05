@@ -52,7 +52,7 @@ export function Getdashrate({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_Getdashrate",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -101,7 +101,7 @@ export function Setextra({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_setExtra",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -150,7 +150,7 @@ export function Setgasprice({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_setGasPrice",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -199,7 +199,7 @@ export function Start({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_start",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -247,7 +247,7 @@ export function Stop({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_stop",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));
@@ -295,7 +295,7 @@ export function Setetherbase({ call }: Props) {
           try {
             let result = await call({
               params: Object.values(v.formData as any),
-              methodName: "miner_setEtherbase",
+              methodName: "",
             });
             if (typeof result === "object") {
               setValues(JSON.stringify(result, undefined, 2));

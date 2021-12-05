@@ -10,7 +10,7 @@ export interface SyncingResponse {
   syncStatus: boolean;
 }
 
-export interface Object {
+export interface Obj {
   from: string;
   to: string | undefined;
   gas: string | undefined;
@@ -20,35 +20,7 @@ export interface Object {
   nonce: string | undefined;
 }
 
-export interface Object {
-  from: string;
-  to: string | undefined;
-  gas: string | undefined;
-  gasPrice: string | undefined;
-  value: string | undefined;
-  data: string;
-  nonce: string | undefined;
-}
-
-export interface Object {
-  from: string;
-  to: string;
-  gas: string | undefined;
-  gasPrice: string | undefined;
-  value: string | undefined;
-  data: string | undefined;
-}
-
-export interface Object {
-  from: string;
-  to: string;
-  gas: string | undefined;
-  gasPrice: string | undefined;
-  value: string | undefined;
-  data: string | undefined;
-}
-
-export interface GetBlockByHashResponseObject {
+export interface GetBlockByHashResponseObj {
   number: string;
   hash: string;
   parnetHash: string;
@@ -68,7 +40,7 @@ export interface GetBlockByHashResponseObject {
   uncles: string[];
 }
 
-export interface GetBlockByNumberResponseObject {
+export interface GetBlockByNumberResponseObj {
   number: string;
   hash: string;
   parnetHash: string;
@@ -88,7 +60,7 @@ export interface GetBlockByNumberResponseObject {
   uncles: string[];
 }
 
-export interface GetTransactionByHashResponseObject {
+export interface GetTransactionByHashResponseObj {
   blockHash: string;
   blockNumber: string;
   from: string;
@@ -105,15 +77,15 @@ export interface GetTransactionByHashResponseObject {
   s: string;
 }
 
-export interface GetTransactionByHashAndIndexResponseObject {
+export interface GetTransactionByHashAndIndexResponseObj {
   data: any;
 }
 
-export interface GetTransactionByBlockNumberAndIndexResponseObject {
+export interface GetTransactionByBlockNumberAndIndexResponseObj {
   data: any;
 }
 
-export interface GetTransactionReceiptResponseObject {
+export interface GetTransactionReceiptResponseObj {
   transactionHash: string;
   transactionIndex: string;
   blockHash: string;
@@ -129,19 +101,12 @@ export interface GetTransactionReceiptResponseObject {
   status: string;
 }
 
-export interface GetUncleByBlockHashAndIndexResponseObject {
+export interface GetUncleByBlockHashAndIndexResponseObj {
   data: any;
 }
 
-export interface GetUncleByBlockNumberAndIndexResponseObject {
+export interface GetUncleByBlockNumberAndIndexResponseObj {
   data: any;
-}
-
-export interface Object {
-  fromBlock: string | undefined;
-  toBlock: string | undefined;
-  address: string | undefined;
-  topics: string | undefined[] | undefined;
 }
 
 export interface Array {
@@ -154,14 +119,6 @@ export interface Array {
   address: string;
   data: string;
   topics: string[];
-}
-
-export interface Object {
-  fromBlock: string | undefined;
-  toBlock: string | undefined;
-  address: string | undefined;
-  topics: string | undefined[] | undefined;
-  blockhash: string | undefined;
 }
 
 /**
@@ -353,16 +310,16 @@ export class Json_rpc_methods {
   /**
    * Returns the number of transactions in a block from a block matching the given block hash
    * @param data 20 Bytes - The address
-   * @param QUANTITY_TAG integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
-   * @return QUANTITY The integer of the number of transactions send from this address.
+   * @param qUANTITY_TAG integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+   * @return quantity The integer of the number of transactions send from this address.
    */
   async getTransactionCountByHash(
     data: string,
-    QUANTITY_TAG: string
+    qUANTITY_TAG: string
   ): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionCountByHash",
-      params: [data, QUANTITY_TAG],
+      params: [data, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -372,13 +329,13 @@ export class Json_rpc_methods {
 
   /**
    * Returns the number of transactions in a block from a block matching the given block hash
-   * @param DATA 32 Bytes - The hash of a block
-   * @return QUANTITY The integer of the number of transactions in this block.
+   * @param data 32 Bytes - The hash of a block
+   * @return quantity The integer of the number of transactions in this block.
    */
-  async getBlockTransactionCountByHash(DATA: string): Promise<string> {
+  async getBlockTransactionCountByHash(data: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockTransactionCountByHash",
-      params: [DATA],
+      params: [data],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -388,15 +345,15 @@ export class Json_rpc_methods {
 
   /**
    * Returns the number of transactions in a block matching the given block number
-   * @param QUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
-   * @return QUANTITY The integer of the number of transactions in this block.
+   * @param qUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
+   * @return quantity The integer of the number of transactions in this block.
    */
   async getBlockTransactionCountByNumber(
-    QUANTITY_TAG: string
+    qUANTITY_TAG: string
   ): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockTransactionCountByNumber",
-      params: [QUANTITY_TAG],
+      params: [qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -406,13 +363,13 @@ export class Json_rpc_methods {
 
   /**
    * Returns the number of uncles in a block from a block matching the given block hash
-   * @param DATA 32 Bytes - The hash of a block
-   * @return QUANTITY_TAG The integer of the number of uncles in this block.
+   * @param data 32 Bytes - The hash of a block
+   * @return qUANTITY_TAG The integer of the number of uncles in this block.
    */
-  async getUncleCountByBlockHash(DATA: string): Promise<string> {
+  async getUncleCountByBlockHash(data: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleCountByBlockHash",
-      params: [DATA],
+      params: [data],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -422,13 +379,13 @@ export class Json_rpc_methods {
 
   /**
    * Returns the number of uncles in a block from a block matching the given block number
-   * @param QUANTITY_TAG The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
-   * @return QUANTITY The integer of the number of uncles in this block.
+   * @param qUANTITY_TAG The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
+   * @return quantity The integer of the number of uncles in this block.
    */
-  async getUncleCountByBlockNumber(QUANTITY_TAG: string): Promise<string> {
+  async getUncleCountByBlockNumber(qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleCountByBlockNumber",
-      params: [QUANTITY_TAG],
+      params: [qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -438,14 +395,14 @@ export class Json_rpc_methods {
 
   /**
    * Returns code at a given address
-   * @param DATA 20 Byter - The address
-   * @param QUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
-   * @return DATA The code from the given address.
+   * @param data 20 Byter - The address
+   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+   * @return data The code from the given address.
    */
-  async getCode(DATA: string, QUANTITY_TAG: string): Promise<string> {
+  async getCode(data: string, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_code",
-      params: [DATA, QUANTITY_TAG],
+      params: [data, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -479,13 +436,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction
-   * @param Object The transaction object
-   * @return DATA The signed transaction object.
+   * @param obj The transaction object
+   * @return data The signed transaction object.
    */
-  async signTransaction(Object: Object): Promise<string> {
+  async signTransaction(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_signTransaction",
-      params: [Object],
+      params: [obj],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -495,13 +452,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Creates new message call transaction or a contract creation, if the data field contains code
-   * @param Object The transaction object
-   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @param obj The transaction object
+   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
-  async sendTranscation(Object: Object): Promise<string> {
+  async sendTranscation(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_sendTranscation",
-      params: [Object],
+      params: [obj],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -511,13 +468,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Creates new message call transaction or a contract creation for signed transactions
-   * @param DATA The signed transaction data.
-   * @return DATA 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @param data The signed transaction data.
+   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
-  async sendRawTransaction(DATA: string): Promise<string> {
+  async sendRawTransaction(data: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_sendRawTransaction",
-      params: [DATA],
+      params: [data],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -527,14 +484,14 @@ Note the address to sign with must be unlocked
 
   /**
    * Executes a new message call immediately without creating a transaction on the block chain
-   * @param Object The transaction object
-   * @param QUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
-   * @return DATA The return value of executed contract.
+   * @param obj The transaction object
+   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
+   * @return data The return value of executed contract.
    */
-  async call(Object: Object, QUANTITY_TAG: string): Promise<string> {
+  async call(obj: Obj, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_call",
-      params: [Object, QUANTITY_TAG],
+      params: [obj, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -546,14 +503,14 @@ Note the address to sign with must be unlocked
    * Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
    *  The transaction will not be added to the blockchain
    *  Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance
-   * @param Object The transaction object
-   * @param QUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
-   * @return QUANTITY The amount of gas used.
+   * @param obj The transaction object
+   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
+   * @return quantity The amount of gas used.
    */
-  async estimateGas(Object: Object, QUANTITY_TAG: string): Promise<string> {
+  async estimateGas(obj: Obj, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_estimateGas",
-      params: [Object, QUANTITY_TAG],
+      params: [obj, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -563,17 +520,17 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns information about a block by hash
-   * @param DATA 32 Bytes - Hash of a block.
-   * @param Bool If true it returns the full transaction objects, if false only the hashes of the transactions.
-   * @return Object A block object, or null when no block was found
+   * @param data 32 Bytes - Hash of a block.
+   * @param bool If true it returns the full transaction objects, if false only the hashes of the transactions.
+   * @return obj A block object, or null when no block was found
    */
   async getBlockByHash(
-    DATA: string,
-    Bool: boolean
-  ): Promise<GetBlockByHashResponseObject> {
+    data: string,
+    bool: boolean
+  ): Promise<GetBlockByHashResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockByHash",
-      params: [DATA, Bool],
+      params: [data, bool],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -583,17 +540,17 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns information about a block by block number
-   * @param QUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
-   * @param Bool If true it returns the full transaction objects, if false only the hashes of the transactions.
-   * @return Object A block object, or null when no block was found
+   * @param qUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+   * @param bool If true it returns the full transaction objects, if false only the hashes of the transactions.
+   * @return obj A block object, or null when no block was found
    */
   async getBlockByNumber(
-    QUANTITY_TAG: string,
-    Bool: boolean
-  ): Promise<GetBlockByNumberResponseObject> {
+    qUANTITY_TAG: string,
+    bool: boolean
+  ): Promise<GetBlockByNumberResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getBlockByNumber",
-      params: [QUANTITY_TAG, Bool],
+      params: [qUANTITY_TAG, bool],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -603,15 +560,15 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns the information about a transaction requested by transaction hash
-   * @param DATA 32 Bytes - hash of a transaction
-   * @return Object A transaction object, or null when no transaction was found
+   * @param data 32 Bytes - hash of a transaction
+   * @return obj A transaction object, or null when no transaction was found
    */
   async getTransactionByHash(
-    DATA: string
-  ): Promise<GetTransactionByHashResponseObject> {
+    data: string
+  ): Promise<GetTransactionByHashResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByHash",
-      params: [DATA],
+      params: [data],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -621,17 +578,17 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns information about a transaction by block hash and transaction index position
-   * @param DATA 32 Bytes - hash of a block.
-   * @param QUANTITY The integer of the transaction index position.
-   * @return Object See etd_getTransactionByHash
+   * @param data 32 Bytes - hash of a block.
+   * @param quantity The integer of the transaction index position.
+   * @return obj See etd_getTransactionByHash
    */
   async getTransactionByHashAndIndex(
-    DATA: string,
-    QUANTITY: string
-  ): Promise<GetTransactionByHashAndIndexResponseObject> {
+    data: string,
+    quantity: string
+  ): Promise<GetTransactionByHashAndIndexResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByHashAndIndex",
-      params: [DATA, QUANTITY],
+      params: [data, quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -641,17 +598,17 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns information about a transaction by block number and transaction index position
-   * @param QUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
-   * @param QUANTITY The transaction index position.
-   * @return Object See etd_getTransactionByHash
+   * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+   * @param quantity The transaction index position.
+   * @return obj See etd_getTransactionByHash
    */
   async getTransactionByBlockNumberAndIndex(
-    QUANTITY_TAG: string,
-    QUANTITY: string
-  ): Promise<GetTransactionByBlockNumberAndIndexResponseObject> {
+    qUANTITY_TAG: string,
+    quantity: string
+  ): Promise<GetTransactionByBlockNumberAndIndexResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionByBlockNumberAndIndex",
-      params: [QUANTITY_TAG, QUANTITY],
+      params: [qUANTITY_TAG, quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -662,15 +619,15 @@ Note the address to sign with must be unlocked
   /**
    * Returns the receipt of a transaction by transaction hash
    *  Note That the receipt is not available for pending transactions
-   * @param DATA 32 Bytes - hash of a transaction
-   * @return Object A transaction receipt object, or null when no receipt was found
+   * @param data 32 Bytes - hash of a transaction
+   * @return obj A transaction receipt object, or null when no receipt was found
    */
   async getTransactionReceipt(
-    DATA: string
-  ): Promise<GetTransactionReceiptResponseObject> {
+    data: string
+  ): Promise<GetTransactionReceiptResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getTransactionReceipt",
-      params: [DATA],
+      params: [data],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -680,17 +637,17 @@ Note the address to sign with must be unlocked
 
   /**
    * eturns information about a uncle of a block by hash and uncle index position
-   * @param DATA 32 Bytes - The hash of a block.
-   * @param QUANTITY The uncle’s index position.
-   * @return Object See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @param data 32 Bytes - The hash of a block.
+   * @param quantity The uncle’s index position.
+   * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockHashAndIndex(
-    DATA: string,
-    QUANTITY: string
-  ): Promise<GetUncleByBlockHashAndIndexResponseObject> {
+    data: string,
+    quantity: string
+  ): Promise<GetUncleByBlockHashAndIndexResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockHashAndIndex",
-      params: [DATA, QUANTITY],
+      params: [data, quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -700,17 +657,17 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns information about a uncle of a block by number and uncle index position
-   * @param QUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
-   * @param QUANTITY the uncle’s index position.
-   * @return Object See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+   * @param quantity the uncle’s index position.
+   * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockNumberAndIndex(
-    QUANTITY_TAG: string,
-    QUANTITY: string
-  ): Promise<GetUncleByBlockNumberAndIndexResponseObject> {
+    qUANTITY_TAG: string,
+    quantity: string
+  ): Promise<GetUncleByBlockNumberAndIndexResponseObj> {
     let response = await axios.post(this.url, {
       method: "etd_getUncleByBlockNumberAndIndex",
-      params: [QUANTITY_TAG, QUANTITY],
+      params: [qUANTITY_TAG, quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -720,7 +677,7 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns a list of available compilers in the client
-   * @return Array Array of available compilers.
+   * @return array Array of available compilers.
    */
   async getCompliers(): Promise<string[]> {
     let response = await axios.post(this.url, {
@@ -735,13 +692,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns compiled solidity code
-   * @param String The source code.
-   * @return DATA The compiled source code.
+   * @param string The source code.
+   * @return data The compiled source code.
    */
-  async compileSolidity(String: string): Promise<string> {
+  async compileSolidity(string: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_compileSolidity",
-      params: [String],
+      params: [string],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -751,13 +708,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns compiled LLL code
-   * @param String The source code.
-   * @return DATA The compiled source code.
+   * @param string The source code.
+   * @return data The compiled source code.
    */
-  async complpieLLL(String: string): Promise<string> {
+  async complpieLLL(string: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_complpieLLL",
-      params: [String],
+      params: [string],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -767,13 +724,13 @@ Note the address to sign with must be unlocked
 
   /**
    * Returns compiled serpent code
-   * @param String The source code.
-   * @return DATA The compiled source code.
+   * @param string The source code.
+   * @return data The compiled source code.
    */
-  async complieSerpent(String: string): Promise<string> {
+  async complieSerpent(string: string): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_complieSerpent",
-      params: [String],
+      params: [string],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -788,13 +745,13 @@ Note the address to sign with must be unlocked
 A note on specifying topic filters Topics are order-dependent
 *  A transaction with a log with topics [A, B] will be matched by the following topic filters
 -[] “anything” -[A] “A in first position (and anything after)” -[null, B] “anything in first position AND B in second position (and anything after)” -[A, B] “A in first position AND B in second position (and anything after)” -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”
-* @param Object The filter options
-* @return QUANTITY A filter id.
+* @param obj The filter options
+* @return quantity A filter id.
 */
-  async newFilter(Object: Object): Promise<string> {
+  async newFilter(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
       method: "etd_newFilter",
-      params: [Object],
+      params: [obj],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -805,7 +762,7 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Creates a filter in the node, to notify when a new block arrives
    *  To check if the state has changed, call etd_getFilterChanges
-   * @return QUANTITY A filter id.
+   * @return quantity A filter id.
    */
   async newBlockFilter(): Promise<string> {
     let response = await axios.post(this.url, {
@@ -821,7 +778,7 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Creates a filter in the node, to notify when new pending transactions arrive
    *  To check if the state has changed, call etd_getFilterChanges
-   * @return QUANTITY A filter id.
+   * @return quantity A filter id.
    */
   async newPendingTransactionFilter(): Promise<string> {
     let response = await axios.post(this.url, {
@@ -839,13 +796,13 @@ A note on specifying topic filters Topics are order-dependent
    *  Should always be called when watch is no longer needed
    *  Additonally Filters timeout when they aren’t requested with etd_getFilterChanges
    *  for a period of time
-   * @param QUANTITY The filter id.
-   * @return Bool true if the filter was successfully uninstalled, otherwise false.
+   * @param quantity The filter id.
+   * @return bool true if the filter was successfully uninstalled, otherwise false.
    */
-  async uninstallFilter(QUANTITY: string): Promise<boolean> {
+  async uninstallFilter(quantity: string): Promise<boolean> {
     let response = await axios.post(this.url, {
       method: "etd_uninstallFilter",
-      params: [QUANTITY],
+      params: [quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -855,13 +812,13 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Polling method for a filter, which returns an array of logs which occurred since last poll
-   * @param QUANTITY The filter id.
-   * @return Array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+   * @param quantity The filter id.
+   * @return array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
    */
-  async getFilterChanges(QUANTITY: string): Promise<Array[]> {
+  async getFilterChanges(quantity: string): Promise<Array[]> {
     let response = await axios.post(this.url, {
       method: "etd_getFilterChanges",
-      params: [QUANTITY],
+      params: [quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -871,13 +828,13 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Returns an array of all logs matching filter with given id
-   * @param QUANTITY The filter id.
-   * @return Array See etd_getFilterChanges.
+   * @param quantity The filter id.
+   * @return array See etd_getFilterChanges.
    */
-  async getFilterLogs(QUANTITY: string): Promise<any[]> {
+  async getFilterLogs(quantity: string): Promise<any[]> {
     let response = await axios.post(this.url, {
       method: "etd_getFilterLogs",
-      params: [QUANTITY],
+      params: [quantity],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -887,13 +844,13 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Returns an array of all logs matching a given filter object
-   * @param Object The filter options
-   * @return Array See etd_getFilterChanges.
+   * @param obj The filter options
+   * @return array See etd_getFilterChanges.
    */
-  async getLogs(Object: Object): Promise<any[]> {
+  async getLogs(obj: Obj): Promise<any[]> {
     let response = await axios.post(this.url, {
       method: "etd_getLogs",
-      params: [Object],
+      params: [obj],
       jsonrpc: "2.0",
       id: 1,
     });
@@ -903,7 +860,7 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”)
-   * @return Array Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
+   * @return array Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
    */
   async getWork(): Promise<string[]> {
     let response = await axios.post(this.url, {
@@ -921,7 +878,7 @@ A note on specifying topic filters Topics are order-dependent
    * @param a 8 Bytes - The nonce found (64 bits)
    * @param b 32 Bytes - The header’s pow-hash (256 bits)
    * @param c 32 Bytes - The mix digest (256 bits)
-   * @return Bool returns true if the provided solution is valid, otherwise false.
+   * @return bool returns true if the provided solution is valid, otherwise false.
    */
   async submitWork(a: string, b: string, c: string): Promise<boolean> {
     let response = await axios.post(this.url, {
@@ -936,14 +893,14 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Used for submitting mining hashrate
-   * @param Hashrate A hexadecimal string representation (32 bytes) of the hash rate
-   * @param ID String - A random hexadecimal(32 bytes) ID identifying the client
-   * @return Bool Returns `true` if submitting went through succesfully and `false` otherwise.
+   * @param hashrate A hexadecimal string representation (32 bytes) of the hash rate
+   * @param id String - A random hexadecimal(32 bytes) ID identifying the client
+   * @return bool Returns `true` if submitting went through succesfully and `false` otherwise.
    */
-  async submitHashrate(Hashrate: string, ID: string): Promise<boolean> {
+  async submitHashrate(hashrate: string, id: string): Promise<boolean> {
     let response = await axios.post(this.url, {
       method: "etd_submitHashrate",
-      params: [Hashrate, ID],
+      params: [hashrate, id],
       jsonrpc: "2.0",
       id: 1,
     });

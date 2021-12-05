@@ -124,7 +124,7 @@ export class Admin {
    * @param port Network port to open the listener socket on (defaults to 8545)
    * @param cors cross-origin resource sharing header to use (defaults to &quot;&quot;)
    * @param apis API modules to offer over this interface (defaults to &quot;etd,net,web3&quot;)
-   * @return HTTPlistenerOpen A boolean flag specifying whether the HTTP RPC listener was opened or not. Please note, only one HTTP endpoint is allowed to be active at any time.
+   * @return hTTPlistenerOpen A boolean flag specifying whether the HTTP RPC listener was opened or not. Please note, only one HTTP endpoint is allowed to be active at any time.
    */
   async startRPC(
     host: string | undefined,
@@ -149,7 +149,7 @@ export class Admin {
    * @param port Network port to open the listener socket on (defaults to 8546)
    * @param cors cross-origin resource sharing header to use (defaults to &quot;&quot;)
    * @param apis API modules to offer over this interface (defaults to &quot;etd,net,web3&quot;)
-   * @return WEBlistenerOpen A boolean flag specifying whether the WebSocket RPC listener was opened or not. Please note, only one WebSocket endpoint is allowed to be active at any time.
+   * @return wEBlistenerOpen A boolean flag specifying whether the WebSocket RPC listener was opened or not. Please note, only one WebSocket endpoint is allowed to be active at any time.
    */
   async startWS(
     host: string | undefined,
@@ -170,7 +170,7 @@ export class Admin {
   /**
    * The stopRPC administrative method closes the currently open HTTP RPC endpoint
    *  As the node can only have a single HTTP endpoint running, this method takes no parameters, returning a boolean whether the endpoint was closed or not
-   * @return HTTPendpointClosed A boolean indicating whether the endpoint was closed or not.
+   * @return hTTPendpointClosed A boolean indicating whether the endpoint was closed or not.
    */
   async stopRPC(): Promise<boolean> {
     let response = await axios.post(this.url, {
@@ -186,7 +186,7 @@ export class Admin {
   /**
    * The stopWS administrative method closes the currently open WebSocket RPC endpoint
    *  As the node can only have a single WebSocket endpoint running, this method takes no parameters, returning a boolean whether the endpoint was closed or not
-   * @return WEBendpointClosed A boolean indicating whether the endpoint was closed or not.
+   * @return wEBendpointClosed A boolean indicating whether the endpoint was closed or not.
    */
   async stopWS(): Promise<boolean> {
     let response = await axios.post(this.url, {
