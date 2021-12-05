@@ -314,7 +314,7 @@ functions:
       etd_sendRawTransaction.
     rpc_method: etd_signTransaction
     params:
-      - name: Object
+      - name: obj
         description: The transaction object
         example: ""
         type: object
@@ -375,7 +375,7 @@ functions:
     description: Creates new message call transaction or a contract creation, if the data field contains code.
     rpc_method: etd_sendTranscation
     params:
-      - name: Object
+      - name: obj
         description: The transaction object
         example: ""
         type: object
@@ -457,7 +457,7 @@ functions:
     description: Executes a new message call immediately without creating a transaction on the block chain.
     rpc_method: etd_call
     params:
-      - name: Object
+      - name: obj
         description: The transaction object
         example: ""
         type: object
@@ -518,7 +518,7 @@ functions:
       reasons including EVM mechanics and node performance.
     rpc_method: etd_estimateGas
     params:
-      - name: Object
+      - name: obj
         description: The transaction object
         example: ""
         type: object
@@ -586,7 +586,7 @@ functions:
         type: boolean
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: A block object, or null when no block was found
         example: ""
         type: object
@@ -681,7 +681,7 @@ functions:
         type: boolean
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: A block object, or null when no block was found
         example: ""
         type: object
@@ -769,7 +769,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: A transaction object, or null when no transaction was found
         example: ""
         type: object
@@ -846,7 +846,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: See etd_getTransactionByHash
         example: ""
         type: object
@@ -871,7 +871,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: See etd_getTransactionByHash
         example: ""
         type: object
@@ -892,7 +892,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: A transaction receipt object, or null when no receipt was found
         example: ""
         type: object
@@ -972,7 +972,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: See etd_getTransactionByHash
           Note - An uncle doesn’t contain individual transactions.
         example: ""
@@ -1000,7 +1000,7 @@ functions:
         type: string
         optional: false
     returns:
-      - name: Object
+      - name: obj
         description: See etd_getTransactionByHash
           Note - An uncle doesn’t contain individual transactions.
         example: ""
@@ -1085,7 +1085,7 @@ functions:
       -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”
     rpc_method: etd_newFilter
     params:
-      - name: Object
+      - name: obj
         description: The filter options
         example: ""
         type: object
@@ -1257,7 +1257,7 @@ functions:
     description: Returns an array of all logs matching a given filter object.
     rpc_method: etd_getLogs
     params:
-      - name: Object
+      - name: obj
         description: The filter options
         example: ""
         type: object

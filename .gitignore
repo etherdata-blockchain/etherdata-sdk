@@ -5,3 +5,4 @@ dist
 .vs
 .vscode
 etd-sdk-generator/yarn.lock
+.DS_Store
