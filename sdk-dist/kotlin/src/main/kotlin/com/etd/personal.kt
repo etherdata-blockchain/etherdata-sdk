@@ -1,8 +1,11 @@
+import com.etd.JsonRpcRequest
+import com.etd.JsonRpcResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 
 /**
  * The personal API manages private keys in the key store
