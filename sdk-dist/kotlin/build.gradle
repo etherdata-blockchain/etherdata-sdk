@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'me.sirily11'
+group = 'etd'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -29,13 +29,9 @@ test {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = '16'
+    kotlinOptions.jvmTarget = '15'
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = '16'
-}
-
-application {
-    mainClassName = 'MainKt'
+    kotlinOptions.jvmTarget = '15'
 }

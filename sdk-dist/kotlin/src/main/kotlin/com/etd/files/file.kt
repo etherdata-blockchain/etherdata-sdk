@@ -1,6 +1,5 @@
 package com.etd.files
 
-import com.etd.constant.Constant
 import com.paradeum.client.DfsClient
 import com.paradeum.client.DfsConfig
 import com.paradeum.common.encrypted.aes.ECBHelper
@@ -9,7 +8,7 @@ import com.paradeum.enums.EncryptedType
 import com.paradeum.model.UploadDto
 import com.paradeum.utils.HexUtils
 
-class File {
+class File(val host: String) {
     val client: DfsClient
 
     init {
@@ -17,7 +16,7 @@ class File {
         config.isRandom = true;
         config.threadLimits = 2;
         config.temporaryDataDir = "/data/Downloads/dfstemporatory"; //临时数据目录
-        config.pnList.add(Constant.pNodes[0]); //pnode 的服务列表
+        config.pnList.add(host); //pnode 的服务列表
         client = DfsClient.getClient(config)
     }
 
@@ -40,12 +39,8 @@ class File {
         val hexCipherECBKey = HexUtils.convert2Hex(cipherECBKey)
         uploadDto.sympassen = hexCipherECBKey
 
-        val resp = client.uploadWithEncrypted(Constant.pNodes[0], uploadDto, ecbKey)
+        val resp = client.uploadWithEncrypted(host, uploadDto, ecbKey)
         return resp.data.afid
-    }
-
-    fun downloadFile(fileID: String, downloadPath: String) {
-
     }
 
 }
