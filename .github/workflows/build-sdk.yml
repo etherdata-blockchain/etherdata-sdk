@@ -22,10 +22,8 @@ jobs:
         working-directory: etd-sdk-generator
 
   publish-kotlin:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-    runs-on: ${{ matrix.os }}
+    needs: build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -39,8 +37,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            sdk-dist/kotlin/build/distributions
-            sdk-dist/kotlin/build/libs
+            ./sdk-dist/kotlin/build/distributions/
+            ./sdk-dist/kotlin/build/libs/
 
 
   publish-typescript-npm:
