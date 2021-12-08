@@ -7,6 +7,6 @@ module.exports.readVersion = function (contents) {
 module.exports.writeVersion = function (contents, version) {
   const lines = contents.split("\n");
   const index = lines.findIndex((l) => l.includes("version ="));
-  lines[index] = "version = " + version;
+  lines[index] = `version = '${version}'`;
   return lines.reduce((prev, cur) => prev + "\n" + cur, "");
 };
