@@ -4,6 +4,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
+archivesBaseName = 'etd-sdk'
 group = 'etd'
 version = '1.4.6'
 
@@ -29,6 +30,12 @@ test {
     useJUnitPlatform()
 }
 
+
+distributions {
+    main {
+        distributionBaseName.set("etd-sdk")
+    }
+}
 
 compileKotlin {
     kotlinOptions.jvmTarget = '15'
