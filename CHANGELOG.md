@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.3...v1.4.4) (2021-12-08)
+
+
+### Bug Fixes
+
+* Generator error when generating array type ([bc8f74d](https://github.com/etherdata-blockchain/etherdata-sdk/commit/bc8f74d3dec90636a7560b0be83d558df64a733d))
+* Tests ([d95df65](https://github.com/etherdata-blockchain/etherdata-sdk/commit/d95df65074d34f650617fd136398a2b72c176cf1))
+
 ### [1.4.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.2...v1.4.3) (2021-09-17)
 
 
