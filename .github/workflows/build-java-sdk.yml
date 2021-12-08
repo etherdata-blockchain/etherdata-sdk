@@ -17,7 +17,6 @@ jobs:
           build-root-directory: sdk-dist/kotlin
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             sdk-dist/kotlin/build/distributions

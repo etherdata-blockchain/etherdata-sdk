@@ -6,7 +6,7 @@ name: Test
 on: push
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,13 +15,6 @@ jobs:
           node-version: 16
       - run: yarn
         working-directory: etd-sdk-generator
-      - run: yarn start
-        working-directory: etd-sdk-generator
-      - run: yarn
-        name: Installing Typescript SDK Dependencies
-        working-directory: sdk-dist/typescript
       - run: yarn test
-        name: Testing Typescript SDK
-        working-directory: sdk-dist/typescript
-        env:
-          httpsUrl: https://debug.etdchain.net/hdkEtd@Themoon
+        name: Testing generator
+        working-directory: etd-sdk-generator

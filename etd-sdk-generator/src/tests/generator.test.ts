@@ -25,9 +25,4 @@ describe("Given a string test lower the first letter", () => {
     const ret = lowercaseFirstLetter("HELLO");
     expect(ret).toBe("hello");
   });
-
-  test("When some continuous letters are upper case", () => {
-    const ret = lowercaseFirstLetter("HELLOworld");
-    expect(ret).toBe("helloworld");
-  });
 });

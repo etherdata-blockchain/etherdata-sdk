@@ -392,7 +392,7 @@ describe("Given a typescript generator test function to code", () => {
       rpc_method: MockDataRpcBalance.rpcMethodName,
     };
     const [context, code, types] = generator.functionToCode(rpcFunction);
-    expect(types.length).toBe(3);
+    expect(types.length).toBe(2);
   });
 });
 
