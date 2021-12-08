@@ -6,3 +6,4 @@ dist
 .vscode
 etd-sdk-generator/yarn.lock
 .DS_Store
+sdk-dist/kotlin/src/main/kotlin/Main.kt

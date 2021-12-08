@@ -1,6 +1,6 @@
 {
   "name": "etherdata-sdk",
-  "version": "1.4.3",
+  "version": "1.4.6",
   "main": "index.js",
   "repository": "https://github.com/etherdata-blockchain/etherdata-sdk",
   "author": "sirily11 <sirily1997@gmail.com>",
@@ -20,7 +20,11 @@
     "bumpFiles": [
       "sdk-dist/typescript/package.json",
       "sdk-dist/etd-react-ui/package.json",
-      "package.json"
+      "package.json",
+      {
+        "filename": "sdk-dist/kotlin/build.gradle",
+        "updater": "sdk-dist/kotlin/update-version.js"
+      }
     ]
   }
 }

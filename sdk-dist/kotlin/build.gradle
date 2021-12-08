@@ -3,8 +3,9 @@ plugins {
     id 'application'
 }
 
-group = 'me.sirily11'
-version = '1.0-SNAPSHOT'
+archivesBaseName = 'etd-sdk'
+group = 'etd'
+version = '1.4.6'
 
 repositories {
     mavenCentral()
@@ -17,20 +18,28 @@ dependencies {
     implementation "io.ktor:ktor-client-serialization:1.6.6"
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.0'
     implementation "io.ktor:ktor-client-gson:1.6.6"
+    implementation "com.alibaba:fastjson:1.2.78"
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation "org.apache.httpcomponents:httpclient:4.5.13"
+    implementation "org.apache.httpcomponents:httpmime:4.5.13"
+    implementation files("libs/dfs-java-sdk-1.13-SNAPSHOT.jar")
 }
 
 test {
     useJUnitPlatform()
 }
 
+
+distributions {
+    main {
+        distributionBaseName.set("etd-sdk")
+    }
+}
+
 compileKotlin {
-    kotlinOptions.jvmTarget = '16'
+    kotlinOptions.jvmTarget = '15'
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = '16'
-}
-
-application {
-    mainClassName = 'MainKt'
+    kotlinOptions.jvmTarget = '15'
 }
