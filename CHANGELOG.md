@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.14](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.13...v1.4.14) (2021-12-09)
+
+
+### Bug Fixes
+
+* Gradle problem ([cb78b7c](https://github.com/etherdata-blockchain/etherdata-sdk/commit/cb78b7c1f97c3028438e2763dae6404e31bbb1ab))
+
 ### [1.4.13](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.12...v1.4.13) (2021-12-09)
 
 ### [1.4.12](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.4.11...v1.4.12) (2021-12-08)
