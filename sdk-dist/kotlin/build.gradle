@@ -6,7 +6,7 @@ plugins {
 }
 archivesBaseName = 'etd-sdk'
 group = 'etd'
-version = 'v1.4.12'
+version = 'v1.4.13'
 repositories {
     mavenCentral()
 }
@@ -31,11 +31,9 @@ distributions {
         distributionBaseName = "etd-sdk"
     }
 }
-
 tasks.withType(Zip){
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
-
 compileKotlin {
     kotlinOptions.jvmTarget = '15'
 }
