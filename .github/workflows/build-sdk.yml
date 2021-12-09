@@ -35,6 +35,11 @@ jobs:
         with:
           arguments: build
           build-root-directory: sdk-dist/kotlin
+      - uses: gradle/gradle-build-action@v2
+        name: Building Kotlin Docs
+        with:
+          arguments: dokkaHtml
+          build-root-directory: sdk-dist/kotlin
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -42,6 +47,12 @@ jobs:
             ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.tar
             ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.zip
             ./sdk-dist/kotlin/build/libs/etd-sdk-${{ env.RELEASE_VERSION }}.jar
+      - name: Deploy Docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./sdk-dist/kotlin/build/dokka/html
+          destination_dir: docs/kotlin
 
 
   publish-typescript-npm:

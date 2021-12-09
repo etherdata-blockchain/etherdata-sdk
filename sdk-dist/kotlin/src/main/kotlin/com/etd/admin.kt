@@ -1,5 +1,5 @@
-import com.etd.JsonRpcRequest
-import com.etd.JsonRpcResponse
+package com.etd
+
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.request.*
@@ -34,7 +34,7 @@ class Admin(val url: String) {
     )
 
 
-    private val client = HttpClient {
+    private val client = HttpClient() {
         install(JsonFeature) {
             serializer = GsonSerializer()
         }

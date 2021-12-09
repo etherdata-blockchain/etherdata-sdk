@@ -2,6 +2,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
     id 'application'
     id("org.jetbrains.dokka") version "1.6.0"
+    id 'java-library-distribution'
 }
 archivesBaseName = 'etd-sdk'
 group = 'etd'
@@ -27,9 +28,14 @@ test {
 }
 distributions {
     main {
-        distributionBaseName.set("etd-sdk")
+        distributionBaseName = "etd-sdk"
     }
 }
+
+tasks.withType(Zip){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 compileKotlin {
     kotlinOptions.jvmTarget = '15'
 }
