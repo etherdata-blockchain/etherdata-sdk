@@ -2,14 +2,10 @@ package com.etd.files
 
 import com.paradeum.client.DfsClient
 import com.paradeum.client.DfsConfig
-import com.paradeum.common.encrypted.aes.ECBHelper
-import com.paradeum.common.encrypted.rsa.RSAHelper
-import com.paradeum.enums.EncryptedType
 import com.paradeum.model.UploadDto
-import com.paradeum.utils.HexUtils
 
 class File(val host: String) {
-    val client: DfsClient
+    private val client: DfsClient
 
     init {
         val config = DfsConfig()
@@ -20,6 +16,13 @@ class File(val host: String) {
         client = DfsClient.getClient(config)
     }
 
+    /**
+     * Upload file
+     *
+     * @param filePath local file path
+     * @param days save duration
+     * @return File's id
+     */
     fun uploadFile(filePath: String, days: Int = 1): String {
         val uploadDto = UploadDto(
             days,
@@ -29,18 +32,21 @@ class File(val host: String) {
             null,
         )
 
-        val rsaKeyPair = RSAHelper.genKeyPair()
-        uploadDto.encryptedType = EncryptedType.RSA
-        uploadDto.asympubkey = HexUtils.convertBase64toHex(rsaKeyPair.publicKeyBase64); //rsa 公钥转16进制
 
-        val ecbKey = ECBHelper.generateRandomECBKey()
-        val cipherECBKey = RSAHelper.encrypt(ecbKey, rsaKeyPair.publicKeyBase64)
-
-        val hexCipherECBKey = HexUtils.convert2Hex(cipherECBKey)
-        uploadDto.sympassen = hexCipherECBKey
-
-        val resp = client.uploadWithEncrypted(host, uploadDto, ecbKey)
+        val resp = client.upload(host, uploadDto)
         return resp.data.afid
+    }
+
+    /**
+     * Download file
+     *
+     * @param downloadPath File download's path
+     * @param fileName File's name
+     * @param fileId File's id
+     * @return Download path
+     */
+    fun downloadFile(downloadPath: String, fileName: String, fileId: String): String {
+        return client.download(host, fileId, downloadPath, fileName)
     }
 
 }
