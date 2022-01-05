@@ -35,7 +35,7 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         name: Building Kotlin Docs
         with:
-          arguments: dokkaGfm
+          arguments: dokkaHtml
           build-root-directory: sdk-dist/kotlin
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -49,7 +49,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: kotlin-doc
-          path: ./sdk-dist/kotlin/build/dokka/gfm
+          path: ./sdk-dist/kotlin/build/dokka/html
           retention-days: 1
 
 
