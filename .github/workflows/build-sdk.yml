@@ -74,7 +74,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: js-doc
-          path: docs/js
+          path: docs/docs/typescript/api
           retention-days: 1
       - run: yarn publish
         name: Publishing sdk
@@ -116,14 +116,24 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: js-doc
-          path: docs/js
+          path: docs/docs/typescript/api
       - name: Retrieve Kotlin Docs
         uses: actions/download-artifact@v2
         with:
           name: kotlin-doc
-          path: docs/kotlin
+          path: docs/docs/kotlin/api
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: yarn
+        name: Installing dependencies
+        working-directory: docs
+      - run: yarn build
+        name: Building website
+        working-directory: docs
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./docs/build
