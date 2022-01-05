@@ -1,12 +1,9 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Publish SDK
+name: Build And Publish SDK
 
-on:
-  push:
-    tags:
-      - "v*.*.*"
+on: push
 
 jobs:
   build:
@@ -38,21 +35,22 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         name: Building Kotlin Docs
         with:
-          arguments: dokkaHtml
+          arguments: dokkaGfm
           build-root-directory: sdk-dist/kotlin
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
             ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.tar
             ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.zip
             ./sdk-dist/kotlin/build/libs/etd-sdk-${{ env.RELEASE_VERSION }}.jar
-      - name: Deploy Docs
-        uses: peaceiris/actions-gh-pages@v3
+
+      - uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./sdk-dist/kotlin/build/dokka/html
-          destination_dir: docs/kotlin
+          name: kotlin-doc
+          path: ./sdk-dist/kotlin/build/dokka/html
+          retention-days: 1
 
 
   publish-typescript-npm:
@@ -70,8 +68,17 @@ jobs:
       - run: yarn build
         name: Building dist
         working-directory: sdk-dist/typescript
+      - run: yarn doc
+        name: Building documentation
+        working-directory: sdk-dist/typescript
+      - uses: actions/upload-artifact@v2
+        with:
+          name: js-doc
+          path: docs/js
+          retention-days: 1
       - run: yarn publish
         name: Publishing sdk
+        if: startsWith(github.ref, 'refs/tags/v')
         working-directory: sdk-dist/typescript
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -92,7 +99,31 @@ jobs:
         name: Building dist
         working-directory: sdk-dist/etd-react-ui
       - run: yarn publish
+        if: startsWith(github.ref, 'refs/tags/v')
         name: Publishing sdk
         working-directory: sdk-dist/etd-react-ui
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+  publish-docs:
+    needs:
+      - publish-kotlin
+      - publish-typescript-npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve JS Docs
+        uses: actions/download-artifact@v2
+        with:
+          name: js-doc
+          path: docs/js
+      - name: Retrieve Kotlin Docs
+        uses: actions/download-artifact@v2
+        with:
+          name: kotlin-doc
+          path: docs/kotlin
+      - name: Deploy Docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs

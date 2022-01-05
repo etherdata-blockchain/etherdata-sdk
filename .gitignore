@@ -7,3 +7,5 @@ dist
 etd-sdk-generator/yarn.lock
 .DS_Store
 sdk-dist/kotlin/src/main/kotlin/Main.kt
+docs/js/*.md
+docs/kotlin/*.md
