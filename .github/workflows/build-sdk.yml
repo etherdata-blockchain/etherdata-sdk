@@ -117,11 +117,6 @@ jobs:
         with:
           name: js-doc
           path: docs/docs/typescript/api
-      - name: Retrieve Kotlin Docs
-        uses: actions/download-artifact@v2
-        with:
-          name: kotlin-doc
-          path: docs/docs/kotlin/api
       - uses: actions/setup-node@v2
         with:
           node-version: 16
@@ -132,6 +127,11 @@ jobs:
       - run: yarn build
         name: Building website
         working-directory: docs
+      - name: Retrieve Kotlin Docs
+        uses: actions/download-artifact@v2
+        with:
+          name: kotlin-doc
+          path: docs/build/docs/kotlin/api
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:
