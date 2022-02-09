@@ -1,6 +1,6 @@
 {
   "name": "etherdata-sdk",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "index.js",
   "repository": "https://github.com/etherdata-blockchain/etherdata-sdk",
   "author": "sirily11 <sirily1997@gmail.com>",
@@ -11,8 +11,11 @@
     "docs": "typedoc --out docs/js /Users/sirily11/Desktop/etd/etherdata-sdk/sdk-dist/typescript"
   },
   "dependencies": {
+    "ethereumjs-common": "^1.5.2",
+    "ethereumjs-tx": "^2.1.2",
     "prettier": "^2.4.1",
-    "standard-version": "^9.3.1"
+    "standard-version": "^9.3.1",
+    "web3": "^1.7.0"
   },
   "devDependencies": {
     "typescript": "^4.4.3"
