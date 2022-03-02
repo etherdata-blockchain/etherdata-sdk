@@ -923,7 +923,7 @@ export function Signtransaction({ call }: Props) {
   let schema: any = {
     "title": "signTransaction",
     "description":
-      "Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction.",
+      "Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction.",
     "type": "object",
     "properties": {
       "obj": {
@@ -1820,7 +1820,7 @@ export function Newfilter({ call }: Props) {
   let schema: any = {
     "title": "newFilter",
     "description":
-      "Creates a filter object, based on filter options, to notify when the state changes (logs). To check if the state has changed, call etd_getFilterChanges.\nA note on specifying topic filters Topics are order-dependent. A transaction with a log with topics [A, B] will be matched by the following topic filters\n-[] “anything” -[A] “A in first position (and anything after)” -[null, B] “anything in first position AND B in second position (and anything after)” -[A, B] “A in first position AND B in second position (and anything after)” -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”",
+      "Creates a filter object, based on filter options, to notify when the state changes (logs). To check if the state has changed, call eth_getFilterChanges.\nA note on specifying topic filters Topics are order-dependent. A transaction with a log with topics [A, B] will be matched by the following topic filters\n-[] “anything” -[A] “A in first position (and anything after)” -[null, B] “anything in first position AND B in second position (and anything after)” -[A, B] “A in first position AND B in second position (and anything after)” -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”",
     "type": "object",
     "properties": {
       "obj": {
@@ -1879,7 +1879,7 @@ export function Newblockfilter({ call }: Props) {
   let schema: any = {
     "title": "newBlockFilter",
     "description":
-      "Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call etd_getFilterChanges.",
+      "Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call eth_getFilterChanges.",
     "type": "object",
     "properties": {},
     "required": [],
@@ -1928,7 +1928,7 @@ export function Newpendingtransactionfilter({ call }: Props) {
   let schema: any = {
     "title": "newPendingTransactionFilter",
     "description":
-      "Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call etd_getFilterChanges.",
+      "Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.",
     "type": "object",
     "properties": {},
     "required": [],
@@ -1977,7 +1977,7 @@ export function Uninstallfilter({ call }: Props) {
   let schema: any = {
     "title": "uninstallFilter",
     "description":
-      "Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additonally Filters timeout when they aren’t requested with etd_getFilterChanges. for a period of time.",
+      "Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additonally Filters timeout when they aren’t requested with eth_getFilterChanges. for a period of time.",
     "type": "object",
     "properties": { "QUANTITY": { "type": "string", "title": "QUANTITY" } },
     "required": ["QUANTITY"],
