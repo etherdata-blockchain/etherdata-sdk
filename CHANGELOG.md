@@ -1,4 +1,11 @@
-# Changelog
+undefined
+
+# [1.6.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.5.1...v1.6.0) (2022-03-02)
+
+
+### Features
+
+* :art: use release it for releasing ([#3](https://github.com/etherdata-blockchain/etherdata-sdk/issues/3)) ([f3bbb7e](https://github.com/etherdata-blockchain/etherdata-sdk/commit/f3bbb7e1059b23b5b630342ebc2485b578e8a49f))# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
