@@ -1,18 +1,17 @@
-module.exports.readVersion = function (contents) {
-    const line = contents.split("\n").find((l) => l.includes("version ="));
-    const items = line.split("=");
-    return items[1].replace("v", "");
-};
+const fs = require("fs");
 
-module.exports.writeVersion = function (contents, version) {
-    const lines = contents.split("\n");
-    const index = lines.findIndex((l) => l.includes("version ="));
-    lines[index] = `version = 'v${version}'`;
-    let newContent = "";
-    for (let line of lines) {
-        if (line.length > 0) {
-            newContent += line + "\n";
-        }
+const filePath = "sdk-dist/kotlin/build.gradle";
+const version = process.argv[2];
+
+const oldContents = fs.readFileSync(filePath, "utf8");
+
+const lines = oldContents.split("\n");
+const index = lines.findIndex((l) => l.includes("version ="));
+lines[index] = `version = '${version}'`;
+let newContent = "";
+for (let line of lines) {
+    if (line.length > 0) {
+        newContent += line + "\n";
     }
-    return newContent;
-};
+}
+fs.writeFileSync(filePath, newContent);

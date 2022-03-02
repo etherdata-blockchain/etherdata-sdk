@@ -6,26 +6,17 @@
   "author": "sirily11 <sirily1997@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "release": "standard-version",
-    "dry": "standard-version --dry-run",
+    "release": "release-it --no-requireCleanWorkingDir",
+    "release-dry": "release-it --no-requireCleanWorkingDir --dry-run",
     "docs": "typedoc --out docs/js /Users/sirily11/Desktop/etd/etherdata-sdk/sdk-dist/typescript"
   },
   "dependencies": {
-    "prettier": "^2.4.1",
-    "standard-version": "^9.3.1"
+    "prettier": "^2.4.1"
   },
   "devDependencies": {
-    "typescript": "^4.4.3"
-  },
-  "standard-version": {
-    "bumpFiles": [
-      "sdk-dist/typescript/package.json",
-      "sdk-dist/etd-react-ui/package.json",
-      "package.json",
-      {
-        "filename": "sdk-dist/kotlin/build.gradle",
-        "updater": "sdk-dist/kotlin/update-version.js"
-      }
-    ]
+    "release-it": "^14.12.5",
+    "typescript": "^4.4.3",
+    "@release-it/conventional-changelog": "^4.1.0",
+    "@release-it/bumper": "^3.0.1"
   }
 }
