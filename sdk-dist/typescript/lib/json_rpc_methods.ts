@@ -140,7 +140,7 @@ export class Json_rpc_methods {
    */
   async protocalVersion(): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_protocalVersion",
+      method: "eth_protocalVersion",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -155,7 +155,7 @@ export class Json_rpc_methods {
    */
   async blockNumber(): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_blockNumber",
+      method: "eth_blockNumber",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -171,7 +171,7 @@ export class Json_rpc_methods {
    */
   async syncing(): Promise<SyncingResponse> {
     let response = await axios.post(this.url, {
-      method: "etd_syncing",
+      method: "eth_syncing",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -186,7 +186,7 @@ export class Json_rpc_methods {
    */
   async coinbase(): Promise<any> {
     let response = await axios.post(this.url, {
-      method: "etd_coinbase",
+      method: "eth_coinbase",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -201,7 +201,7 @@ export class Json_rpc_methods {
    */
   async mining(): Promise<boolean> {
     let response = await axios.post(this.url, {
-      method: "etd_mining",
+      method: "eth_mining",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -216,7 +216,7 @@ export class Json_rpc_methods {
    */
   async hashrate(): Promise<any> {
     let response = await axios.post(this.url, {
-      method: "etd_hashrate",
+      method: "eth_hashrate",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -231,7 +231,7 @@ export class Json_rpc_methods {
    */
   async gasPrice(): Promise<any> {
     let response = await axios.post(this.url, {
-      method: "etd_gasPrice",
+      method: "eth_gasPrice",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -246,7 +246,7 @@ export class Json_rpc_methods {
    */
   async accounts(): Promise<any[]> {
     let response = await axios.post(this.url, {
-      method: "etd_accounts",
+      method: "eth_accounts",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -263,7 +263,7 @@ export class Json_rpc_methods {
    */
   async getBalance(address: string, tag: string): Promise<number> {
     let response = await axios.post(this.url, {
-      method: "etd_getBalance",
+      method: "eth_getBalance",
       params: [address, tag],
       jsonrpc: "2.0",
       id: 1,
@@ -281,7 +281,7 @@ export class Json_rpc_methods {
    */
   async getStorageAt(address: any, position: any, tag: string): Promise<any> {
     let response = await axios.post(this.url, {
-      method: "etd_getStorageAt",
+      method: "eth_getStorageAt",
       params: [address, position, tag],
       jsonrpc: "2.0",
       id: 1,
@@ -298,7 +298,7 @@ export class Json_rpc_methods {
    */
   async getTransactionCount(address: any, state: string): Promise<number> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionCount",
+      method: "eth_getTransactionCount",
       params: [address, state],
       jsonrpc: "2.0",
       id: 1,
@@ -318,7 +318,7 @@ export class Json_rpc_methods {
     qUANTITY_TAG: string
   ): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionCountByHash",
+      method: "eth_getTransactionCountByHash",
       params: [data, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -334,7 +334,7 @@ export class Json_rpc_methods {
    */
   async getBlockTransactionCountByHash(data: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_getBlockTransactionCountByHash",
+      method: "eth_getBlockTransactionCountByHash",
       params: [data],
       jsonrpc: "2.0",
       id: 1,
@@ -352,7 +352,7 @@ export class Json_rpc_methods {
     qUANTITY_TAG: string
   ): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_getBlockTransactionCountByNumber",
+      method: "eth_getBlockTransactionCountByNumber",
       params: [qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -368,7 +368,7 @@ export class Json_rpc_methods {
    */
   async getUncleCountByBlockHash(data: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_getUncleCountByBlockHash",
+      method: "eth_getUncleCountByBlockHash",
       params: [data],
       jsonrpc: "2.0",
       id: 1,
@@ -384,7 +384,7 @@ export class Json_rpc_methods {
    */
   async getUncleCountByBlockNumber(qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_getUncleCountByBlockNumber",
+      method: "eth_getUncleCountByBlockNumber",
       params: [qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -401,7 +401,7 @@ export class Json_rpc_methods {
    */
   async getCode(data: string, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_code",
+      method: "eth_code",
       params: [data, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -425,7 +425,7 @@ Note the address to sign with must be unlocked
 */
   async sign(a: string, b: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_sign",
+      method: "eth_sign",
       params: [a, b],
       jsonrpc: "2.0",
       id: 1,
@@ -435,13 +435,13 @@ Note the address to sign with must be unlocked
   }
 
   /**
-   * Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction
+   * Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
    * @param obj The transaction object
    * @return data The signed transaction object.
    */
   async signTransaction(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_signTransaction",
+      method: "eth_signTransaction",
       params: [obj],
       jsonrpc: "2.0",
       id: 1,
@@ -453,11 +453,11 @@ Note the address to sign with must be unlocked
   /**
    * Creates new message call transaction or a contract creation, if the data field contains code
    * @param obj The transaction object
-   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
   async sendTranscation(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_sendTranscation",
+      method: "eth_sendTranscation",
       params: [obj],
       jsonrpc: "2.0",
       id: 1,
@@ -469,11 +469,11 @@ Note the address to sign with must be unlocked
   /**
    * Creates new message call transaction or a contract creation for signed transactions
    * @param data The signed transaction data.
-   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+   * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
    */
   async sendRawTransaction(data: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_sendRawTransaction",
+      method: "eth_sendRawTransaction",
       params: [data],
       jsonrpc: "2.0",
       id: 1,
@@ -490,7 +490,7 @@ Note the address to sign with must be unlocked
    */
   async call(obj: Obj, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_call",
+      method: "eth_call",
       params: [obj, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -509,7 +509,7 @@ Note the address to sign with must be unlocked
    */
   async estimateGas(obj: Obj, qUANTITY_TAG: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_estimateGas",
+      method: "eth_estimateGas",
       params: [obj, qUANTITY_TAG],
       jsonrpc: "2.0",
       id: 1,
@@ -529,7 +529,7 @@ Note the address to sign with must be unlocked
     bool: boolean
   ): Promise<GetBlockByHashResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getBlockByHash",
+      method: "eth_getBlockByHash",
       params: [data, bool],
       jsonrpc: "2.0",
       id: 1,
@@ -549,7 +549,7 @@ Note the address to sign with must be unlocked
     bool: boolean
   ): Promise<GetBlockByNumberResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getBlockByNumber",
+      method: "eth_getBlockByNumber",
       params: [qUANTITY_TAG, bool],
       jsonrpc: "2.0",
       id: 1,
@@ -567,7 +567,7 @@ Note the address to sign with must be unlocked
     data: string
   ): Promise<GetTransactionByHashResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionByHash",
+      method: "eth_getTransactionByHash",
       params: [data],
       jsonrpc: "2.0",
       id: 1,
@@ -580,14 +580,14 @@ Note the address to sign with must be unlocked
    * Returns information about a transaction by block hash and transaction index position
    * @param data 32 Bytes - hash of a block.
    * @param quantity The integer of the transaction index position.
-   * @return obj See etd_getTransactionByHash
+   * @return obj See eth_getTransactionByHash
    */
   async getTransactionByHashAndIndex(
     data: string,
     quantity: string
   ): Promise<GetTransactionByHashAndIndexResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionByHashAndIndex",
+      method: "eth_getTransactionByHashAndIndex",
       params: [data, quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -600,14 +600,14 @@ Note the address to sign with must be unlocked
    * Returns information about a transaction by block number and transaction index position
    * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
    * @param quantity The transaction index position.
-   * @return obj See etd_getTransactionByHash
+   * @return obj See eth_getTransactionByHash
    */
   async getTransactionByBlockNumberAndIndex(
     qUANTITY_TAG: string,
     quantity: string
   ): Promise<GetTransactionByBlockNumberAndIndexResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionByBlockNumberAndIndex",
+      method: "eth_getTransactionByBlockNumberAndIndex",
       params: [qUANTITY_TAG, quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -626,7 +626,7 @@ Note the address to sign with must be unlocked
     data: string
   ): Promise<GetTransactionReceiptResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getTransactionReceipt",
+      method: "eth_getTransactionReceipt",
       params: [data],
       jsonrpc: "2.0",
       id: 1,
@@ -639,14 +639,14 @@ Note the address to sign with must be unlocked
    * eturns information about a uncle of a block by hash and uncle index position
    * @param data 32 Bytes - The hash of a block.
    * @param quantity The uncle’s index position.
-   * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @return obj See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockHashAndIndex(
     data: string,
     quantity: string
   ): Promise<GetUncleByBlockHashAndIndexResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getUncleByBlockHashAndIndex",
+      method: "eth_getUncleByBlockHashAndIndex",
       params: [data, quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -659,14 +659,14 @@ Note the address to sign with must be unlocked
    * Returns information about a uncle of a block by number and uncle index position
    * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
    * @param quantity the uncle’s index position.
-   * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+   * @return obj See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
    */
   async getUncleByBlockNumberAndIndex(
     qUANTITY_TAG: string,
     quantity: string
   ): Promise<GetUncleByBlockNumberAndIndexResponseObj> {
     let response = await axios.post(this.url, {
-      method: "etd_getUncleByBlockNumberAndIndex",
+      method: "eth_getUncleByBlockNumberAndIndex",
       params: [qUANTITY_TAG, quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -681,7 +681,7 @@ Note the address to sign with must be unlocked
    */
   async getCompliers(): Promise<string[]> {
     let response = await axios.post(this.url, {
-      method: "etd_getCompliers",
+      method: "eth_getCompliers",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -697,7 +697,7 @@ Note the address to sign with must be unlocked
    */
   async compileSolidity(string: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_compileSolidity",
+      method: "eth_compileSolidity",
       params: [string],
       jsonrpc: "2.0",
       id: 1,
@@ -713,7 +713,7 @@ Note the address to sign with must be unlocked
    */
   async complpieLLL(string: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_complpieLLL",
+      method: "eth_complpieLLL",
       params: [string],
       jsonrpc: "2.0",
       id: 1,
@@ -729,7 +729,7 @@ Note the address to sign with must be unlocked
    */
   async complieSerpent(string: string): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_complieSerpent",
+      method: "eth_complieSerpent",
       params: [string],
       jsonrpc: "2.0",
       id: 1,
@@ -740,7 +740,7 @@ Note the address to sign with must be unlocked
 
   /**
 * Creates a filter object, based on filter options, to notify when the state changes (logs)
-*  To check if the state has changed, call etd_getFilterChanges
+*  To check if the state has changed, call eth_getFilterChanges
 * 
 A note on specifying topic filters Topics are order-dependent
 *  A transaction with a log with topics [A, B] will be matched by the following topic filters
@@ -750,7 +750,7 @@ A note on specifying topic filters Topics are order-dependent
 */
   async newFilter(obj: Obj): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_newFilter",
+      method: "eth_newFilter",
       params: [obj],
       jsonrpc: "2.0",
       id: 1,
@@ -761,12 +761,12 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Creates a filter in the node, to notify when a new block arrives
-   *  To check if the state has changed, call etd_getFilterChanges
+   *  To check if the state has changed, call eth_getFilterChanges
    * @return quantity A filter id.
    */
   async newBlockFilter(): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_newBlockFilter",
+      method: "eth_newBlockFilter",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -777,12 +777,12 @@ A note on specifying topic filters Topics are order-dependent
 
   /**
    * Creates a filter in the node, to notify when new pending transactions arrive
-   *  To check if the state has changed, call etd_getFilterChanges
+   *  To check if the state has changed, call eth_getFilterChanges
    * @return quantity A filter id.
    */
   async newPendingTransactionFilter(): Promise<string> {
     let response = await axios.post(this.url, {
-      method: "etd_newPendingTransactionFilter",
+      method: "eth_newPendingTransactionFilter",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -794,14 +794,14 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Uninstalls a filter with given id
    *  Should always be called when watch is no longer needed
-   *  Additonally Filters timeout when they aren’t requested with etd_getFilterChanges
+   *  Additonally Filters timeout when they aren’t requested with eth_getFilterChanges
    *  for a period of time
    * @param quantity The filter id.
    * @return bool true if the filter was successfully uninstalled, otherwise false.
    */
   async uninstallFilter(quantity: string): Promise<boolean> {
     let response = await axios.post(this.url, {
-      method: "etd_uninstallFilter",
+      method: "eth_uninstallFilter",
       params: [quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -813,11 +813,11 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Polling method for a filter, which returns an array of logs which occurred since last poll
    * @param quantity The filter id.
-   * @return array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+   * @return array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
    */
   async getFilterChanges(quantity: string): Promise<Array[]> {
     let response = await axios.post(this.url, {
-      method: "etd_getFilterChanges",
+      method: "eth_getFilterChanges",
       params: [quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -829,11 +829,11 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Returns an array of all logs matching filter with given id
    * @param quantity The filter id.
-   * @return array See etd_getFilterChanges.
+   * @return array See eth_getFilterChanges.
    */
   async getFilterLogs(quantity: string): Promise<any[]> {
     let response = await axios.post(this.url, {
-      method: "etd_getFilterLogs",
+      method: "eth_getFilterLogs",
       params: [quantity],
       jsonrpc: "2.0",
       id: 1,
@@ -845,11 +845,11 @@ A note on specifying topic filters Topics are order-dependent
   /**
    * Returns an array of all logs matching a given filter object
    * @param obj The filter options
-   * @return array See etd_getFilterChanges.
+   * @return array See eth_getFilterChanges.
    */
   async getLogs(obj: Obj): Promise<any[]> {
     let response = await axios.post(this.url, {
-      method: "etd_getLogs",
+      method: "eth_getLogs",
       params: [obj],
       jsonrpc: "2.0",
       id: 1,
@@ -864,7 +864,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async getWork(): Promise<string[]> {
     let response = await axios.post(this.url, {
-      method: "etd_getWork",
+      method: "eth_getWork",
       params: undefined,
       jsonrpc: "2.0",
       id: 1,
@@ -882,7 +882,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async submitWork(a: string, b: string, c: string): Promise<boolean> {
     let response = await axios.post(this.url, {
-      method: "etd_submitWork",
+      method: "eth_submitWork",
       params: [a, b, c],
       jsonrpc: "2.0",
       id: 1,
@@ -899,7 +899,7 @@ A note on specifying topic filters Topics are order-dependent
    */
   async submitHashrate(hashrate: string, id: string): Promise<boolean> {
     let response = await axios.post(this.url, {
-      method: "etd_submitHashrate",
+      method: "eth_submitHashrate",
       params: [hashrate, id],
       jsonrpc: "2.0",
       id: 1,
