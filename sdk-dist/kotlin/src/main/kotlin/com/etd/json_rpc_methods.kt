@@ -133,7 +133,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_protocalVersion", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_protocalVersion", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -147,7 +147,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_blockNumber", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_blockNumber", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -162,7 +162,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<SyncingResponse> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_syncing", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_syncing", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -176,7 +176,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Any> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_coinbase", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_coinbase", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -190,7 +190,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Boolean> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_mining", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_mining", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -204,7 +204,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Any> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_hashrate", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_hashrate", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -218,7 +218,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Any> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_gasPrice", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_gasPrice", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -232,7 +232,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<List<Any>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_accounts", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_accounts", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -248,7 +248,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Long> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getBalance", params = listOf(address, tag), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getBalance", params = listOf(address, tag), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -266,7 +266,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<Any> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getStorageAt",
+                method = "eth_getStorageAt",
                 params = listOf(address, position, tag),
                 jsonrpc = "2.0",
                 id = 1
@@ -287,7 +287,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<Long> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getTransactionCount",
+                method = "eth_getTransactionCount",
                 params = listOf(address, state),
                 jsonrpc = "2.0",
                 id = 1
@@ -308,7 +308,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getTransactionCountByHash",
+                method = "eth_getTransactionCountByHash",
                 params = listOf(data, qUANTITY_TAG),
                 jsonrpc = "2.0",
                 id = 1
@@ -328,7 +328,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getBlockTransactionCountByHash",
+                method = "eth_getBlockTransactionCountByHash",
                 params = listOf(data),
                 jsonrpc = "2.0",
                 id = 1
@@ -348,7 +348,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getBlockTransactionCountByNumber",
+                method = "eth_getBlockTransactionCountByNumber",
                 params = listOf(qUANTITY_TAG),
                 jsonrpc = "2.0",
                 id = 1
@@ -368,7 +368,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body =
-                JsonRpcRequest(method = "etd_getUncleCountByBlockHash", params = listOf(data), jsonrpc = "2.0", id = 1)
+                JsonRpcRequest(method = "eth_getUncleCountByBlockHash", params = listOf(data), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -384,7 +384,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getUncleCountByBlockNumber",
+                method = "eth_getUncleCountByBlockNumber",
                 params = listOf(qUANTITY_TAG),
                 jsonrpc = "2.0",
                 id = 1
@@ -404,7 +404,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_code", params = listOf(data, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_code", params = listOf(data, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -427,14 +427,14 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_sign", params = listOf(a, b), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_sign", params = listOf(a, b), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
     }
 
     /**
-     * Signs a transaction that can be submitted to the network at a later time using with etd_sendRawTransaction
+     * Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
      * @param obj The transaction object
      * @return data The signed transaction object.
      */
@@ -442,7 +442,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_signTransaction", params = listOf(obj), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_signTransaction", params = listOf(obj), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -451,13 +451,13 @@ class Json_rpc_methods(val url: String) {
     /**
      * Creates new message call transaction or a contract creation, if the data field contains code
      * @param obj The transaction object
-     * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+     * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
      */
     suspend fun sendTranscation(obj: Obj): String {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_sendTranscation", params = listOf(obj), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_sendTranscation", params = listOf(obj), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -466,13 +466,13 @@ class Json_rpc_methods(val url: String) {
     /**
      * Creates new message call transaction or a contract creation for signed transactions
      * @param data The signed transaction data.
-     * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use etd_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+     * @return data 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
      */
     suspend fun sendRawTransaction(data: String): String {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_sendRawTransaction", params = listOf(data), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_sendRawTransaction", params = listOf(data), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -488,7 +488,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_call", params = listOf(obj, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_call", params = listOf(obj, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -507,7 +507,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body =
-                JsonRpcRequest(method = "etd_estimateGas", params = listOf(obj, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
+                JsonRpcRequest(method = "eth_estimateGas", params = listOf(obj, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -523,7 +523,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<GetBlockByHashResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getBlockByHash", params = listOf(data, bool), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getBlockByHash", params = listOf(data, bool), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -540,7 +540,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<GetBlockByNumberResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getBlockByNumber",
+                method = "eth_getBlockByNumber",
                 params = listOf(qUANTITY_TAG, bool),
                 jsonrpc = "2.0",
                 id = 1
@@ -559,7 +559,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<GetTransactionByHashResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getTransactionByHash", params = listOf(data), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getTransactionByHash", params = listOf(data), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -569,14 +569,14 @@ class Json_rpc_methods(val url: String) {
      * Returns information about a transaction by block hash and transaction index position
      * @param data 32 Bytes - hash of a block.
      * @param quantity The integer of the transaction index position.
-     * @return obj See etd_getTransactionByHash
+     * @return obj See eth_getTransactionByHash
      */
     suspend fun getTransactionByHashAndIndex(data: String, quantity: String): GetTransactionByHashAndIndexResponseObj {
 
         val response: JsonRpcResponse<GetTransactionByHashAndIndexResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getTransactionByHashAndIndex",
+                method = "eth_getTransactionByHashAndIndex",
                 params = listOf(data, quantity),
                 jsonrpc = "2.0",
                 id = 1
@@ -590,7 +590,7 @@ class Json_rpc_methods(val url: String) {
      * Returns information about a transaction by block number and transaction index position
      * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
      * @param quantity The transaction index position.
-     * @return obj See etd_getTransactionByHash
+     * @return obj See eth_getTransactionByHash
      */
     suspend fun getTransactionByBlockNumberAndIndex(
         qUANTITY_TAG: String,
@@ -600,7 +600,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<GetTransactionByBlockNumberAndIndexResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getTransactionByBlockNumberAndIndex",
+                method = "eth_getTransactionByBlockNumberAndIndex",
                 params = listOf(qUANTITY_TAG, quantity),
                 jsonrpc = "2.0",
                 id = 1
@@ -620,7 +620,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<GetTransactionReceiptResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getTransactionReceipt", params = listOf(data), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getTransactionReceipt", params = listOf(data), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -630,14 +630,14 @@ class Json_rpc_methods(val url: String) {
      * eturns information about a uncle of a block by hash and uncle index position
      * @param data 32 Bytes - The hash of a block.
      * @param quantity The uncle’s index position.
-     * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+     * @return obj See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
      */
     suspend fun getUncleByBlockHashAndIndex(data: String, quantity: String): GetUncleByBlockHashAndIndexResponseObj {
 
         val response: JsonRpcResponse<GetUncleByBlockHashAndIndexResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getUncleByBlockHashAndIndex",
+                method = "eth_getUncleByBlockHashAndIndex",
                 params = listOf(data, quantity),
                 jsonrpc = "2.0",
                 id = 1
@@ -651,7 +651,7 @@ class Json_rpc_methods(val url: String) {
      * Returns information about a uncle of a block by number and uncle index position
      * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
      * @param quantity the uncle’s index position.
-     * @return obj See etd_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+     * @return obj See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
      */
     suspend fun getUncleByBlockNumberAndIndex(
         qUANTITY_TAG: String,
@@ -661,7 +661,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<GetUncleByBlockNumberAndIndexResponseObj> = client.post(url) {
             contentType(ContentType.Application.Json)
             body = JsonRpcRequest(
-                method = "etd_getUncleByBlockNumberAndIndex",
+                method = "eth_getUncleByBlockNumberAndIndex",
                 params = listOf(qUANTITY_TAG, quantity),
                 jsonrpc = "2.0",
                 id = 1
@@ -679,7 +679,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<List<String>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getCompliers", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getCompliers", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -694,7 +694,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_compileSolidity", params = listOf(string), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_compileSolidity", params = listOf(string), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -709,7 +709,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_complpieLLL", params = listOf(string), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_complpieLLL", params = listOf(string), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -724,7 +724,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_complieSerpent", params = listOf(string), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_complieSerpent", params = listOf(string), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -732,7 +732,7 @@ class Json_rpc_methods(val url: String) {
 
     /**
      * Creates a filter object, based on filter options, to notify when the state changes (logs)
-     *  To check if the state has changed, call etd_getFilterChanges
+     *  To check if the state has changed, call eth_getFilterChanges
      *
     A note on specifying topic filters Topics are order-dependent
      *  A transaction with a log with topics [A, B] will be matched by the following topic filters
@@ -744,7 +744,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_newFilter", params = listOf(obj), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_newFilter", params = listOf(obj), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -752,14 +752,14 @@ class Json_rpc_methods(val url: String) {
 
     /**
      * Creates a filter in the node, to notify when a new block arrives
-     *  To check if the state has changed, call etd_getFilterChanges
+     *  To check if the state has changed, call eth_getFilterChanges
      * @return quantity A filter id.
      */
     suspend fun newBlockFilter(): String {
 
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_newBlockFilter", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_newBlockFilter", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -767,7 +767,7 @@ class Json_rpc_methods(val url: String) {
 
     /**
      * Creates a filter in the node, to notify when new pending transactions arrive
-     *  To check if the state has changed, call etd_getFilterChanges
+     *  To check if the state has changed, call eth_getFilterChanges
      * @return quantity A filter id.
      */
     suspend fun newPendingTransactionFilter(): String {
@@ -775,7 +775,7 @@ class Json_rpc_methods(val url: String) {
         val response: JsonRpcResponse<String> = client.post(url) {
             contentType(ContentType.Application.Json)
             body =
-                JsonRpcRequest(method = "etd_newPendingTransactionFilter", params = listOf(), jsonrpc = "2.0", id = 1)
+                JsonRpcRequest(method = "eth_newPendingTransactionFilter", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -784,7 +784,7 @@ class Json_rpc_methods(val url: String) {
     /**
      * Uninstalls a filter with given id
      *  Should always be called when watch is no longer needed
-     *  Additonally Filters timeout when they aren’t requested with etd_getFilterChanges
+     *  Additonally Filters timeout when they aren’t requested with eth_getFilterChanges
      *  for a period of time
      * @param quantity The filter id.
      * @return bool true if the filter was successfully uninstalled, otherwise false.
@@ -793,7 +793,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Boolean> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_uninstallFilter", params = listOf(quantity), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_uninstallFilter", params = listOf(quantity), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -802,13 +802,13 @@ class Json_rpc_methods(val url: String) {
     /**
      * Polling method for a filter, which returns an array of logs which occurred since last poll
      * @param quantity The filter id.
-     * @return array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with etd_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with etd_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+     * @return array Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
      */
     suspend fun getFilterChanges(quantity: String): List<Array> {
 
         val response: JsonRpcResponse<List<Array>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getFilterChanges", params = listOf(quantity), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getFilterChanges", params = listOf(quantity), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -817,13 +817,13 @@ class Json_rpc_methods(val url: String) {
     /**
      * Returns an array of all logs matching filter with given id
      * @param quantity The filter id.
-     * @return array See etd_getFilterChanges.
+     * @return array See eth_getFilterChanges.
      */
     suspend fun getFilterLogs(quantity: String): List<Any> {
 
         val response: JsonRpcResponse<List<Any>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getFilterLogs", params = listOf(quantity), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getFilterLogs", params = listOf(quantity), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -832,13 +832,13 @@ class Json_rpc_methods(val url: String) {
     /**
      * Returns an array of all logs matching a given filter object
      * @param obj The filter options
-     * @return array See etd_getFilterChanges.
+     * @return array See eth_getFilterChanges.
      */
     suspend fun getLogs(obj: Obj): List<Any> {
 
         val response: JsonRpcResponse<List<Any>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getLogs", params = listOf(obj), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getLogs", params = listOf(obj), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -852,7 +852,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<List<String>> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_getWork", params = listOf(), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_getWork", params = listOf(), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -869,7 +869,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Boolean> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_submitWork", params = listOf(a, b, c), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_submitWork", params = listOf(a, b, c), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
@@ -885,7 +885,7 @@ class Json_rpc_methods(val url: String) {
 
         val response: JsonRpcResponse<Boolean> = client.post(url) {
             contentType(ContentType.Application.Json)
-            body = JsonRpcRequest(method = "etd_submitHashrate", params = listOf(hashrate, id), jsonrpc = "2.0", id = 1)
+            body = JsonRpcRequest(method = "eth_submitHashrate", params = listOf(hashrate, id), jsonrpc = "2.0", id = 1)
         }
         return response.result
 
