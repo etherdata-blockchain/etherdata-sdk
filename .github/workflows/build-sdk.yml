@@ -3,7 +3,12 @@
 
 name: Build And Publish SDK
 
-on: push
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
 
 jobs:
   build:
@@ -73,7 +78,6 @@ jobs:
       - run: yarn build
         name: Building dist
         working-directory: sdk-dist/etd-react-ui
-  
   release:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
@@ -81,6 +85,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
@@ -94,4 +100,3 @@ jobs:
         run: yarn release --ci
         env:
           GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
-
