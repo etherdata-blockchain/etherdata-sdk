@@ -1,5 +1,17 @@
 undefined
 
+# [2.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.6.1...v2.0.0) (2022-03-02)
+
+
+### Features
+
+* **sdk:** rename etd _ -> eth for better tooling experience ([#6](https://github.com/etherdata-blockchain/etherdata-sdk/issues/6)) ([c3cadf8](https://github.com/etherdata-blockchain/etherdata-sdk/commit/c3cadf87d774d86316c448c0dea8e2671dda2212))
+
+
+### BREAKING CHANGES
+
+* **sdk:** all jsonrpc method will be affectedundefined
+
 ## [1.6.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.6.0...v1.6.1) (2022-03-02)
 
 
