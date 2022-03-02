@@ -1,5 +1,12 @@
 undefined
 
+## [1.6.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.6.0...v1.6.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* release kotlin ([#4](https://github.com/etherdata-blockchain/etherdata-sdk/issues/4)) ([b7e615d](https://github.com/etherdata-blockchain/etherdata-sdk/commit/b7e615de98457e0bf05a76375edad3bb33842171))undefined
+
 # [1.6.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.5.1...v1.6.0) (2022-03-02)
 
 
