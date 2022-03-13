@@ -1,4 +1,11 @@
-undefined
+# Changelog
+
+# [2.1.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.0.0...v2.1.0) (2022-03-13)
+
+
+### Features
+
+* update mui version to v5 ([#10](https://github.com/etherdata-blockchain/etherdata-sdk/issues/10)) ([fdc3e44](https://github.com/etherdata-blockchain/etherdata-sdk/commit/fdc3e445cc875b1d5fb6073a23dd4a44e8eb3e63))undefined
 
 # [2.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v1.6.1...v2.0.0) (2022-03-02)
 
@@ -24,7 +31,7 @@ undefined
 
 ### Features
 
-* :art: use release it for releasing ([#3](https://github.com/etherdata-blockchain/etherdata-sdk/issues/3)) ([f3bbb7e](https://github.com/etherdata-blockchain/etherdata-sdk/commit/f3bbb7e1059b23b5b630342ebc2485b578e8a49f))# Changelog
+* :art: use release it for releasing ([#3](https://github.com/etherdata-blockchain/etherdata-sdk/issues/3)) ([f3bbb7e](https://github.com/etherdata-blockchain/etherdata-sdk/commit/f3bbb7e1059b23b5b630342ebc2485b578e8a49f))
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
