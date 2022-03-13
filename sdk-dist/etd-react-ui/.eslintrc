@@ -28,6 +28,10 @@
     "react/no-unused-prop-types": 0,
     "import/export": 0,
     "spaced-comment": "off",
-    "prefer-const": "off"
+    "prefer-const": "off",
+    "quotes": "off",
+    "quote-props": "off",
+    "comma-dangle": "off",
+    "semi": "off"
   }
 }

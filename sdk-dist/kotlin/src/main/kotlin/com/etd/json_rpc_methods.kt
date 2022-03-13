@@ -119,7 +119,7 @@ class Json_rpc_methods(val url: String) {
     )
 
 
-    private val client = HttpClient() {
+    private val client = HttpClient {
         install(JsonFeature) {
             serializer = GsonSerializer()
         }

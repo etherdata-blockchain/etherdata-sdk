@@ -1,7 +1,6 @@
 import React from 'react'
-import 'antd/dist/antd.css'
-import { Miner, Admin } from 'etd-react-ui'
-import 'semantic-ui-css/semantic.min.css'
+
+import { Admin, Miner } from 'etherdata-react-ui'
 
 const App = () => {
   return (

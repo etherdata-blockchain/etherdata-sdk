@@ -1,8 +1,6 @@
-//@ts-ignore
-import Form from "@rjsf/material-ui";
+import { MuiForm5 as Form } from "@rjsf/material-ui";
 import React from "react";
-import { Alert } from "@material-ui/lab";
-import { Card } from "@material-ui/core";
+import { Card, Alert } from "@mui/material";
 import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
 
 type CallParam = {
@@ -60,7 +58,7 @@ export function Protocalversion({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -108,7 +106,7 @@ export function Blocknumber({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -157,7 +155,7 @@ export function Syncing({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -205,7 +203,7 @@ export function Coinbase({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -253,7 +251,7 @@ export function Mining({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -302,7 +300,7 @@ export function Hashrate({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -350,7 +348,7 @@ export function Gasprice({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -398,7 +396,7 @@ export function Accounts({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -449,7 +447,7 @@ export function Getbalance({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -502,7 +500,7 @@ export function Getstorageat({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -553,7 +551,7 @@ export function Gettransactioncount({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -605,7 +603,7 @@ export function Gettransactioncountbyhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -654,7 +652,7 @@ export function Getblocktransactioncountbyhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -705,7 +703,7 @@ export function Getblocktransactioncountbynumber({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -754,7 +752,7 @@ export function Getunclecountbyblockhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -805,7 +803,7 @@ export function Getunclecountbyblocknumber({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -856,7 +854,7 @@ export function Getcode({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -908,7 +906,7 @@ export function Sign({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -970,7 +968,7 @@ export function Signtransaction({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1032,7 +1030,7 @@ export function Sendtranscation({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1081,7 +1079,7 @@ export function Sendrawtransaction({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1143,7 +1141,7 @@ export function Call({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1205,7 +1203,7 @@ export function Estimategas({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1256,7 +1254,7 @@ export function Getblockbyhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1307,7 +1305,7 @@ export function Getblockbynumber({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1356,7 +1354,7 @@ export function Gettransactionbyhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1408,7 +1406,7 @@ export function Gettransactionbyhashandindex({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1460,7 +1458,7 @@ export function Gettransactionbyblocknumberandindex({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1509,7 +1507,7 @@ export function Gettransactionreceipt({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1561,7 +1559,7 @@ export function Getunclebyblockhashandindex({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1613,7 +1611,7 @@ export function Getunclebyblocknumberandindex({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1661,7 +1659,7 @@ export function Getcompliers({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1709,7 +1707,7 @@ export function Compilesolidity({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1757,7 +1755,7 @@ export function Complpielll({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1805,7 +1803,7 @@ export function Complieserpent({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1864,7 +1862,7 @@ export function Newfilter({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1913,7 +1911,7 @@ export function Newblockfilter({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1962,7 +1960,7 @@ export function Newpendingtransactionfilter({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2011,7 +2009,7 @@ export function Uninstallfilter({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2060,7 +2058,7 @@ export function Getfilterchanges({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2109,7 +2107,7 @@ export function Getfilterlogs({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2169,7 +2167,7 @@ export function Getlogs({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2218,7 +2216,7 @@ export function Getwork({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2270,7 +2268,7 @@ export function Submitwork({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -2321,7 +2319,7 @@ export function Submithashrate({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />

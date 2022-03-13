@@ -1,9 +1,7 @@
 package com.etd
 
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
@@ -25,7 +23,7 @@ Access to RPC methods can be enabled on a per-namespace basis
  */
 class Json_rpc(val url: String) {
 
-    private val client = HttpClient() {
+    private val client = HttpClient {
         install(JsonFeature) {
             serializer = GsonSerializer()
         }
