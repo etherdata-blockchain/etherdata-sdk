@@ -1,8 +1,6 @@
-//@ts-ignore
-import Form from "@rjsf/material-ui";
+import { MuiForm5 as Form } from "@rjsf/material-ui";
 import React from "react";
-import { Alert } from "@material-ui/lab";
-import { Card } from "@material-ui/core";
+import { Card, Alert } from "@mui/material";
 import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
 
 type CallParam = {
@@ -66,7 +64,7 @@ export function Backtraceat({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -115,7 +113,7 @@ export function Blockprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -164,7 +162,7 @@ export function Cpuprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -213,7 +211,7 @@ export function Dumpblock({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -262,7 +260,7 @@ export function Gcstats({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -311,7 +309,7 @@ export function Getblockrlp({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -360,7 +358,7 @@ export function Gotrace({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -409,7 +407,7 @@ export function Memstats({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -457,7 +455,7 @@ export function Seedhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -506,7 +504,7 @@ export function Sethead({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -555,7 +553,7 @@ export function Setblockprofilerate({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -604,7 +602,7 @@ export function Stacks({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -653,7 +651,7 @@ export function Startcpuprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -701,7 +699,7 @@ export function Startgotrace({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -749,7 +747,7 @@ export function Stopcpuprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -797,7 +795,7 @@ export function Stopgotrace({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -846,7 +844,7 @@ export function Traceblock({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -895,7 +893,7 @@ export function Traceblockbynumber({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -944,7 +942,7 @@ export function Traceblockbyhash({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -993,7 +991,7 @@ export function Traceblockfromfile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1046,7 +1044,7 @@ export function Standardtraceblocktofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1095,7 +1093,7 @@ export function Standardtracebadblocktofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1151,7 +1149,7 @@ export function Tracetransaction({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1199,7 +1197,7 @@ export function Javascriptbasedtracing({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1255,7 +1253,7 @@ export function Tracecall({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1304,7 +1302,7 @@ export function Verbosity({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1357,7 +1355,7 @@ export function Vmodule({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1405,7 +1403,7 @@ export function Writeblockprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -1454,7 +1452,7 @@ export function Writememprofile({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />

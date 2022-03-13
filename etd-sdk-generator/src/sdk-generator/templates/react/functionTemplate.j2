@@ -2,7 +2,7 @@
 export function {{ functionName | capitalize }}({ call }: Props){
     const [values, setValues] = React.useState<any>()
     const [errors, setErrors] = React.useState<any>()
-    
+
     {{ functionBody | safe }}
 
     return <Card className="form-item" variant="outlined">
@@ -22,14 +22,14 @@ export function {{ functionName | capitalize }}({ call }: Props){
         try{
             let result = await call({params: Object.values(v.formData as any), methodName: "{{rpcMethodName}}" })
              if (typeof result === 'object') {
-             
+
                 setValues(JSON.stringify(result, undefined, 2))
-              
+
             } else {
               setValues(result ? result.toString() : 'ok')
             }
         } catch (err) {
-            setErrors(err ? err.toString(): "error")
+            setErrors(err ? `${err}`: "error")
           }
         }}
         />

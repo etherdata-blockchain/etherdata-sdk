@@ -9,10 +9,10 @@ class File(val host: String) {
 
     init {
         val config = DfsConfig()
-        config.isRandom = true;
-        config.threadLimits = 2;
-        config.temporaryDataDir = "/data/Downloads/dfstemporatory"; //临时数据目录
-        config.pnList.add(host); //pnode 的服务列表
+        config.isRandom = true
+        config.threadLimits = 2
+        config.temporaryDataDir = "/data/Downloads/dfstemporatory" //临时数据目录
+        config.pnList.add(host) //pnode 的服务列表
         client = DfsClient.getClient(config)
     }
 

@@ -11,7 +11,7 @@ import io.ktor.http.*
  *   This allows clients to wait for events instead of polling for them
  *
 It works by subscribing to particular events
- *  The node will return a subscripztion id
+ *  The node will return a subscription id
  *   For each event that matches the subscription a notification with relevant data is send toGetder  with the subscription id
  *
 Considerations 1
@@ -68,7 +68,7 @@ class Real_time(val url: String) {
     data class SyncingResponse(val synchronized: Boolean, val status: SyncingResponseStatus)
 
 
-    private val client = HttpClient() {
+    private val client = HttpClient {
         install(JsonFeature) {
             serializer = GsonSerializer()
         }

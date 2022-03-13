@@ -1,8 +1,6 @@
-//@ts-ignore
-import Form from "@rjsf/material-ui";
+import { MuiForm5 as Form } from "@rjsf/material-ui";
 import React from "react";
-import { Alert } from "@material-ui/lab";
-import { Card } from "@material-ui/core";
+import { Card, Alert } from "@mui/material";
 import { RequestManager, HTTPTransport, Client } from "@open-rpc/client-js";
 
 type CallParam = {
@@ -61,7 +59,7 @@ export function Subscribe({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />
@@ -110,7 +108,7 @@ export function Unsubscribe({ call }: Props) {
               setValues(result ? result.toString() : "ok");
             }
           } catch (err) {
-            setErrors(err ? err.toString() : "error");
+            setErrors(err ? `${err}` : "error");
           }
         }}
       />

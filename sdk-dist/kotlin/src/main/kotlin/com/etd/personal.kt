@@ -14,7 +14,7 @@ class Personal(val url: String) {
     data class Tx(val from: String, val to: String, val value: Any)
 
 
-    private val client = HttpClient() {
+    private val client = HttpClient {
         install(JsonFeature) {
             serializer = GsonSerializer()
         }
