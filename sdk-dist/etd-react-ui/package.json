@@ -65,13 +65,11 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.0",
     "@open-rpc/client-js": "^1.7.1",
-    "@rjsf/antd": "^4.1.0",
     "@rjsf/core": "^4.1.0",
     "@rjsf/material-ui": "^4.1.0",
     "add": "^2.0.6",
     "dayjs": "^1.10.6",
     "postcss-normalize": "^10.0.1",
-    "swr": "^0.5.6",
-    "yarn": "^1.22.17"
+    "swr": "^0.5.6"
   }
 }
