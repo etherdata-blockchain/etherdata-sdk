@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.1.0...v2.1.1) (2022-03-14)
+
+
+### Bug Fixes
+
+* remove unused dep ([#11](https://github.com/etherdata-blockchain/etherdata-sdk/issues/11)) ([d85101b](https://github.com/etherdata-blockchain/etherdata-sdk/commit/d85101b1afb0b74ed42485f917634a4fa522dbe9))
+
 # [2.1.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.0.0...v2.1.0) (2022-03-13)
 
 
