@@ -1,0 +1,21 @@
+import requests
+from typing import List, Optional, Any
+from dataclasses import dataclass
+
+{% for returnType in functionReturnTypes %}
+@dataclass
+class {{returnType.type}}:
+    {{ returnType.code | safe }}
+{% endfor %}
+
+class {{ methodName }}:
+    {{ methodComment | safe | indent(4) }}
+
+    def __init__(self, url: str):
+        self.url = url
+
+
+    {% for function in functions -%}
+        {{ function[1] | safe | indent(4) }}
+    {%- endfor %}
+
