@@ -19,6 +19,6 @@
     }
   },
   "hooks": {
-    "after:bump": "node sdk-dist/kotlin/update-version.js ${version}"
+    "after:bump": "node sdk-dist/kotlin/update-version.js ${version} && node sdk-dist/kotlin/update-version.js"
   }
 }
