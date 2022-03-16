@@ -5,6 +5,9 @@ name: Build And Publish SDK
 
 on:
   pull_request:
+    branches:
+      - main
+
   push:
     branches:
       - main
@@ -26,14 +29,6 @@ jobs:
         working-directory: etd-sdk-generator
       - run: yarn start
         working-directory: etd-sdk-generator
-      - uses: actions/upload-artifact@v3
-        with:
-          name: built-sdk
-          path: |
-            sdk-dist/etd-react-ui/src
-            sdk-dist/kotlin/src/main/kotlin/com/etd
-            sdk-dist/python/src
-            sdk-dist/typescript/lib
 
   build-kotlin:
     needs: build
