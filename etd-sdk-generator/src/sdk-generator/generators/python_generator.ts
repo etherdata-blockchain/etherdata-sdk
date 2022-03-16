@@ -1,8 +1,4 @@
-import {
-  capitalizeFirstLetter,
-  Generator,
-  lowercaseFirstLetter,
-} from "../generator";
+import { capitalizeFirstLetter, lowercaseFirstLetter } from "../generator";
 import {
   Method,
   Param,
@@ -10,25 +6,17 @@ import {
   RPCFunction,
   Variable,
 } from "../interfaces/schema";
-import {
-  InputParamResult,
-  TypeResult,
-} from "../interfaces/generator_interface";
+import { TypeResult } from "../interfaces/generator_interface";
 import { with_indentation } from "../utils/with_indentation";
+import { TypescriptGenerator } from "./typescript_generator";
 
-export class PythonGenerator extends Generator {
-  protected libraryTemplatePath: string;
-  protected extension: string = "py";
-  protected functionTemplatePath: string;
-  protected methodTemplatePath: string;
-
-  constructor() {
-    super();
-    this.functionTemplatePath = "templates/python/functionTemplate.j2";
-    this.methodTemplatePath = "templates/python/methodTemplate.j2";
-    this.libraryTemplatePath = "templates/python/libraryTemplate.j2";
-    this.schemaPath = "../../../schema.json";
-  }
+export class PythonGenerator extends TypescriptGenerator {
+  functionTemplatePath = "templates/python/functionTemplate.j2";
+  methodTemplatePath = "templates/python/methodTemplate.j2";
+  libraryTemplatePath = "templates/python/libraryTemplate.j2";
+  schemaPath = "../../../schema.json";
+  libraryFilename = "__init__";
+  protected extension = "py";
 
   generateType(
     variable: Variable,
@@ -161,59 +149,6 @@ export class PythonGenerator extends Generator {
       types: uniqueTypes,
       code: returnCode,
     };
-  }
-
-  generateInputTypes(params: Param[]): InputParamResult {
-    let code = "";
-    let index = 0;
-    let types: TypeResult[] = [];
-    for (let param of params) {
-      const result = this.generateType(param);
-      code += `${lowercaseFirstLetter(param.name)}:${result.type}`;
-      types = types.concat(result.types);
-
-      if (result.isCustomType) {
-        types.push({
-          types: [],
-          type: result.type,
-          code: result.code,
-          isCustomType: true,
-        });
-      }
-
-      if (index < params.length - 1) {
-        code += ", ";
-      }
-      index++;
-    }
-
-    const uniqueTypes = types.filter(
-      (t1, i) => types.findIndex((t2) => t1.type === t2.type) === i
-    );
-
-    return {
-      types: uniqueTypes,
-      code: code,
-    };
-  }
-
-  protected generateLibHeader(methods: Method[]): string | undefined {
-    const template = this.getTemplate(this.libraryTemplatePath);
-    let importPaths = [];
-    let exportClassNames = [];
-
-    for (let method of methods) {
-      importPaths.push({
-        path: `${method.title}`,
-        className: capitalizeFirstLetter(method.title),
-      });
-      exportClassNames.push(capitalizeFirstLetter(method.title));
-    }
-
-    return template.render({
-      importPaths,
-      exportClassNames,
-    });
   }
 
   protected async validateGeneratedCode(code: string): Promise<boolean> {

@@ -18,18 +18,12 @@ import {
 } from "../interfaces/generator_interface";
 
 export class TypescriptGenerator extends Generator {
-  protected libraryTemplatePath: string;
-  protected extension: string = "ts";
-  protected functionTemplatePath: string;
-  protected methodTemplatePath: string;
-
-  constructor() {
-    super();
-    this.functionTemplatePath = "templates/typescript/functionTemplate.j2";
-    this.methodTemplatePath = "templates/typescript/methodTemplate.j2";
-    this.libraryTemplatePath = "templates/typescript/libraryTemplate.j2";
-    this.schemaPath = "../../../schema.json";
-  }
+  schemaPath = "../../../schema.json";
+  protected libraryFilename = "index";
+  protected libraryTemplatePath = "templates/typescript/libraryTemplate.j2";
+  protected extension = "ts";
+  protected functionTemplatePath = "templates/typescript/functionTemplate.j2";
+  protected methodTemplatePath = "templates/typescript/methodTemplate.j2";
 
   generateType(
     variable: Variable,

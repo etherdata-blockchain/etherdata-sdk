@@ -8,16 +8,14 @@ import {
 } from "../interfaces/schema";
 import { TypeResult } from "../interfaces/generator_interface";
 import { capitalizeFirstLetter, lowercaseFirstLetter } from "../generator";
+import { exec } from "child_process";
 
 export class KotlinGenerator extends TypescriptGenerator {
-  constructor() {
-    super();
-    this.functionTemplatePath = "templates/kotlin/functionTemplate.j2";
-    this.methodTemplatePath = "templates/kotlin/methodTemplate.j2";
-    this.libraryTemplatePath = "templates/kotlin/libraryTemplate.j2";
-    this.schemaPath = "../../../schema.json";
-    this.extension = "kt";
-  }
+  functionTemplatePath = "templates/kotlin/functionTemplate.j2";
+  methodTemplatePath = "templates/kotlin/methodTemplate.j2";
+  libraryTemplatePath = "templates/kotlin/libraryTemplate.j2";
+  schemaPath = "../../../schema.json";
+  extension = "kt";
 
   generateType(
     variable: Variable,
@@ -146,14 +144,6 @@ export class KotlinGenerator extends TypescriptGenerator {
     };
   }
 
-  protected async validateGeneratedCode(code: string): Promise<boolean> {
-    return true;
-  }
-
-  protected beautify(code: string): string {
-    return code;
-  }
-
   protected generateLibHeader(methods: Method[]): string | undefined {
     return undefined;
   }
@@ -242,5 +232,24 @@ export class KotlinGenerator extends TypescriptGenerator {
     }
     return response.result
         `;
+  }
+
+  protected beautify(code: string): string {
+    return code;
+  }
+
+  protected async validateGeneratedCode(code: string): Promise<boolean> {
+    return true;
+  }
+
+  protected async beautifyByExternalTool(outputFilePath: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      exec(`java -jar ktfmt.jar ${outputFilePath}`, (error, stdout) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(undefined);
+      });
+    });
   }
 }

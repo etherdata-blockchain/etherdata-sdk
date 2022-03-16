@@ -1,5 +1,3 @@
 {%- for importPath in importPaths %}
-import { {{ importPath.className }} } from './{{ importPath.path }}''
+from .{{ importPath.path }} import {{ importPath.className }}
 {%- endfor %}
-
-export { {% for exportClassName in exportClassNames %}{{ exportClassName }},{% endfor %} }

@@ -1,7 +1,7 @@
-import { PythonGenerator } from "./sdk-generator/generators/python_generator";
-import { ReactUIGenerator } from "./sdk-generator/generators/react_ui_generator";
-import { TypescriptGenerator } from "./sdk-generator/generators/typescript_generator";
 import { KotlinGenerator } from "./sdk-generator/generators/kotlin_generator";
+import { TypescriptGenerator } from "./sdk-generator/generators/typescript_generator";
+import { ReactUIGenerator } from "./sdk-generator/generators/react_ui_generator";
+import { PythonGenerator } from "./sdk-generator/generators/python_generator";
 
 let filePaths = [
   "../../../sdk/admin.yml",
