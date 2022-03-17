@@ -1,5 +1,22 @@
 # Changelog
 
+# [3.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.2.0...v3.0.0) (2022-03-17)
+
+
+### Bug Fixes
+
+* add bump version ([#14](https://github.com/etherdata-blockchain/etherdata-sdk/issues/14)) ([80133d5](https://github.com/etherdata-blockchain/etherdata-sdk/commit/80133d50337e382b1181565fcce3f9826d12bd75))
+
+
+### Features
+
+* fix bugs and includes breaking change ([e54c6fd](https://github.com/etherdata-blockchain/etherdata-sdk/commit/e54c6fd290a3af9c66a194d7ede2930218d0513b))
+
+
+### BREAKING CHANGES
+
+* Add python SDK
+
 # [2.2.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.1.1...v2.2.0) (2022-03-17)
 
 
