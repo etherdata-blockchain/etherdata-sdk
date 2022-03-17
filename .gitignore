@@ -9,4 +9,4 @@ etd-sdk-generator/yarn.lock
 sdk-dist/kotlin/src/main/kotlin/Main.kt
 docs/js/*.md
 docs/kotlin/*.md
-sdk-dist/python/src/Etherdata_Python_SDK.egg-info
+*.egg-info
