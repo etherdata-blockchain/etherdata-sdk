@@ -1,16 +1,11 @@
 import setuptools
-
-
 long_description = """
 # Etherdata Python SDK
-
 Please refer more info on our GitHub
-
 """
-
 setuptools.setup(
     name="etherdata-sdk-python",
-    version="v3.0.3",
+    version="3.0.4",
     author="etherdata-blockchain",
     author_email="etherdata-blockchain@etd.com",
     description="SDK for etherdata-blockchain",
