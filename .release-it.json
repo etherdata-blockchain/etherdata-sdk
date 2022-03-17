@@ -19,6 +19,6 @@
     }
   },
   "hooks": {
-    "after:bump": "node bump-version.js"
+    "after:bump": "node bump-version.js ${version}"
   }
 }
