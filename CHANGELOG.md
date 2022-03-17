@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.0.0...v3.0.1) (2022-03-17)
+
+
+### Bug Fixes
+
+* publish dir in GitHub Action ([a906932](https://github.com/etherdata-blockchain/etherdata-sdk/commit/a906932ed6c4d464be47b6369b80b764385d821e))
+
 # [3.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.2.0...v3.0.0) (2022-03-17)
 
 
