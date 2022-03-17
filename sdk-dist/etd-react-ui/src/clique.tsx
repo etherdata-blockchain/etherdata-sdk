@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Getsnapshot({ call }: Props) {
+export function GetSnapshot({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -66,7 +66,7 @@ export function Getsnapshot({ call }: Props) {
   );
 }
 
-export function Getsnapshotathash({ call }: Props) {
+export function GetSnapshotAtHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -114,7 +114,7 @@ export function Getsnapshotathash({ call }: Props) {
   );
 }
 
-export function Getsigners({ call }: Props) {
+export function GetSigners({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -376,11 +376,11 @@ export function Clique({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Getsnapshot call={callRPC} />
+      <GetSnapshot call={callRPC} />
 
-      <Getsnapshotathash call={callRPC} />
+      <GetSnapshotAtHash call={callRPC} />
 
-      <Getsigners call={callRPC} />
+      <GetSigners call={callRPC} />
 
       <Proposals call={callRPC} />
 

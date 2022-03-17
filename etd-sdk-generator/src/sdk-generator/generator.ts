@@ -16,33 +16,12 @@ import {
   MethodToCodeContext,
   TypeResult,
 } from "./interfaces/generator_interface";
-
-/**
- * Given a string, will return to capitalize version of the string.
- * For example, given hello-world, will return Hello-world
- * @param string
- */
-export function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-/**
- * Given a string, will return to lower the first letter of the string.
- * For example, given Hello-world, will return hello-world.
- * If all letters are uppercase, then it will lower all letters.
- * @param string
- */
-export function lowercaseFirstLetter(string: string) {
-  const re = new RegExp(/[A-Z]*/);
-  const result = re.exec(string);
-  if (result) {
-    const item = result[0];
-    if (item.length === string.length) {
-      return string.toLowerCase();
-    }
-  }
-  return string.charAt(0).toLowerCase() + string.slice(1);
-}
+import {
+  capitalizeFirstLetter,
+  ensureCamelCaseFilter,
+  ensureSnakeCaseFilter,
+  lowerCase,
+} from "./utils/filters";
 
 export abstract class Generator {
   /**
@@ -85,6 +64,16 @@ export abstract class Generator {
    * @protected
    */
   protected abstract libraryFilename: string;
+
+  protected env: nunjucks.Environment;
+
+  constructor() {
+    this.env = new nunjucks.Environment();
+    this.env.addFilter("camelCase", ensureCamelCaseFilter);
+    this.env.addFilter("snakeCase", ensureSnakeCaseFilter);
+    this.env.addFilter("capitalize", capitalizeFirstLetter);
+    this.env.addFilter("lowerCase", lowerCase);
+  }
 
   /**
    * Read file from file list and get the parsed data from it
@@ -314,7 +303,7 @@ export abstract class Generator {
   protected getTemplate(filePath: string): nunjucks.Template {
     const appDir = path.resolve(__dirname);
     const templateFile = fs.readFileSync(path.join(appDir, filePath), "utf-8");
-    const template = nunjucks.compile(templateFile);
+    const template = nunjucks.compile(templateFile, this.env);
     return template;
   }
 

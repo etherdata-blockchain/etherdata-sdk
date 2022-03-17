@@ -1,8 +1,4 @@
-import {
-  capitalizeFirstLetter,
-  Generator,
-  lowercaseFirstLetter,
-} from "../generator";
+import { Generator } from "../generator";
 import {
   Method,
   Param,
@@ -16,6 +12,7 @@ import {
   InputParamResult,
   TypeResult,
 } from "../interfaces/generator_interface";
+import { capitalizeFirstLetter, lowercaseFirstLetter } from "../utils/filters";
 
 export class TypescriptGenerator extends Generator {
   schemaPath = "../../../schema.json";

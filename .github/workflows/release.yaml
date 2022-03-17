@@ -115,6 +115,8 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
+    - name: Install Pep8
+      run: pip install --upgrade autopep8
     - name: Install pypa/build
       run: >-
         python -m

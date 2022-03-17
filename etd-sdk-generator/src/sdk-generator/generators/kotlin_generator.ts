@@ -7,8 +7,9 @@ import {
   Variable,
 } from "../interfaces/schema";
 import { TypeResult } from "../interfaces/generator_interface";
-import { capitalizeFirstLetter, lowercaseFirstLetter } from "../generator";
+
 import { exec } from "child_process";
+import { capitalizeFirstLetter, lowercaseFirstLetter } from "../utils/filters";
 
 export class KotlinGenerator extends TypescriptGenerator {
   functionTemplatePath = "templates/kotlin/functionTemplate.j2";

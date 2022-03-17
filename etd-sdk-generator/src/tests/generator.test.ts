@@ -1,7 +1,7 @@
 import {
   capitalizeFirstLetter,
   lowercaseFirstLetter,
-} from "../sdk-generator/generator";
+} from "../sdk-generator/utils/filters";
 
 describe("Given a string test capitalize first letter", () => {
   test("When the string starts with a capital letter", () => {

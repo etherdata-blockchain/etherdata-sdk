@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter, Generator } from "../generator";
+import { Generator } from "../generator";
 import {
   Method,
   Param,
@@ -11,6 +11,7 @@ import {
   InputParamResult,
   TypeResult,
 } from "../interfaces/generator_interface";
+import { capitalizeFirstLetter } from "../utils/filters";
 
 export class ReactUIGenerator extends Generator {
   protected libraryFilename: string = "index";

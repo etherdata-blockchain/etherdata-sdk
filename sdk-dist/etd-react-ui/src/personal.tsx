@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Importrawkey({ call }: Props) {
+export function ImportRawKey({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -67,7 +67,7 @@ export function Importrawkey({ call }: Props) {
   );
 }
 
-export function Listaccounts({ call }: Props) {
+export function ListAccounts({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -116,7 +116,7 @@ export function Listaccounts({ call }: Props) {
   );
 }
 
-export function Lockaccount({ call }: Props) {
+export function LockAccount({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -165,7 +165,7 @@ export function Lockaccount({ call }: Props) {
   );
 }
 
-export function Newaccount({ call }: Props) {
+export function NewAccount({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -214,7 +214,7 @@ export function Newaccount({ call }: Props) {
   );
 }
 
-export function Unlockaccount({ call }: Props) {
+export function UnlockAccount({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -267,7 +267,7 @@ export function Unlockaccount({ call }: Props) {
   );
 }
 
-export function Sendtransaction({ call }: Props) {
+export function SendTransaction({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -378,7 +378,7 @@ export function Sign({ call }: Props) {
   );
 }
 
-export function Ecrecover({ call }: Props) {
+export function EcRecover({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -448,21 +448,21 @@ export function Personal({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Importrawkey call={callRPC} />
+      <ImportRawKey call={callRPC} />
 
-      <Listaccounts call={callRPC} />
+      <ListAccounts call={callRPC} />
 
-      <Lockaccount call={callRPC} />
+      <LockAccount call={callRPC} />
 
-      <Newaccount call={callRPC} />
+      <NewAccount call={callRPC} />
 
-      <Unlockaccount call={callRPC} />
+      <UnlockAccount call={callRPC} />
 
-      <Sendtransaction call={callRPC} />
+      <SendTransaction call={callRPC} />
 
       <Sign call={callRPC} />
 
-      <Ecrecover call={callRPC} />
+      <EcRecover call={callRPC} />
     </div>
   );
 }

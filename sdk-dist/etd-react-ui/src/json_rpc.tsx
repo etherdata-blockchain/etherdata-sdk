@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Httpserver({ call }: Props) {
+export function HTTPServer({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -67,7 +67,7 @@ export function Httpserver({ call }: Props) {
   );
 }
 
-export function Websocketserver({ call }: Props) {
+export function WebSocketServer({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -116,7 +116,7 @@ export function Websocketserver({ call }: Props) {
   );
 }
 
-export function Ipcserver({ call }: Props) {
+export function IPCServer({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -183,11 +183,11 @@ export function Json_rpc({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Httpserver call={callRPC} />
+      <HTTPServer call={callRPC} />
 
-      <Websocketserver call={callRPC} />
+      <WebSocketServer call={callRPC} />
 
-      <Ipcserver call={callRPC} />
+      <IPCServer call={callRPC} />
     </div>
   );
 }

@@ -2,148 +2,154 @@ import requests
 from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
+from ..utils import to_dict
 
 
 @dataclass_json
 @dataclass
 class Accounts:
-    
-    balance:str 
+
+    balance: str
     """
     The balance of the account
     """
 
-    code:str 
+    code: str
     """
     The code of the account
     """
 
-    codeHash:str 
+    codeHash: str
     """
     The code hash of the account
     """
 
-    nonce:float 
+    nonce: float
     """
     The nonce of the account
     """
 
-    root:str 
+    root: str
     """
     The root of the account
     """
 
-    storage:List[Any] 
+    storage: List[Any]
     """
     The storage of the account
     """
 
+
 @dataclass_json
 @dataclass
 class DumpBlockResponseBlockDetails:
-    
-    accounts:List[Accounts] 
+
+    accounts: List[Accounts]
     """
     The list accounts
     """
 
-    root:str 
+    root: str
     """
     The root of the block
     """
 
+
 @dataclass_json
 @dataclass
 class Storage:
-    
-    storageName:str 
+
+    storageName: str
     """
     The storage address
     """
 
+
 @dataclass_json
 @dataclass
 class StrucrtLogs:
-    
-    depth:float 
+
+    depth: float
     """
     The depth of transcation
     """
 
-    error:str 
+    error: str
     """
     Shows error message(s) (if any)
     """
 
-    gas:float 
+    gas: float
     """
     The gas of the transaction
     """
 
-    gasCost:float 
+    gasCost: float
     """
     The gas cost
     """
 
-    memory:List[str] 
+    memory: List[str]
     """
     Memory list of the transaction
     """
 
-    op:str 
+    op: str
     """
     The op command
     """
 
-    pc:float 
+    pc: float
     """
     The pc
     """
 
-    stackArray:List[str] 
+    stackArray: List[str]
     """
     The stack array
     """
 
-    storage:Storage 
+    storage: Storage
     """
     The storage of the block
     """
 
+
 @dataclass_json
 @dataclass
 class TraceBlockResponseBlcok:
-    
-    gas:float 
+
+    gas: float
     """
     The gas value
     """
 
-    returnValue:str 
+    returnValue: str
     """
     The return value
     """
 
-    strucrtLogs:List[StrucrtLogs] 
+    strucrtLogs: List[StrucrtLogs]
     """
     The transaction logs
     """
 
+
 @dataclass_json
 @dataclass
 class TraceTransactionResponseTransaction:
-    
-    gas:float 
+
+    gas: float
     """
     The gas value
     """
 
-    returnValue:str 
+    returnValue: str
     """
     The return value
     """
 
-    strucrtLogs:List[StrucrtLogs] 
+    strucrtLogs: List[StrucrtLogs]
     """
     The transaction logs
     """
@@ -157,221 +163,236 @@ class Debug:
     def __init__(self, url: str):
         self.url = url
 
-
-    
-    def backtraceAt(self, locationJavascript_based:Any) -> None:
+    def backtrace_at(self, location_javascript_based_any) -> None:
         """
         Sets the logging backtrace location
          When a backtrace location is set and a log message is emitted at that location, the stack of the goroutine executing the log statement will be printed to stderr
          The location is specified as <filename>:<line>
         :param locationJavascript_based: The logging backtrace location, which is specified as <filename>:<line>.
         """
-        response = requests.post(self.url, json={
-          "method": "debug_backtraceAt",
-          "params": [locationJavascript_based],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_backtraceAt",
+            "params": [locationJavascript_based],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def blockProfile(self, ) -> None:
+
+    def block_profile(self, ) -> None:
         """
         Turns on block profiling for the given duration and writes profile data to disk
          It uses a profile rate of 1 for most accurate information
          If a different rate is desired, set the rate and write the profile manually using debug_writeBlockProfile
         """
-        response = requests.post(self.url, json={
-          "method": "debug_blockProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_blockProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def cpuProfile(self, ) -> None:
+
+    def cpu_profile(self, ) -> None:
         """
         Turns on CPU profiling for the given duration and writes profile data to disk
         """
-        response = requests.post(self.url, json={
-          "method": "debug_cpuProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_cpuProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def dumpBlock(self, blockNum:float) -> DumpBlockResponseBlockDetails:
+
+    def dump_block(self, block_num_float) -> DumpBlockResponseBlockDetails:
         """
         Retrieves the state that corresponds to the block number and returns a list of accounts (including storage and code)
         :param blockNum: The block number
         :return blockDetails: The block number and list of accounts
         """
-        response = requests.post(self.url, json={
-          "method": "debug_dumpBlock",
-          "params": [blockNum],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
-        return DumpBlockResponseBlockDetails.from_dict(response.json()["result"])
-        
-    def gcStats(self, ) -> None:
+        json_data = {
+            "method": "debug_dumpBlock",
+            "params": [blockNum],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
+        return DumpBlockResponseBlockDetails.from_dict(
+            response.json()["result"])
+
+    def gc_stats(self, ) -> None:
         """
         Returns GC statistics
          See https://golang
         org/pkg/runtime/debug/#GCStats for information about the fields of the returned object
         """
-        response = requests.post(self.url, json={
-          "method": "debug_gcStats",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_gcStats",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def getBlockRlp(self, ) -> None:
+
+    def get_block_rlp(self, ) -> None:
         """
         Retrieves and returns the RLP encoded block by number
          References -> RLP
         """
-        response = requests.post(self.url, json={
-          "method": "debug_getBlockRlp",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_getBlockRlp",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def goTrace(self, ) -> None:
+
+    def go_trace(self, ) -> None:
         """
         Turns on Go runtime tracing for the given duration and writes trace data to disk
         """
-        response = requests.post(self.url, json={
-          "method": "debug_goTrace",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_goTrace",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def memStats(self, ) -> None:
+
+    def mem_stats(self, ) -> None:
         """
         Returns detailed runtime memory statistics
          See https://golang
         org/pkg/runtime/#MemStats for information about the fields of the returned object
         """
-        response = requests.post(self.url, json={
-          "method": "debug_memStats",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_memStats",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def seedHash(self, ) -> None:
+
+    def seed_hash(self, ) -> None:
         """
         Fetches and retrieves the seed hash of the block by number
         """
-        response = requests.post(self.url, json={
-          "method": "dubug_seedHash",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "dubug_seedHash",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def setHead(self, ) -> None:
+
+    def set_head(self, ) -> None:
         """
         Sets the current head of the local chain by block number
          Note, this is a destructive action and may severely damage your chain
          Use with extreme caution
          References -> Ethash
         """
-        response = requests.post(self.url, json={
-          "method": "debug_setHead",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_setHead",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def setBlockProfileRate(self, rate:float) -> None:
+
+    def set_block_profile_rate(self, rate_float) -> None:
         """
         Sets the rate (in samples/sec) of goroutine block profile data collection
          A non-zero rate enables block profiling, setting it to zero stops the profile
          Collected profile data can be written using debug_writeBlockProfile
         :param rate: The rate (in samplessec) of goroutine block profile data collection
         """
-        response = requests.post(self.url, json={
-          "method": "debug_setBlockProfileRate",
-          "params": [rate],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_setBlockProfileRate",
+            "params": [rate],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
+
     def stacks(self, ) -> Any:
         """
         Returns a printed representation of the stacks of all goroutines
          Note that the web3 wrapper for this method takes care of the printing and does not return the string
         :return printedStacks: A printed representation of the stacks of all goroutines
         """
-        response = requests.post(self.url, json={
-          "method": "debug_stacks",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_stacks",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def startCPUProfile(self, ) -> None:
+
+    def start_c_p_u_profile(self, ) -> None:
         """
         Turns on CPU profiling indefinitely, writing to the given file
         """
-        response = requests.post(self.url, json={
-          "method": "debug_startCPUProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_startCPUProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def startGoTrace(self, ) -> None:
+
+    def start_go_trace(self, ) -> None:
         """
         Starts writing a Go runtime trace to the given file
         """
-        response = requests.post(self.url, json={
-          "method": "debug_startGoTrace",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_startGoTrace",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def stopCPUProfile(self, ) -> None:
+
+    def stop_c_p_u_profile(self, ) -> None:
         """
         Stops an ongoing CPU profile
         """
-        response = requests.post(self.url, json={
-          "method": "debug_stopCPUProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_stopCPUProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def stopGoTrace(self, ) -> None:
+
+    def stop_go_trace(self, ) -> None:
         """
         Stops writing the Go runtime trace
         """
-        response = requests.post(self.url, json={
-          "method": "debug_stopGoTrace",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_stopGoTrace",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def traceBlock(self, blockName:str) -> TraceBlockResponseBlcok:
+
+    def trace_block(self, block_name_str) -> TraceBlockResponseBlcok:
         """
         The traceBlock method will return a full stack trace of all invoked opcodes of all transaction that were included in this block
          Note, the parent of this block must be present or it will fail
@@ -379,60 +400,66 @@ class Debug:
         :param blockName: The name of the traced block
         :return blcok: The stack trace of transcation of the block
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceBlock",
-          "params": [blockName],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_traceBlock",
+            "params": [blockName],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return TraceBlockResponseBlcok.from_dict(response.json()["result"])
-        
-    def traceBlockByNumber(self, blockNum:str) -> Any:
+
+    def trace_block_by_number(self, block_num_str) -> Any:
         """
         Similar to debug_traceBlock,traceBlockByNumber accepts a block number and will replay the block that is already present in the database
          References -> RLP
         :param blockNum: A block number of a traced block
         :return block: Replaying the block that is already present in the database
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceBlockByNumber",
-          "params": [blockNum],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_traceBlockByNumber",
+            "params": [blockNum],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def traceBlockByHash(self, blockHash:str) -> Any:
+
+    def trace_block_by_hash(self, block_hash_str) -> Any:
         """
         Similar to debug_traceBlock,traceBlockByHash accepts a block hash and will replay the block that is already present in the database
          References -> RLP
         :param blockHash: A block hash of a traced block
         :return block: Replaying the block that is already present in the database
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceBlockByHash",
-          "params": [blockHash],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_traceBlockByHash",
+            "params": [blockHash],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def traceBlockFromFile(self, file:Any) -> Any:
+
+    def trace_block_from_file(self, file_any) -> Any:
         """
         Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
          References -> RLP
         :param file: A file containing the RLP of the block
         :return block: Replaying the block that is already present in the database
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceBlockByHash",
-          "params": [file],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_traceBlockByHash",
+            "params": [file],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def standardTraceBlockToFile(self, block:str, txHash:Optional[str], disableMemory:Optional[bool]) -> List[str]:
+
+    def standard_trace_block_to_file(
+            self,
+            block_str_tx_hash_optional_str_disable_memory_optional_bool_) -> List[str]:
         """
         When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that could stream results back via a subscription channel
          This method works a bit differently
@@ -450,32 +477,36 @@ class Debug:
         On the server side, it also adds some more info when regenerating historical state, namely, the reexec-number if required historical state is not avaiable is encountered, so a user can experiment with increasing that setting. It also prints out the remaining block until it reaches target
         The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uint64 TxHash *common.Hash } '
         """
-        response = requests.post(self.url, json={
-          "method": "debug_standardTraceBlockToFile",
-          "params": [block, txHash, disableMemory],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_standardTraceBlockToFile",
+            "params": [block, txHash, disableMemory],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def standardTraceBadBlockToFile(self, ) -> None:
+
+    def standard_trace_bad_block_to_file(self, ) -> None:
         """
         This method is similar to debug_standardTraceBlockToFile, but can be used to obtain info about a block which has been rejected as invalid (for some reason)
         """
-        response = requests.post(self.url, json={
-          "method": "debug_standardTraceBadBlockToFile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_standardTraceBadBlockToFile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def traceTransaction(self, hash:str, disableStorage:Optional[bool], disableMemory:Optional[bool], disableStack:Optional[bool], tracer:Optional[str], timeout:Optional[str]) -> TraceTransactionResponseTransaction:
+
+    def trace_transaction(
+            self,
+            hash_str_disable_storage_optional_bool_disable_memory_optional_bool_disable_stack_optional_bool_tracer_optional_str_timeout_optional_str_) -> TraceTransactionResponseTransaction:
         """
         OBS In most scenarios, debug
         standardTraceBlockToFile is better suited for tracing! The traceTransaction debugging method will attempt to run the transaction in the exact same manner as it was executed on the network
          It will replay any transaction that may have been executed prior to this one before it will finally attempt to execute the transaction that corresponds to the given hash
-        
+
         In addition to the hash of the transaction you may give it a secondary optional argument, which specifies the options for this specific call
          The possible options are
         disableStorage: BOOL
@@ -498,34 +529,44 @@ class Debug:
         :param timeout: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
         :return transaction: The stack trace of transcation of the block
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceTransaction",
-          "params": [hash, disableStorage, disableMemory, disableStack, tracer, timeout],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
-        return TraceTransactionResponseTransaction.from_dict(response.json()["result"])
-        
-    def JavaScriptBasedTracing(self, ) -> None:
+        json_data = {
+            "method": "debug_traceTransaction",
+            "params": [
+                hash,
+                disableStorage,
+                disableMemory,
+                disableStack,
+                tracer,
+                timeout],
+            "jsonrpc": "2.0",
+            "id": 1}
+        response = requests.post(self.url, json=to_dict(json_data))
+        return TraceTransactionResponseTransaction.from_dict(
+            response.json()["result"])
+
+    def java_script_based_tracing(self, ) -> None:
         """
         Javascript
         """
-        response = requests.post(self.url, json={
-          "method": "JavaScript-based tracing",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "JavaScript-based tracing",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def traceCall(self, to:str, from_field:Optional[str], gas:Optional[str], gasPrice:Optional[float], value:Optional[float], data:Optional[str]) -> Any:
+
+    def trace_call(
+            self,
+            to_str_from_field_optional_str_gas_optional_str_gas_price_optional_float_value_optional_float_data_optional_str_) -> Any:
         """
         The debug_traceCall method lets you run an eth_call on top of a given block
          The block can be specified either by hash or by number
          It takes the same input object as a eth_call
          It returns the same output as debug_traceTransaction
          A tracer can be specified as a third argument, similar to debug_traceTransaction
-        
+
         Object - The transaction call object
         from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
          to:       DATA, 20 Bytes -            The address the transaction is directed to
@@ -541,14 +582,15 @@ class Debug:
         :param data: Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
         :return transaction: Same output as debug_traceTransaction
         """
-        response = requests.post(self.url, json={
-          "method": "debug_traceCall",
-          "params": [to, from_field, gas, gasPrice, value, data],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_traceCall",
+            "params": [to, from_field, gas, gasPrice, value, data],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
+
     def verbosity(self, ) -> Any:
         """
         Sets the logging verbosity ceiling
@@ -556,52 +598,54 @@ class Debug:
          The verbosity of individual packages and source files can be raised using debug_vmodule
         :return message: Log messages with level up to and including the given level will be printed.
         """
-        response = requests.post(self.url, json={
-          "method": "debug_verbosity",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_verbosity",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def vmodule(self, messageRestrictions:str) -> str:
+
+    def vmodule(self, message_restrictions_str) -> str:
         """
         Sets the logging verbosity pattern
-        :param messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd*=6" If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6" If you want to see log messages from a particular source file, use:                                  "server.go=6" You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level < = 5, use:    "etd peer.go=6,p2p=5" 
-        :return message: 
+        :param messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd*=6" If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6" If you want to see log messages from a particular source file, use:                                  "server.go=6" You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level < = 5, use:    "etd peer.go=6,p2p=5"
+        :return message:
         """
-        response = requests.post(self.url, json={
-          "method": "debug_vmodule",
-          "params": [messageRestrictions],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_vmodule",
+            "params": [messageRestrictions],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def writeBlockProfile(self, ) -> None:
+
+    def write_block_profile(self, ) -> None:
         """
         Writes a goroutine blocking profile to the given file
         """
-        response = requests.post(self.url, json={
-          "method": "debug_writeBlockProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_writeBlockProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def writeMemProfile(self, ) -> None:
+
+    def write_mem_profile(self, ) -> None:
         """
         Writes an allocation profile to the given file
          Note that the profiling rate cannot be set through the API, it must be set on the command line using the --pprof
         memprofilerate flag
         """
-        response = requests.post(self.url, json={
-          "method": "debug_writeMenProfile",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "debug_writeMenProfile",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-
