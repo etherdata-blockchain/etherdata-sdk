@@ -100,7 +100,6 @@ jobs:
   
   build-python:
     needs: [build, test]
-    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -129,7 +128,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
-    needs: [build-kotlin, build-react-ui-npm, build-typescript-npm]
+    needs: [build-kotlin, build-react-ui-npm, build-typescript-npm, build-python]
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2

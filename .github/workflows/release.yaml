@@ -107,6 +107,7 @@ jobs:
 
   publish-python:
     name: Build and publish Python 🐍 distributions 📦 to PyPI
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -135,7 +136,7 @@ jobs:
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: sdk-dist/python
+        packages_dir: sdk-dist/python/dist
 
   publish-docs:
     needs:
