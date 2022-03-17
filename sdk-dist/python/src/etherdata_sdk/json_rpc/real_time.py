@@ -189,7 +189,7 @@ class Real_time:
 
 
     
-    def createSubscription(self, subscriptionName:str, aaaaa:Optional[Any])-> str:
+    def createSubscription(self, subscriptionName:str, aaaaa:Optional[Any]) -> str:
         """
         Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
          If successful it returns the subscription id
@@ -197,30 +197,30 @@ class Real_time:
         :param aaaaa: 
         :return subscriptionID: The subscription ID
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "real-time_createSubscription",
           "params": [subscriptionName, aaaaa],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def cancelSubscription(self, subscriptionID:str)-> bool:
+    def cancelSubscription(self, subscriptionID:str) -> bool:
         """
         Subscriptions are cancelled with a regular RPC call with etd_unsubscribe as method and the subscription id as first parameter
          It returns a bool indicating if the subscription was cancelled successful
         :param subscriptionID: The subscription ID
         :return cancelled: Indicating if the subscription was cancelled successful.
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "real-time_cancelSubscription",
           "params": [subscriptionID],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def supportedSubscriptions(self, subscriptionObject:SubscriptionObject)-> SupportedSubscriptionsResponseOutputObject:
+    def supportedSubscriptions(self, subscriptionObject:SubscriptionObject) -> SupportedSubscriptionsResponseOutputObject:
         """
         newHeads -Fires a notification each time a new header is appended to the chain, including chain reorganizations
          Users can use the bloom filter to determine if the block contains logs that are interested to them
@@ -234,42 +234,42 @@ class Real_time:
         :param subscriptionObject: The object containing different opotional transcation fields
         :return outputObject: The return Object of the function
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "real-time_supportedSubscriptions",
           "params": [subscriptionObject],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return SupportedSubscriptionsResponseOutputObject.from_dict(response.json())
+        return SupportedSubscriptionsResponseOutputObject.from_dict(response.json()["result"])
         
-    def newPendingTransactions(self, )-> NewPendingTransactionsResponse:
+    def newPendingTransactions(self, ) -> NewPendingTransactionsResponse:
         """
         Returns the hash for all transactions that are added to the pending state and are signed with a key that is available in the node
          Tansaction that was previously part of the canonical chain isn’t part of the new canonical chain after a reogranization its again emitted
         :return hash: The hash for all transactions
         :return transcation: The transaction
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "real-time_newPendingTransactions",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return NewPendingTransactionsResponse.from_dict(response.json())
+        return NewPendingTransactionsResponse.from_dict(response.json()["result"])
         
-    def syncing(self, )-> SyncingResponse:
+    def syncing(self, ) -> SyncingResponse:
         """
         Indicates when the node starts or stops synchronizing
          The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators
         :return synchronized: Indicating that the synchronization has started (true) or finished (false)
         :return status: An object with various progress indicators regarding the synchronization
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "real-time_syncing",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return SyncingResponse.from_dict(response.json())
+        return SyncingResponse.from_dict(response.json()["result"])
         
 

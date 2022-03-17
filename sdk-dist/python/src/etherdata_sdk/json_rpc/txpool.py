@@ -143,7 +143,7 @@ class Txpool:
 
 
     
-    def content(self, )-> ContentResponseTransactionObject:
+    def content(self, ) -> ContentResponseTransactionObject:
         """
         The content inspection property can be queried to list the exact details of all the transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
         
@@ -155,15 +155,15 @@ class Txpool:
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
         :return transactionObject: The return transaction object
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "txpool_content",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return ContentResponseTransactionObject.from_dict(response.json())
+        return ContentResponseTransactionObject.from_dict(response.json()["result"])
         
-    def inspect(self, )-> InspectResponseTransactionObject:
+    def inspect(self, ) -> InspectResponseTransactionObject:
         """
         The inspect inspection property can be queried to list a textual summary of all the transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
          This is a method specifically tailored to developers to quickly see the transactions in the pool and find any potential issues
@@ -176,27 +176,27 @@ class Txpool:
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
         :return transactionObject: the return transcation object
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "txpool_inspect",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return InspectResponseTransactionObject.from_dict(response.json())
+        return InspectResponseTransactionObject.from_dict(response.json()["result"])
         
-    def status(self, )-> StatusResponseStatusObject:
+    def status(self, ) -> StatusResponseStatusObject:
         """
         The status inspection property can be queried for the number of transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
         
         The result is an object with two fields pending and queued, each of which is a counter representing the number of transactions in that particular state
         :return statusObject: An object containing transaction status
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "txpool_status",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return StatusResponseStatusObject.from_dict(response.json())
+        return StatusResponseStatusObject.from_dict(response.json()["result"])
         
 

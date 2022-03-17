@@ -3,7 +3,16 @@ interface CleanResult {
   alternativeName: string;
 }
 
-const reservedVariableNames = ["from", "import", "bool", "str", "None", "Any"];
+const reservedVariableNames = [
+  "from",
+  "import",
+  "bool",
+  "str",
+  "None",
+  "Any",
+  "float",
+  "int",
+];
 
 /**
  * Clean python variable. Turn any python keyword to $keyword_field
