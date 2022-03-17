@@ -1,142 +1,149 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class Accounts:
     
-    balance : str
+    balance:str 
     """
     The balance of the account
     """
 
-    code : str
+    code:str 
     """
     The code of the account
     """
 
-    codeHash : str
+    codeHash:str 
     """
     The code hash of the account
     """
 
-    nonce : float
+    nonce:float 
     """
     The nonce of the account
     """
 
-    root : str
+    root:str 
     """
     The root of the account
     """
 
-    storage : List[Any]
+    storage:List[Any] 
     """
     The storage of the account
     """
 
+@dataclass_json
 @dataclass
 class DumpBlockResponseBlockDetails:
     
-    accounts : List[Accounts]
+    accounts:List[Accounts] 
     """
     The list accounts
     """
 
-    root : str
+    root:str 
     """
     The root of the block
     """
 
+@dataclass_json
 @dataclass
 class Storage:
     
-    storageName : str
+    storageName:str 
     """
     The storage address
     """
 
+@dataclass_json
 @dataclass
 class StrucrtLogs:
     
-    depth : float
+    depth:float 
     """
     The depth of transcation
     """
 
-    error : str
+    error:str 
     """
     Shows error message(s) (if any)
     """
 
-    gas : float
+    gas:float 
     """
     The gas of the transaction
     """
 
-    gasCost : float
+    gasCost:float 
     """
     The gas cost
     """
 
-    memory : List[str]
+    memory:List[str] 
     """
     Memory list of the transaction
     """
 
-    op : str
+    op:str 
     """
     The op command
     """
 
-    pc : float
+    pc:float 
     """
     The pc
     """
 
-    stackArray : List[str]
+    stackArray:List[str] 
     """
     The stack array
     """
 
-    storage : Storage
+    storage:Storage 
     """
     The storage of the block
     """
 
+@dataclass_json
 @dataclass
 class TraceBlockResponseBlcok:
     
-    gas : float
+    gas:float 
     """
     The gas value
     """
 
-    returnValue : str
+    returnValue:str 
     """
     The return value
     """
 
-    strucrtLogs : List[StrucrtLogs]
+    strucrtLogs:List[StrucrtLogs] 
     """
     The transaction logs
     """
 
+@dataclass_json
 @dataclass
 class TraceTransactionResponseTransaction:
     
-    gas : float
+    gas:float 
     """
     The gas value
     """
 
-    returnValue : str
+    returnValue:str 
     """
     The return value
     """
 
-    strucrtLogs : List[StrucrtLogs]
+    strucrtLogs:List[StrucrtLogs] 
     """
     The transaction logs
     """
@@ -205,7 +212,7 @@ class Debug:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return DumpBlockResponseBlockDetails.from_dict(response.json())
         
     def gcStats(self, )-> None:
         """
@@ -378,7 +385,7 @@ class Debug:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return TraceBlockResponseBlcok.from_dict(response.json())
         
     def traceBlockByNumber(self, blockNum:str)-> Any:
         """
@@ -497,7 +504,7 @@ class Debug:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return TraceTransactionResponseTransaction.from_dict(response.json())
         
     def JavaScriptBasedTracing(self, )-> None:
         """
@@ -511,7 +518,7 @@ class Debug:
         })
         return response.json()
         
-    def traceCall(self, to:str, from:Optional[str], gas:Optional[str], gasPrice:Optional[float], value:Optional[float], data:Optional[str])-> Any:
+    def traceCall(self, to:str, from_field:Optional[str], gas:Optional[str], gasPrice:Optional[float], value:Optional[float], data:Optional[str])-> Any:
         """
         The debug_traceCall method lets you run an eth_call on top of a given block
          The block can be specified either by hash or by number
@@ -536,7 +543,7 @@ class Debug:
         """
         response = requests.post(self.url, data={
           "method": "debug_traceCall",
-          "params": [to, from, gas, gasPrice, value, data],
+          "params": [to, from_field, gas, gasPrice, value, data],
           "jsonrpc": "2.0",
           "id": 1
         })

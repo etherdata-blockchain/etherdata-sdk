@@ -1,22 +1,24 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class Tx:
     
-    from : str
+    from_field:str = field(metadata=config(field_name="from"))
     """
     The from value
     """
 
-    to : str
+    to:str 
     """
     The to value
     """
 
-    value : Any
+    value:Any 
     """
     The value to be transcated
     """

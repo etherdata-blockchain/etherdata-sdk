@@ -1,95 +1,101 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class SubscriptionObject:
     
-    address : Optional[List[Optional[str]]]
+    address:Optional[List[Optional[str]]] 
     """
     Either an address or an array of addresses. Only logs that are created from these addresses are returned (optional)
     """
 
-    topics : Optional[List[Optional[str]]]
+    topics:Optional[List[Optional[str]]] 
     """
     Only logs which match the specified topics
     """
 
+@dataclass_json
 @dataclass
 class SupportedSubscriptionsResponseOutputObject:
     
-    address : str
+    address:str 
     """
     The transaction address
     """
 
-    blockHash : str
+    blockHash:str 
     """
     The transaction block hash
     """
 
-    blockNumber : str
+    blockNumber:str 
     """
     The transaction block number
     """
 
-    data : str
+    data:str 
     """
     The transaction data
     """
 
-    logIndex : str
+    logIndex:str 
     """
     The transaction log index
     """
 
-    topics : List[str]
+    topics:List[str] 
     """
     The transaction topic(s)
     """
 
-    transactionHash : str
+    transactionHash:str 
     """
     The transaction hash
     """
 
-    transactionIndex : str
+    transactionIndex:str 
     """
     The transaction index
     """
 
+@dataclass_json
 @dataclass
 class NewPendingTransactionsResponseParams:
     
-    subscription : str
+    subscription:str 
     """
     The subscription ID
     """
 
-    result : str
+    result:str 
     """
     The result address
     """
 
+@dataclass_json
 @dataclass
 class NewPendingTransactionsResponseTranscation:
     
-    jsonrpc : str
+    jsonrpc:str 
     """
     The jsonrpc version
     """
 
-    method : str
+    method:str 
     """
     The subscription method
     """
 
-    params : NewPendingTransactionsResponseParams
+    params:NewPendingTransactionsResponseParams 
     """
     The parameters regarding the subscription
     """
 
+@dataclass_json
 @dataclass
 class NewPendingTransactionsResponse:
     
@@ -105,34 +111,36 @@ class NewPendingTransactionsResponse:
     
 
 
+@dataclass_json
 @dataclass
 class SyncingResponseStatus:
     
-    startingBlock : float
+    startingBlock:float 
     """
     The starting block number
     """
 
-    currentBlock : float
+    currentBlock:float 
     """
     The current block number
     """
 
-    highestBlock : float
+    highestBlock:float 
     """
     The highest block number
     """
 
-    pulledStates : float
+    pulledStates:float 
     """
     The pulled states
     """
 
-    knownStates : float
+    knownStates:float 
     """
     The known states
     """
 
+@dataclass_json
 @dataclass
 class SyncingResponse:
     
@@ -232,7 +240,7 @@ class Real_time:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return SupportedSubscriptionsResponseOutputObject.from_dict(response.json())
         
     def newPendingTransactions(self, )-> NewPendingTransactionsResponse:
         """
@@ -247,7 +255,7 @@ class Real_time:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return NewPendingTransactionsResponse.from_dict(response.json())
         
     def syncing(self, )-> SyncingResponse:
         """
@@ -262,6 +270,6 @@ class Real_time:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return SyncingResponse.from_dict(response.json())
         
 

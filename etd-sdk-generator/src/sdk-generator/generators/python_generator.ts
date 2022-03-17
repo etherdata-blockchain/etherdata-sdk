@@ -6,9 +6,16 @@ import {
   RPCFunction,
   Variable,
 } from "../interfaces/schema";
-import { TypeResult } from "../interfaces/generator_interface";
+import {
+  InputParamResult,
+  TypeResult,
+} from "../interfaces/generator_interface";
 import { with_indentation } from "../utils/with_indentation";
 import { TypescriptGenerator } from "./typescript_generator";
+import {
+  cleanPythonVariableName,
+  generatePythonFunctionBodyReturn,
+} from "../utils/python_utils";
 
 export class PythonGenerator extends TypescriptGenerator {
   functionTemplatePath = "templates/python/functionTemplate.j2";
@@ -88,6 +95,43 @@ export class PythonGenerator extends TypescriptGenerator {
       isCustomType,
       type: returnType,
       types: types,
+      code: code,
+    };
+  }
+
+  generateInputTypes(params: Param[]): InputParamResult {
+    let code = "";
+    let index = 0;
+    let types: TypeResult[] = [];
+    for (let param of params) {
+      const result = this.generateType(param);
+      code += `${
+        cleanPythonVariableName(lowercaseFirstLetter(param.name))
+          .cleanVariableName
+      }:${result.type}`;
+      types = types.concat(result.types);
+
+      if (result.isCustomType) {
+        types.push({
+          types: [],
+          type: result.type,
+          code: result.code,
+          isCustomType: true,
+        });
+      }
+
+      if (index < params.length - 1) {
+        code += ", ";
+      }
+      index++;
+    }
+
+    const uniqueTypes = types.filter(
+      (t1, i) => types.findIndex((t2) => t1.type === t2.type) === i
+    );
+
+    return {
+      types: uniqueTypes,
       code: code,
     };
   }
@@ -197,7 +241,9 @@ export class PythonGenerator extends TypescriptGenerator {
   protected generateVariable(variable: Variable): string {
     let code = "";
     const result = this.generateType(variable);
-    code = `${variable.name}:${result.type}`;
+    code = `${cleanPythonVariableName(variable.name).cleanVariableName}:${
+      result.type
+    } ${cleanPythonVariableName(variable.name).alternativeName}`;
     return code;
   }
 
@@ -209,7 +255,10 @@ export class PythonGenerator extends TypescriptGenerator {
       returnParams += "[";
       let index = 0;
       for (let param of params) {
-        returnParams += `${lowercaseFirstLetter(param.name)}`;
+        returnParams += `${
+          cleanPythonVariableName(lowercaseFirstLetter(param.name))
+            .cleanVariableName
+        }`;
         if (index < params.length - 1) {
           returnParams += ", ";
         }
@@ -250,7 +299,12 @@ export class PythonGenerator extends TypescriptGenerator {
     let index = 0;
     for (let property of variable.objectType!) {
       const result = this.generateType(property, types, functionReturnTypeName);
-      code += with_indentation(`${property.name} : ${result.type}\n`, 4);
+      code += with_indentation(
+        `${cleanPythonVariableName(property.name).cleanVariableName}:${
+          result.type
+        } ${cleanPythonVariableName(property.name).alternativeName}\n`,
+        4
+      );
       code += with_indentation(`"""\n${property.description}\n"""`, 4, {
         multilineAlignLeft: true,
       });
@@ -284,7 +338,10 @@ export class PythonGenerator extends TypescriptGenerator {
       "jsonrpc": "2.0",
       "id": 1
     })
-    return response.json()
+    return ${generatePythonFunctionBodyReturn(
+      returnTypeName,
+      "response.json()"
+    )}
     `;
   }
 

@@ -114,6 +114,7 @@ jobs:
         pip install
         build
         --user
+      working-directory: sdk-dist/python
     - name: Build a binary wheel and a source tarball
       run: >-
         python -m
@@ -122,6 +123,7 @@ jobs:
         --wheel
         --outdir dist/
         .
+      working-directory: sdk-dist/python
 
 
   release:

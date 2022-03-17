@@ -1,26 +1,29 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class SyncingResponseSyncObject:
     
-    startingBlock : float
+    startingBlock:float 
     """
     The block at which the import started (will only be reset, after the sync reached his head)
     """
 
-    currentBlock : float
+    currentBlock:float 
     """
     The current block, same as eth_blockNumber
     """
 
-    highestBlock : float
+    highestBlock:float 
     """
     The estimated highest block
     """
 
+@dataclass_json
 @dataclass
 class SyncingResponse:
     
@@ -36,437 +39,447 @@ class SyncingResponse:
     
 
 
+@dataclass_json
 @dataclass
 class Obj:
     
-    from : str
+    from_field:str = field(metadata=config(field_name="from"))
     """
     DATA, 20 Bytes - The address the transaction is sent from.
     """
 
-    to : Optional[str]
+    to:Optional[str] 
     """
     DATA, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
     """
 
-    gas : Optional[str]
+    gas:Optional[str] 
     """
     QUANTITY - (optional, default "90000") Integer of the gas provided for the transaction execution. It will return unused gas.
     """
 
-    gasPrice : Optional[str]
+    gasPrice:Optional[str] 
     """
     QUANTITY - (optional, default "To-Be-Determined") Integer of the gasPrice used for each paid gas, in Wei.
     """
 
-    value : Optional[str]
+    value:Optional[str] 
     """
     QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
     """
 
-    data : str
+    data:str 
     """
     DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see etdereum Contract ABI.
     """
 
-    nonce : Optional[str]
+    nonce:Optional[str] 
     """
     QUANTITY - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
     """
 
+@dataclass_json
 @dataclass
 class GetBlockByHashResponseObj:
     
-    number : str
+    number:str 
     """
     QUANTITY - The block number. null when its pending block.
     """
 
-    hash : str
+    hash:str 
     """
     DATA, 32 Bytes - hash of the block. null when its pending block.
     """
 
-    parnetHash : str
+    parnetHash:str 
     """
     DATA, 32 Bytes - hash of the parent block.
     """
 
-    nonce : str
+    nonce:str 
     """
     DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
     """
 
-    sha3Uncles : str
+    sha3Uncles:str 
     """
     DATA, 32 Bytes - SHA3 of the uncles data in the block.
     """
 
-    logsBloom : str
+    logsBloom:str 
     """
     DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
     """
 
-    transactionsRoot : str
+    transactionsRoot:str 
     """
     DATA, 32 Bytes - the root of the transaction trie of the block.
     """
 
-    miner : str
+    miner:str 
     """
     DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
     """
 
-    difficulty : str
+    difficulty:str 
     """
     QUANTITY - integer of the difficulty for this block.
     """
 
-    totalDifficulty : str
+    totalDifficulty:str 
     """
     QUANTITY - integer of the total difficulty of the chain until this block.
     """
 
-    extraData : str
+    extraData:str 
     """
     DATA - the “extra data” field of this block.
     """
 
-    size : str
+    size:str 
     """
     QUANTITY - integer the size of this block in bytes.
     """
 
-    gasLimit : str
+    gasLimit:str 
     """
     QUANTITY - the maximum gas allowed in this block.
     """
 
-    gasUsed : str
+    gasUsed:str 
     """
     QUANTITY - the total used gas by all transactions in this block.
     """
 
-    timestamp : str
+    timestamp:str 
     """
     QUANTITY - the unix timestamp for when the block was collated.
     """
 
-    transaction : List[str]
+    transaction:List[str] 
     """
     Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
     """
 
-    uncles : List[str]
+    uncles:List[str] 
     """
     Array - Array of uncle hashes.
     """
 
+@dataclass_json
 @dataclass
 class GetBlockByNumberResponseObj:
     
-    number : str
+    number:str 
     """
     QUANTITY - The block number. null when its pending block.
     """
 
-    hash : str
+    hash:str 
     """
     DATA, 32 Bytes - hash of the block. null when its pending block.
     """
 
-    parnetHash : str
+    parnetHash:str 
     """
     DATA, 32 Bytes - hash of the parent block.
     """
 
-    nonce : str
+    nonce:str 
     """
     DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
     """
 
-    sha3Uncles : str
+    sha3Uncles:str 
     """
     DATA, 32 Bytes - SHA3 of the uncles data in the block.
     """
 
-    logsBloom : str
+    logsBloom:str 
     """
     DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
     """
 
-    transactionsRoot : str
+    transactionsRoot:str 
     """
     DATA, 32 Bytes - the root of the transaction trie of the block.
     """
 
-    miner : str
+    miner:str 
     """
     DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
     """
 
-    difficulty : str
+    difficulty:str 
     """
     QUANTITY - integer of the difficulty for this block.
     """
 
-    totalDifficulty : str
+    totalDifficulty:str 
     """
     QUANTITY - integer of the total difficulty of the chain until this block.
     """
 
-    extraData : str
+    extraData:str 
     """
     DATA - the “extra data” field of this block.
     """
 
-    size : str
+    size:str 
     """
     QUANTITY - integer the size of this block in bytes.
     """
 
-    gasLimit : str
+    gasLimit:str 
     """
     QUANTITY - the maximum gas allowed in this block.
     """
 
-    gasUsed : str
+    gasUsed:str 
     """
     QUANTITY - the total used gas by all transactions in this block.
     """
 
-    timestamp : str
+    timestamp:str 
     """
     QUANTITY - the unix timestamp for when the block was collated.
     """
 
-    transaction : List[str]
+    transaction:List[str] 
     """
     Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
     """
 
-    uncles : List[str]
+    uncles:List[str] 
     """
     Array - Array of uncle hashes.
     """
 
+@dataclass_json
 @dataclass
 class GetTransactionByHashResponseObj:
     
-    blockHash : str
+    blockHash:str 
     """
     DATA, 32 Bytes - hash of the block where this transaction was in. null when its pending.
     """
 
-    blockNumber : str
+    blockNumber:str 
     """
     QUANTITY - block number where this transaction was in. null when its pending.
     """
 
-    from : str
+    from_field:str = field(metadata=config(field_name="from"))
     """
     DATA, 20 Bytes - address of the sender.
     """
 
-    gas : str
+    gas:str 
     """
     QUANTITY - gas provided by the sender.
     """
 
-    gasParice : str
+    gasParice:str 
     """
     QUANTITY - gas price provided by the sender in Wei.
     """
 
-    hash : str
+    hash:str 
     """
     DATA, 32 Bytes - hash of the transaction.
     """
 
-    input : str
+    input:str 
     """
     DATA - the data send along with the transaction.
     """
 
-    nonce : str
+    nonce:str 
     """
     QUANTITY - the number of transactions made by the sender prior to this one.
     """
 
-    to : str
+    to:str 
     """
     DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
     """
 
-    transactionIndex : str
+    transactionIndex:str 
     """
     QUANTITY - integer of the transactions index position in the block. null when its pending.
     """
 
-    value : str
+    value:str 
     """
     QUANTITY - value transferred in Wei.
     """
 
-    v : str
+    v:str 
     """
     QUANTITY - ECDSA recovery id
     """
 
-    r : str
+    r:str 
     """
     DATA, 32 Bytes - ECDSA signature r
     """
 
-    s : str
+    s:str 
     """
     DATA, 32 Bytes - ECDSA signature s
     """
 
+@dataclass_json
 @dataclass
 class GetTransactionByHashAndIndexResponseObj:
     
-    data : Any
+    data:Any 
     """
     
     """
 
+@dataclass_json
 @dataclass
 class GetTransactionByBlockNumberAndIndexResponseObj:
     
-    data : Any
+    data:Any 
     """
     
     """
 
+@dataclass_json
 @dataclass
 class GetTransactionReceiptResponseObj:
     
-    transactionHash : str
+    transactionHash:str 
     """
     DATA, 32 Bytes - hash of the transaction.
     """
 
-    transactionIndex : str
+    transactionIndex:str 
     """
     QUANTITY - integer of the transactions index position in the block.
     """
 
-    blockHash : str
+    blockHash:str 
     """
     DATA, 32 Bytes - hash of the block where this transaction was in.
     """
 
-    blockNumber : str
+    blockNumber:str 
     """
     QUANTITY - block number where this transaction was in.
     """
 
-    from : str
+    from_field:str = field(metadata=config(field_name="from"))
     """
     DATA, 20 Bytes - address of the sender.
     """
 
-    to : str
+    to:str 
     """
     DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
     """
 
-    cumulativeGasUsed : str
+    cumulativeGasUsed:str 
     """
     QUANTITY - The total amount of gas used when this transaction was executed in the block.
     """
 
-    gasUsed : str
+    gasUsed:str 
     """
     QUANTITY - The amount of gas used by this specific transaction alone.
     """
 
-    contractAddress : str
+    contractAddress:str 
     """
     DATA, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null.
     """
 
-    logs : List[str]
+    logs:List[str] 
     """
     Array - Array of log objects, which this transaction generated.
     """
 
-    logsBloom : str
+    logsBloom:str 
     """
     DATA, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
     """
 
-    root : str
+    root:str 
     """
     Either this or "status" is returned DATA 32 bytes of post-transaction stateroot (pre Byzantium)
     """
 
-    status : str
+    status:str 
     """
     Either this or "root" is returned QUANTITY either 1 (success) or 0 (failure)
     """
 
+@dataclass_json
 @dataclass
 class GetUncleByBlockHashAndIndexResponseObj:
     
-    data : Any
+    data:Any 
     """
     
     """
 
+@dataclass_json
 @dataclass
 class GetUncleByBlockNumberAndIndexResponseObj:
     
-    data : Any
+    data:Any 
     """
     
     """
 
+@dataclass_json
 @dataclass
 class Array:
     
-    removed : bool
+    removed:bool 
     """
     TAG - true when the log was removed, due to a chain reorganization. false if its a valid log.
     """
 
-    logIndex : str
+    logIndex:str 
     """
     QUANTITY - integer of the log index position in the block. null when its pending log.
     """
 
-    transactionIndex : str
+    transactionIndex:str 
     """
     QUANTITY - integer of the transactions index position log was created from. null when its pending log.
     """
 
-    transactionHash : str
+    transactionHash:str 
     """
     DATA, 32 Bytes - hash of the transactions this log was created from. null when its pending log.
     """
 
-    blockHash : str
+    blockHash:str 
     """
     DATA, 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log.
     """
 
-    blockNumber : str
+    blockNumber:str 
     """
     QUANTITY - the block number where this log was in. null when its pending. null when its pending log.
     """
 
-    address : str
+    address:str 
     """
     DATA, 20 Bytes - address from which this log originated.
     """
 
-    data : str
+    data:str 
     """
     DATA - contains one or more 32 Bytes non-indexed arguments of the log.
     """
 
-    topics : List[str]
+    topics:List[str] 
     """
     Array of DATA - Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity - The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)
     """
@@ -520,7 +533,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return SyncingResponse.from_dict(response.json())
         
     def coinbase(self, )-> Any:
         """
@@ -600,7 +613,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return float.from_dict(response.json())
         
     def getStorageAt(self, address:Any, position:Any, tag:str)-> Any:
         """
@@ -631,7 +644,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return float.from_dict(response.json())
         
     def getTransactionCountByHash(self, data:str, qUANTITY_TAG:str)-> str:
         """
@@ -815,7 +828,7 @@ class Json_rpc_methods:
         })
         return response.json()
         
-    def getBlockByHash(self, data:str, bool:bool)-> GetBlockByHashResponseObj:
+    def getBlockByHash(self, data:str, bool_field:bool)-> GetBlockByHashResponseObj:
         """
         Returns information about a block by hash
         :param data: 32 Bytes - Hash of a block.
@@ -824,13 +837,13 @@ class Json_rpc_methods:
         """
         response = requests.post(self.url, data={
           "method": "eth_getBlockByHash",
-          "params": [data, bool],
+          "params": [data, bool_field],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetBlockByHashResponseObj.from_dict(response.json())
         
-    def getBlockByNumber(self, qUANTITY_TAG:str, bool:bool)-> GetBlockByNumberResponseObj:
+    def getBlockByNumber(self, qUANTITY_TAG:str, bool_field:bool)-> GetBlockByNumberResponseObj:
         """
         Returns information about a block by block number
         :param qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
@@ -839,11 +852,11 @@ class Json_rpc_methods:
         """
         response = requests.post(self.url, data={
           "method": "eth_getBlockByNumber",
-          "params": [qUANTITY_TAG, bool],
+          "params": [qUANTITY_TAG, bool_field],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetBlockByNumberResponseObj.from_dict(response.json())
         
     def getTransactionByHash(self, data:str)-> GetTransactionByHashResponseObj:
         """
@@ -857,7 +870,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetTransactionByHashResponseObj.from_dict(response.json())
         
     def getTransactionByHashAndIndex(self, data:str, quantity:str)-> GetTransactionByHashAndIndexResponseObj:
         """
@@ -872,7 +885,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetTransactionByHashAndIndexResponseObj.from_dict(response.json())
         
     def getTransactionByBlockNumberAndIndex(self, qUANTITY_TAG:str, quantity:str)-> GetTransactionByBlockNumberAndIndexResponseObj:
         """
@@ -887,7 +900,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetTransactionByBlockNumberAndIndexResponseObj.from_dict(response.json())
         
     def getTransactionReceipt(self, data:str)-> GetTransactionReceiptResponseObj:
         """
@@ -902,7 +915,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetTransactionReceiptResponseObj.from_dict(response.json())
         
     def getUncleByBlockHashAndIndex(self, data:str, quantity:str)-> GetUncleByBlockHashAndIndexResponseObj:
         """
@@ -917,7 +930,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetUncleByBlockHashAndIndexResponseObj.from_dict(response.json())
         
     def getUncleByBlockNumberAndIndex(self, qUANTITY_TAG:str, quantity:str)-> GetUncleByBlockNumberAndIndexResponseObj:
         """
@@ -932,7 +945,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetUncleByBlockNumberAndIndexResponseObj.from_dict(response.json())
         
     def getCompliers(self, )-> List[str]:
         """
@@ -1065,7 +1078,7 @@ class Json_rpc_methods:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return Array.schema().load(response.json(), many=True)
         
     def getFilterLogs(self, quantity:str)-> List[Any]:
         """

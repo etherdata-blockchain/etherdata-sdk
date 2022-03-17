@@ -1,125 +1,133 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class Transaction:
     
-    blockHash : str
+    blockHash:str 
     """
     The block hash of the transaction
     """
 
-    blockNumber : float
+    blockNumber:float 
     """
     The block number of the transaction
     """
 
-    from : str
+    from_field:str = field(metadata=config(field_name="from"))
     """
     The from value of the transaction
     """
 
-    gas : str
+    gas:str 
     """
     The gas value of the transaction
     """
 
-    gasPrice : str
+    gasPrice:str 
     """
     The gas price of the transaction
     """
 
-    hash : str
+    hash:str 
     """
     The hash of the transaction
     """
 
-    input : str
+    input:str 
     """
     The input of the transaction
     """
 
-    nonce : str
+    nonce:str 
     """
     The nonce of the transaction
     """
 
-    to : str
+    to:str 
     """
     The to of the transaction
     """
 
-    transactionIndex : float
+    transactionIndex:float 
     """
     The transaction index
     """
 
-    value : str
+    value:str 
     """
     The value of the transaction
     """
 
+@dataclass_json
 @dataclass
 class PendingTransactions:
     
-    transaction : List[Transaction]
+    transaction:List[Transaction] 
     """
     The object containing different fields
     """
 
+@dataclass_json
 @dataclass
 class QueuedTransactions:
     
-    transaction : List[Transaction]
+    transaction:List[Transaction] 
     """
     The object containing different fields
     """
 
+@dataclass_json
 @dataclass
 class ContentResponseTransactionObject:
     
-    pendingTransactions : List[PendingTransactions]
+    pendingTransactions:List[PendingTransactions] 
     """
     The array of pending transactions
     """
 
-    queuedTransactions : List[QueuedTransactions]
+    queuedTransactions:List[QueuedTransactions] 
     """
     The array of queued transactions
     """
 
+@dataclass_json
 @dataclass
 class TransactionArray:
     
-    transaction : str
+    transaction:str 
     """
     Each entry maps an origin-address to a batch of scheduled transactions.
     """
 
+@dataclass_json
 @dataclass
 class InspectResponseTransactionObject:
     
-    pendingTransactions : List[PendingTransactions]
+    pendingTransactions:List[PendingTransactions] 
     """
     The array of pending transactions
     """
 
-    queuedTransactions : List[QueuedTransactions]
+    queuedTransactions:List[QueuedTransactions] 
     """
     The array of queued transactions
     """
 
+@dataclass_json
 @dataclass
 class StatusResponseStatusObject:
     
-    pending : float
+    pending:float 
     """
     The number of transactions currently pending for inclusion in the next block(s)
     """
 
-    queued : float
+    queued:float 
     """
     The transaction that is being scheduled for future execution
     """
@@ -153,7 +161,7 @@ class Txpool:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return ContentResponseTransactionObject.from_dict(response.json())
         
     def inspect(self, )-> InspectResponseTransactionObject:
         """
@@ -174,7 +182,7 @@ class Txpool:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return InspectResponseTransactionObject.from_dict(response.json())
         
     def status(self, )-> StatusResponseStatusObject:
         """
@@ -189,6 +197,6 @@ class Txpool:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return StatusResponseStatusObject.from_dict(response.json())
         
 

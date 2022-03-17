@@ -1,112 +1,119 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class NodeInfoResponsePorts:
     
-    discovery : float
+    discovery:float 
     """
     The discovery of the port
     """
 
-    listener : float
+    listener:float 
     """
     The listener of the port
     """
 
+@dataclass_json
 @dataclass
 class NodeInfoResponseNodeInfo:
     
-    enode : str
+    enode:str 
     """
     The enode
     """
 
-    id : str
+    id:str 
     """
     The id of the node
     """
 
-    ip : str
+    ip:str 
     """
     The ip of the node
     """
 
-    listenAddr : str
+    listenAddr:str 
     """
     The listen address of the node
     """
 
-    ports : NodeInfoResponsePorts
+    ports:NodeInfoResponsePorts 
     """
     The Object if the port
     """
 
+@dataclass_json
 @dataclass
 class Network:
     
-    localAddress : str
+    localAddress:str 
     """
     The local address of each peer
     """
 
-    remoteAddress : str
+    remoteAddress:str 
     """
     The remote address of each peer
     """
 
+@dataclass_json
 @dataclass
 class Etd:
     
-    difficulty : float
+    difficulty:float 
     """
     The difficulty of the protocal
     """
 
-    head : str
+    head:str 
     """
     The head of the protocal
     """
 
-    version : float
+    version:float 
     """
     The version of the protocal
     """
 
+@dataclass_json
 @dataclass
 class Protocols:
     
-    etd : Etd
+    etd:Etd 
     """
     The details of ETD protocal
     """
 
+@dataclass_json
 @dataclass
 class PeersArray:
     
-    caps : List[str]
+    caps:List[str] 
     """
     The caps of each peer
     """
 
-    id : str
+    id:str 
     """
     The id of each peer
     """
 
-    name : str
+    name:str 
     """
     The name of each peer
     """
 
-    network : Network
+    network:Network 
     """
     The network environment of each peer
     """
 
-    protocols : List[Protocols]
+    protocols:List[Protocols] 
     """
     The protocol(s) used by each peer
     """
@@ -165,7 +172,7 @@ class Admin:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return NodeInfoResponseNodeInfo.from_dict(response.json())
         
     def peers(self, )-> List[PeersArray]:
         """
@@ -181,7 +188,7 @@ class Admin:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return PeersArray.schema().load(response.json(), many=True)
         
     def startRPC(self, host:Optional[str], port:Optional[float], cors:Optional[str], apis:Optional[str])-> bool:
         """

@@ -1,60 +1,66 @@
 import requests
 from typing import List, Optional, Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from dataclasses_json import dataclass_json, config
 
 
+@dataclass_json
 @dataclass
 class GetSnapshotResponseRecents:
     
-    number : List[str]
+    number:List[str] 
     """
     The addresses of prevoious blocks
     """
 
+@dataclass_json
 @dataclass
 class GetSnapshotResponseSigners:
     
-    signer : List[str]
+    signer:List[str] 
     """
     The signer
     """
 
+@dataclass_json
 @dataclass
 class GetSnapshotResponseSnapshot:
     
-    hash : str
+    hash:str 
     """
     The hash of the block
     """
 
-    number : float
+    number:float 
     """
     The number of the block
     """
 
-    recents : GetSnapshotResponseRecents
+    recents:GetSnapshotResponseRecents 
     """
     The details of previous blocks
     """
 
-    signers : GetSnapshotResponseSigners
+    signers:GetSnapshotResponseSigners 
     """
     An object containing an arrry of signers
     """
 
+@dataclass_json
 @dataclass
 class StatusResponseSealerActivity:
     
-    signerAddresses : str
+    signerAddresses:str 
     """
     The signer addresses
     """
 
-    numBlocksSigned : float
+    numBlocksSigned:float 
     """
     The number of blocks signed by signers
     """
 
+@dataclass_json
 @dataclass
 class StatusResponse:
     
@@ -99,7 +105,7 @@ class Clique:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return GetSnapshotResponseSnapshot.from_dict(response.json())
         
     def getSnapshotAtHash(self, )-> Any:
         """
@@ -180,6 +186,6 @@ class Clique:
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return StatusResponse.from_dict(response.json())
         
 
