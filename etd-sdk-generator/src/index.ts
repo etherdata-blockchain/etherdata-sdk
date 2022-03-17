@@ -20,7 +20,7 @@ let outputPaths = [
   "../../../sdk-dist/typescript/lib",
   "../../../sdk-dist/etd-react-ui/src",
   "../../../sdk-dist/kotlin/src/main/kotlin/com/etd",
-  "../../../sdk-dist/python/src/json_rpc",
+  "../../../sdk-dist/python/src/etherdata_sdk/json_rpc",
 ];
 
 let generators = [
