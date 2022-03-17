@@ -34,48 +34,48 @@ class Personal:
 
 
     
-    def importRawKey(self, priveteKey:str)-> str:
+    def importRawKey(self, priveteKey:str) -> str:
         """
         Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
          Returns the address of the new account
         :param priveteKey: An unencrypted private key (hex string)
         :return accountAddress: The address of the new account.
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_importRawKey",
           "params": [priveteKey],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def listAccounts(self, )-> List[str]:
+    def listAccounts(self, ) -> List[str]:
         """
         Returns all the Ethereum account addresses of all keys in the key store
         :return accountAddress: The list of ethereum account addresses
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_listAccounts",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def lockAccount(self, )-> None:
+    def lockAccount(self, ) -> None:
         """
         Removes the private key with given address from memory
          The account can no longer be used to send transactions
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_lockAccount",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def newAccount(self, passphrase:Optional[str])-> str:
+    def newAccount(self, passphrase:Optional[str]) -> str:
         """
         Generates a new private key and stores it in the key store directory
          The key file is encrypted with the given passphrase
@@ -85,15 +85,15 @@ class Personal:
         :param passphrase: The passphrase used to generate a new private key
         :return priveteKey: The generated priveteKey
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_newAccount",
           "params": [passphrase],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def unlockAccount(self, accountAddress:str, passphrase:Optional[str], unlockDuration:Optional[float])-> bool:
+    def unlockAccount(self, accountAddress:str, passphrase:Optional[str], unlockDuration:Optional[float]) -> bool:
         """
         Decrypts the key with the given address from the key store
         
@@ -110,15 +110,15 @@ class Personal:
         :param unlockDuration: The unlock duration
         :return unlockState: Indicating whether is the account unlocked successfully
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_unlockAccount",
           "params": [accountAddress, passphrase, unlockDuration],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def sendTransaction(self, tx:Tx)-> str:
+    def sendTransaction(self, tx:Tx) -> str:
         """
         Validate the given passphrase and submit transaction
         
@@ -137,15 +137,15 @@ class Personal:
         :param tx: The transaction
         :return address: The address
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_sendTransaction",
           "params": [tx],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def sign(self, a:str, b:str, c:str)-> str:
+    def sign(self, a:str, b:str, c:str) -> str:
         """
         The sign method calculates an Ethereum specific signature with ' sign(keccack256("\x19Ethereum Signed Message:\n" + len(message) + message)))
          '
@@ -160,27 +160,27 @@ class Personal:
         :param c: abcde
         :return value: abcde
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_sign",
           "params": [a, b, c],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def ecRecover(self, a:str, b:str)-> str:
+    def ecRecover(self, a:str, b:str) -> str:
         """
         ecRecover returns the address associated with the private key that was used to calculate the signature in personal_sign
         :param a: abcde
         :param b: abcde
         :return address: The address associated with the private key
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "personal_ecRecover",
           "params": [a, b],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
 

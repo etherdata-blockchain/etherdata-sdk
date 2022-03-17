@@ -93,99 +93,99 @@ class Clique:
 
 
     
-    def getSnapshot(self, number:float)-> GetSnapshotResponseSnapshot:
+    def getSnapshot(self, number:float) -> GetSnapshotResponseSnapshot:
         """
         Retrieves a snapshot of all clique state at a given block
         :param number: The number of the block
         :return snapshot: Snapshot of all clique state at the given block
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique.getSnapshot",
           "params": [number],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return GetSnapshotResponseSnapshot.from_dict(response.json())
+        return GetSnapshotResponseSnapshot.from_dict(response.json()["result"])
         
-    def getSnapshotAtHash(self, )-> Any:
+    def getSnapshotAtHash(self, ) -> Any:
         """
         Retrieves the state snapshot at a given block
         :return ststeSnapshot: The tate snapshot at the block.
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_getSnapshotAtHash",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def getSigners(self, )-> List[str]:
+    def getSigners(self, ) -> List[str]:
         """
         Retrieves the list of authorized signers at the specified block
         :return signerArray: The list of authorized signers
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_getSigners",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def proposals(self, )-> str:
+    def proposals(self, ) -> str:
         """
         Returns the current proposals the node is voting on
         :return proposal: The current proposals
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_proposals",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def propose(self, )-> None:
+    def propose(self, ) -> None:
         """
         Adds a new authorization proposal that the signer will attempt to push through
          If the auth parameter is true, the local signer votes for the given address to be included in the set of authorized signers
          With auth set to false, the vote is against the address
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_propose",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def discard(self, )-> None:
+    def discard(self, ) -> None:
         """
         This method drops a currently running proposal
          The signer will not cast further votes (either for or against) the address
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_discard",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def status(self, )-> StatusResponse:
+    def status(self, ) -> StatusResponse:
         """
         This is a debugging method which returns statistics about signer activity for the last 64 blocks
         :return inturnPercent: Percentage of blocks signed in-turn
         :return sealerActivity: A object containing signer addresses and the number of blocks signed by them
         :return numBlocks: The number of blocks analyzed
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "clique_status",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return StatusResponse.from_dict(response.json())
+        return StatusResponse.from_dict(response.json()["result"])
         
 

@@ -332,7 +332,7 @@ export class PythonGenerator extends TypescriptGenerator {
     returnTypeName: string
   ): string {
     return `
-    response = requests.post(self.url, data={
+    response = requests.post(self.url, json={
       "method": "${rpcFunction.rpc_method}",
       "params": ${this.generateRpcMethodParams(rpcFunction.params)},
       "jsonrpc": "2.0",
@@ -340,7 +340,7 @@ export class PythonGenerator extends TypescriptGenerator {
     })
     return ${generatePythonFunctionBodyReturn(
       returnTypeName,
-      "response.json()"
+      `response.json()["result"]`
     )}
     `;
   }

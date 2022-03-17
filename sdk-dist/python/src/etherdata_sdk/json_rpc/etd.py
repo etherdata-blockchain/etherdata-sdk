@@ -15,30 +15,30 @@ class Etd:
 
 
     
-    def subscribe(self, )-> None:
+    def subscribe(self, ) -> None:
         """
         This method is used for real-time events through subscriptions
          See the subscription documentation for more information
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "eth_subscribe",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def unsubscribe(self, )-> None:
+    def unsubscribe(self, ) -> None:
         """
         This method is used for real-time events through subscriptions
          See the subscription documentation for more information
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "eth_unsubscribe",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
 

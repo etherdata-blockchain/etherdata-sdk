@@ -15,81 +15,81 @@ class Miner:
 
 
     
-    def Getdashrate(self, )-> str:
+    def Getdashrate(self, ) -> str:
         """
         Get your hashrate in H/s (Hash operations per second)
         :return dashRate: The hashrate in Hs (Hash operations per second)
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_Getdashrate",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def setExtra(self, )-> None:
+    def setExtra(self, ) -> None:
         """
         Sets the extra data a miner can include when miner blocks
          This is capped at 32 bytes
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_setExtra",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def setGasPrice(self, price:float)-> None:
+    def setGasPrice(self, price:float) -> None:
         """
         Sets the minimal accepted gas price when mining transactions
          Any transactions that are below this limit are excluded from the mining process
         :param price: The new minimal accepted gas price when mining transactions.
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_setGasPrice",
           "params": [price],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def start(self, )-> None:
+    def start(self, ) -> None:
         """
         Start the CPU mining process with the given number of threads and generate a new DAG if need be
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_start",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def stop(self, )-> None:
+    def stop(self, ) -> None:
         """
         Stop the CPU mining operation
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_stop",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def setEtherbase(self, etherbase:str)-> None:
+    def setEtherbase(self, etherbase:str) -> None:
         """
         Sets the etherbase, where mining rewards will go
         :param etherbase: The new etherbase.
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "miner_setEtherbase",
           "params": [etherbase],
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
 

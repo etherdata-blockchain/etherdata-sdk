@@ -28,7 +28,7 @@ class Json_rpc:
 
 
     
-    def HTTPServer(self, )-> None:
+    def HTTPServer(self, ) -> None:
         """
         To enable the HTTP server, use the --http flag
          'Getd --http'
@@ -61,15 +61,15 @@ class Json_rpc:
         org' Use --http
         corsdomain '*' to enable access from any origin
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "json_rpc_HTTP Server",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def WebSocketServer(self, )-> None:
+    def WebSocketServer(self, ) -> None:
         """
         Configuration of the WebSocket endpoint is similar to the HTTP transport
          To enable WebSocket  access, use --ws flag
@@ -91,15 +91,15 @@ class Json_rpc:
         corsdomain, using --ws
         origins '*' allows access from any origin
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "json_rpc_WebSocket Server",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
-    def IPCServer(self, )-> None:
+    def IPCServer(self, ) -> None:
         """
         JSON-RPC APIs are also provided on a UNIX domain socket
          This server is enabled by default  and has access to all JSON-RPC namespaces
@@ -115,12 +115,12 @@ class Json_rpc:
         You can configure the location of the socket using the --ipcpath flag
          IPC can be disabled  using the --ipcdisable flag
         """
-        response = requests.post(self.url, data={
+        response = requests.post(self.url, json={
           "method": "json_rpc_IPC Server",
           "params": None,
           "jsonrpc": "2.0",
           "id": 1
         })
-        return response.json()
+        return response.json()["result"]
         
 
