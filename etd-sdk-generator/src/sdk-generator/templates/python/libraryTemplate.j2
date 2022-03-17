@@ -1,0 +1,3 @@
+{%- for importPath in importPaths %}
+from .{{ importPath.path }} import {{ importPath.className }}
+{%- endfor %}

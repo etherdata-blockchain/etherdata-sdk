@@ -1,8 +1,4 @@
-import {
-  capitalizeFirstLetter,
-  Generator,
-  lowercaseFirstLetter,
-} from "../generator";
+import { capitalizeFirstLetter, lowercaseFirstLetter } from "../generator";
 import {
   Method,
   Param,
@@ -10,20 +6,24 @@ import {
   RPCFunction,
   Variable,
 } from "../interfaces/schema";
-import prettier from "prettier";
-import { ESLint } from "eslint";
 import {
   InputParamResult,
   TypeResult,
 } from "../interfaces/generator_interface";
+import { with_indentation } from "../utils/with_indentation";
+import { TypescriptGenerator } from "./typescript_generator";
+import {
+  cleanPythonVariableName,
+  generatePythonFunctionBodyReturn,
+} from "../utils/python_utils";
 
-export class TypescriptGenerator extends Generator {
+export class PythonGenerator extends TypescriptGenerator {
+  functionTemplatePath = "templates/python/functionTemplate.j2";
+  methodTemplatePath = "templates/python/methodTemplate.j2";
+  libraryTemplatePath = "templates/python/libraryTemplate.j2";
   schemaPath = "../../../schema.json";
-  protected libraryFilename = "index";
-  protected libraryTemplatePath = "templates/typescript/libraryTemplate.j2";
-  protected extension = "ts";
-  protected functionTemplatePath = "templates/typescript/functionTemplate.j2";
-  protected methodTemplatePath = "templates/typescript/methodTemplate.j2";
+  libraryFilename = "__init__";
+  protected extension = "py";
 
   generateType(
     variable: Variable,
@@ -42,13 +42,13 @@ export class TypescriptGenerator extends Generator {
 
     switch (type) {
       case "string":
-        returnType = "string";
+        returnType = "str";
         break;
       case "number":
-        returnType = "number";
+        returnType = "float";
         break;
       case "boolean":
-        returnType = "boolean";
+        returnType = "bool";
         break;
       case "array":
         const arrayTypeResult = this.generateArrayType(
@@ -78,17 +78,17 @@ export class TypescriptGenerator extends Generator {
         code = objectResult.code;
         break;
       case "any":
-        returnType = "any";
+        returnType = "Any";
         break;
       case "void":
-        returnType = "void";
+        returnType = "None";
         break;
       default:
         throw new Error(`Type ${type} not implemented.`);
     }
 
     if (optional) {
-      returnType += "|" + "undefined";
+      returnType = `Optional[${returnType}]`;
     }
 
     return {
@@ -99,70 +99,16 @@ export class TypescriptGenerator extends Generator {
     };
   }
 
-  generateReturnType(returnTypeName: string, returns: Return[]): TypeResult {
-    let returnValues = "";
-    let isCustomType = true;
-    let returnTypes: TypeResult[] = [];
-    let returnCode: string | undefined = undefined;
-
-    if (returns.length > 1) {
-      returnValues = returnTypeName;
-      returnCode = "{";
-      for (let ret of returns) {
-        const { isCustomType, type, types, code } = this.generateType(
-          ret,
-          [],
-          returnTypeName
-        );
-        returnCode += `${ret.name}:${type}`;
-        returnTypes = returnTypes.concat(types);
-
-        if (isCustomType) {
-          returnTypes.push({
-            types: [],
-            isCustomType: isCustomType,
-            type: type,
-            code: code,
-          });
-        }
-
-        if (returns.length > 1) {
-          returnCode += ", ";
-        }
-      }
-      returnCode += "}";
-    } else if (returns.length === 1) {
-      const result = this.generateType(returns[0], returnTypes, returnTypeName);
-      returnValues = result.type;
-      isCustomType = result.isCustomType;
-      returnTypes = result.types;
-      returnCode = result.code;
-    } else {
-      returnValues = "void";
-      isCustomType = false;
-    }
-
-    const uniqueTypes = returnTypes.filter(
-      (t1, i) =>
-        returnTypes.findIndex((t2) => t2.type === t1.type) === i &&
-        !t1.type.endsWith("[]")
-    );
-
-    return {
-      isCustomType: isCustomType,
-      type: `${returnValues}`,
-      types: uniqueTypes,
-      code: returnCode,
-    };
-  }
-
   generateInputTypes(params: Param[]): InputParamResult {
     let code = "";
     let index = 0;
     let types: TypeResult[] = [];
     for (let param of params) {
       const result = this.generateType(param);
-      code += `${lowercaseFirstLetter(param.name)}:${result.type}`;
+      code += `${
+        cleanPythonVariableName(lowercaseFirstLetter(param.name))
+          .cleanVariableName
+      }:${result.type}`;
       types = types.concat(result.types);
 
       if (result.isCustomType) {
@@ -190,40 +136,78 @@ export class TypescriptGenerator extends Generator {
     };
   }
 
-  protected generateLibHeader(methods: Method[]): string | undefined {
-    const template = this.getTemplate(this.libraryTemplatePath);
-    let importPaths = [];
-    let exportClassNames = [];
+  generateReturnType(returnTypeName: string, returns: Return[]): TypeResult {
+    let returnValues = "";
+    let isCustomType = true;
+    let returnTypes: TypeResult[] = [];
+    let returnCode: string | undefined = undefined;
 
-    for (let method of methods) {
-      importPaths.push({
-        path: `${method.title}`,
-        className: capitalizeFirstLetter(method.title),
-      });
-      exportClassNames.push(capitalizeFirstLetter(method.title));
+    if (returns.length > 1) {
+      returnValues = returnTypeName;
+      returnCode = "\n";
+      for (let ret of returns) {
+        const { isCustomType, type, types, code } = this.generateType(
+          ret,
+          [],
+          returnTypeName
+        );
+        returnCode += with_indentation(`${ret.name}:${type}`, 4);
+        returnCode += with_indentation(`\n"""\n${ret.description}\n"""\n`, 4, {
+          multilineAlignLeft: true,
+        });
+        returnTypes = returnTypes.concat(types);
+
+        if (isCustomType) {
+          returnTypes.push({
+            types: [],
+            isCustomType: isCustomType,
+            type: type,
+            code: code,
+          });
+        }
+
+        if (returns.length > 1) {
+          returnCode += "\n";
+        }
+      }
+    } else if (returns.length === 1) {
+      const result = this.generateType(returns[0], returnTypes, returnTypeName);
+      returnValues = result.type;
+      isCustomType = result.isCustomType;
+      returnTypes = result.types;
+      returnCode = result.code;
+    } else {
+      returnValues = "None";
+      isCustomType = false;
     }
 
-    return template.render({
-      importPaths,
-      exportClassNames,
-    });
+    const uniqueTypes = returnTypes.filter(
+      (t1, i) =>
+        returnTypes.findIndex((t2) => t2.type === t1.type) === i &&
+        !t1.type.endsWith("[]")
+    );
+
+    return {
+      isCustomType: isCustomType,
+      type: `${returnValues}`,
+      types: uniqueTypes,
+      code: returnCode,
+    };
   }
 
   protected async validateGeneratedCode(code: string): Promise<boolean> {
-    const eslint = new ESLint();
-    const result = await eslint.lintText(code);
-    return result[0].errorCount === 0;
+    return true;
   }
 
   protected beautify(code: string): string {
-    return prettier.format(code, { parser: "typescript", semi: true });
+    return code;
   }
 
   protected generateComment(
     func: RPCFunction | undefined,
     method: Method | undefined
   ): string {
-    let returnComment = "/**\n";
+    let returnComment = `"""\n`;
     let comment = "";
     if (func !== undefined) {
       comment = func.description;
@@ -233,43 +217,48 @@ export class TypescriptGenerator extends Generator {
 
     for (let line of comment.split(".")) {
       if (line.length > 0) {
-        returnComment += `* ${line}\n`;
+        returnComment += `${line}\n`;
       }
     }
 
     if (func) {
       for (let line of func.params) {
-        returnComment += `* @param ${lowercaseFirstLetter(
+        returnComment += `:param ${lowercaseFirstLetter(
           line.name
-        )} ${line.description.replace("/", "")}\n`;
+        )}: ${line.description.replace("/", "")}\n`;
       }
 
       for (let line of func.returns) {
-        returnComment += `* @return ${lowercaseFirstLetter(
+        returnComment += `:return ${lowercaseFirstLetter(
           line.name
-        )} ${line.description.replace("/", "")}\n`;
+        )}: ${line.description.replace("/", "")}\n`;
       }
     }
-    returnComment += "*/";
+    returnComment += `"""`;
     return returnComment;
   }
 
   protected generateVariable(variable: Variable): string {
     let code = "";
     const result = this.generateType(variable);
-    code = `${variable.name}:${result.type}`;
+    code = `${cleanPythonVariableName(variable.name).cleanVariableName}:${
+      result.type
+    } ${cleanPythonVariableName(variable.name).alternativeName}`;
     return code;
   }
 
   protected generateRpcMethodParams(params: Param[]): string {
     let returnParams = "";
     if (params.length === 0) {
-      returnParams = "undefined";
+      returnParams = "None";
     } else {
       returnParams += "[";
       let index = 0;
       for (let param of params) {
-        returnParams += `${lowercaseFirstLetter(param.name)}`;
+        returnParams += `${
+          cleanPythonVariableName(lowercaseFirstLetter(param.name))
+            .cleanVariableName
+        }`;
         if (index < params.length - 1) {
           returnParams += ", ";
         }
@@ -294,7 +283,7 @@ export class TypescriptGenerator extends Generator {
     );
     return {
       isCustomType: isCustomType,
-      type: type + "[]",
+      type: `List[${type}]`,
       types: types,
     };
   }
@@ -305,21 +294,29 @@ export class TypescriptGenerator extends Generator {
     prevResults: TypeResult[],
     functionReturnTypeName: string | undefined
   ): TypeResult {
-    let code = "{";
+    let code = "\n";
     let types: TypeResult[] = JSON.parse(JSON.stringify(prevResults));
     let index = 0;
     for (let property of variable.objectType!) {
       const result = this.generateType(property, types, functionReturnTypeName);
-      code += `${property.name}:${result.type}`;
+      code += with_indentation(
+        `${cleanPythonVariableName(property.name).cleanVariableName}:${
+          result.type
+        } ${cleanPythonVariableName(property.name).alternativeName}\n`,
+        4
+      );
+      code += with_indentation(`"""\n${property.description}\n"""`, 4, {
+        multilineAlignLeft: true,
+      });
       types = types.concat(result.types);
 
       if (index < variable.objectType!.length - 1) {
-        code += ",";
+        code += "\n\n";
       }
       index++;
     }
 
-    code += "}";
+    code += "";
     return {
       isCustomType: true,
       types: types,
@@ -335,15 +332,17 @@ export class TypescriptGenerator extends Generator {
     returnTypeName: string
   ): string {
     return `
-        let response = await axios.post(this.url, {
-          method: "${rpcFunction.rpc_method}",
-          params: ${this.generateRpcMethodParams(rpcFunction.params)},
-          jsonrpc: "2.0",
-          id: 1
-        });
-
-        return response.data.result
-        `;
+    response = requests.post(self.url, data={
+      "method": "${rpcFunction.rpc_method}",
+      "params": ${this.generateRpcMethodParams(rpcFunction.params)},
+      "jsonrpc": "2.0",
+      "id": 1
+    })
+    return ${generatePythonFunctionBodyReturn(
+      returnTypeName,
+      "response.json()"
+    )}
+    `;
   }
 
   protected generateReturnTypeName(functionName: string): string {

@@ -80,6 +80,11 @@ export abstract class Generator {
    * @protected
    */
   protected abstract libraryTemplatePath: string;
+  /**
+   * Name of the library file. For example, in javascript it is called index.js
+   * @protected
+   */
+  protected abstract libraryFilename: string;
 
   /**
    * Read file from file list and get the parsed data from it
@@ -101,6 +106,7 @@ export abstract class Generator {
   /**
    * Generate code to {outputFolder} path
    * @param outputFolder Output folder path
+   * @return filepath Generated file path
    */
   public async toCode(outputFolder: string) {
     if (!this.methods) {
@@ -108,6 +114,7 @@ export abstract class Generator {
     }
     // App root dir
     const appDir = path.resolve(__dirname);
+    let outputPath: string = "";
 
     for (let method of this.methods) {
       const filename = method.title + "." + this.extension;
@@ -116,15 +123,26 @@ export abstract class Generator {
       // Generate beautiful code
       let prettyCode = this.beautify(code);
       // Output path
-      const outputPath = path.join(appDir, outputFolder, filename);
+      outputPath = path.join(appDir, outputFolder, filename);
       fs.writeFileSync(outputPath, prettyCode);
-      const isValid = await this.validateGeneratedCode(prettyCode);
+      await this.beautifyByExternalTool(outputPath);
+      let isValid = await this.validateGeneratedCode(prettyCode);
       if (!isValid) {
         throw new Error(`Generated ${filename} is not valid`);
       }
+
+      isValid = await this.validateByExternalTool(outputPath);
+      if (!isValid) {
+        throw new Error(`Generated ${filename} is not valid`);
+      }
+
       this.fileList.push(filename);
     }
-    let headerFile = path.join(appDir, outputFolder, `index.${this.extension}`);
+    let headerFile = path.join(
+      appDir,
+      outputFolder,
+      `${this.libraryFilename}.${this.extension}`
+    );
     // Write header content to file
     const libHeader = this.generateLibHeader(this.methods);
     if (libHeader) {
@@ -311,14 +329,18 @@ export abstract class Generator {
    * Format the code
    * @param code Input Code
    */
-  protected abstract beautify(code: string): string;
+  protected beautify(code: string): string {
+    return code;
+  }
 
   /**
    * Validate language syntax by given code
    * @param code Input Code
    * @returns validation status
    */
-  protected abstract validateGeneratedCode(code: string): Promise<boolean>;
+  protected async validateGeneratedCode(code: string): Promise<boolean> {
+    return true;
+  }
 
   /**
    * Generate comment for rpc method or rpc function. Should provide exactly one parameter.
@@ -397,4 +419,24 @@ export abstract class Generator {
     rpcFunction: RPCFunction,
     returnTypeName: string
   ): string;
+
+  /**
+   * Using external tool to beautify the code
+   * @param outputFilePath
+   * @protected
+   */
+  protected async beautifyByExternalTool(
+    outputFilePath: string
+  ): Promise<any> {}
+
+  /**
+   * Using external tool to validate the code
+   * @param outputFilePath
+   * @protected
+   */
+  protected async validateByExternalTool(
+    outputFilePath: string
+  ): Promise<boolean> {
+    return true;
+  }
 }

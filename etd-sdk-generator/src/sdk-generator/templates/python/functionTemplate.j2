@@ -1,0 +1,5 @@
+
+def {{ functionName }}(self, {{ functionInputs }})-> {{ functionReturns | safe }}:
+    {{ functionComment | safe | indent(0) }}
+{{- functionBody | safe -}}
+

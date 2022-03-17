@@ -1,3 +1,4 @@
+import { PythonGenerator } from "./sdk-generator/generators/python_generator";
 import { TypescriptGenerator } from "./sdk-generator/generators/typescript_generator";
 import { ReactUIGenerator } from "./sdk-generator/generators/react_ui_generator";
 import { KotlinGenerator } from "./sdk-generator/generators/kotlin_generator";
@@ -19,12 +20,14 @@ let outputPaths = [
   "../../../sdk-dist/typescript/lib",
   "../../../sdk-dist/etd-react-ui/src",
   "../../../sdk-dist/kotlin/src/main/kotlin/com/etd",
+  "../../../sdk-dist/python/src/json_rpc",
 ];
 
 let generators = [
   new TypescriptGenerator(),
   new ReactUIGenerator(),
   new KotlinGenerator(),
+  new PythonGenerator(),
 ];
 
 (async () => {

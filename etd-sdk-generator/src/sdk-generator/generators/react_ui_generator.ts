@@ -13,6 +13,7 @@ import {
 } from "../interfaces/generator_interface";
 
 export class ReactUIGenerator extends Generator {
+  protected libraryFilename: string = "index";
   protected extension: string = "tsx";
   protected functionTemplatePath: string;
   protected methodTemplatePath: string;

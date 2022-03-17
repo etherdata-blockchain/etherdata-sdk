@@ -5,13 +5,16 @@ name: Build And Publish SDK
 
 on:
   pull_request:
+    branches:
+      - main
+
   push:
     branches:
       - main
       - dev
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +23,27 @@ jobs:
           node-version: 16
       - run: yarn
         working-directory: etd-sdk-generator
+      - run: yarn test
+        name: Testing generator
+        working-directory: etd-sdk-generator
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - run: yarn
+        working-directory: etd-sdk-generator
       - run: yarn start
         working-directory: etd-sdk-generator
 
   build-kotlin:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,7 +64,7 @@ jobs:
 
 
   build-typescript-npm:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -64,7 +83,7 @@ jobs:
         working-directory: sdk-dist/typescript
 
   build-react-ui-npm:
-    needs: build
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -78,6 +97,35 @@ jobs:
       - run: yarn build
         name: Building dist
         working-directory: sdk-dist/etd-react-ui
+  
+  build-python:
+    needs: [build, test]
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install pypa/build
+      run: >-
+        python -m
+        pip install
+        build
+        --user
+      working-directory: sdk-dist/python
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        python -m
+        build
+        --sdist
+        --wheel
+        --outdir dist/
+        .
+      working-directory: sdk-dist/python
+
+
   release:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
