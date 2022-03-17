@@ -1,5 +1,13 @@
 import setuptools
-long_description = "# Etherdata BlockChain Python SDK"
+
+
+long_description = """
+# Etherdata Python SDK
+
+Please refer more info on our GitHub
+
+"""
+
 setuptools.setup(
     name="etherdata-sdk-python",
     version="v3.0.3",
