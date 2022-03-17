@@ -7,7 +7,7 @@ const oldContents = fs.readFileSync(filePath, "utf8");
 
 const lines = oldContents.split("\n");
 const index = lines.findIndex((l) => l.includes("version="));
-lines[index] = `version=v${version}'`;
+lines[index] = `    version="v${version}",`;
 let newContent = "";
 for (let line of lines) {
     if (line.length > 0) {
