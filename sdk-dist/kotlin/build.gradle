@@ -6,7 +6,7 @@ plugins {
 }
 archivesBaseName = 'etd-sdk'
 group = 'etd'
-version = 'vundefined'
+version = 'v3.0.2'
 repositories {
     mavenCentral()
 }
