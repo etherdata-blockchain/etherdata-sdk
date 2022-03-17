@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.2.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.1.1...v2.2.0) (2022-03-17)
+
+
+### Features
+
+* :white_check_mark: add python SDK ([#13](https://github.com/etherdata-blockchain/etherdata-sdk/issues/13)) ([1e3caed](https://github.com/etherdata-blockchain/etherdata-sdk/commit/1e3caed5da4807db1ce092ad07364b085235d027))
+
 ## [2.1.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v2.1.0...v2.1.1) (2022-03-14)
 
 
