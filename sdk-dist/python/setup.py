@@ -2,7 +2,7 @@ import setuptools
 long_description = "# Etherdata BlockChain Python SDK"
 setuptools.setup(
     name="etherdata-sdk-python",
-    version="v3.0.2",
+    version="v3.0.3",
     author="etherdata-blockchain",
     author_email="etherdata-blockchain@etd.com",
     description="SDK for etherdata-blockchain",

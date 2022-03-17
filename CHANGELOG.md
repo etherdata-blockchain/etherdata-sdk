@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.0.2...v3.0.3) (2022-03-17)
+
+
+### Bug Fixes
+
+* Python Repo URL ([#15](https://github.com/etherdata-blockchain/etherdata-sdk/issues/15)) ([23f1c60](https://github.com/etherdata-blockchain/etherdata-sdk/commit/23f1c60d89179257be989c62573b14dec0cf77f3))
+
 ## [3.0.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.0.1...v3.0.2) (2022-03-17)
 
 
