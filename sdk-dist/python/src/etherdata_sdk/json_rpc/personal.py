@@ -33,7 +33,7 @@ class Personal:
     def __init__(self, url: str):
         self.url = url
 
-    def import_raw_key(self, privete_key_str) -> str:
+    def import_raw_key(self, privete_key: str) -> str:
         """
         Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
          Returns the address of the new account
@@ -83,7 +83,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def new_account(self, passphrase_optional_str_) -> str:
+    def new_account(self, passphrase: optional[str]) -> str:
         """
         Generates a new private key and stores it in the key store directory
          The key file is encrypted with the given passphrase
@@ -108,7 +108,9 @@ class Personal:
 
     def unlock_account(
             self,
-            account_address_str_passphrase_optional_str_unlock_duration_optional_float_) -> bool:
+            account_address: str,
+            passphrase: optional[str],
+            unlock_duration: optional[float]) -> bool:
         """
         Decrypts the key with the given address from the key store
 
@@ -138,7 +140,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def send_transaction(self, tx_tx) -> str:
+    def send_transaction(self, tx: tx) -> str:
         """
         Validate the given passphrase and submit transaction
 
@@ -170,7 +172,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def sign(self, a_str_b_str_c_str) -> str:
+    def sign(self, a: str, b: str, c: str) -> str:
         """
         The sign method calculates an Ethereum specific signature with ' sign(keccack256("\x19Ethereum Signed Message:\n" + len(message) + message)))
          '
@@ -198,7 +200,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def ec_recover(self, a_str_b_str) -> str:
+    def ec_recover(self, a: str, b: str) -> str:
         """
         ecRecover returns the address associated with the private key that was used to calculate the signature in personal_sign
         #### Arguments

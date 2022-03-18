@@ -192,7 +192,8 @@ class RealTime:
 
     def create_subscription(
             self,
-            subscription_name_str_aaaaa_optional_any_) -> str:
+            subscription_name: str,
+            aaaaa: optional[any]) -> str:
         """
         Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
          If successful it returns the subscription id
@@ -213,7 +214,7 @@ class RealTime:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def cancel_subscription(self, subscription_i_d_str) -> bool:
+    def cancel_subscription(self, subscription_i_d: str) -> bool:
         """
         Subscriptions are cancelled with a regular RPC call with etd_unsubscribe as method and the subscription id as first parameter
          It returns a bool indicating if the subscription was cancelled successful
@@ -235,7 +236,7 @@ class RealTime:
 
     def supported_subscriptions(
             self,
-            subscription_object_subscription_object) -> SupportedSubscriptionsResponseOutputObject:
+            subscription_object: subscriptionobject) -> SupportedSubscriptionsResponseOutputObject:
         """
         newHeads -Fires a notification each time a new header is appended to the chain, including chain reorganizations
          Users can use the bloom filter to determine if the block contains logs that are interested to them
@@ -249,7 +250,7 @@ class RealTime:
         #### Arguments
 
         subscriptionObject: The object containing different opotional transcation fields
-        #### Returns
+        #### Returns #SupportedSubscriptionsResponseOutputObject
 
         outputObject: The return Object of the function
         """
@@ -267,7 +268,7 @@ class RealTime:
         """
         Returns the hash for all transactions that are added to the pending state and are signed with a key that is available in the node
          Tansaction that was previously part of the canonical chain isn’t part of the new canonical chain after a reogranization its again emitted
-        #### Returns
+        #### Returns #NewPendingTransactionsResponse
 
         hash: The hash for all transactions
         transcation: The transaction
@@ -286,7 +287,7 @@ class RealTime:
         """
         Indicates when the node starts or stops synchronizing
          The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators
-        #### Returns
+        #### Returns #SyncingResponse
 
         synchronized: Indicating that the synchronization has started (true) or finished (false)
         status: An object with various progress indicators regarding the synchronization

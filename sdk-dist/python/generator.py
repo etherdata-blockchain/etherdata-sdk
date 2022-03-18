@@ -1,56 +1,59 @@
-import dataclasses
-from pydoc import html
-from tokenize import t
-
+from typing import Optional, List, Dict, cast
 import docspec
-from pydoc_markdown import MarkdownRenderer
-from pydoc_markdown.interfaces import Context
+from pydoc_markdown import PydocMarkdown, FilterProcessor, CrossrefProcessor, SmartProcessor, logger
+from pydoc_markdown.contrib.renderers.markdown import MarkdownReferenceResolver
+from pydoc_markdown.interfaces import Resolver
 from pydoc_markdown.contrib.loaders.python import PythonLoader
 from pydoc_markdown.contrib.renderers.docusaurus import DocusaurusRenderer, CustomizedMarkdownRenderer
+from pydoc_markdown.util.docspec import ApiSuite
 
 
-@dataclasses.dataclass
-class FixedMarkdownRenderer(CustomizedMarkdownRenderer):
-    """Customize markdown renderer. The original version has some error"""
+class FixedMarkdownReferenceResolver(MarkdownReferenceResolver):
+    def generate_object_id(self, obj: docspec.ApiObject) -> str:
+        return f"{obj.path[len(obj.path) - 1].name.lower()}-objects"
 
-    def _render_object(self, fp, level: int, obj: docspec.ApiObject):
-        if not isinstance(obj, docspec.Module) or self.render_module_header:
-            if not isinstance(obj, docspec.Indirection):
-                self._render_header(fp, level, obj)
-
-        render_view_source = not isinstance(obj, (docspec.Module, docspec.Variable))
-
-        if render_view_source:
-            url = self.source_linker.get_source_url(obj) if self.source_linker else None
-            source_string = self.source_format.replace('{url}', str(url)) if url else None
-            if source_string and self.source_position == 'before signature':
-                fp.write(source_string + '\n\n')
-
-        self._render_signature_block(fp, obj)
-
-        if render_view_source:
-            if source_string and self.source_position == 'after signature':
-                fp.write(source_string + '\n\n')
-
-        if obj.docstring:
-            docstring = html.escape(obj.docstring.content) if self.escape_html_in_docstring else obj.docstring.content
-            lines = docstring.split('\n')
-            if self.docstrings_as_blockquote:
-                lines = ['> ' + x for x in lines]
-            fp.write('\n'.join(lines))
-            fp.write('\n\n')
+    # Resolver
+    def resolve_ref(self, scope: docspec.ApiObject, ref: str) -> Optional[str]:
+        target = self._resolve_local_reference(scope, ref.split('.'))
+        if target:
+            data = self.generate_object_id(target)
+            return '#' + self.generate_object_id(target)
+        return None
 
 
-context = Context(directory='.')
+class FixedCrossrefProcessor(CrossrefProcessor):
+
+    def process(self, modules: List[docspec.Module], resolver: Optional[Resolver]) -> None:
+        resolver = FixedMarkdownReferenceResolver()
+
+        unresolved: Dict[str, List[str]] = {}
+        docspec.visit(modules,
+                      lambda x: self._preprocess_refs(x, cast(Resolver, resolver), ApiSuite(modules), unresolved))
+
+        if unresolved:
+            summary = []
+            for uid, refs in unresolved.items():
+                summary.append('  {}: {}'.format(uid, ', '.join(refs)))
+
+            logger.warning(
+                '%s cross-reference(s) could not be resolved:\n%s',
+                sum(map(len, unresolved.values())),
+                '\n'.join(summary),
+            )
+
+
 loader = PythonLoader(search_path=['src'],
                       packages=["etherdata_sdk"],
                       ignore_when_discovered=["tests", "examples"])
 renderer = DocusaurusRenderer(docs_base_path="../../docs/docs/python",
-                              markdown=FixedMarkdownRenderer(render_module_header=False, render_page_title=False),
                               relative_output_path="api")
 
-loader.init(context)
-renderer.init(context)
-
-modules = loader.load()
-renderer.render(modules)
+config = PydocMarkdown(
+    loaders=[loader],
+    processors=[FilterProcessor(skip_empty_modules=True),
+                FixedCrossrefProcessor(), SmartProcessor()],
+    renderer=renderer
+)
+modules = config.load_modules()
+config.process(modules)
+config.render(modules)

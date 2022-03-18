@@ -1,3 +1,8 @@
+---
+sidebar_label: json_rpc_methods
+title: etherdata_sdk.json_rpc.json_rpc_methods
+---
+
 ## SyncingResponseSyncObject Objects
 
 ```python
@@ -55,11 +60,11 @@ DATA, 20 Bytes - (optional when creating new contract) The address the transacti
 
 #### gas
 
-QUANTITY - (optional, default "90000") Integer of the gas provided for the transaction execution. It will return unused gas.
+QUANTITY - (optional, default &quot;90000&quot;) Integer of the gas provided for the transaction execution. It will return unused gas.
 
 #### gasPrice
 
-QUANTITY - (optional, default "To-Be-Determined") Integer of the gasPrice used for each paid gas, in Wei.
+QUANTITY - (optional, default &quot;To-Be-Determined&quot;) Integer of the gasPrice used for each paid gas, in Wei.
 
 #### value
 
@@ -373,11 +378,11 @@ DATA, 256 Bytes - Bloom filter for light clients to quickly retrieve related log
 
 #### root
 
-Either this or "status" is returned DATA 32 bytes of post-transaction stateroot (pre Byzantium)
+Either this or &quot;status&quot; is returned DATA 32 bytes of post-transaction stateroot (pre Byzantium)
 
 #### status
 
-Either this or "root" is returned QUANTITY either 1 (success) or 0 (failure)
+Either this or &quot;root&quot; is returned QUANTITY either 1 (success) or 0 (failure)
 
 ## GetUncleByBlockHashAndIndexResponseObj Objects
 
@@ -458,12 +463,6 @@ class JsonRpcMethods()
 
 different methods to perform etd control
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### protocal\_version
 
 ```python
@@ -493,7 +492,7 @@ def syncing() -> SyncingResponse
 ```
 
 Returns an object with data about the sync status or false
-#### Returns
+#### Returns [`SyncingResponse`](#syncingresponse-objects)
 
 syncObject: return this ONLY when syncing
 syncStatus: return this ONLY when not syncing
@@ -556,14 +555,14 @@ addressAccount: The array of accouts
 #### get\_balance
 
 ```python
-def get_balance(address_str_tag_str) -> float
+def get_balance(address: str, tag: str) -> float
 ```
 
 Returns the balance of the account of given address
 #### Arguments
 
 address: DATA, 20 Bytes - address to check for balance
-tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+tag: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 balance: QUANTITY - integer of the current balance in wei.
@@ -571,7 +570,7 @@ balance: QUANTITY - integer of the current balance in wei.
 #### get\_storage\_at
 
 ```python
-def get_storage_at(address_any_position_any_tag_str) -> Any
+def get_storage_at(address: any, position: any, tag: str) -> Any
 ```
 
 Returns the value from a storage position at a given address
@@ -579,7 +578,7 @@ Returns the value from a storage position at a given address
 
 address: DATA, 20 Bytes - address of the storage.
 position: The integer of the position in the storage.
-tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+tag: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 valur: The value at this storage position.
@@ -587,14 +586,14 @@ valur: The value at this storage position.
 #### get\_transaction\_count
 
 ```python
-def get_transaction_count(address_any_state_str) -> float
+def get_transaction_count(address: any, state: str) -> float
 ```
 
 Returns the number of transactions sent from an address
 #### Arguments
 
 address: The address.
-state: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+state: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 number: The number of transactions send from this address.
@@ -602,14 +601,15 @@ number: The number of transactions send from this address.
 #### get\_transaction\_count\_by\_hash
 
 ```python
-def get_transaction_count_by_hash(data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def get_transaction_count_by_hash(data: str,
+                                  q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Returns the number of transactions in a block from a block matching the given block hash
 #### Arguments
 
 data: 20 Bytes - The address
-qUANTITY_TAG: integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+qUANTITY_TAG: integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 quantity: The integer of the number of transactions send from this address.
@@ -617,7 +617,7 @@ quantity: The integer of the number of transactions send from this address.
 #### get\_block\_transaction\_count\_by\_hash
 
 ```python
-def get_block_transaction_count_by_hash(data_str) -> str
+def get_block_transaction_count_by_hash(d_a_t_a: str) -> str
 ```
 
 Returns the number of transactions in a block from a block matching the given block hash
@@ -631,13 +631,13 @@ quantity: The integer of the number of transactions in this block.
 #### get\_block\_transaction\_count\_by\_number
 
 ```python
-def get_block_transaction_count_by_number(q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def get_block_transaction_count_by_number(q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Returns the number of transactions in a block matching the given block number
 #### Arguments
 
-qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", see the default block parameter
+qUANTITY_TAG: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 quantity: The integer of the number of transactions in this block.
@@ -645,7 +645,7 @@ quantity: The integer of the number of transactions in this block.
 #### get\_uncle\_count\_by\_block\_hash
 
 ```python
-def get_uncle_count_by_block_hash(data_str) -> str
+def get_uncle_count_by_block_hash(d_a_t_a: str) -> str
 ```
 
 Returns the number of uncles in a block from a block matching the given block hash
@@ -659,7 +659,7 @@ qUANTITY_TAG: The integer of the number of uncles in this block.
 #### get\_uncle\_count\_by\_block\_number
 
 ```python
-def get_uncle_count_by_block_number(q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def get_uncle_count_by_block_number(q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Returns the number of uncles in a block from a block matching the given block number
@@ -673,14 +673,14 @@ quantity: The integer of the number of uncles in this block.
 #### get\_code
 
 ```python
-def get_code(data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def get_code(d_a_t_a: str, q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Returns code at a given address
 #### Arguments
 
 data: 20 Byter - The address
-qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 data: The code from the given address.
@@ -688,10 +688,10 @@ data: The code from the given address.
 #### sign
 
 ```python
-def sign(a_str_b_str) -> str
+def sign(a: str, b: str) -> str
 ```
 
-The sign method calculates an etherdata specific signature with sign(keccak256("\x19etherdata Signed Message:\n" + len(message) + message)))
+The sign method calculates an etherdata specific signature with sign(keccak256(&quot;\x19etherdata Signed Message:\n&quot; + len(message) + message)))
 
 By adding a prefix to the message makes the calculated signature recognisable as an etherdata specific signature
  This prevents misuse where a malicious DApp can sign arbitrary data (e
@@ -710,7 +710,7 @@ value: The signature
 #### sign\_transaction
 
 ```python
-def sign_transaction(obj_obj) -> str
+def sign_transaction(obj: obj) -> str
 ```
 
 Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
@@ -724,7 +724,7 @@ data: The signed transaction object.
 #### send\_transcation
 
 ```python
-def send_transcation(obj_obj) -> str
+def send_transcation(obj: obj) -> str
 ```
 
 Creates new message call transaction or a contract creation, if the data field contains code
@@ -738,7 +738,7 @@ data: 32 Bytes - the transaction hash, or the zero hash if the transaction is no
 #### send\_raw\_transaction
 
 ```python
-def send_raw_transaction(data_str) -> str
+def send_raw_transaction(d_a_t_a: str) -> str
 ```
 
 Creates new message call transaction or a contract creation for signed transactions
@@ -752,14 +752,14 @@ data: 32 Bytes - the transaction hash, or the zero hash if the transaction is no
 #### call
 
 ```python
-def call(obj_obj_q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def call(obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Executes a new message call immediately without creating a transaction on the block chain
 #### Arguments
 
 obj: The transaction object
-qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
+qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
 #### Returns
 
 data: The return value of executed contract.
@@ -767,7 +767,7 @@ data: The return value of executed contract.
 #### estimate\_gas
 
 ```python
-def estimate_gas(obj_obj_q_u_a_n_t_i_t_y__t_a_g_str) -> str
+def estimate_gas(obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str
 ```
 
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
@@ -776,7 +776,7 @@ Generates and returns an estimate of how much gas is necessary to allow the tran
 #### Arguments
 
 obj: The transaction object
-qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
+qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
 #### Returns
 
 quantity: The amount of gas used.
@@ -784,7 +784,7 @@ quantity: The amount of gas used.
 #### get\_block\_by\_hash
 
 ```python
-def get_block_by_hash(data_str_bool_field_bool) -> GetBlockByHashResponseObj
+def get_block_by_hash(d_a_t_a: str, bool: bool) -> GetBlockByHashResponseObj
 ```
 
 Returns information about a block by hash
@@ -792,38 +792,37 @@ Returns information about a block by hash
 
 data: 32 Bytes - Hash of a block.
 bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-#### Returns
+#### Returns [`GetBlockByHashResponseObj`](#getblockbyhashresponseobj-objects)
 
 obj: A block object, or null when no block was found
 
 #### get\_block\_by\_number
 
 ```python
-def get_block_by_number(
-        q_u_a_n_t_i_t_y__t_a_g_str_bool_field_bool
-) -> GetBlockByNumberResponseObj
+def get_block_by_number(q_u_a_n_t_i_t_y__t_a_g: str,
+                        bool: bool) -> GetBlockByNumberResponseObj
 ```
 
 Returns information about a block by block number
 #### Arguments
 
-qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+qUANTITY_TAG: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-#### Returns
+#### Returns [`GetBlockByNumberResponseObj`](#getblockbynumberresponseobj-objects)
 
 obj: A block object, or null when no block was found
 
 #### get\_transaction\_by\_hash
 
 ```python
-def get_transaction_by_hash(data_str) -> GetTransactionByHashResponseObj
+def get_transaction_by_hash(d_a_t_a: str) -> GetTransactionByHashResponseObj
 ```
 
 Returns the information about a transaction requested by transaction hash
 #### Arguments
 
 data: 32 Bytes - hash of a transaction
-#### Returns
+#### Returns [`GetTransactionByHashResponseObj`](#gettransactionbyhashresponseobj-objects)
 
 obj: A transaction object, or null when no transaction was found
 
@@ -831,7 +830,8 @@ obj: A transaction object, or null when no transaction was found
 
 ```python
 def get_transaction_by_hash_and_index(
-        data_str_quantity_str) -> GetTransactionByHashAndIndexResponseObj
+        d_a_t_a: str,
+        q_u_a_n_t_i_t_y: str) -> GetTransactionByHashAndIndexResponseObj
 ```
 
 Returns information about a transaction by block hash and transaction index position
@@ -839,7 +839,7 @@ Returns information about a transaction by block hash and transaction index posi
 
 data: 32 Bytes - hash of a block.
 quantity: The integer of the transaction index position.
-#### Returns
+#### Returns [`GetTransactionByHashAndIndexResponseObj`](#gettransactionbyhashandindexresponseobj-objects)
 
 obj: See eth_getTransactionByHash
 
@@ -847,23 +847,23 @@ obj: See eth_getTransactionByHash
 
 ```python
 def get_transaction_by_block_number_and_index(
-    q_u_a_n_t_i_t_y__t_a_g_str_quantity_str
+        q_u_a_n_t_i_t_y__t_a_g: str, q_u_a_n_t_i_t_y: str
 ) -> GetTransactionByBlockNumberAndIndexResponseObj
 ```
 
 Returns information about a transaction by block number and transaction index position
 #### Arguments
 
-qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+qUANTITY_TAG: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 quantity: The transaction index position.
-#### Returns
+#### Returns [`GetTransactionByBlockNumberAndIndexResponseObj`](#gettransactionbyblocknumberandindexresponseobj-objects)
 
 obj: See eth_getTransactionByHash
 
 #### get\_transaction\_receipt
 
 ```python
-def get_transaction_receipt(data_str) -> GetTransactionReceiptResponseObj
+def get_transaction_receipt(d_a_t_a: str) -> GetTransactionReceiptResponseObj
 ```
 
 Returns the receipt of a transaction by transaction hash
@@ -871,7 +871,7 @@ Returns the receipt of a transaction by transaction hash
 #### Arguments
 
 data: 32 Bytes - hash of a transaction
-#### Returns
+#### Returns [`GetTransactionReceiptResponseObj`](#gettransactionreceiptresponseobj-objects)
 
 obj: A transaction receipt object, or null when no receipt was found
 
@@ -879,7 +879,8 @@ obj: A transaction receipt object, or null when no receipt was found
 
 ```python
 def get_uncle_by_block_hash_and_index(
-        data_str_quantity_str) -> GetUncleByBlockHashAndIndexResponseObj
+        d_a_t_a: str,
+        q_u_a_n_t_i_t_y: str) -> GetUncleByBlockHashAndIndexResponseObj
 ```
 
 eturns information about a uncle of a block by hash and uncle index position
@@ -887,7 +888,7 @@ eturns information about a uncle of a block by hash and uncle index position
 
 data: 32 Bytes - The hash of a block.
 quantity: The uncle’s index position.
-#### Returns
+#### Returns [`GetUncleByBlockHashAndIndexResponseObj`](#getunclebyblockhashandindexresponseobj-objects)
 
 obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
 
@@ -895,16 +896,16 @@ obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual t
 
 ```python
 def get_uncle_by_block_number_and_index(
-    q_u_a_n_t_i_t_y__t_a_g_str_quantity_str
-) -> GetUncleByBlockNumberAndIndexResponseObj
+        q_u_a_n_t_i_t_y__t_a_g: str,
+        q_u_a_n_t_i_t_y: str) -> GetUncleByBlockNumberAndIndexResponseObj
 ```
 
 Returns information about a uncle of a block by number and uncle index position
 #### Arguments
 
-qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+qUANTITY_TAG: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 quantity: the uncle’s index position.
-#### Returns
+#### Returns [`GetUncleByBlockNumberAndIndexResponseObj`](#getunclebyblocknumberandindexresponseobj-objects)
 
 obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
 
@@ -922,7 +923,7 @@ array: Array of available compilers.
 #### compile\_solidity
 
 ```python
-def compile_solidity(string_str) -> str
+def compile_solidity(string: str) -> str
 ```
 
 Returns compiled solidity code
@@ -936,7 +937,7 @@ data: The compiled source code.
 #### complpie\_l\_l\_l
 
 ```python
-def complpie_l_l_l(string_str) -> str
+def complpie_l_l_l(string: str) -> str
 ```
 
 Returns compiled LLL code
@@ -950,7 +951,7 @@ data: The compiled source code.
 #### complie\_serpent
 
 ```python
-def complie_serpent(string_str) -> str
+def complie_serpent(string: str) -> str
 ```
 
 Returns compiled serpent code
@@ -964,7 +965,7 @@ data: The compiled source code.
 #### new\_filter
 
 ```python
-def new_filter(obj_obj) -> str
+def new_filter(obj: obj) -> str
 ```
 
 Creates a filter object, based on filter options, to notify when the state changes (logs)
@@ -1007,7 +1008,7 @@ quantity: A filter id.
 #### uninstall\_filter
 
 ```python
-def uninstall_filter(quantity_str) -> bool
+def uninstall_filter(q_u_a_n_t_i_t_y: str) -> bool
 ```
 
 Uninstalls a filter with given id
@@ -1024,21 +1025,21 @@ bool: true if the filter was successfully uninstalled, otherwise false.
 #### get\_filter\_changes
 
 ```python
-def get_filter_changes(quantity_str) -> List[Array]
+def get_filter_changes(q_u_a_n_t_i_t_y: str) -> List[Array]
 ```
 
 Polling method for a filter, which returns an array of logs which occurred since last poll
 #### Arguments
 
 quantity: The filter id.
-#### Returns
+#### Returns `List`[Array]
 
-array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. ["0x3454645634534..."]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
+array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
 
 #### get\_filter\_logs
 
 ```python
-def get_filter_logs(quantity_str) -> List[Any]
+def get_filter_logs(q_u_a_n_t_i_t_y: str) -> List[Any]
 ```
 
 Returns an array of all logs matching filter with given id
@@ -1052,7 +1053,7 @@ array: See eth_getFilterChanges.
 #### get\_logs
 
 ```python
-def get_logs(obj_obj) -> List[Any]
+def get_logs(obj: obj) -> List[Any]
 ```
 
 Returns an array of all logs matching a given filter object
@@ -1077,7 +1078,7 @@ array: Array with the following properties -DATA, 32 Bytes - current block heade
 #### submit\_work
 
 ```python
-def submit_work(a_str_b_str_c_str) -> bool
+def submit_work(a: str, b: str, c: str) -> bool
 ```
 
 Used for submitting a proof-of-work solution
@@ -1093,7 +1094,7 @@ bool: returns true if the provided solution is valid, otherwise false.
 #### submit\_hashrate
 
 ```python
-def submit_hashrate(hashrate_str_id_str) -> bool
+def submit_hashrate(hashrate: str, i_d: str) -> bool
 ```
 
 Used for submitting mining hashrate

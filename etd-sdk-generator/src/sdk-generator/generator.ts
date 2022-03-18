@@ -219,7 +219,6 @@ export abstract class Generator {
     rpcFunction: RPCFunction
   ): [FunctionToCodeContext, string, TypeResult[]] {
     const template = this.getTemplate(this.functionTemplatePath);
-    const functionComment = this.generateComment(rpcFunction, undefined);
     const functionInputTypes = this.generateInputTypes(rpcFunction.params);
     const functionReturnTypeName = this.generateReturnTypeName(
       rpcFunction.name
@@ -228,6 +227,13 @@ export abstract class Generator {
       functionReturnTypeName,
       rpcFunction.returns
     );
+    const functionComment = this.generateComment(
+      rpcFunction,
+      undefined,
+      functionInputTypes,
+      functionReturnType
+    );
+
     let types: TypeResult[] = [];
 
     types = types.concat(functionInputTypes.types);
@@ -335,10 +341,14 @@ export abstract class Generator {
    * Generate comment for rpc method or rpc function. Should provide exactly one parameter.
    * @param func RPC Function's name
    * @param method RPC Method
+   * @param inputTypes
+   * @param returnType
    */
   protected abstract generateComment(
     func: RPCFunction | undefined,
-    method: Method | undefined
+    method: Method | undefined,
+    inputTypes?: InputParamResult,
+    returnType?: TypeResult
   ): string;
 
   /**

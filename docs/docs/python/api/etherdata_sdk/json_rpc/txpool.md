@@ -1,3 +1,8 @@
+---
+sidebar_label: txpool
+title: etherdata_sdk.json_rpc.txpool
+---
+
 ## Transaction Objects
 
 ```python
@@ -149,12 +154,6 @@ class Txpool()
 
 The txpool API gives you access to several non-standard RPC methods to inspect the contents of  the transaction pool containing all the currently pending transactions as well as the ones queued  for future processing
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### content
 
 ```python
@@ -169,7 +168,7 @@ The result is an object with two fields pending and queued
 
 Please note, there may be multiple transactions associated with the same account and nonce
  This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-#### Returns
+#### Returns [`ContentResponseTransactionObject`](#contentresponsetransactionobject-objects)
 
 transactionObject: The return transaction object
 
@@ -188,7 +187,7 @@ The result is an object with two fields pending and queued
 
 Please note, there may be multiple transactions associated with the same account and nonce
  This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-#### Returns
+#### Returns [`InspectResponseTransactionObject`](#inspectresponsetransactionobject-objects)
 
 transactionObject: the return transcation object
 
@@ -201,7 +200,7 @@ def status() -> StatusResponseStatusObject
 The status inspection property can be queried for the number of transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
 
 The result is an object with two fields pending and queued, each of which is a counter representing the number of transactions in that particular state
-#### Returns
+#### Returns [`StatusResponseStatusObject`](#statusresponsestatusobject-objects)
 
 statusObject: An object containing transaction status
 

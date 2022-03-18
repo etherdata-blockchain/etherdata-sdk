@@ -1,3 +1,8 @@
+---
+sidebar_label: real_time
+title: etherdata_sdk.json_rpc.real_time
+---
+
 ## SubscriptionObject Objects
 
 ```python
@@ -187,16 +192,10 @@ Considerations 1
 g
  listening for all logs/blocks when the node starts to  synchronize
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### create\_subscription
 
 ```python
-def create_subscription(subscription_name_str_aaaaa_optional_any_) -> str
+def create_subscription(subscription_name: str, aaaaa: optional[any]) -> str
 ```
 
 Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
@@ -212,7 +211,7 @@ subscriptionID: The subscription ID
 #### cancel\_subscription
 
 ```python
-def cancel_subscription(subscription_i_d_str) -> bool
+def cancel_subscription(subscription_i_d: str) -> bool
 ```
 
 Subscriptions are cancelled with a regular RPC call with etd_unsubscribe as method and the subscription id as first parameter
@@ -228,7 +227,7 @@ cancelled: Indicating if the subscription was cancelled successful.
 
 ```python
 def supported_subscriptions(
-    subscription_object_subscription_object
+    subscription_object: subscriptionobject
 ) -> SupportedSubscriptionsResponseOutputObject
 ```
 
@@ -244,7 +243,7 @@ logs -Returns logs that are included in new imported blocks and match the given 
 #### Arguments
 
 subscriptionObject: The object containing different opotional transcation fields
-#### Returns
+#### Returns [`SupportedSubscriptionsResponseOutputObject`](#supportedsubscriptionsresponseoutputobject-objects)
 
 outputObject: The return Object of the function
 
@@ -256,7 +255,7 @@ def new_pending_transactions() -> NewPendingTransactionsResponse
 
 Returns the hash for all transactions that are added to the pending state and are signed with a key that is available in the node
  Tansaction that was previously part of the canonical chain isn’t part of the new canonical chain after a reogranization its again emitted
-#### Returns
+#### Returns [`NewPendingTransactionsResponse`](#newpendingtransactionsresponse-objects)
 
 hash: The hash for all transactions
 transcation: The transaction
@@ -269,7 +268,7 @@ def syncing() -> SyncingResponse
 
 Indicates when the node starts or stops synchronizing
  The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators
-#### Returns
+#### Returns [`SyncingResponse`](#syncingresponse-objects)
 
 synchronized: Indicating that the synchronization has started (true) or finished (false)
 status: An object with various progress indicators regarding the synchronization

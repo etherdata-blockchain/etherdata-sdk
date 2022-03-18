@@ -1,3 +1,8 @@
+---
+sidebar_label: miner
+title: etherdata_sdk.json_rpc.miner
+---
+
 ## Miner Objects
 
 ```python
@@ -5,12 +10,6 @@ class Miner()
 ```
 
 The miner API allows you to remote control the node’s mining operation and set various mining specific settings
-
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
 
 #### getdashrate
 
@@ -35,7 +34,7 @@ Sets the extra data a miner can include when miner blocks
 #### set\_gas\_price
 
 ```python
-def set_gas_price(price_float) -> None
+def set_gas_price(price: float) -> None
 ```
 
 Sets the minimal accepted gas price when mining transactions
@@ -63,7 +62,7 @@ Stop the CPU mining operation
 #### set\_etherbase
 
 ```python
-def set_etherbase(etherbase_str) -> None
+def set_etherbase(etherbase: str) -> None
 ```
 
 Sets the etherbase, where mining rewards will go

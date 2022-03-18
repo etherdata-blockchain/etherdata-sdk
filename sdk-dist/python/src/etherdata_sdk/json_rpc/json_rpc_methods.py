@@ -538,7 +538,7 @@ class JsonRpcMethods:
     def syncing(self, ) -> SyncingResponse:
         """
         Returns an object with data about the sync status or false
-        #### Returns
+        #### Returns #SyncingResponse
 
         syncObject: return this ONLY when syncing
         syncStatus: return this ONLY when not syncing
@@ -632,7 +632,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_balance(self, address_str_tag_str) -> float:
+    def get_balance(self, address: str, tag: str) -> float:
         """
         Returns the balance of the account of given address
         #### Arguments
@@ -652,7 +652,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_storage_at(self, address_any_position_any_tag_str) -> Any:
+    def get_storage_at(self, address: any, position: any, tag: str) -> Any:
         """
         Returns the value from a storage position at a given address
         #### Arguments
@@ -673,7 +673,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_transaction_count(self, address_any_state_str) -> float:
+    def get_transaction_count(self, address: any, state: str) -> float:
         """
         Returns the number of transactions sent from an address
         #### Arguments
@@ -694,7 +694,7 @@ class JsonRpcMethods:
         return response.json()["result"]
 
     def get_transaction_count_by_hash(
-            self, data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+            self, data: str, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Returns the number of transactions in a block from a block matching the given block hash
         #### Arguments
@@ -714,7 +714,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_block_transaction_count_by_hash(self, data_str) -> str:
+    def get_block_transaction_count_by_hash(self, d_a_t_a: str) -> str:
         """
         Returns the number of transactions in a block from a block matching the given block hash
         #### Arguments
@@ -734,7 +734,7 @@ class JsonRpcMethods:
         return response.json()["result"]
 
     def get_block_transaction_count_by_number(
-            self, q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+            self, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Returns the number of transactions in a block matching the given block number
         #### Arguments
@@ -753,7 +753,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_uncle_count_by_block_hash(self, data_str) -> str:
+    def get_uncle_count_by_block_hash(self, d_a_t_a: str) -> str:
         """
         Returns the number of uncles in a block from a block matching the given block hash
         #### Arguments
@@ -773,7 +773,7 @@ class JsonRpcMethods:
         return response.json()["result"]
 
     def get_uncle_count_by_block_number(
-            self, q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+            self, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Returns the number of uncles in a block from a block matching the given block number
         #### Arguments
@@ -792,7 +792,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_code(self, data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+    def get_code(self, d_a_t_a: str, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Returns code at a given address
         #### Arguments
@@ -812,7 +812,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def sign(self, a_str_b_str) -> str:
+    def sign(self, a: str, b: str) -> str:
         """
         The sign method calculates an etherdata specific signature with sign(keccak256("\x19etherdata Signed Message:\n" + len(message) + message)))
 
@@ -839,7 +839,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def sign_transaction(self, obj_obj) -> str:
+    def sign_transaction(self, obj: obj) -> str:
         """
         Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
         #### Arguments
@@ -858,7 +858,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def send_transcation(self, obj_obj) -> str:
+    def send_transcation(self, obj: obj) -> str:
         """
         Creates new message call transaction or a contract creation, if the data field contains code
         #### Arguments
@@ -877,7 +877,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def send_raw_transaction(self, data_str) -> str:
+    def send_raw_transaction(self, d_a_t_a: str) -> str:
         """
         Creates new message call transaction or a contract creation for signed transactions
         #### Arguments
@@ -896,7 +896,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def call(self, obj_obj_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+    def call(self, obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Executes a new message call immediately without creating a transaction on the block chain
         #### Arguments
@@ -916,7 +916,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def estimate_gas(self, obj_obj_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
+    def estimate_gas(self, obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str:
         """
         Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
          The transaction will not be added to the blockchain
@@ -940,14 +940,15 @@ class JsonRpcMethods:
 
     def get_block_by_hash(
             self,
-            data_str_bool_field_bool) -> GetBlockByHashResponseObj:
+            d_a_t_a: str,
+            bool: bool) -> GetBlockByHashResponseObj:
         """
         Returns information about a block by hash
         #### Arguments
 
         data: 32 Bytes - Hash of a block.
         bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-        #### Returns
+        #### Returns #GetBlockByHashResponseObj
 
         obj: A block object, or null when no block was found
         """
@@ -962,14 +963,15 @@ class JsonRpcMethods:
 
     def get_block_by_number(
             self,
-            q_u_a_n_t_i_t_y__t_a_g_str_bool_field_bool) -> GetBlockByNumberResponseObj:
+            q_u_a_n_t_i_t_y__t_a_g: str,
+            bool: bool) -> GetBlockByNumberResponseObj:
         """
         Returns information about a block by block number
         #### Arguments
 
         qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
         bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-        #### Returns
+        #### Returns #GetBlockByNumberResponseObj
 
         obj: A block object, or null when no block was found
         """
@@ -983,13 +985,13 @@ class JsonRpcMethods:
         return GetBlockByNumberResponseObj.from_dict(response.json()["result"])
 
     def get_transaction_by_hash(
-            self, data_str) -> GetTransactionByHashResponseObj:
+            self, d_a_t_a: str) -> GetTransactionByHashResponseObj:
         """
         Returns the information about a transaction requested by transaction hash
         #### Arguments
 
         data: 32 Bytes - hash of a transaction
-        #### Returns
+        #### Returns #GetTransactionByHashResponseObj
 
         obj: A transaction object, or null when no transaction was found
         """
@@ -1004,14 +1006,16 @@ class JsonRpcMethods:
             response.json()["result"])
 
     def get_transaction_by_hash_and_index(
-            self, data_str_quantity_str) -> GetTransactionByHashAndIndexResponseObj:
+            self,
+            d_a_t_a: str,
+            q_u_a_n_t_i_t_y: str) -> GetTransactionByHashAndIndexResponseObj:
         """
         Returns information about a transaction by block hash and transaction index position
         #### Arguments
 
         data: 32 Bytes - hash of a block.
         quantity: The integer of the transaction index position.
-        #### Returns
+        #### Returns #GetTransactionByHashAndIndexResponseObj
 
         obj: See eth_getTransactionByHash
         """
@@ -1027,14 +1031,15 @@ class JsonRpcMethods:
 
     def get_transaction_by_block_number_and_index(
             self,
-            q_u_a_n_t_i_t_y__t_a_g_str_quantity_str) -> GetTransactionByBlockNumberAndIndexResponseObj:
+            q_u_a_n_t_i_t_y__t_a_g: str,
+            q_u_a_n_t_i_t_y: str) -> GetTransactionByBlockNumberAndIndexResponseObj:
         """
         Returns information about a transaction by block number and transaction index position
         #### Arguments
 
         qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
         quantity: The transaction index position.
-        #### Returns
+        #### Returns #GetTransactionByBlockNumberAndIndexResponseObj
 
         obj: See eth_getTransactionByHash
         """
@@ -1049,14 +1054,14 @@ class JsonRpcMethods:
                                                                         "result"])
 
     def get_transaction_receipt(
-            self, data_str) -> GetTransactionReceiptResponseObj:
+            self, d_a_t_a: str) -> GetTransactionReceiptResponseObj:
         """
         Returns the receipt of a transaction by transaction hash
          Note That the receipt is not available for pending transactions
         #### Arguments
 
         data: 32 Bytes - hash of a transaction
-        #### Returns
+        #### Returns #GetTransactionReceiptResponseObj
 
         obj: A transaction receipt object, or null when no receipt was found
         """
@@ -1071,14 +1076,16 @@ class JsonRpcMethods:
             response.json()["result"])
 
     def get_uncle_by_block_hash_and_index(
-            self, data_str_quantity_str) -> GetUncleByBlockHashAndIndexResponseObj:
+            self,
+            d_a_t_a: str,
+            q_u_a_n_t_i_t_y: str) -> GetUncleByBlockHashAndIndexResponseObj:
         """
         eturns information about a uncle of a block by hash and uncle index position
         #### Arguments
 
         data: 32 Bytes - The hash of a block.
         quantity: The uncle’s index position.
-        #### Returns
+        #### Returns #GetUncleByBlockHashAndIndexResponseObj
 
         obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
         """
@@ -1094,14 +1101,15 @@ class JsonRpcMethods:
 
     def get_uncle_by_block_number_and_index(
             self,
-            q_u_a_n_t_i_t_y__t_a_g_str_quantity_str) -> GetUncleByBlockNumberAndIndexResponseObj:
+            q_u_a_n_t_i_t_y__t_a_g: str,
+            q_u_a_n_t_i_t_y: str) -> GetUncleByBlockNumberAndIndexResponseObj:
         """
         Returns information about a uncle of a block by number and uncle index position
         #### Arguments
 
         qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
         quantity: the uncle’s index position.
-        #### Returns
+        #### Returns #GetUncleByBlockNumberAndIndexResponseObj
 
         obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
         """
@@ -1131,7 +1139,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def compile_solidity(self, string_str) -> str:
+    def compile_solidity(self, string: str) -> str:
         """
         Returns compiled solidity code
         #### Arguments
@@ -1150,7 +1158,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def complpie_l_l_l(self, string_str) -> str:
+    def complpie_l_l_l(self, string: str) -> str:
         """
         Returns compiled LLL code
         #### Arguments
@@ -1169,7 +1177,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def complie_serpent(self, string_str) -> str:
+    def complie_serpent(self, string: str) -> str:
         """
         Returns compiled serpent code
         #### Arguments
@@ -1188,7 +1196,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def new_filter(self, obj_obj) -> str:
+    def new_filter(self, obj: obj) -> str:
         """
         Creates a filter object, based on filter options, to notify when the state changes (logs)
          To check if the state has changed, call eth_getFilterChanges
@@ -1246,7 +1254,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def uninstall_filter(self, quantity_str) -> bool:
+    def uninstall_filter(self, q_u_a_n_t_i_t_y: str) -> bool:
         """
         Uninstalls a filter with given id
          Should always be called when watch is no longer needed
@@ -1268,13 +1276,13 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_filter_changes(self, quantity_str) -> List[Array]:
+    def get_filter_changes(self, q_u_a_n_t_i_t_y: str) -> List[Array]:
         """
         Polling method for a filter, which returns an array of logs which occurred since last poll
         #### Arguments
 
         quantity: The filter id.
-        #### Returns
+        #### Returns #List[Array]
 
         array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. ["0x3454645634534..."]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
         """
@@ -1287,7 +1295,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return Array.schema().load(response.json()["result"], many=True)
 
-    def get_filter_logs(self, quantity_str) -> List[Any]:
+    def get_filter_logs(self, q_u_a_n_t_i_t_y: str) -> List[Any]:
         """
         Returns an array of all logs matching filter with given id
         #### Arguments
@@ -1306,7 +1314,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def get_logs(self, obj_obj) -> List[Any]:
+    def get_logs(self, obj: obj) -> List[Any]:
         """
         Returns an array of all logs matching a given filter object
         #### Arguments
@@ -1341,7 +1349,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def submit_work(self, a_str_b_str_c_str) -> bool:
+    def submit_work(self, a: str, b: str, c: str) -> bool:
         """
         Used for submitting a proof-of-work solution
         #### Arguments
@@ -1362,7 +1370,7 @@ class JsonRpcMethods:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def submit_hashrate(self, hashrate_str_id_str) -> bool:
+    def submit_hashrate(self, hashrate: str, i_d: str) -> bool:
         """
         Used for submitting mining hashrate
         #### Arguments

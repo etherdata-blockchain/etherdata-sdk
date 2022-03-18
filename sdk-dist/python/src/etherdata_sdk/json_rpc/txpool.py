@@ -158,7 +158,7 @@ class Txpool:
 
         Please note, there may be multiple transactions associated with the same account and nonce
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-        #### Returns
+        #### Returns #ContentResponseTransactionObject
 
         transactionObject: The return transaction object
         """
@@ -183,7 +183,7 @@ class Txpool:
 
         Please note, there may be multiple transactions associated with the same account and nonce
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-        #### Returns
+        #### Returns #InspectResponseTransactionObject
 
         transactionObject: the return transcation object
         """
@@ -202,7 +202,7 @@ class Txpool:
         The status inspection property can be queried for the number of transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
 
         The result is an object with two fields pending and queued, each of which is a counter representing the number of transactions in that particular state
-        #### Returns
+        #### Returns #StatusResponseStatusObject
 
         statusObject: An object containing transaction status
         """

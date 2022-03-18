@@ -1,3 +1,8 @@
+---
+sidebar_label: admin
+title: etherdata_sdk.json_rpc.admin
+---
+
 ## NodeInfoResponsePorts Objects
 
 ```python
@@ -132,16 +137,10 @@ class Admin()
 
 The admin API gives you access to several non-standard RPC methods,  which will allow you to have a fine grained control over your Getd instance,  including but not limited to network peer and RPC endpoint management
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### add\_peer
 
 ```python
-def add_peer(enode_str) -> bool
+def add_peer(enode: str) -> bool
 ```
 
 The addPeer administrative method requests adding a new remote node to the list of tracked static nodes
@@ -175,7 +174,7 @@ The nodeInfo administrative property can be queried for all the information know
  These include general information about the node itself as a participant of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
 g
  etd, les, shh, bzz)
-#### Returns
+#### Returns [`NodeInfoResponseNodeInfo`](#nodeinforesponsenodeinfo-objects)
 
 nodeInfo: Get all the information known about the running Getd node at the networking granularity
 
@@ -189,26 +188,25 @@ The peers administrative property can be queried for all the information known a
  These include general information about the nodes themselves as participants of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
 g
  etd, les, shh, bzz)
-#### Returns
+#### Returns `List`[PeersArray]
 
 peersArray: All the information known about the connected remote nodes
 
 #### start\_r\_p\_c
 
 ```python
-def start_r_p_c(
-    host_optional_str_port_optional_float_cors_optional_str_apis_optional_str_
-) -> bool
+def start_r_p_c(host: optional[str], port: optional[float],
+                cors: optional[str], apis: optional[str]) -> bool
 ```
 
 The startRPC administrative method starts an HTTP based JSON RPC API webserver to handle client requests
  All the parameters are optional
 #### Arguments
 
-host: Network interface to open the listener socket on (defaults to "localhost")
+host: Network interface to open the listener socket on (defaults to &quot;localhost&quot;)
 port: Network port to open the listener socket on (defaults to 8545)
-cors: cross-origin resource sharing header to use (defaults to "")
-apis: API modules to offer over this interface (defaults to "etd,net,web3")
+cors: cross-origin resource sharing header to use (defaults to &quot;&quot;)
+apis: API modules to offer over this interface (defaults to &quot;etd,net,web3&quot;)
 #### Returns
 
 hTTPlistenerOpen: A boolean flag specifying whether the HTTP RPC listener was opened or not. Please note, only one HTTP endpoint is allowed to be active at any time.
@@ -216,19 +214,18 @@ hTTPlistenerOpen: A boolean flag specifying whether the HTTP RPC listener was op
 #### start\_w\_s
 
 ```python
-def start_w_s(
-    host_optional_str_port_optional_float_cors_optional_str_apis_optional_str_
-) -> bool
+def start_w_s(host: optional[str], port: optional[float], cors: optional[str],
+              apis: optional[str]) -> bool
 ```
 
 The startWS administrative method starts an WebSocket based JSON RPC API webserver to handle client requests
  All the parameters are optional
 #### Arguments
 
-host: Network interface to open the listener socket on (defaults to "localhost")
+host: Network interface to open the listener socket on (defaults to &quot;localhost&quot;)
 port: Network port to open the listener socket on (defaults to 8546)
-cors: cross-origin resource sharing header to use (defaults to "")
-apis: API modules to offer over this interface (defaults to "etd,net,web3")
+cors: cross-origin resource sharing header to use (defaults to &quot;&quot;)
+apis: API modules to offer over this interface (defaults to &quot;etd,net,web3&quot;)
 #### Returns
 
 wEBlistenerOpen: A boolean flag specifying whether the WebSocket RPC listener was opened or not. Please note, only one WebSocket endpoint is allowed to be active at any time.

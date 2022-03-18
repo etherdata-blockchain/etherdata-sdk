@@ -4,7 +4,6 @@
       "items": [
         {
           "items": [
-            "api/etherdata_sdk/json_rpc/__init__",
             "api/etherdata_sdk/json_rpc/admin",
             "api/etherdata_sdk/json_rpc/clique",
             "api/etherdata_sdk/json_rpc/debug",
@@ -21,13 +20,11 @@
         },
         {
           "items": [
-            "api/etherdata_sdk/utils/__init__",
             "api/etherdata_sdk/utils/to_dict"
           ],
           "label": "etherdata_sdk.utils",
           "type": "category"
-        },
-        "api/etherdata_sdk/__init__"
+        }
       ],
       "label": "etherdata_sdk",
       "type": "category"

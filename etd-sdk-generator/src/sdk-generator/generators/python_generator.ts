@@ -17,7 +17,11 @@ import {
 } from "../utils/python_utils";
 
 import { exec } from "child_process";
-import { capitalizeFirstLetter, lowercaseFirstLetter } from "../utils/filters";
+import {
+  capitalizeFirstLetter,
+  ensureSnakeCaseFilter,
+  lowercaseFirstLetter,
+} from "../utils/filters";
 
 export class PythonGenerator extends TypescriptGenerator {
   functionTemplatePath = "templates/python/functionTemplate.j2";
@@ -107,10 +111,9 @@ export class PythonGenerator extends TypescriptGenerator {
     let types: TypeResult[] = [];
     for (let param of params) {
       const result = this.generateType(param);
-      code += `${
-        cleanPythonVariableName(lowercaseFirstLetter(param.name))
-          .cleanVariableName
-      } : ${result.type}`;
+      code += `${ensureSnakeCaseFilter(
+        cleanPythonVariableName(param.name).cleanVariableName
+      )}:${result.type}`;
       types = types.concat(result.types);
 
       if (result.isCustomType) {
@@ -206,8 +209,10 @@ export class PythonGenerator extends TypescriptGenerator {
   }
 
   protected generateComment(
-    func: RPCFunction | undefined,
-    method: Method | undefined
+    func?: RPCFunction | undefined,
+    method?: Method | undefined,
+    inputTypes?: InputParamResult,
+    returnType?: TypeResult
   ): string {
     let returnComment = `"""\n`;
     let comment = "";
@@ -232,7 +237,10 @@ export class PythonGenerator extends TypescriptGenerator {
         )}: ${line.description.replace("/", "")}\n`;
       }
       // Add returns header
-      if (func.returns.length > 0) returnComment += "#### Returns\n\n";
+      if (func.returns.length > 0)
+        returnComment += `#### Returns ${
+          returnType?.isCustomType ? `#${returnType.type}` : ""
+        } \n\n`;
       for (let line of func.returns) {
         returnComment += `${lowercaseFirstLetter(
           line.name

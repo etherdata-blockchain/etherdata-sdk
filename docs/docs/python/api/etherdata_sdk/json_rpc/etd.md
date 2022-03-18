@@ -1,3 +1,8 @@
+---
+sidebar_label: etd
+title: etherdata_sdk.json_rpc.etd
+---
+
 ## Etd Objects
 
 ```python
@@ -5,12 +10,6 @@ class Etd()
 ```
 
 Getd provides several extensions to the standard etd JSON-RPC namespace
-
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
 
 #### subscribe
 

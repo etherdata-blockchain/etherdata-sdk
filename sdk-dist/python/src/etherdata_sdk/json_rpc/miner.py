@@ -43,7 +43,7 @@ class Miner:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def set_gas_price(self, price_float) -> None:
+    def set_gas_price(self, price: float) -> None:
         """
         Sets the minimal accepted gas price when mining transactions
          Any transactions that are below this limit are excluded from the mining process
@@ -86,7 +86,7 @@ class Miner:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def set_etherbase(self, etherbase_str) -> None:
+    def set_etherbase(self, etherbase: str) -> None:
         """
         Sets the etherbase, where mining rewards will go
         #### Arguments

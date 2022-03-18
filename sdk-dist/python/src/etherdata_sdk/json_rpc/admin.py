@@ -133,7 +133,7 @@ class Admin:
     def __init__(self, url: str):
         self.url = url
 
-    def add_peer(self, enode_str) -> bool:
+    def add_peer(self, enode: str) -> bool:
         """
         The addPeer administrative method requests adding a new remote node to the list of tracked static nodes
          The node will try to maintain connectivity to these nodes at all times, reconnecting every once in a while if the remote connection goes down
@@ -176,7 +176,7 @@ class Admin:
          These include general information about the node itself as a participant of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
         g
          etd, les, shh, bzz)
-        #### Returns
+        #### Returns #NodeInfoResponseNodeInfo
 
         nodeInfo: Get all the information known about the running Getd node at the networking granularity
         """
@@ -195,7 +195,7 @@ class Admin:
          These include general information about the nodes themselves as participants of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
         g
          etd, les, shh, bzz)
-        #### Returns
+        #### Returns #List[PeersArray]
 
         peersArray: All the information known about the connected remote nodes
         """
@@ -210,7 +210,10 @@ class Admin:
 
     def start_r_p_c(
             self,
-            host_optional_str_port_optional_float_cors_optional_str_apis_optional_str_) -> bool:
+            host: optional[str],
+            port: optional[float],
+            cors: optional[str],
+            apis: optional[str]) -> bool:
         """
         The startRPC administrative method starts an HTTP based JSON RPC API webserver to handle client requests
          All the parameters are optional
@@ -235,7 +238,10 @@ class Admin:
 
     def start_w_s(
             self,
-            host_optional_str_port_optional_float_cors_optional_str_apis_optional_str_) -> bool:
+            host: optional[str],
+            port: optional[float],
+            cors: optional[str],
+            apis: optional[str]) -> bool:
         """
         The startWS administrative method starts an WebSocket based JSON RPC API webserver to handle client requests
          All the parameters are optional

@@ -1,3 +1,8 @@
+---
+sidebar_label: personal
+title: etherdata_sdk.json_rpc.personal
+---
+
 ## Tx Objects
 
 ```python
@@ -27,16 +32,10 @@ class Personal()
 
 The personal API manages private keys in the key store
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### import\_raw\_key
 
 ```python
-def import_raw_key(privete_key_str) -> str
+def import_raw_key(privete_key: str) -> str
 ```
 
 Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
@@ -71,7 +70,7 @@ Removes the private key with given address from memory
 #### new\_account
 
 ```python
-def new_account(passphrase_optional_str_) -> str
+def new_account(passphrase: optional[str]) -> str
 ```
 
 Generates a new private key and stores it in the key store directory
@@ -89,9 +88,8 @@ priveteKey: The generated priveteKey
 #### unlock\_account
 
 ```python
-def unlock_account(
-    account_address_str_passphrase_optional_str_unlock_duration_optional_float_
-) -> bool
+def unlock_account(account_address: str, passphrase: optional[str],
+                   unlock_duration: optional[float]) -> bool
 ```
 
 Decrypts the key with the given address from the key store
@@ -116,7 +114,7 @@ unlockState: Indicating whether is the account unlocked successfully
 #### send\_transaction
 
 ```python
-def send_transaction(tx_tx) -> str
+def send_transaction(tx: tx) -> str
 ```
 
 Validate the given passphrase and submit transaction
@@ -129,10 +127,10 @@ from the transaction is verified, signed and send onto the network
 Note, prior to Getd 1
 5, please use personal_signAndSendTransaction as that was the original introductory name and only later renamed to the current final version
 
-Example '&gt; var tx = {from':' "0x391694e7e0b0cce554cb130d723a9d27458f9298", to':' "0xafa3f8684e54059998bc3a7b0d2b0da075154d66", value':' web3
+Example &#x27;&gt; var tx = {from&#x27;:&#x27; &quot;0x391694e7e0b0cce554cb130d723a9d27458f9298&quot;, to&#x27;:&#x27; &quot;0xafa3f8684e54059998bc3a7b0d2b0da075154d66&quot;, value&#x27;:&#x27; web3
 toWei(1
-23, "ether")} undefined "&gt; personal
-sendTransaction(tx, "passphrase")" 0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f'
+23, &quot;ether&quot;)} undefined &quot;&gt; personal
+sendTransaction(tx, &quot;passphrase&quot;)&quot; 0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f&#x27;
 #### Arguments
 
 tx: The transaction
@@ -143,11 +141,11 @@ address: The address
 #### sign
 
 ```python
-def sign(a_str_b_str_c_str) -> str
+def sign(a: str, b: str, c: str) -> str
 ```
 
-The sign method calculates an Ethereum specific signature with ' sign(keccack256("\x19Ethereum Signed Message:\n" + len(message) + message)))
- '
+The sign method calculates an Ethereum specific signature with &#x27; sign(keccack256(&quot;\x19Ethereum Signed Message:\n&quot; + len(message) + message)))
+ &#x27;
 By adding a prefix to the message makes the calculated signature recognisable as an Ethereum specific signature
  This prevents misuse where a malicious DApp can sign arbitrary data (e
 g
@@ -166,7 +164,7 @@ value: abcde
 #### ec\_recover
 
 ```python
-def ec_recover(a_str_b_str) -> str
+def ec_recover(a: str, b: str) -> str
 ```
 
 ecRecover returns the address associated with the private key that was used to calculate the signature in personal_sign

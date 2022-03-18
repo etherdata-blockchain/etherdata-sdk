@@ -1,3 +1,8 @@
+---
+sidebar_label: to_dict
+title: etherdata_sdk.utils.to_dict
+---
+
 #### to\_dict
 
 ```python

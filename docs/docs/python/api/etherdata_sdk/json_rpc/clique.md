@@ -1,3 +1,8 @@
+---
+sidebar_label: clique
+title: etherdata_sdk.json_rpc.clique
+---
+
 ## GetSnapshotResponseRecents Objects
 
 ```python
@@ -96,23 +101,17 @@ class Clique()
 The clique API provides access to the state of the clique consensus engine
  You can use this API to manage signer votes and to check the health of a private network
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### get\_snapshot
 
 ```python
-def get_snapshot(number_float) -> GetSnapshotResponseSnapshot
+def get_snapshot(number: float) -> GetSnapshotResponseSnapshot
 ```
 
 Retrieves a snapshot of all clique state at a given block
 #### Arguments
 
 number: The number of the block
-#### Returns
+#### Returns [`GetSnapshotResponseSnapshot`](#getsnapshotresponsesnapshot-objects)
 
 snapshot: Snapshot of all clique state at the given block
 
@@ -175,7 +174,7 @@ def status() -> StatusResponse
 ```
 
 This is a debugging method which returns statistics about signer activity for the last 64 blocks
-#### Returns
+#### Returns [`StatusResponse`](#statusresponse-objects)
 
 inturnPercent: Percentage of blocks signed in-turn
 sealerActivity: A object containing signer addresses and the number of blocks signed by them

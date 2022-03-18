@@ -163,7 +163,7 @@ class Debug:
     def __init__(self, url: str):
         self.url = url
 
-    def backtrace_at(self, location_javascript_based_any) -> None:
+    def backtrace_at(self, location_javascript_based: any) -> None:
         """
         Sets the logging backtrace location
          When a backtrace location is set and a log message is emitted at that location, the stack of the goroutine executing the log statement will be printed to stderr
@@ -209,13 +209,13 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def dump_block(self, block_num_float) -> DumpBlockResponseBlockDetails:
+    def dump_block(self, block_num: float) -> DumpBlockResponseBlockDetails:
         """
         Retrieves the state that corresponds to the block number and returns a list of accounts (including storage and code)
         #### Arguments
 
         blockNum: The block number
-        #### Returns
+        #### Returns #DumpBlockResponseBlockDetails
 
         blockDetails: The block number and list of accounts
         """
@@ -315,7 +315,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def set_block_profile_rate(self, rate_float) -> None:
+    def set_block_profile_rate(self, rate: float) -> None:
         """
         Sets the rate (in samples/sec) of goroutine block profile data collection
          A non-zero rate enables block profiling, setting it to zero stops the profile
@@ -402,7 +402,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def trace_block(self, block_name_str) -> TraceBlockResponseBlcok:
+    def trace_block(self, block_name: str) -> TraceBlockResponseBlcok:
         """
         The traceBlock method will return a full stack trace of all invoked opcodes of all transaction that were included in this block
          Note, the parent of this block must be present or it will fail
@@ -410,7 +410,7 @@ class Debug:
         #### Arguments
 
         blockName: The name of the traced block
-        #### Returns
+        #### Returns #TraceBlockResponseBlcok
 
         blcok: The stack trace of transcation of the block
         """
@@ -423,7 +423,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return TraceBlockResponseBlcok.from_dict(response.json()["result"])
 
-    def trace_block_by_number(self, block_num_str) -> Any:
+    def trace_block_by_number(self, block_num: str) -> Any:
         """
         Similar to debug_traceBlock,traceBlockByNumber accepts a block number and will replay the block that is already present in the database
          References -> RLP
@@ -443,7 +443,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def trace_block_by_hash(self, block_hash_str) -> Any:
+    def trace_block_by_hash(self, block_hash: str) -> Any:
         """
         Similar to debug_traceBlock,traceBlockByHash accepts a block hash and will replay the block that is already present in the database
          References -> RLP
@@ -463,7 +463,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def trace_block_from_file(self, file_any) -> Any:
+    def trace_block_from_file(self, file: any) -> Any:
         """
         Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
          References -> RLP
@@ -485,7 +485,9 @@ class Debug:
 
     def standard_trace_block_to_file(
             self,
-            block_str_tx_hash_optional_str_disable_memory_optional_bool_) -> List[str]:
+            block: str,
+            tx_hash: optional[str],
+            disable_memory: optional[bool]) -> List[str]:
         """
         When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that could stream results back via a subscription channel
          This method works a bit differently
@@ -531,7 +533,12 @@ class Debug:
 
     def trace_transaction(
             self,
-            hash_str_disable_storage_optional_bool_disable_memory_optional_bool_disable_stack_optional_bool_tracer_optional_str_timeout_optional_str_) -> TraceTransactionResponseTransaction:
+            hash: str,
+            disable_storage: optional[bool],
+            disable_memory: optional[bool],
+            disable_stack: optional[bool],
+            tracer: optional[str],
+            timeout: optional[str]) -> TraceTransactionResponseTransaction:
         """
         OBS In most scenarios, debug
         standardTraceBlockToFile is better suited for tracing! The traceTransaction debugging method will attempt to run the transaction in the exact same manner as it was executed on the network
@@ -559,7 +566,7 @@ class Debug:
         disableStack: Setting this to true will disable stack capture (default = false).
         tracer: Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.
         timeout: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
-        #### Returns
+        #### Returns #TraceTransactionResponseTransaction
 
         transaction: The stack trace of transcation of the block
         """
@@ -593,7 +600,12 @@ class Debug:
 
     def trace_call(
             self,
-            to_str_from_field_optional_str_gas_optional_str_gas_price_optional_float_value_optional_float_data_optional_str_) -> Any:
+            to: str,
+            from_field: optional[str],
+            gas: optional[str],
+            gas_price: optional[float],
+            value: optional[float],
+            data: optional[str]) -> Any:
         """
         The debug_traceCall method lets you run an eth_call on top of a given block
          The block can be specified either by hash or by number
@@ -647,7 +659,7 @@ class Debug:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def vmodule(self, message_restrictions_str) -> str:
+    def vmodule(self, message_restrictions: str) -> str:
         """
         Sets the logging verbosity pattern
         #### Arguments

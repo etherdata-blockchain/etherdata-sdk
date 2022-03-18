@@ -94,13 +94,13 @@ class Clique:
     def __init__(self, url: str):
         self.url = url
 
-    def get_snapshot(self, number_float) -> GetSnapshotResponseSnapshot:
+    def get_snapshot(self, number: float) -> GetSnapshotResponseSnapshot:
         """
         Retrieves a snapshot of all clique state at a given block
         #### Arguments
 
         number: The number of the block
-        #### Returns
+        #### Returns #GetSnapshotResponseSnapshot
 
         snapshot: Snapshot of all clique state at the given block
         """
@@ -193,7 +193,7 @@ class Clique:
     def status(self, ) -> StatusResponse:
         """
         This is a debugging method which returns statistics about signer activity for the last 64 blocks
-        #### Returns
+        #### Returns #StatusResponse
 
         inturnPercent: Percentage of blocks signed in-turn
         sealerActivity: A object containing signer addresses and the number of blocks signed by them

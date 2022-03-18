@@ -1,3 +1,8 @@
+---
+sidebar_label: debug
+title: etherdata_sdk.json_rpc.debug
+---
+
 ## Accounts Objects
 
 ```python
@@ -156,16 +161,10 @@ class Debug()
 
 The debug API gives you access to several non-standard RPC methods, which will allow you to inspect, debug and set certain debugging flags during runtime
 
-#### \_\_init\_\_
-
-```python
-def __init__(url: str)
-```
-
 #### backtrace\_at
 
 ```python
-def backtrace_at(location_javascript_based_any) -> None
+def backtrace_at(location_javascript_based: any) -> None
 ```
 
 Sets the logging backtrace location
@@ -196,14 +195,14 @@ Turns on CPU profiling for the given duration and writes profile data to disk
 #### dump\_block
 
 ```python
-def dump_block(block_num_float) -> DumpBlockResponseBlockDetails
+def dump_block(block_num: float) -> DumpBlockResponseBlockDetails
 ```
 
 Retrieves the state that corresponds to the block number and returns a list of accounts (including storage and code)
 #### Arguments
 
 blockNum: The block number
-#### Returns
+#### Returns [`DumpBlockResponseBlockDetails`](#dumpblockresponseblockdetails-objects)
 
 blockDetails: The block number and list of accounts
 
@@ -215,7 +214,7 @@ def gc_stats() -> None
 
 Returns GC statistics
  See https://golang
-org/pkg/runtime/debug/#GCStats for information about the fields of the returned object
+org/pkg/runtime/debug/`GCStats` for information about the fields of the returned object
 
 #### get\_block\_rlp
 
@@ -242,7 +241,7 @@ def mem_stats() -> None
 
 Returns detailed runtime memory statistics
  See https://golang
-org/pkg/runtime/#MemStats for information about the fields of the returned object
+org/pkg/runtime/`MemStats` for information about the fields of the returned object
 
 #### seed\_hash
 
@@ -266,7 +265,7 @@ Sets the current head of the local chain by block number
 #### set\_block\_profile\_rate
 
 ```python
-def set_block_profile_rate(rate_float) -> None
+def set_block_profile_rate(rate: float) -> None
 ```
 
 Sets the rate (in samples/sec) of goroutine block profile data collection
@@ -323,7 +322,7 @@ Stops writing the Go runtime trace
 #### trace\_block
 
 ```python
-def trace_block(block_name_str) -> TraceBlockResponseBlcok
+def trace_block(block_name: str) -> TraceBlockResponseBlcok
 ```
 
 The traceBlock method will return a full stack trace of all invoked opcodes of all transaction that were included in this block
@@ -332,14 +331,14 @@ The traceBlock method will return a full stack trace of all invoked opcodes of a
 #### Arguments
 
 blockName: The name of the traced block
-#### Returns
+#### Returns [`TraceBlockResponseBlcok`](#traceblockresponseblcok-objects)
 
 blcok: The stack trace of transcation of the block
 
 #### trace\_block\_by\_number
 
 ```python
-def trace_block_by_number(block_num_str) -> Any
+def trace_block_by_number(block_num: str) -> Any
 ```
 
 Similar to debug_traceBlock,traceBlockByNumber accepts a block number and will replay the block that is already present in the database
@@ -354,7 +353,7 @@ block: Replaying the block that is already present in the database
 #### trace\_block\_by\_hash
 
 ```python
-def trace_block_by_hash(block_hash_str) -> Any
+def trace_block_by_hash(block_hash: str) -> Any
 ```
 
 Similar to debug_traceBlock,traceBlockByHash accepts a block hash and will replay the block that is already present in the database
@@ -369,7 +368,7 @@ block: Replaying the block that is already present in the database
 #### trace\_block\_from\_file
 
 ```python
-def trace_block_from_file(file_any) -> Any
+def trace_block_from_file(file: any) -> Any
 ```
 
 Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
@@ -384,15 +383,14 @@ block: Replaying the block that is already present in the database
 #### standard\_trace\_block\_to\_file
 
 ```python
-def standard_trace_block_to_file(
-        block_str_tx_hash_optional_str_disable_memory_optional_bool_
-) -> List[str]
+def standard_trace_block_to_file(block: str, tx_hash: optional[str],
+                                 disable_memory: optional[bool]) -> List[str]
 ```
 
 When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that could stream results back via a subscription channel
  This method works a bit differently
  (For full details, see PR)
--It streams output to disk during the execution, to not blow up the memory usage on the node -It uses jsonl as output format (to allow streaming) -Uses a cross-client standardized output, so called ‘standard json' ~Uses op for string-representation of opcode, instead of op/opName for numeric/string, and other simlar small differences
+-It streams output to disk during the execution, to not blow up the memory usage on the node -It uses jsonl as output format (to allow streaming) -Uses a cross-client standardized output, so called ‘standard json&#x27; ~Uses op for string-representation of opcode, instead of op/opName for numeric/string, and other simlar small differences
  ~has refund ~Represents memory as a contiguous chunk of data, as opposed to a list of 32 byte segments like debug_traceTransaction
 This means that this method is only ‘useful’ for callers who control the node – at least sufficiently to be able to read the artefacts from the filesystem after the fact
 #### Arguments
@@ -403,11 +401,11 @@ disableMemory: disableMemory
 #### Returns
 
 output: output
-'The method can be used to dump a certain transaction out of a given block &gt; debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {txHash:"0x4049f61ffbb0747bb88dc1c85dd6686ebf225a3c10c282c45a8e0c644739f7e9", disableMemory:true}) ["tmp/block_0x0bbe9f14-14-0x4049f61f-099048234"]
-Or all txs from a block &gt; debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {disableMemory:true}) ["/tmp/block_0x0bbe9f14-0-0xb4502ea7-409046657", "/tmp/block_0x0bbe9f14-1-0xe839be8f-954614764",...]
+&#x27;The method can be used to dump a certain transaction out of a given block &gt; debug.standardTraceBlockToFile(&quot;0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63&quot;, {txHash:&quot;0x4049f61ffbb0747bb88dc1c85dd6686ebf225a3c10c282c45a8e0c644739f7e9&quot;, disableMemory:true}) [&quot;tmp/block_0x0bbe9f14-14-0x4049f61f-099048234&quot;]
+Or all txs from a block &gt; debug.standardTraceBlockToFile(&quot;0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63&quot;, {disableMemory:true}) [&quot;/tmp/block_0x0bbe9f14-0-0xb4502ea7-409046657&quot;, &quot;/tmp/block_0x0bbe9f14-1-0xe839be8f-954614764&quot;,...]
 Files are created in a temp-location, with the naming standard block_&lt;blockhash:4&gt;-&lt;txindex&gt;-&lt;txhash:4&gt;-&lt;random suffix&gt;. Each opcode immediately streams to file, with no in-Getd buffering aside from whatever buffering the os normally does.
 On the server side, it also adds some more info when regenerating historical state, namely, the reexec-number if required historical state is not avaiable is encountered, so a user can experiment with increasing that setting. It also prints out the remaining block until it reaches target
-The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uint64 TxHash *common.Hash } '
+The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uint64 TxHash *common.Hash } &#x27;
 
 #### standard\_trace\_bad\_block\_to\_file
 
@@ -421,8 +419,10 @@ This method is similar to debug_standardTraceBlockToFile, but can be used to obt
 
 ```python
 def trace_transaction(
-    hash_str_disable_storage_optional_bool_disable_memory_optional_bool_disable_stack_optional_bool_tracer_optional_str_timeout_optional_str_
-) -> TraceTransactionResponseTransaction
+        hash: str, disable_storage: optional[bool],
+        disable_memory: optional[bool], disable_stack: optional[bool],
+        tracer: optional[str],
+        timeout: optional[str]) -> TraceTransactionResponseTransaction
 ```
 
 OBS In most scenarios, debug
@@ -451,7 +451,7 @@ disableMemory: Setting this to true will disable memory capture (default = false
 disableStack: Setting this to true will disable stack capture (default = false).
 tracer: Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.
 timeout: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
-#### Returns
+#### Returns [`TraceTransactionResponseTransaction`](#tracetransactionresponsetransaction-objects)
 
 transaction: The stack trace of transcation of the block
 
@@ -466,9 +466,9 @@ Javascript
 #### trace\_call
 
 ```python
-def trace_call(
-    to_str_from_field_optional_str_gas_optional_str_gas_price_optional_float_value_optional_float_data_optional_str_
-) -> Any
+def trace_call(to: str, from_field: optional[str], gas: optional[str],
+               gas_price: optional[float], value: optional[float],
+               data: optional[str]) -> Any
 ```
 
 The debug_traceCall method lets you run an eth_call on top of a given block
@@ -512,13 +512,13 @@ message: Log messages with level up to and including the given level will be pri
 #### vmodule
 
 ```python
-def vmodule(message_restrictions_str) -> str
+def vmodule(message_restrictions: str) -> str
 ```
 
 Sets the logging verbosity pattern
 #### Arguments
 
-messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd*=6" If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6" If you want to see log messages from a particular source file, use:                                  "server.go=6" You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level &lt; = 5, use:    "etd peer.go=6,p2p=5"
+messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    &quot;etd*=6&quot; If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: &quot;p2p=6&quot; If you want to see log messages from a particular source file, use:                                  &quot;server.go=6&quot; You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level &lt; = 5, use:    &quot;etd peer.go=6,p2p=5&quot;
 #### Returns
 
 message:
