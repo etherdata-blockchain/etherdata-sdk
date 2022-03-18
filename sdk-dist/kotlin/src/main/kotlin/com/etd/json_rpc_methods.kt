@@ -125,8 +125,8 @@ class Json_rpc_methods(val url: String) {
 
   private val client = HttpClient() { install(JsonFeature) { serializer = GsonSerializer() } }
   /**
-   * Returns the current etdereum protocol version
-   * @return version The current etdereum protocol version
+   * Returns the current etherdata protocol version
+   * @return version The current etherdata protocol version
    */
   suspend fun protocalVersion(): String {
 
@@ -428,10 +428,10 @@ class Json_rpc_methods(val url: String) {
   }
 
   /**
-   * The sign method calculates an etdereum specific signature with
-   * sign(keccak256(&quot;\x19etdereum Signed Message:\n&quot; + len(message) + message)))
+   * The sign method calculates an etherdata specific signature with
+   * sign(keccak256(&quot;\x19etherdata Signed Message:\n&quot; + len(message) + message)))
    *
-   * By adding a prefix to the message makes the calculated signature recognisable as an etdereum
+   * By adding a prefix to the message makes the calculated signature recognisable as an etherdata
    * specific signature This prevents misuse where a malicious DApp can sign arbitrary data (e g
    * transaction) and use the signature to impersonate the victim
    *

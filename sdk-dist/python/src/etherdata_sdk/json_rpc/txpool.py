@@ -158,7 +158,9 @@ class Txpool:
 
         Please note, there may be multiple transactions associated with the same account and nonce
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-        :return transactionObject: The return transaction object
+        #### Returns
+
+        transactionObject: The return transaction object
         """
         json_data = {
             "method": "txpool_content",
@@ -181,7 +183,9 @@ class Txpool:
 
         Please note, there may be multiple transactions associated with the same account and nonce
          This can happen if the user broadcast mutliple ones with varying gas allowances (or even complerely different transactions)
-        :return transactionObject: the return transcation object
+        #### Returns
+
+        transactionObject: the return transcation object
         """
         json_data = {
             "method": "txpool_inspect",
@@ -198,7 +202,9 @@ class Txpool:
         The status inspection property can be queried for the number of transactions currently pending for inclusion in the next block(s), as well as the ones that are being scheduled for future execution only
 
         The result is an object with two fields pending and queued, each of which is a counter representing the number of transactions in that particular state
-        :return statusObject: An object containing transaction status
+        #### Returns
+
+        statusObject: An object containing transaction status
         """
         json_data = {
             "method": "txpool_status",

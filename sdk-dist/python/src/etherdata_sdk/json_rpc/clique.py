@@ -97,8 +97,12 @@ class Clique:
     def get_snapshot(self, number_float) -> GetSnapshotResponseSnapshot:
         """
         Retrieves a snapshot of all clique state at a given block
-        :param number: The number of the block
-        :return snapshot: Snapshot of all clique state at the given block
+        #### Arguments
+
+        number: The number of the block
+        #### Returns
+
+        snapshot: Snapshot of all clique state at the given block
         """
         json_data = {
             "method": "clique.getSnapshot",
@@ -112,7 +116,9 @@ class Clique:
     def get_snapshot_at_hash(self, ) -> Any:
         """
         Retrieves the state snapshot at a given block
-        :return ststeSnapshot: The tate snapshot at the block.
+        #### Returns
+
+        ststeSnapshot: The tate snapshot at the block.
         """
         json_data = {
             "method": "clique_getSnapshotAtHash",
@@ -126,7 +132,9 @@ class Clique:
     def get_signers(self, ) -> List[str]:
         """
         Retrieves the list of authorized signers at the specified block
-        :return signerArray: The list of authorized signers
+        #### Returns
+
+        signerArray: The list of authorized signers
         """
         json_data = {
             "method": "clique_getSigners",
@@ -140,7 +148,9 @@ class Clique:
     def proposals(self, ) -> str:
         """
         Returns the current proposals the node is voting on
-        :return proposal: The current proposals
+        #### Returns
+
+        proposal: The current proposals
         """
         json_data = {
             "method": "clique_proposals",
@@ -183,9 +193,11 @@ class Clique:
     def status(self, ) -> StatusResponse:
         """
         This is a debugging method which returns statistics about signer activity for the last 64 blocks
-        :return inturnPercent: Percentage of blocks signed in-turn
-        :return sealerActivity: A object containing signer addresses and the number of blocks signed by them
-        :return numBlocks: The number of blocks analyzed
+        #### Returns
+
+        inturnPercent: Percentage of blocks signed in-turn
+        sealerActivity: A object containing signer addresses and the number of blocks signed by them
+        numBlocks: The number of blocks analyzed
         """
         json_data = {
             "method": "clique_status",

@@ -3,12 +3,12 @@ description: "different methods to perform etd control"
 
 functions:
   - name: protocalVersion
-    description: Returns the current etdereum protocol version.
+    description: Returns the current etherdata protocol version.
     rpc_method: eth_protocalVersion
     params: []
     returns:
       - name: version
-        description: The current etdereum protocol version
+        description: The current etherdata protocol version
         example: "54"
         type: string
   - name: blockNumber
@@ -282,10 +282,10 @@ functions:
         type: string
 
   - name: sign
-    description: The sign method calculates an etdereum specific signature with
-      sign(keccak256("\x19etdereum Signed Message:\n" + len(message) + message))).
+    description: The sign method calculates an etherdata specific signature with
+      sign(keccak256("\x19etherdata Signed Message:\n" + len(message) + message))).
 
-      By adding a prefix to the message makes the calculated signature recognisable as an etdereum
+      By adding a prefix to the message makes the calculated signature recognisable as an etherdata
       specific signature. This prevents misuse where a malicious DApp can sign arbitrary
       data (e.g. transaction) and use the signature to impersonate the victim.
 
@@ -354,7 +354,7 @@ functions:
           - name: data
             description:
               DATA - The compiled code of a contract OR the hash of the invoked method signature and
-              encoded parameters. For details see etdereum Contract ABI.
+              encoded parameters. For details see etherdata Contract ABI.
             example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
             type: string
             optional: false
@@ -415,7 +415,7 @@ functions:
           - name: data
             description:
               DATA - The compiled code of a contract OR the hash of the invoked method signature and
-              encoded parameters. For details see etdereum Contract ABI.
+              encoded parameters. For details see etherdata Contract ABI.
             example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
             type: string
             optional: false
@@ -493,7 +493,7 @@ functions:
           - name: data
             description:
               DATA - (optional) Hash of the method signature and encoded parameters. For details see
-              etdereum Contract ABI in the Solidity documentation.
+              etherdata Contract ABI in the Solidity documentation.
             example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
             type: string
             optional: true
@@ -554,7 +554,7 @@ functions:
           - name: data
             description:
               DATA - (optional) Hash of the method signature and encoded parameters. For details see
-              etdereum Contract ABI in the Solidity documentation.
+              etherdata Contract ABI in the Solidity documentation.
             example: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
             type: string
             optional: true

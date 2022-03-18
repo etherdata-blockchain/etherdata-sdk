@@ -224,14 +224,17 @@ export class PythonGenerator extends TypescriptGenerator {
     }
 
     if (func) {
+      // Add parameter header
+      if (func.params.length > 0) returnComment += "#### Arguments\n\n";
       for (let line of func.params) {
-        returnComment += `:param ${lowercaseFirstLetter(
+        returnComment += `${lowercaseFirstLetter(
           line.name
         )}: ${line.description.replace("/", "")}\n`;
       }
-
+      // Add returns header
+      if (func.returns.length > 0) returnComment += "#### Returns\n\n";
       for (let line of func.returns) {
-        returnComment += `:return ${lowercaseFirstLetter(
+        returnComment += `${lowercaseFirstLetter(
           line.name
         )}: ${line.description.replace("/", "")}\n`;
       }

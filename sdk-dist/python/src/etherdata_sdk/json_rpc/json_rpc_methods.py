@@ -71,7 +71,7 @@ class Obj:
 
     data: str
     """
-    DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see etdereum Contract ABI.
+    DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see etherdata Contract ABI.
     """
 
     nonce: Optional[str]
@@ -505,8 +505,10 @@ class JsonRpcMethods:
 
     def protocal_version(self, ) -> str:
         """
-        Returns the current etdereum protocol version
-        :return version: The current etdereum protocol version
+        Returns the current etherdata protocol version
+        #### Returns
+
+        version: The current etherdata protocol version
         """
         json_data = {
             "method": "eth_protocalVersion",
@@ -520,7 +522,9 @@ class JsonRpcMethods:
     def block_number(self, ) -> str:
         """
         Returns the current block number
-        :return blockNumber: The current blockNumber
+        #### Returns
+
+        blockNumber: The current blockNumber
         """
         json_data = {
             "method": "eth_blockNumber",
@@ -534,8 +538,10 @@ class JsonRpcMethods:
     def syncing(self, ) -> SyncingResponse:
         """
         Returns an object with data about the sync status or false
-        :return syncObject: return this ONLY when syncing
-        :return syncStatus: return this ONLY when not syncing
+        #### Returns
+
+        syncObject: return this ONLY when syncing
+        syncStatus: return this ONLY when not syncing
         """
         json_data = {
             "method": "eth_syncing",
@@ -549,7 +555,9 @@ class JsonRpcMethods:
     def coinbase(self, ) -> Any:
         """
         Returns the client coinbase address
-        :return coinbase: The client coinbase address
+        #### Returns
+
+        coinbase: The client coinbase address
         """
         json_data = {
             "method": "eth_coinbase",
@@ -563,7 +571,9 @@ class JsonRpcMethods:
     def mining(self, ) -> bool:
         """
         Returns true if client is actively mining new blocks
-        :return isMining: True if client is actively mining new blocks.
+        #### Returns
+
+        isMining: True if client is actively mining new blocks.
         """
         json_data = {
             "method": "eth_mining",
@@ -577,7 +587,9 @@ class JsonRpcMethods:
     def hashrate(self, ) -> Any:
         """
         Returns the number of hashes per second that the node is mining with
-        :return hashrate: The number of hashes per second that the node is mining with
+        #### Returns
+
+        hashrate: The number of hashes per second that the node is mining with
         """
         json_data = {
             "method": "eth_hashrate",
@@ -591,7 +603,9 @@ class JsonRpcMethods:
     def gas_price(self, ) -> Any:
         """
         Returns the current price per gas in wei
-        :return gasPrice: The current price per gas in wei (8049999872 Wei in the example)
+        #### Returns
+
+        gasPrice: The current price per gas in wei (8049999872 Wei in the example)
         """
         json_data = {
             "method": "eth_gasPrice",
@@ -605,7 +619,9 @@ class JsonRpcMethods:
     def accounts(self, ) -> List[Any]:
         """
         Returns a list of addresses owned by client
-        :return addressAccount: The array of accouts
+        #### Returns
+
+        addressAccount: The array of accouts
         """
         json_data = {
             "method": "eth_accounts",
@@ -619,9 +635,13 @@ class JsonRpcMethods:
     def get_balance(self, address_str_tag_str) -> float:
         """
         Returns the balance of the account of given address
-        :param address: DATA, 20 Bytes - address to check for balance
-        :param tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
-        :return balance: QUANTITY - integer of the current balance in wei.
+        #### Arguments
+
+        address: DATA, 20 Bytes - address to check for balance
+        tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+        #### Returns
+
+        balance: QUANTITY - integer of the current balance in wei.
         """
         json_data = {
             "method": "eth_getBalance",
@@ -635,10 +655,14 @@ class JsonRpcMethods:
     def get_storage_at(self, address_any_position_any_tag_str) -> Any:
         """
         Returns the value from a storage position at a given address
-        :param address: DATA, 20 Bytes - address of the storage.
-        :param position: The integer of the position in the storage.
-        :param tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
-        :return valur: The value at this storage position.
+        #### Arguments
+
+        address: DATA, 20 Bytes - address of the storage.
+        position: The integer of the position in the storage.
+        tag: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+        #### Returns
+
+        valur: The value at this storage position.
         """
         json_data = {
             "method": "eth_getStorageAt",
@@ -652,9 +676,13 @@ class JsonRpcMethods:
     def get_transaction_count(self, address_any_state_str) -> float:
         """
         Returns the number of transactions sent from an address
-        :param address: The address.
-        :param state: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
-        :return number: The number of transactions send from this address.
+        #### Arguments
+
+        address: The address.
+        state: QUANTITY_TAG - integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+        #### Returns
+
+        number: The number of transactions send from this address.
         """
         json_data = {
             "method": "eth_getTransactionCount",
@@ -669,9 +697,13 @@ class JsonRpcMethods:
             self, data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
         """
         Returns the number of transactions in a block from a block matching the given block hash
-        :param data: 20 Bytes - The address
-        :param qUANTITY_TAG: integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
-        :return quantity: The integer of the number of transactions send from this address.
+        #### Arguments
+
+        data: 20 Bytes - The address
+        qUANTITY_TAG: integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+        #### Returns
+
+        quantity: The integer of the number of transactions send from this address.
         """
         json_data = {
             "method": "eth_getTransactionCountByHash",
@@ -685,8 +717,12 @@ class JsonRpcMethods:
     def get_block_transaction_count_by_hash(self, data_str) -> str:
         """
         Returns the number of transactions in a block from a block matching the given block hash
-        :param data: 32 Bytes - The hash of a block
-        :return quantity: The integer of the number of transactions in this block.
+        #### Arguments
+
+        data: 32 Bytes - The hash of a block
+        #### Returns
+
+        quantity: The integer of the number of transactions in this block.
         """
         json_data = {
             "method": "eth_getBlockTransactionCountByHash",
@@ -701,8 +737,12 @@ class JsonRpcMethods:
             self, q_u_a_n_t_i_t_y__t_a_g_str) -> str:
         """
         Returns the number of transactions in a block matching the given block number
-        :param qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", see the default block parameter
-        :return quantity: The integer of the number of transactions in this block.
+        #### Arguments
+
+        qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", see the default block parameter
+        #### Returns
+
+        quantity: The integer of the number of transactions in this block.
         """
         json_data = {
             "method": "eth_getBlockTransactionCountByNumber",
@@ -716,8 +756,12 @@ class JsonRpcMethods:
     def get_uncle_count_by_block_hash(self, data_str) -> str:
         """
         Returns the number of uncles in a block from a block matching the given block hash
-        :param data: 32 Bytes - The hash of a block
-        :return qUANTITY_TAG: The integer of the number of uncles in this block.
+        #### Arguments
+
+        data: 32 Bytes - The hash of a block
+        #### Returns
+
+        qUANTITY_TAG: The integer of the number of uncles in this block.
         """
         json_data = {
             "method": "eth_getUncleCountByBlockHash",
@@ -732,8 +776,12 @@ class JsonRpcMethods:
             self, q_u_a_n_t_i_t_y__t_a_g_str) -> str:
         """
         Returns the number of uncles in a block from a block matching the given block number
-        :param qUANTITY_TAG: The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
-        :return quantity: The integer of the number of uncles in this block.
+        #### Arguments
+
+        qUANTITY_TAG: The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
+        #### Returns
+
+        quantity: The integer of the number of uncles in this block.
         """
         json_data = {
             "method": "eth_getUncleCountByBlockNumber",
@@ -747,9 +795,13 @@ class JsonRpcMethods:
     def get_code(self, data_str_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
         """
         Returns code at a given address
-        :param data: 20 Byter - The address
-        :param qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
-        :return data: The code from the given address.
+        #### Arguments
+
+        data: 20 Byter - The address
+        qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter
+        #### Returns
+
+        data: The code from the given address.
         """
         json_data = {
             "method": "eth_code",
@@ -762,17 +814,21 @@ class JsonRpcMethods:
 
     def sign(self, a_str_b_str) -> str:
         """
-        The sign method calculates an etdereum specific signature with sign(keccak256("\x19etdereum Signed Message:\n" + len(message) + message)))
+        The sign method calculates an etherdata specific signature with sign(keccak256("\x19etherdata Signed Message:\n" + len(message) + message)))
 
-        By adding a prefix to the message makes the calculated signature recognisable as an etdereum specific signature
+        By adding a prefix to the message makes the calculated signature recognisable as an etherdata specific signature
          This prevents misuse where a malicious DApp can sign arbitrary data (e
         g
          transaction) and use the signature to impersonate the victim
 
         Note the address to sign with must be unlocked
-        :param a: 20 Bytes - The address
-        :param b: N Bytes - The message to sign
-        :return value: The signature
+        #### Arguments
+
+        a: 20 Bytes - The address
+        b: N Bytes - The message to sign
+        #### Returns
+
+        value: The signature
         """
         json_data = {
             "method": "eth_sign",
@@ -786,8 +842,12 @@ class JsonRpcMethods:
     def sign_transaction(self, obj_obj) -> str:
         """
         Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
-        :param obj: The transaction object
-        :return data: The signed transaction object.
+        #### Arguments
+
+        obj: The transaction object
+        #### Returns
+
+        data: The signed transaction object.
         """
         json_data = {
             "method": "eth_signTransaction",
@@ -801,8 +861,12 @@ class JsonRpcMethods:
     def send_transcation(self, obj_obj) -> str:
         """
         Creates new message call transaction or a contract creation, if the data field contains code
-        :param obj: The transaction object
-        :return data: 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+        #### Arguments
+
+        obj: The transaction object
+        #### Returns
+
+        data: 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
         """
         json_data = {
             "method": "eth_sendTranscation",
@@ -816,8 +880,12 @@ class JsonRpcMethods:
     def send_raw_transaction(self, data_str) -> str:
         """
         Creates new message call transaction or a contract creation for signed transactions
-        :param data: The signed transaction data.
-        :return data: 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
+        #### Arguments
+
+        data: The signed transaction data.
+        #### Returns
+
+        data: 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available. Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.
         """
         json_data = {
             "method": "eth_sendRawTransaction",
@@ -831,9 +899,13 @@ class JsonRpcMethods:
     def call(self, obj_obj_q_u_a_n_t_i_t_y__t_a_g_str) -> str:
         """
         Executes a new message call immediately without creating a transaction on the block chain
-        :param obj: The transaction object
-        :param qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
-        :return data: The return value of executed contract.
+        #### Arguments
+
+        obj: The transaction object
+        qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
+        #### Returns
+
+        data: The return value of executed contract.
         """
         json_data = {
             "method": "eth_call",
@@ -849,9 +921,13 @@ class JsonRpcMethods:
         Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
          The transaction will not be added to the blockchain
          Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance
-        :param obj: The transaction object
-        :param qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
-        :return quantity: The amount of gas used.
+        #### Arguments
+
+        obj: The transaction object
+        qUANTITY_TAG: The integer block number, or the string "latest", "earliest" or "pending", see the default block parameter.
+        #### Returns
+
+        quantity: The amount of gas used.
         """
         json_data = {
             "method": "eth_estimateGas",
@@ -867,9 +943,13 @@ class JsonRpcMethods:
             data_str_bool_field_bool) -> GetBlockByHashResponseObj:
         """
         Returns information about a block by hash
-        :param data: 32 Bytes - Hash of a block.
-        :param bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-        :return obj: A block object, or null when no block was found
+        #### Arguments
+
+        data: 32 Bytes - Hash of a block.
+        bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
+        #### Returns
+
+        obj: A block object, or null when no block was found
         """
         json_data = {
             "method": "eth_getBlockByHash",
@@ -885,9 +965,13 @@ class JsonRpcMethods:
             q_u_a_n_t_i_t_y__t_a_g_str_bool_field_bool) -> GetBlockByNumberResponseObj:
         """
         Returns information about a block by block number
-        :param qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
-        :param bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
-        :return obj: A block object, or null when no block was found
+        #### Arguments
+
+        qUANTITY_TAG: The integer of a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+        bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
+        #### Returns
+
+        obj: A block object, or null when no block was found
         """
         json_data = {
             "method": "eth_getBlockByNumber",
@@ -902,8 +986,12 @@ class JsonRpcMethods:
             self, data_str) -> GetTransactionByHashResponseObj:
         """
         Returns the information about a transaction requested by transaction hash
-        :param data: 32 Bytes - hash of a transaction
-        :return obj: A transaction object, or null when no transaction was found
+        #### Arguments
+
+        data: 32 Bytes - hash of a transaction
+        #### Returns
+
+        obj: A transaction object, or null when no transaction was found
         """
         json_data = {
             "method": "eth_getTransactionByHash",
@@ -919,9 +1007,13 @@ class JsonRpcMethods:
             self, data_str_quantity_str) -> GetTransactionByHashAndIndexResponseObj:
         """
         Returns information about a transaction by block hash and transaction index position
-        :param data: 32 Bytes - hash of a block.
-        :param quantity: The integer of the transaction index position.
-        :return obj: See eth_getTransactionByHash
+        #### Arguments
+
+        data: 32 Bytes - hash of a block.
+        quantity: The integer of the transaction index position.
+        #### Returns
+
+        obj: See eth_getTransactionByHash
         """
         json_data = {
             "method": "eth_getTransactionByHashAndIndex",
@@ -938,9 +1030,13 @@ class JsonRpcMethods:
             q_u_a_n_t_i_t_y__t_a_g_str_quantity_str) -> GetTransactionByBlockNumberAndIndexResponseObj:
         """
         Returns information about a transaction by block number and transaction index position
-        :param qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
-        :param quantity: The transaction index position.
-        :return obj: See eth_getTransactionByHash
+        #### Arguments
+
+        qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+        quantity: The transaction index position.
+        #### Returns
+
+        obj: See eth_getTransactionByHash
         """
         json_data = {
             "method": "eth_getTransactionByBlockNumberAndIndex",
@@ -957,8 +1053,12 @@ class JsonRpcMethods:
         """
         Returns the receipt of a transaction by transaction hash
          Note That the receipt is not available for pending transactions
-        :param data: 32 Bytes - hash of a transaction
-        :return obj: A transaction receipt object, or null when no receipt was found
+        #### Arguments
+
+        data: 32 Bytes - hash of a transaction
+        #### Returns
+
+        obj: A transaction receipt object, or null when no receipt was found
         """
         json_data = {
             "method": "eth_getTransactionReceipt",
@@ -974,9 +1074,13 @@ class JsonRpcMethods:
             self, data_str_quantity_str) -> GetUncleByBlockHashAndIndexResponseObj:
         """
         eturns information about a uncle of a block by hash and uncle index position
-        :param data: 32 Bytes - The hash of a block.
-        :param quantity: The uncle’s index position.
-        :return obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+        #### Arguments
+
+        data: 32 Bytes - The hash of a block.
+        quantity: The uncle’s index position.
+        #### Returns
+
+        obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
         """
         json_data = {
             "method": "eth_getUncleByBlockHashAndIndex",
@@ -993,9 +1097,13 @@ class JsonRpcMethods:
             q_u_a_n_t_i_t_y__t_a_g_str_quantity_str) -> GetUncleByBlockNumberAndIndexResponseObj:
         """
         Returns information about a uncle of a block by number and uncle index position
-        :param qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
-        :param quantity: the uncle’s index position.
-        :return obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
+        #### Arguments
+
+        qUANTITY_TAG: a block number, or the string "earliest", "latest" or "pending", as in the default block parameter.
+        quantity: the uncle’s index position.
+        #### Returns
+
+        obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual transactions.
         """
         json_data = {
             "method": "eth_getUncleByBlockNumberAndIndex",
@@ -1010,7 +1118,9 @@ class JsonRpcMethods:
     def get_compliers(self, ) -> List[str]:
         """
         Returns a list of available compilers in the client
-        :return array: Array of available compilers.
+        #### Returns
+
+        array: Array of available compilers.
         """
         json_data = {
             "method": "eth_getCompliers",
@@ -1024,8 +1134,12 @@ class JsonRpcMethods:
     def compile_solidity(self, string_str) -> str:
         """
         Returns compiled solidity code
-        :param string: The source code.
-        :return data: The compiled source code.
+        #### Arguments
+
+        string: The source code.
+        #### Returns
+
+        data: The compiled source code.
         """
         json_data = {
             "method": "eth_compileSolidity",
@@ -1039,8 +1153,12 @@ class JsonRpcMethods:
     def complpie_l_l_l(self, string_str) -> str:
         """
         Returns compiled LLL code
-        :param string: The source code.
-        :return data: The compiled source code.
+        #### Arguments
+
+        string: The source code.
+        #### Returns
+
+        data: The compiled source code.
         """
         json_data = {
             "method": "eth_complpieLLL",
@@ -1054,8 +1172,12 @@ class JsonRpcMethods:
     def complie_serpent(self, string_str) -> str:
         """
         Returns compiled serpent code
-        :param string: The source code.
-        :return data: The compiled source code.
+        #### Arguments
+
+        string: The source code.
+        #### Returns
+
+        data: The compiled source code.
         """
         json_data = {
             "method": "eth_complieSerpent",
@@ -1074,8 +1196,12 @@ class JsonRpcMethods:
         A note on specifying topic filters Topics are order-dependent
          A transaction with a log with topics [A, B] will be matched by the following topic filters
         -[] “anything” -[A] “A in first position (and anything after)” -[null, B] “anything in first position AND B in second position (and anything after)” -[A, B] “A in first position AND B in second position (and anything after)” -[[A, B], [A, B]] “(A OR B) in first position AND (A OR B) in second position (and anything after)”
-        :param obj: The filter options
-        :return quantity: A filter id.
+        #### Arguments
+
+        obj: The filter options
+        #### Returns
+
+        quantity: A filter id.
         """
         json_data = {
             "method": "eth_newFilter",
@@ -1090,7 +1216,9 @@ class JsonRpcMethods:
         """
         Creates a filter in the node, to notify when a new block arrives
          To check if the state has changed, call eth_getFilterChanges
-        :return quantity: A filter id.
+        #### Returns
+
+        quantity: A filter id.
         """
         json_data = {
             "method": "eth_newBlockFilter",
@@ -1105,7 +1233,9 @@ class JsonRpcMethods:
         """
         Creates a filter in the node, to notify when new pending transactions arrive
          To check if the state has changed, call eth_getFilterChanges
-        :return quantity: A filter id.
+        #### Returns
+
+        quantity: A filter id.
         """
         json_data = {
             "method": "eth_newPendingTransactionFilter",
@@ -1122,8 +1252,12 @@ class JsonRpcMethods:
          Should always be called when watch is no longer needed
          Additonally Filters timeout when they aren’t requested with eth_getFilterChanges
          for a period of time
-        :param quantity: The filter id.
-        :return bool: true if the filter was successfully uninstalled, otherwise false.
+        #### Arguments
+
+        quantity: The filter id.
+        #### Returns
+
+        bool: true if the filter was successfully uninstalled, otherwise false.
         """
         json_data = {
             "method": "eth_uninstallFilter",
@@ -1137,8 +1271,12 @@ class JsonRpcMethods:
     def get_filter_changes(self, quantity_str) -> List[Array]:
         """
         Polling method for a filter, which returns an array of logs which occurred since last poll
-        :param quantity: The filter id.
-        :return array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. ["0x3454645634534..."]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
+        #### Arguments
+
+        quantity: The filter id.
+        #### Returns
+
+        array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. ["0x3454645634534..."]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. ["0x6345343454645..."].
         """
         json_data = {
             "method": "eth_getFilterChanges",
@@ -1152,8 +1290,12 @@ class JsonRpcMethods:
     def get_filter_logs(self, quantity_str) -> List[Any]:
         """
         Returns an array of all logs matching filter with given id
-        :param quantity: The filter id.
-        :return array: See eth_getFilterChanges.
+        #### Arguments
+
+        quantity: The filter id.
+        #### Returns
+
+        array: See eth_getFilterChanges.
         """
         json_data = {
             "method": "eth_getFilterLogs",
@@ -1167,8 +1309,12 @@ class JsonRpcMethods:
     def get_logs(self, obj_obj) -> List[Any]:
         """
         Returns an array of all logs matching a given filter object
-        :param obj: The filter options
-        :return array: See eth_getFilterChanges.
+        #### Arguments
+
+        obj: The filter options
+        #### Returns
+
+        array: See eth_getFilterChanges.
         """
         json_data = {
             "method": "eth_getLogs",
@@ -1182,7 +1328,9 @@ class JsonRpcMethods:
     def get_work(self, ) -> List[str]:
         """
         Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”)
-        :return array: Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
+        #### Returns
+
+        array: Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
         """
         json_data = {
             "method": "eth_getWork",
@@ -1196,10 +1344,14 @@ class JsonRpcMethods:
     def submit_work(self, a_str_b_str_c_str) -> bool:
         """
         Used for submitting a proof-of-work solution
-        :param a: 8 Bytes - The nonce found (64 bits)
-        :param b: 32 Bytes - The header’s pow-hash (256 bits)
-        :param c: 32 Bytes - The mix digest (256 bits)
-        :return bool: returns true if the provided solution is valid, otherwise false.
+        #### Arguments
+
+        a: 8 Bytes - The nonce found (64 bits)
+        b: 32 Bytes - The header’s pow-hash (256 bits)
+        c: 32 Bytes - The mix digest (256 bits)
+        #### Returns
+
+        bool: returns true if the provided solution is valid, otherwise false.
         """
         json_data = {
             "method": "eth_submitWork",
@@ -1213,9 +1365,13 @@ class JsonRpcMethods:
     def submit_hashrate(self, hashrate_str_id_str) -> bool:
         """
         Used for submitting mining hashrate
-        :param hashrate: A hexadecimal string representation (32 bytes) of the hash rate
-        :param id: String - A random hexadecimal(32 bytes) ID identifying the client
-        :return bool: Returns `true` if submitting went through succesfully and `false` otherwise.
+        #### Arguments
+
+        hashrate: A hexadecimal string representation (32 bytes) of the hash rate
+        id: String - A random hexadecimal(32 bytes) ID identifying the client
+        #### Returns
+
+        bool: Returns `true` if submitting went through succesfully and `false` otherwise.
         """
         json_data = {
             "method": "eth_submitHashrate",

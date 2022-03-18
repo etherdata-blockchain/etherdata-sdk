@@ -37,8 +37,12 @@ class Personal:
         """
         Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
          Returns the address of the new account
-        :param priveteKey: An unencrypted private key (hex string)
-        :return accountAddress: The address of the new account.
+        #### Arguments
+
+        priveteKey: An unencrypted private key (hex string)
+        #### Returns
+
+        accountAddress: The address of the new account.
         """
         json_data = {
             "method": "personal_importRawKey",
@@ -52,7 +56,9 @@ class Personal:
     def list_accounts(self, ) -> List[str]:
         """
         Returns all the Ethereum account addresses of all keys in the key store
-        :return accountAddress: The list of ethereum account addresses
+        #### Returns
+
+        accountAddress: The list of ethereum account addresses
         """
         json_data = {
             "method": "personal_listAccounts",
@@ -84,8 +90,12 @@ class Personal:
          Returns the address of the new account
 
         At the Getd console, newAccount will prompt for a passphrase when it is not supplied as the argument
-        :param passphrase: The passphrase used to generate a new private key
-        :return priveteKey: The generated priveteKey
+        #### Arguments
+
+        passphrase: The passphrase used to generate a new private key
+        #### Returns
+
+        priveteKey: The generated priveteKey
         """
         json_data = {
             "method": "personal_newAccount",
@@ -110,10 +120,14 @@ class Personal:
          An explicit duration of zero seconds unlocks the key until Getd exits
 
         The account can be used with etd_sign and etd_sendTransaction while it is unlocked
-        :param accountAddress: The account address
-        :param passphrase: The passphrase If you want to type in the passphrase and stil override the default unlock duration, pass null as the passphrase.
-        :param unlockDuration: The unlock duration
-        :return unlockState: Indicating whether is the account unlocked successfully
+        #### Arguments
+
+        accountAddress: The account address
+        passphrase: The passphrase If you want to type in the passphrase and stil override the default unlock duration, pass null as the passphrase.
+        unlockDuration: The unlock duration
+        #### Returns
+
+        unlockState: Indicating whether is the account unlocked successfully
         """
         json_data = {
             "method": "personal_unlockAccount",
@@ -140,8 +154,12 @@ class Personal:
         toWei(1
         23, "ether")} undefined "> personal
         sendTransaction(tx, "passphrase")" 0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f'
-        :param tx: The transaction
-        :return address: The address
+        #### Arguments
+
+        tx: The transaction
+        #### Returns
+
+        address: The address
         """
         json_data = {
             "method": "personal_sendTransaction",
@@ -162,10 +180,14 @@ class Personal:
          transaction) and use the signature to impersonate the victim
 
         See ecRecover to verify the signature
-        :param a: abcde
-        :param b: abcde
-        :param c: abcde
-        :return value: abcde
+        #### Arguments
+
+        a: abcde
+        b: abcde
+        c: abcde
+        #### Returns
+
+        value: abcde
         """
         json_data = {
             "method": "personal_sign",
@@ -179,9 +201,13 @@ class Personal:
     def ec_recover(self, a_str_b_str) -> str:
         """
         ecRecover returns the address associated with the private key that was used to calculate the signature in personal_sign
-        :param a: abcde
-        :param b: abcde
-        :return address: The address associated with the private key
+        #### Arguments
+
+        a: abcde
+        b: abcde
+        #### Returns
+
+        address: The address associated with the private key
         """
         json_data = {
             "method": "personal_ecRecover",

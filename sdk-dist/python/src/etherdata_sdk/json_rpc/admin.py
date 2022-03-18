@@ -138,8 +138,12 @@ class Admin:
         The addPeer administrative method requests adding a new remote node to the list of tracked static nodes
          The node will try to maintain connectivity to these nodes at all times, reconnecting every once in a while if the remote connection goes down
          The method accepts a single argument, the enode URL of the remote peer to start tracking and returns a BOOL indicating whether the peer was accepted for tracking or some error occurred
-        :param enode: The enode URL of the remote peer to start tracking
-        :return accepted: Indicating whether the peer was accepted for tracking or some error occurred.
+        #### Arguments
+
+        enode: The enode URL of the remote peer to start tracking
+        #### Returns
+
+        accepted: Indicating whether the peer was accepted for tracking or some error occurred.
         """
         json_data = {
             "method": "admin_addPeer",
@@ -153,7 +157,9 @@ class Admin:
     def datadir(self, ) -> str:
         """
         The datadir administrative property can be queried for the absolute path the running Getd node currently uses to store all its databases
-        :return absPath: The absolute path that the running Getd node is currently using to store all its databases
+        #### Returns
+
+        absPath: The absolute path that the running Getd node is currently using to store all its databases
         """
         json_data = {
             "method": "admin_datadir",
@@ -170,7 +176,9 @@ class Admin:
          These include general information about the node itself as a participant of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
         g
          etd, les, shh, bzz)
-        :return nodeInfo: Get all the information known about the running Getd node at the networking granularity
+        #### Returns
+
+        nodeInfo: Get all the information known about the running Getd node at the networking granularity
         """
         json_data = {
             "method": "admin_nodeInfo",
@@ -187,7 +195,9 @@ class Admin:
          These include general information about the nodes themselves as participants of the ÐΞVp2p P2P overlay protocol, as well as specialized information added by each of the running application protocols (e
         g
          etd, les, shh, bzz)
-        :return peersArray: All the information known about the connected remote nodes
+        #### Returns
+
+        peersArray: All the information known about the connected remote nodes
         """
         json_data = {
             "method": "admin_peers",
@@ -204,11 +214,15 @@ class Admin:
         """
         The startRPC administrative method starts an HTTP based JSON RPC API webserver to handle client requests
          All the parameters are optional
-        :param host: Network interface to open the listener socket on (defaults to "localhost")
-        :param port: Network port to open the listener socket on (defaults to 8545)
-        :param cors: cross-origin resource sharing header to use (defaults to "")
-        :param apis: API modules to offer over this interface (defaults to "etd,net,web3")
-        :return hTTPlistenerOpen: A boolean flag specifying whether the HTTP RPC listener was opened or not. Please note, only one HTTP endpoint is allowed to be active at any time.
+        #### Arguments
+
+        host: Network interface to open the listener socket on (defaults to "localhost")
+        port: Network port to open the listener socket on (defaults to 8545)
+        cors: cross-origin resource sharing header to use (defaults to "")
+        apis: API modules to offer over this interface (defaults to "etd,net,web3")
+        #### Returns
+
+        hTTPlistenerOpen: A boolean flag specifying whether the HTTP RPC listener was opened or not. Please note, only one HTTP endpoint is allowed to be active at any time.
         """
         json_data = {
             "method": "admin_startRPC",
@@ -225,11 +239,15 @@ class Admin:
         """
         The startWS administrative method starts an WebSocket based JSON RPC API webserver to handle client requests
          All the parameters are optional
-        :param host: Network interface to open the listener socket on (defaults to "localhost")
-        :param port: Network port to open the listener socket on (defaults to 8546)
-        :param cors: cross-origin resource sharing header to use (defaults to "")
-        :param apis: API modules to offer over this interface (defaults to "etd,net,web3")
-        :return wEBlistenerOpen: A boolean flag specifying whether the WebSocket RPC listener was opened or not. Please note, only one WebSocket endpoint is allowed to be active at any time.
+        #### Arguments
+
+        host: Network interface to open the listener socket on (defaults to "localhost")
+        port: Network port to open the listener socket on (defaults to 8546)
+        cors: cross-origin resource sharing header to use (defaults to "")
+        apis: API modules to offer over this interface (defaults to "etd,net,web3")
+        #### Returns
+
+        wEBlistenerOpen: A boolean flag specifying whether the WebSocket RPC listener was opened or not. Please note, only one WebSocket endpoint is allowed to be active at any time.
         """
         json_data = {
             "method": "admin_startRPC",
@@ -244,7 +262,9 @@ class Admin:
         """
         The stopRPC administrative method closes the currently open HTTP RPC endpoint
          As the node can only have a single HTTP endpoint running, this method takes no parameters, returning a boolean whether the endpoint was closed or not
-        :return hTTPendpointClosed: A boolean indicating whether the endpoint was closed or not.
+        #### Returns
+
+        hTTPendpointClosed: A boolean indicating whether the endpoint was closed or not.
         """
         json_data = {
             "method": "admin_stopRPC",
@@ -259,7 +279,9 @@ class Admin:
         """
         The stopWS administrative method closes the currently open WebSocket RPC endpoint
          As the node can only have a single WebSocket endpoint running, this method takes no parameters, returning a boolean whether the endpoint was closed or not
-        :return wEBendpointClosed: A boolean indicating whether the endpoint was closed or not.
+        #### Returns
+
+        wEBendpointClosed: A boolean indicating whether the endpoint was closed or not.
         """
         json_data = {
             "method": "admin_stopWS",

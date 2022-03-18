@@ -115,8 +115,12 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
-    - name: Install Pep8
-      run: pip install --upgrade autopep8
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      working-directory: sdk-dist/python
+    - run: python3 generator.py
+      name: Building documentation
+      working-directory: sdk-dist/python
     - name: Install pypa/build
       run: >-
         python -m
@@ -139,11 +143,17 @@ jobs:
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages_dir: sdk-dist/python/dist
+    - uses: actions/upload-artifact@v2
+      with:
+        name: python-doc
+        path: docs/docs/python/api
+
 
   publish-docs:
     needs:
       - publish-kotlin
       - publish-typescript-npm
+      - publish-python
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -152,6 +162,11 @@ jobs:
         with:
           name: js-doc
           path: docs/docs/typescript/api
+      - name: Retrieve Python Docs
+        uses: actions/download-artifact@v2
+        with:
+          name: python-doc
+          path: docs/docs/python/api
       - uses: actions/setup-node@v2
         with:
           node-version: 16

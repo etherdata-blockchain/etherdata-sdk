@@ -168,7 +168,9 @@ class Debug:
         Sets the logging backtrace location
          When a backtrace location is set and a log message is emitted at that location, the stack of the goroutine executing the log statement will be printed to stderr
          The location is specified as <filename>:<line>
-        :param locationJavascript_based: The logging backtrace location, which is specified as <filename>:<line>.
+        #### Arguments
+
+        locationJavascript_based: The logging backtrace location, which is specified as <filename>:<line>.
         """
         json_data = {
             "method": "debug_backtraceAt",
@@ -210,8 +212,12 @@ class Debug:
     def dump_block(self, block_num_float) -> DumpBlockResponseBlockDetails:
         """
         Retrieves the state that corresponds to the block number and returns a list of accounts (including storage and code)
-        :param blockNum: The block number
-        :return blockDetails: The block number and list of accounts
+        #### Arguments
+
+        blockNum: The block number
+        #### Returns
+
+        blockDetails: The block number and list of accounts
         """
         json_data = {
             "method": "debug_dumpBlock",
@@ -314,7 +320,9 @@ class Debug:
         Sets the rate (in samples/sec) of goroutine block profile data collection
          A non-zero rate enables block profiling, setting it to zero stops the profile
          Collected profile data can be written using debug_writeBlockProfile
-        :param rate: The rate (in samplessec) of goroutine block profile data collection
+        #### Arguments
+
+        rate: The rate (in samplessec) of goroutine block profile data collection
         """
         json_data = {
             "method": "debug_setBlockProfileRate",
@@ -329,7 +337,9 @@ class Debug:
         """
         Returns a printed representation of the stacks of all goroutines
          Note that the web3 wrapper for this method takes care of the printing and does not return the string
-        :return printedStacks: A printed representation of the stacks of all goroutines
+        #### Returns
+
+        printedStacks: A printed representation of the stacks of all goroutines
         """
         json_data = {
             "method": "debug_stacks",
@@ -397,8 +407,12 @@ class Debug:
         The traceBlock method will return a full stack trace of all invoked opcodes of all transaction that were included in this block
          Note, the parent of this block must be present or it will fail
          References -> RLP
-        :param blockName: The name of the traced block
-        :return blcok: The stack trace of transcation of the block
+        #### Arguments
+
+        blockName: The name of the traced block
+        #### Returns
+
+        blcok: The stack trace of transcation of the block
         """
         json_data = {
             "method": "debug_traceBlock",
@@ -413,8 +427,12 @@ class Debug:
         """
         Similar to debug_traceBlock,traceBlockByNumber accepts a block number and will replay the block that is already present in the database
          References -> RLP
-        :param blockNum: A block number of a traced block
-        :return block: Replaying the block that is already present in the database
+        #### Arguments
+
+        blockNum: A block number of a traced block
+        #### Returns
+
+        block: Replaying the block that is already present in the database
         """
         json_data = {
             "method": "debug_traceBlockByNumber",
@@ -429,8 +447,12 @@ class Debug:
         """
         Similar to debug_traceBlock,traceBlockByHash accepts a block hash and will replay the block that is already present in the database
          References -> RLP
-        :param blockHash: A block hash of a traced block
-        :return block: Replaying the block that is already present in the database
+        #### Arguments
+
+        blockHash: A block hash of a traced block
+        #### Returns
+
+        block: Replaying the block that is already present in the database
         """
         json_data = {
             "method": "debug_traceBlockByHash",
@@ -445,8 +467,12 @@ class Debug:
         """
         Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
          References -> RLP
-        :param file: A file containing the RLP of the block
-        :return block: Replaying the block that is already present in the database
+        #### Arguments
+
+        file: A file containing the RLP of the block
+        #### Returns
+
+        block: Replaying the block that is already present in the database
         """
         json_data = {
             "method": "debug_traceBlockByHash",
@@ -467,10 +493,14 @@ class Debug:
         -It streams output to disk during the execution, to not blow up the memory usage on the node -It uses jsonl as output format (to allow streaming) -Uses a cross-client standardized output, so called ‘standard json' ~Uses op for string-representation of opcode, instead of op/opName for numeric/string, and other simlar small differences
          ~has refund ~Represents memory as a contiguous chunk of data, as opposed to a list of 32 byte segments like debug_traceTransaction
         This means that this method is only ‘useful’ for callers who control the node – at least sufficiently to be able to read the artefacts from the filesystem after the fact
-        :param block: The block
-        :param txHash: txHash
-        :param disableMemory: disableMemory
-        :return output: output
+        #### Arguments
+
+        block: The block
+        txHash: txHash
+        disableMemory: disableMemory
+        #### Returns
+
+        output: output
         'The method can be used to dump a certain transaction out of a given block > debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {txHash:"0x4049f61ffbb0747bb88dc1c85dd6686ebf225a3c10c282c45a8e0c644739f7e9", disableMemory:true}) ["tmp/block_0x0bbe9f14-14-0x4049f61f-099048234"]
         Or all txs from a block > debug.standardTraceBlockToFile("0x0bbe9f1484668a2bf159c63f0cf556ed8c8282f99e3ffdb03ad2175a863bca63", {disableMemory:true}) ["/tmp/block_0x0bbe9f14-0-0xb4502ea7-409046657", "/tmp/block_0x0bbe9f14-1-0xe839be8f-954614764",...]
         Files are created in a temp-location, with the naming standard block_<blockhash:4>-<txindex>-<txhash:4>-<random suffix>. Each opcode immediately streams to file, with no in-Getd buffering aside from whatever buffering the os normally does.
@@ -521,13 +551,17 @@ class Debug:
          timeout:        STRING
          Overrides the default timeout of 5 seconds for JavaScript-based tracing calls
          Valid values are described here
-        :param hash: The hash of the transaction
-        :param disableStorage: Setting this to true will disable storage capture (default = false).
-        :param disableMemory: Setting this to true will disable memory capture (default = false).
-        :param disableStack: Setting this to true will disable stack capture (default = false).
-        :param tracer: Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.
-        :param timeout: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
-        :return transaction: The stack trace of transcation of the block
+        #### Arguments
+
+        hash: The hash of the transaction
+        disableStorage: Setting this to true will disable storage capture (default = false).
+        disableMemory: Setting this to true will disable memory capture (default = false).
+        disableStack: Setting this to true will disable stack capture (default = false).
+        tracer: Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.
+        timeout: Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described here.
+        #### Returns
+
+        transaction: The stack trace of transcation of the block
         """
         json_data = {
             "method": "debug_traceTransaction",
@@ -574,13 +608,17 @@ class Debug:
          eth_call consumes zero gas, but this parameter may be needed by some executions
          gasPrice: QUANTITY       - (optional) Integer of the gasPrice used for each paid gas value:    QUANTITY       - (optional) Integer of the value sent with this transaction data:     DATA           - (optional) Hash of the method signature and encoded parameters
          For details see Ethereum Contract ABI in the Solidity documentation
-        :param to: The address the transaction is directed to.
-        :param from: The address the transaction is sent from.
-        :param gas: Integer of the gasPrice used for each paid gas
-        :param gasPrice: Integer of the gasPrice used for each paid gas
-        :param value: Integer of the value sent with this transaction
-        :param data: Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
-        :return transaction: Same output as debug_traceTransaction
+        #### Arguments
+
+        to: The address the transaction is directed to.
+        from: The address the transaction is sent from.
+        gas: Integer of the gasPrice used for each paid gas
+        gasPrice: Integer of the gasPrice used for each paid gas
+        value: Integer of the value sent with this transaction
+        data: Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI in the Solidity documentation
+        #### Returns
+
+        transaction: Same output as debug_traceTransaction
         """
         json_data = {
             "method": "debug_traceCall",
@@ -596,7 +634,9 @@ class Debug:
         Sets the logging verbosity ceiling
          Log messages with level up to and including the given level will be printed
          The verbosity of individual packages and source files can be raised using debug_vmodule
-        :return message: Log messages with level up to and including the given level will be printed.
+        #### Returns
+
+        message: Log messages with level up to and including the given level will be printed.
         """
         json_data = {
             "method": "debug_verbosity",
@@ -610,8 +650,12 @@ class Debug:
     def vmodule(self, message_restrictions_str) -> str:
         """
         Sets the logging verbosity pattern
-        :param messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd*=6" If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6" If you want to see log messages from a particular source file, use:                                  "server.go=6" You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level < = 5, use:    "etd peer.go=6,p2p=5"
-        :return message:
+        #### Arguments
+
+        messageRestrictions: If you want to see messages from a particular Go package (directory) and all subdirectories, use:    "etd*=6" If you want to restrict messages to a particular package (e.g. p2p) but exclude subdirectories, use: "p2p=6" If you want to see log messages from a particular source file, use:                                  "server.go=6" You can compose these basic patterns. If you want to see all output from peer.go in a package below etd (etd/peer.go, etd/downloader/peer.go) as well as output from package p2p at level < = 5, use:    "etd peer.go=6,p2p=5"
+        #### Returns
+
+        message:
         """
         json_data = {
             "method": "debug_vmodule",

@@ -97,7 +97,7 @@ jobs:
       - run: yarn build
         name: Building dist
         working-directory: sdk-dist/etd-react-ui
-  
+
   build-python:
     needs: [build, test]
     runs-on: ubuntu-latest
@@ -108,7 +108,8 @@ jobs:
       with:
         python-version: 3.9
     - name: Install Pep8
-      run: pip install --upgrade autopep8
+      run: pip install -r requirements.txt
+      working-directory: sdk-dist/python
     - name: Install pypa/build
       run: >-
         python -m
