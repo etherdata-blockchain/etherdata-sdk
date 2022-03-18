@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.kotlin": {
+    "message": "kotlin",
+    "description": "The label for category kotlin in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.typescript": {
+    "message": "typescript",
+    "description": "The label for category typescript in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.api": {
+    "message": "api",
+    "description": "The label for category api in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.classes": {
+    "message": "classes",
+    "description": "The label for category classes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.python": {
+    "message": "python",
+    "description": "The label for category python in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.etherdata_sdk": {
+    "message": "etherdata_sdk",
+    "description": "The label for category etherdata_sdk in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.json_rpc": {
+    "message": "json_rpc",
+    "description": "The label for category json_rpc in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.utils": {
+    "message": "utils",
+    "description": "The label for category utils in sidebar tutorialSidebar"
+  }
+}

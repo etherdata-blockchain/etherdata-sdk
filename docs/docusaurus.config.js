@@ -16,6 +16,10 @@ const config = {
   favicon: "img/favicon.ico",
   organizationName: "etherdata-blockchain", // Usually your GitHub org/user name.
   projectName: "etherdata-sdk", // Usually your repo name.
+  i18n: {
+    defaultLocale: "zh-CN",
+    locales: ["en", "zh-CN"],
+  },
   presets: [
     [
       "classic",
@@ -44,6 +48,10 @@ const config = {
             docId: "intro",
             position: "left",
             label: "Docs",
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
           {
             href: "https://github.com/etherdata-blockchain/etherdata-sdk",
