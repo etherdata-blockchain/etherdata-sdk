@@ -24,7 +24,7 @@ export function ProtocalVersion({ call }: Props) {
 
   let schema: any = {
     "title": "protocalVersion",
-    "description": "Returns the current etdereum protocol version.",
+    "description": "Returns the current etherdata protocol version.",
     "type": "object",
     "properties": {},
     "required": [],
@@ -869,7 +869,7 @@ export function Sign({ call }: Props) {
   let schema: any = {
     "title": "sign",
     "description":
-      'The sign method calculates an etdereum specific signature with sign(keccak256("\\x19etdereum Signed Message:\\n" + len(message) + message))).\nBy adding a prefix to the message makes the calculated signature recognisable as an etdereum specific signature. This prevents misuse where a malicious DApp can sign arbitrary data (e.g. transaction) and use the signature to impersonate the victim.\nNote the address to sign with must be unlocked.',
+      'The sign method calculates an etherdata specific signature with sign(keccak256("\\x19etherdata Signed Message:\\n" + len(message) + message))).\nBy adding a prefix to the message makes the calculated signature recognisable as an etherdata specific signature. This prevents misuse where a malicious DApp can sign arbitrary data (e.g. transaction) and use the signature to impersonate the victim.\nNote the address to sign with must be unlocked.',
     "type": "object",
     "properties": {
       "a": { "type": "string", "title": "a" },

@@ -14,6 +14,7 @@ EtherData SDK的JSON RPC部分 是一个完全自动生成的SDK。
 - Typescript (Javascript 同样支持)
 - React Components
 - Kotlin (Java同样支持)
+- Python
 
 未来还会继续添加更多的语言支持版本。若要有任何的Feature request或者 Issues， 请在Github上进行提交。
 
@@ -30,9 +31,9 @@ package/
 │  ├─ kotlin/
 │  ├─ react/
 │  ├─ typescript/
+│  │─ python/
 ├─ new_file
 ├─ readme.md
-
 ```
 
 具体的实现代码会在专门的文档目录下进行详细介绍。

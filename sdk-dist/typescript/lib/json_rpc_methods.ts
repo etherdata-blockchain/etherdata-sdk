@@ -135,8 +135,8 @@ export class Json_rpc_methods {
     this.url = port ? `${baseURL}:${port}` : baseURL;
   }
   /**
-   * Returns the current etdereum protocol version
-   * @return version The current etdereum protocol version
+   * Returns the current etherdata protocol version
+   * @return version The current etherdata protocol version
    */
   async protocalVersion(): Promise<string> {
     let response = await axios.post(this.url, {
@@ -411,9 +411,9 @@ export class Json_rpc_methods {
   }
 
   /**
-* The sign method calculates an etdereum specific signature with sign(keccak256(&quot;\x19etdereum Signed Message:\n&quot; + len(message) + message)))
+* The sign method calculates an etherdata specific signature with sign(keccak256(&quot;\x19etherdata Signed Message:\n&quot; + len(message) + message)))
 * 
-By adding a prefix to the message makes the calculated signature recognisable as an etdereum specific signature
+By adding a prefix to the message makes the calculated signature recognisable as an etherdata specific signature
 *  This prevents misuse where a malicious DApp can sign arbitrary data (e
 * g
 *  transaction) and use the signature to impersonate the victim

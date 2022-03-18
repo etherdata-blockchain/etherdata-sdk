@@ -16,7 +16,9 @@ class Miner:
     def getdashrate(self, ) -> str:
         """
         Get your hashrate in H/s (Hash operations per second)
-        :return dashRate: The hashrate in Hs (Hash operations per second)
+        #### Returns
+
+        dashRate: The hashrate in Hs (Hash operations per second)
         """
         json_data = {
             "method": "miner_Getdashrate",
@@ -41,11 +43,13 @@ class Miner:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def set_gas_price(self, price_float) -> None:
+    def set_gas_price(self, price: float) -> None:
         """
         Sets the minimal accepted gas price when mining transactions
          Any transactions that are below this limit are excluded from the mining process
-        :param price: The new minimal accepted gas price when mining transactions.
+        #### Arguments
+
+        price: The new minimal accepted gas price when mining transactions.
         """
         json_data = {
             "method": "miner_setGasPrice",
@@ -82,10 +86,12 @@ class Miner:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def set_etherbase(self, etherbase_str) -> None:
+    def set_etherbase(self, etherbase: str) -> None:
         """
         Sets the etherbase, where mining rewards will go
-        :param etherbase: The new etherbase.
+        #### Arguments
+
+        etherbase: The new etherbase.
         """
         json_data = {
             "method": "miner_setEtherbase",

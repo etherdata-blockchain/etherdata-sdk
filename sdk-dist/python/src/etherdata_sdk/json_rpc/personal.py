@@ -33,12 +33,16 @@ class Personal:
     def __init__(self, url: str):
         self.url = url
 
-    def import_raw_key(self, privete_key_str) -> str:
+    def import_raw_key(self, privete_key: str) -> str:
         """
         Imports the given unencrypted private key (hex string) into the key store, encrypting it with the passphrase
          Returns the address of the new account
-        :param priveteKey: An unencrypted private key (hex string)
-        :return accountAddress: The address of the new account.
+        #### Arguments
+
+        priveteKey: An unencrypted private key (hex string)
+        #### Returns
+
+        accountAddress: The address of the new account.
         """
         json_data = {
             "method": "personal_importRawKey",
@@ -52,7 +56,9 @@ class Personal:
     def list_accounts(self, ) -> List[str]:
         """
         Returns all the Ethereum account addresses of all keys in the key store
-        :return accountAddress: The list of ethereum account addresses
+        #### Returns
+
+        accountAddress: The list of ethereum account addresses
         """
         json_data = {
             "method": "personal_listAccounts",
@@ -77,15 +83,19 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def new_account(self, passphrase_optional_str_) -> str:
+    def new_account(self, passphrase: optional[str]) -> str:
         """
         Generates a new private key and stores it in the key store directory
          The key file is encrypted with the given passphrase
          Returns the address of the new account
 
         At the Getd console, newAccount will prompt for a passphrase when it is not supplied as the argument
-        :param passphrase: The passphrase used to generate a new private key
-        :return priveteKey: The generated priveteKey
+        #### Arguments
+
+        passphrase: The passphrase used to generate a new private key
+        #### Returns
+
+        priveteKey: The generated priveteKey
         """
         json_data = {
             "method": "personal_newAccount",
@@ -98,7 +108,9 @@ class Personal:
 
     def unlock_account(
             self,
-            account_address_str_passphrase_optional_str_unlock_duration_optional_float_) -> bool:
+            account_address: str,
+            passphrase: optional[str],
+            unlock_duration: optional[float]) -> bool:
         """
         Decrypts the key with the given address from the key store
 
@@ -110,10 +122,14 @@ class Personal:
          An explicit duration of zero seconds unlocks the key until Getd exits
 
         The account can be used with etd_sign and etd_sendTransaction while it is unlocked
-        :param accountAddress: The account address
-        :param passphrase: The passphrase If you want to type in the passphrase and stil override the default unlock duration, pass null as the passphrase.
-        :param unlockDuration: The unlock duration
-        :return unlockState: Indicating whether is the account unlocked successfully
+        #### Arguments
+
+        accountAddress: The account address
+        passphrase: The passphrase If you want to type in the passphrase and stil override the default unlock duration, pass null as the passphrase.
+        unlockDuration: The unlock duration
+        #### Returns
+
+        unlockState: Indicating whether is the account unlocked successfully
         """
         json_data = {
             "method": "personal_unlockAccount",
@@ -124,7 +140,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def send_transaction(self, tx_tx) -> str:
+    def send_transaction(self, tx: tx) -> str:
         """
         Validate the given passphrase and submit transaction
 
@@ -140,8 +156,12 @@ class Personal:
         toWei(1
         23, "ether")} undefined "> personal
         sendTransaction(tx, "passphrase")" 0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f'
-        :param tx: The transaction
-        :return address: The address
+        #### Arguments
+
+        tx: The transaction
+        #### Returns
+
+        address: The address
         """
         json_data = {
             "method": "personal_sendTransaction",
@@ -152,7 +172,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def sign(self, a_str_b_str_c_str) -> str:
+    def sign(self, a: str, b: str, c: str) -> str:
         """
         The sign method calculates an Ethereum specific signature with ' sign(keccack256("\x19Ethereum Signed Message:\n" + len(message) + message)))
          '
@@ -162,10 +182,14 @@ class Personal:
          transaction) and use the signature to impersonate the victim
 
         See ecRecover to verify the signature
-        :param a: abcde
-        :param b: abcde
-        :param c: abcde
-        :return value: abcde
+        #### Arguments
+
+        a: abcde
+        b: abcde
+        c: abcde
+        #### Returns
+
+        value: abcde
         """
         json_data = {
             "method": "personal_sign",
@@ -176,12 +200,16 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def ec_recover(self, a_str_b_str) -> str:
+    def ec_recover(self, a: str, b: str) -> str:
         """
         ecRecover returns the address associated with the private key that was used to calculate the signature in personal_sign
-        :param a: abcde
-        :param b: abcde
-        :return address: The address associated with the private key
+        #### Arguments
+
+        a: abcde
+        b: abcde
+        #### Returns
+
+        address: The address associated with the private key
         """
         json_data = {
             "method": "personal_ecRecover",
