@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Addpeer({ call }: Props) {
+export function AddPeer({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -116,7 +116,7 @@ export function Datadir({ call }: Props) {
   );
 }
 
-export function Nodeinfo({ call }: Props) {
+export function NodeInfo({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -214,7 +214,7 @@ export function Peers({ call }: Props) {
   );
 }
 
-export function Startrpc({ call }: Props) {
+export function StartRPC({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -268,7 +268,7 @@ export function Startrpc({ call }: Props) {
   );
 }
 
-export function Startws({ call }: Props) {
+export function StartWS({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -322,7 +322,7 @@ export function Startws({ call }: Props) {
   );
 }
 
-export function Stoprpc({ call }: Props) {
+export function StopRPC({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -371,7 +371,7 @@ export function Stoprpc({ call }: Props) {
   );
 }
 
-export function Stopws({ call }: Props) {
+export function StopWS({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -438,21 +438,21 @@ export function Admin({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Addpeer call={callRPC} />
+      <AddPeer call={callRPC} />
 
       <Datadir call={callRPC} />
 
-      <Nodeinfo call={callRPC} />
+      <NodeInfo call={callRPC} />
 
       <Peers call={callRPC} />
 
-      <Startrpc call={callRPC} />
+      <StartRPC call={callRPC} />
 
-      <Startws call={callRPC} />
+      <StartWS call={callRPC} />
 
-      <Stoprpc call={callRPC} />
+      <StopRPC call={callRPC} />
 
-      <Stopws call={callRPC} />
+      <StopWS call={callRPC} />
     </div>
   );
 }

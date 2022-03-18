@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Backtraceat({ call }: Props) {
+export function BacktraceAt({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -72,7 +72,7 @@ export function Backtraceat({ call }: Props) {
   );
 }
 
-export function Blockprofile({ call }: Props) {
+export function BlockProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -121,7 +121,7 @@ export function Blockprofile({ call }: Props) {
   );
 }
 
-export function Cpuprofile({ call }: Props) {
+export function CpuProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -170,7 +170,7 @@ export function Cpuprofile({ call }: Props) {
   );
 }
 
-export function Dumpblock({ call }: Props) {
+export function DumpBlock({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -219,7 +219,7 @@ export function Dumpblock({ call }: Props) {
   );
 }
 
-export function Gcstats({ call }: Props) {
+export function GcStats({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -268,7 +268,7 @@ export function Gcstats({ call }: Props) {
   );
 }
 
-export function Getblockrlp({ call }: Props) {
+export function GetBlockRlp({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -317,7 +317,7 @@ export function Getblockrlp({ call }: Props) {
   );
 }
 
-export function Gotrace({ call }: Props) {
+export function GoTrace({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -366,7 +366,7 @@ export function Gotrace({ call }: Props) {
   );
 }
 
-export function Memstats({ call }: Props) {
+export function MemStats({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -415,7 +415,7 @@ export function Memstats({ call }: Props) {
   );
 }
 
-export function Seedhash({ call }: Props) {
+export function SeedHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -463,7 +463,7 @@ export function Seedhash({ call }: Props) {
   );
 }
 
-export function Sethead({ call }: Props) {
+export function SetHead({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -512,7 +512,7 @@ export function Sethead({ call }: Props) {
   );
 }
 
-export function Setblockprofilerate({ call }: Props) {
+export function SetBlockProfileRate({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -610,7 +610,7 @@ export function Stacks({ call }: Props) {
   );
 }
 
-export function Startcpuprofile({ call }: Props) {
+export function StartCPUProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -659,7 +659,7 @@ export function Startcpuprofile({ call }: Props) {
   );
 }
 
-export function Startgotrace({ call }: Props) {
+export function StartGoTrace({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -707,7 +707,7 @@ export function Startgotrace({ call }: Props) {
   );
 }
 
-export function Stopcpuprofile({ call }: Props) {
+export function StopCPUProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -755,7 +755,7 @@ export function Stopcpuprofile({ call }: Props) {
   );
 }
 
-export function Stopgotrace({ call }: Props) {
+export function StopGoTrace({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -803,7 +803,7 @@ export function Stopgotrace({ call }: Props) {
   );
 }
 
-export function Traceblock({ call }: Props) {
+export function TraceBlock({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -852,7 +852,7 @@ export function Traceblock({ call }: Props) {
   );
 }
 
-export function Traceblockbynumber({ call }: Props) {
+export function TraceBlockByNumber({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -901,7 +901,7 @@ export function Traceblockbynumber({ call }: Props) {
   );
 }
 
-export function Traceblockbyhash({ call }: Props) {
+export function TraceBlockByHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -950,7 +950,7 @@ export function Traceblockbyhash({ call }: Props) {
   );
 }
 
-export function Traceblockfromfile({ call }: Props) {
+export function TraceBlockFromFile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -999,7 +999,7 @@ export function Traceblockfromfile({ call }: Props) {
   );
 }
 
-export function Standardtraceblocktofile({ call }: Props) {
+export function StandardTraceBlockToFile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1052,7 +1052,7 @@ export function Standardtraceblocktofile({ call }: Props) {
   );
 }
 
-export function Standardtracebadblocktofile({ call }: Props) {
+export function StandardTraceBadBlockToFile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1101,7 +1101,7 @@ export function Standardtracebadblocktofile({ call }: Props) {
   );
 }
 
-export function Tracetransaction({ call }: Props) {
+export function TraceTransaction({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1157,7 +1157,7 @@ export function Tracetransaction({ call }: Props) {
   );
 }
 
-export function Javascriptbasedtracing({ call }: Props) {
+export function JavaScriptBasedTracing({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1205,7 +1205,7 @@ export function Javascriptbasedtracing({ call }: Props) {
   );
 }
 
-export function Tracecall({ call }: Props) {
+export function TraceCall({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1363,7 +1363,7 @@ export function Vmodule({ call }: Props) {
   );
 }
 
-export function Writeblockprofile({ call }: Props) {
+export function WriteBlockProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1411,7 +1411,7 @@ export function Writeblockprofile({ call }: Props) {
   );
 }
 
-export function Writememprofile({ call }: Props) {
+export function WriteMemProfile({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1478,63 +1478,63 @@ export function Debug({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Backtraceat call={callRPC} />
+      <BacktraceAt call={callRPC} />
 
-      <Blockprofile call={callRPC} />
+      <BlockProfile call={callRPC} />
 
-      <Cpuprofile call={callRPC} />
+      <CpuProfile call={callRPC} />
 
-      <Dumpblock call={callRPC} />
+      <DumpBlock call={callRPC} />
 
-      <Gcstats call={callRPC} />
+      <GcStats call={callRPC} />
 
-      <Getblockrlp call={callRPC} />
+      <GetBlockRlp call={callRPC} />
 
-      <Gotrace call={callRPC} />
+      <GoTrace call={callRPC} />
 
-      <Memstats call={callRPC} />
+      <MemStats call={callRPC} />
 
-      <Seedhash call={callRPC} />
+      <SeedHash call={callRPC} />
 
-      <Sethead call={callRPC} />
+      <SetHead call={callRPC} />
 
-      <Setblockprofilerate call={callRPC} />
+      <SetBlockProfileRate call={callRPC} />
 
       <Stacks call={callRPC} />
 
-      <Startcpuprofile call={callRPC} />
+      <StartCPUProfile call={callRPC} />
 
-      <Startgotrace call={callRPC} />
+      <StartGoTrace call={callRPC} />
 
-      <Stopcpuprofile call={callRPC} />
+      <StopCPUProfile call={callRPC} />
 
-      <Stopgotrace call={callRPC} />
+      <StopGoTrace call={callRPC} />
 
-      <Traceblock call={callRPC} />
+      <TraceBlock call={callRPC} />
 
-      <Traceblockbynumber call={callRPC} />
+      <TraceBlockByNumber call={callRPC} />
 
-      <Traceblockbyhash call={callRPC} />
+      <TraceBlockByHash call={callRPC} />
 
-      <Traceblockfromfile call={callRPC} />
+      <TraceBlockFromFile call={callRPC} />
 
-      <Standardtraceblocktofile call={callRPC} />
+      <StandardTraceBlockToFile call={callRPC} />
 
-      <Standardtracebadblocktofile call={callRPC} />
+      <StandardTraceBadBlockToFile call={callRPC} />
 
-      <Tracetransaction call={callRPC} />
+      <TraceTransaction call={callRPC} />
 
-      <Javascriptbasedtracing call={callRPC} />
+      <JavaScriptBasedTracing call={callRPC} />
 
-      <Tracecall call={callRPC} />
+      <TraceCall call={callRPC} />
 
       <Verbosity call={callRPC} />
 
       <Vmodule call={callRPC} />
 
-      <Writeblockprofile call={callRPC} />
+      <WriteBlockProfile call={callRPC} />
 
-      <Writememprofile call={callRPC} />
+      <WriteMemProfile call={callRPC} />
     </div>
   );
 }

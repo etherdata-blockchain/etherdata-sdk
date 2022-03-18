@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Protocalversion({ call }: Props) {
+export function ProtocalVersion({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -66,7 +66,7 @@ export function Protocalversion({ call }: Props) {
   );
 }
 
-export function Blocknumber({ call }: Props) {
+export function BlockNumber({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -308,7 +308,7 @@ export function Hashrate({ call }: Props) {
   );
 }
 
-export function Gasprice({ call }: Props) {
+export function GasPrice({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -404,7 +404,7 @@ export function Accounts({ call }: Props) {
   );
 }
 
-export function Getbalance({ call }: Props) {
+export function GetBalance({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -455,7 +455,7 @@ export function Getbalance({ call }: Props) {
   );
 }
 
-export function Getstorageat({ call }: Props) {
+export function GetStorageAt({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -508,7 +508,7 @@ export function Getstorageat({ call }: Props) {
   );
 }
 
-export function Gettransactioncount({ call }: Props) {
+export function GetTransactionCount({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -559,7 +559,7 @@ export function Gettransactioncount({ call }: Props) {
   );
 }
 
-export function Gettransactioncountbyhash({ call }: Props) {
+export function GetTransactionCountByHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -611,7 +611,7 @@ export function Gettransactioncountbyhash({ call }: Props) {
   );
 }
 
-export function Getblocktransactioncountbyhash({ call }: Props) {
+export function GetBlockTransactionCountByHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -660,7 +660,7 @@ export function Getblocktransactioncountbyhash({ call }: Props) {
   );
 }
 
-export function Getblocktransactioncountbynumber({ call }: Props) {
+export function GetBlockTransactionCountByNumber({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -711,7 +711,7 @@ export function Getblocktransactioncountbynumber({ call }: Props) {
   );
 }
 
-export function Getunclecountbyblockhash({ call }: Props) {
+export function GetUncleCountByBlockHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -760,7 +760,7 @@ export function Getunclecountbyblockhash({ call }: Props) {
   );
 }
 
-export function Getunclecountbyblocknumber({ call }: Props) {
+export function GetUncleCountByBlockNumber({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -811,7 +811,7 @@ export function Getunclecountbyblocknumber({ call }: Props) {
   );
 }
 
-export function Getcode({ call }: Props) {
+export function GetCode({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -914,7 +914,7 @@ export function Sign({ call }: Props) {
   );
 }
 
-export function Signtransaction({ call }: Props) {
+export function SignTransaction({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -976,7 +976,7 @@ export function Signtransaction({ call }: Props) {
   );
 }
 
-export function Sendtranscation({ call }: Props) {
+export function SendTranscation({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1038,7 +1038,7 @@ export function Sendtranscation({ call }: Props) {
   );
 }
 
-export function Sendrawtransaction({ call }: Props) {
+export function SendRawTransaction({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1149,7 +1149,7 @@ export function Call({ call }: Props) {
   );
 }
 
-export function Estimategas({ call }: Props) {
+export function EstimateGas({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1211,7 +1211,7 @@ export function Estimategas({ call }: Props) {
   );
 }
 
-export function Getblockbyhash({ call }: Props) {
+export function GetBlockByHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1262,7 +1262,7 @@ export function Getblockbyhash({ call }: Props) {
   );
 }
 
-export function Getblockbynumber({ call }: Props) {
+export function GetBlockByNumber({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1313,7 +1313,7 @@ export function Getblockbynumber({ call }: Props) {
   );
 }
 
-export function Gettransactionbyhash({ call }: Props) {
+export function GetTransactionByHash({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1362,7 +1362,7 @@ export function Gettransactionbyhash({ call }: Props) {
   );
 }
 
-export function Gettransactionbyhashandindex({ call }: Props) {
+export function GetTransactionByHashAndIndex({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1414,7 +1414,7 @@ export function Gettransactionbyhashandindex({ call }: Props) {
   );
 }
 
-export function Gettransactionbyblocknumberandindex({ call }: Props) {
+export function GetTransactionByBlockNumberAndIndex({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1466,7 +1466,7 @@ export function Gettransactionbyblocknumberandindex({ call }: Props) {
   );
 }
 
-export function Gettransactionreceipt({ call }: Props) {
+export function GetTransactionReceipt({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1515,7 +1515,7 @@ export function Gettransactionreceipt({ call }: Props) {
   );
 }
 
-export function Getunclebyblockhashandindex({ call }: Props) {
+export function GetUncleByBlockHashAndIndex({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1567,7 +1567,7 @@ export function Getunclebyblockhashandindex({ call }: Props) {
   );
 }
 
-export function Getunclebyblocknumberandindex({ call }: Props) {
+export function GetUncleByBlockNumberAndIndex({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1619,7 +1619,7 @@ export function Getunclebyblocknumberandindex({ call }: Props) {
   );
 }
 
-export function Getcompliers({ call }: Props) {
+export function GetCompliers({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1667,7 +1667,7 @@ export function Getcompliers({ call }: Props) {
   );
 }
 
-export function Compilesolidity({ call }: Props) {
+export function CompileSolidity({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1715,7 +1715,7 @@ export function Compilesolidity({ call }: Props) {
   );
 }
 
-export function Complpielll({ call }: Props) {
+export function ComplpieLLL({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1763,7 +1763,7 @@ export function Complpielll({ call }: Props) {
   );
 }
 
-export function Complieserpent({ call }: Props) {
+export function ComplieSerpent({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1811,7 +1811,7 @@ export function Complieserpent({ call }: Props) {
   );
 }
 
-export function Newfilter({ call }: Props) {
+export function NewFilter({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1870,7 +1870,7 @@ export function Newfilter({ call }: Props) {
   );
 }
 
-export function Newblockfilter({ call }: Props) {
+export function NewBlockFilter({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1919,7 +1919,7 @@ export function Newblockfilter({ call }: Props) {
   );
 }
 
-export function Newpendingtransactionfilter({ call }: Props) {
+export function NewPendingTransactionFilter({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -1968,7 +1968,7 @@ export function Newpendingtransactionfilter({ call }: Props) {
   );
 }
 
-export function Uninstallfilter({ call }: Props) {
+export function UninstallFilter({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2017,7 +2017,7 @@ export function Uninstallfilter({ call }: Props) {
   );
 }
 
-export function Getfilterchanges({ call }: Props) {
+export function GetFilterChanges({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2066,7 +2066,7 @@ export function Getfilterchanges({ call }: Props) {
   );
 }
 
-export function Getfilterlogs({ call }: Props) {
+export function GetFilterLogs({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2115,7 +2115,7 @@ export function Getfilterlogs({ call }: Props) {
   );
 }
 
-export function Getlogs({ call }: Props) {
+export function GetLogs({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2175,7 +2175,7 @@ export function Getlogs({ call }: Props) {
   );
 }
 
-export function Getwork({ call }: Props) {
+export function GetWork({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2224,7 +2224,7 @@ export function Getwork({ call }: Props) {
   );
 }
 
-export function Submitwork({ call }: Props) {
+export function SubmitWork({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2276,7 +2276,7 @@ export function Submitwork({ call }: Props) {
   );
 }
 
-export function Submithashrate({ call }: Props) {
+export function SubmitHashrate({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -2345,9 +2345,9 @@ export function Json_rpc_methods({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Protocalversion call={callRPC} />
+      <ProtocalVersion call={callRPC} />
 
-      <Blocknumber call={callRPC} />
+      <BlockNumber call={callRPC} />
 
       <Syncing call={callRPC} />
 
@@ -2357,83 +2357,83 @@ export function Json_rpc_methods({ call, host, port }: MethodProps) {
 
       <Hashrate call={callRPC} />
 
-      <Gasprice call={callRPC} />
+      <GasPrice call={callRPC} />
 
       <Accounts call={callRPC} />
 
-      <Getbalance call={callRPC} />
+      <GetBalance call={callRPC} />
 
-      <Getstorageat call={callRPC} />
+      <GetStorageAt call={callRPC} />
 
-      <Gettransactioncount call={callRPC} />
+      <GetTransactionCount call={callRPC} />
 
-      <Gettransactioncountbyhash call={callRPC} />
+      <GetTransactionCountByHash call={callRPC} />
 
-      <Getblocktransactioncountbyhash call={callRPC} />
+      <GetBlockTransactionCountByHash call={callRPC} />
 
-      <Getblocktransactioncountbynumber call={callRPC} />
+      <GetBlockTransactionCountByNumber call={callRPC} />
 
-      <Getunclecountbyblockhash call={callRPC} />
+      <GetUncleCountByBlockHash call={callRPC} />
 
-      <Getunclecountbyblocknumber call={callRPC} />
+      <GetUncleCountByBlockNumber call={callRPC} />
 
-      <Getcode call={callRPC} />
+      <GetCode call={callRPC} />
 
       <Sign call={callRPC} />
 
-      <Signtransaction call={callRPC} />
+      <SignTransaction call={callRPC} />
 
-      <Sendtranscation call={callRPC} />
+      <SendTranscation call={callRPC} />
 
-      <Sendrawtransaction call={callRPC} />
+      <SendRawTransaction call={callRPC} />
 
       <Call call={callRPC} />
 
-      <Estimategas call={callRPC} />
+      <EstimateGas call={callRPC} />
 
-      <Getblockbyhash call={callRPC} />
+      <GetBlockByHash call={callRPC} />
 
-      <Getblockbynumber call={callRPC} />
+      <GetBlockByNumber call={callRPC} />
 
-      <Gettransactionbyhash call={callRPC} />
+      <GetTransactionByHash call={callRPC} />
 
-      <Gettransactionbyhashandindex call={callRPC} />
+      <GetTransactionByHashAndIndex call={callRPC} />
 
-      <Gettransactionbyblocknumberandindex call={callRPC} />
+      <GetTransactionByBlockNumberAndIndex call={callRPC} />
 
-      <Gettransactionreceipt call={callRPC} />
+      <GetTransactionReceipt call={callRPC} />
 
-      <Getunclebyblockhashandindex call={callRPC} />
+      <GetUncleByBlockHashAndIndex call={callRPC} />
 
-      <Getunclebyblocknumberandindex call={callRPC} />
+      <GetUncleByBlockNumberAndIndex call={callRPC} />
 
-      <Getcompliers call={callRPC} />
+      <GetCompliers call={callRPC} />
 
-      <Compilesolidity call={callRPC} />
+      <CompileSolidity call={callRPC} />
 
-      <Complpielll call={callRPC} />
+      <ComplpieLLL call={callRPC} />
 
-      <Complieserpent call={callRPC} />
+      <ComplieSerpent call={callRPC} />
 
-      <Newfilter call={callRPC} />
+      <NewFilter call={callRPC} />
 
-      <Newblockfilter call={callRPC} />
+      <NewBlockFilter call={callRPC} />
 
-      <Newpendingtransactionfilter call={callRPC} />
+      <NewPendingTransactionFilter call={callRPC} />
 
-      <Uninstallfilter call={callRPC} />
+      <UninstallFilter call={callRPC} />
 
-      <Getfilterchanges call={callRPC} />
+      <GetFilterChanges call={callRPC} />
 
-      <Getfilterlogs call={callRPC} />
+      <GetFilterLogs call={callRPC} />
 
-      <Getlogs call={callRPC} />
+      <GetLogs call={callRPC} />
 
-      <Getwork call={callRPC} />
+      <GetWork call={callRPC} />
 
-      <Submitwork call={callRPC} />
+      <SubmitWork call={callRPC} />
 
-      <Submithashrate call={callRPC} />
+      <SubmitHashrate call={callRPC} />
     </div>
   );
 }

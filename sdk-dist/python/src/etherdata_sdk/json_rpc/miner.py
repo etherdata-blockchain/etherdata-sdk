@@ -2,7 +2,7 @@ import requests
 from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
-
+from ..utils import to_dict
 
 
 class Miner:
@@ -13,83 +13,85 @@ class Miner:
     def __init__(self, url: str):
         self.url = url
 
-
-    
-    def Getdashrate(self, ) -> str:
+    def getdashrate(self, ) -> str:
         """
         Get your hashrate in H/s (Hash operations per second)
         :return dashRate: The hashrate in Hs (Hash operations per second)
         """
-        response = requests.post(self.url, json={
-          "method": "miner_Getdashrate",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_Getdashrate",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def setExtra(self, ) -> None:
+
+    def set_extra(self, ) -> None:
         """
         Sets the extra data a miner can include when miner blocks
          This is capped at 32 bytes
         """
-        response = requests.post(self.url, json={
-          "method": "miner_setExtra",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_setExtra",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def setGasPrice(self, price:float) -> None:
+
+    def set_gas_price(self, price_float) -> None:
         """
         Sets the minimal accepted gas price when mining transactions
          Any transactions that are below this limit are excluded from the mining process
         :param price: The new minimal accepted gas price when mining transactions.
         """
-        response = requests.post(self.url, json={
-          "method": "miner_setGasPrice",
-          "params": [price],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_setGasPrice",
+            "params": [price],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
+
     def start(self, ) -> None:
         """
         Start the CPU mining process with the given number of threads and generate a new DAG if need be
         """
-        response = requests.post(self.url, json={
-          "method": "miner_start",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_start",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
+
     def stop(self, ) -> None:
         """
         Stop the CPU mining operation
         """
-        response = requests.post(self.url, json={
-          "method": "miner_stop",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_stop",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def setEtherbase(self, etherbase:str) -> None:
+
+    def set_etherbase(self, etherbase_str) -> None:
         """
         Sets the etherbase, where mining rewards will go
         :param etherbase: The new etherbase.
         """
-        response = requests.post(self.url, json={
-          "method": "miner_setEtherbase",
-          "params": [etherbase],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "miner_setEtherbase",
+            "params": [etherbase],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-

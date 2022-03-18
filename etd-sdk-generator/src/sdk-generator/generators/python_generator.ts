@@ -1,4 +1,3 @@
-import { capitalizeFirstLetter, lowercaseFirstLetter } from "../generator";
 import {
   Method,
   Param,
@@ -16,6 +15,9 @@ import {
   cleanPythonVariableName,
   generatePythonFunctionBodyReturn,
 } from "../utils/python_utils";
+
+import { exec } from "child_process";
+import { capitalizeFirstLetter, lowercaseFirstLetter } from "../utils/filters";
 
 export class PythonGenerator extends TypescriptGenerator {
   functionTemplatePath = "templates/python/functionTemplate.j2";
@@ -108,7 +110,7 @@ export class PythonGenerator extends TypescriptGenerator {
       code += `${
         cleanPythonVariableName(lowercaseFirstLetter(param.name))
           .cleanVariableName
-      }:${result.type}`;
+      } : ${result.type}`;
       types = types.concat(result.types);
 
       if (result.isCustomType) {
@@ -332,12 +334,13 @@ export class PythonGenerator extends TypescriptGenerator {
     returnTypeName: string
   ): string {
     return `
-    response = requests.post(self.url, json={
+    json_data = {
       "method": "${rpcFunction.rpc_method}",
       "params": ${this.generateRpcMethodParams(rpcFunction.params)},
       "jsonrpc": "2.0",
       "id": 1
-    })
+    }
+    response = requests.post(self.url, json=to_dict(json_data))
     return ${generatePythonFunctionBodyReturn(
       returnTypeName,
       `response.json()["result"]`
@@ -347,5 +350,9 @@ export class PythonGenerator extends TypescriptGenerator {
 
   protected generateReturnTypeName(functionName: string): string {
     return `${capitalizeFirstLetter(functionName)}Response`;
+  }
+
+  protected async beautifyByExternalTool(outputFilePath: string): Promise<any> {
+    exec(`autopep8 --in-place --aggressive --aggressive ${outputFilePath}`);
   }
 }

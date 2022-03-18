@@ -6,7 +6,7 @@ import {
   RPCFunction,
 } from "../../sdk-generator/interfaces/schema";
 import { MockDataRpcBalance, MockDataRpcMethod } from "../mockdata/const";
-import { capitalizeFirstLetter } from "../../sdk-generator/generator";
+import { capitalizeFirstLetter } from "../../sdk-generator/utils/filters";
 
 describe("Given a typescript generator test returns", () => {
   let generator: TypescriptGenerator;

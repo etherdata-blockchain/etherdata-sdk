@@ -66,7 +66,7 @@ export function Getdashrate({ call }: Props) {
   );
 }
 
-export function Setextra({ call }: Props) {
+export function SetExtra({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -115,7 +115,7 @@ export function Setextra({ call }: Props) {
   );
 }
 
-export function Setgasprice({ call }: Props) {
+export function SetGasPrice({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -261,7 +261,7 @@ export function Stop({ call }: Props) {
   );
 }
 
-export function Setetherbase({ call }: Props) {
+export function SetEtherbase({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -329,15 +329,15 @@ export function Miner({ call, host, port }: MethodProps) {
     <div>
       <Getdashrate call={callRPC} />
 
-      <Setextra call={callRPC} />
+      <SetExtra call={callRPC} />
 
-      <Setgasprice call={callRPC} />
+      <SetGasPrice call={callRPC} />
 
       <Start call={callRPC} />
 
       <Stop call={callRPC} />
 
-      <Setetherbase call={callRPC} />
+      <SetEtherbase call={callRPC} />
     </div>
   );
 }

@@ -2,15 +2,17 @@ import requests
 from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
+from ..utils import to_dict
 
 {% for returnType in functionReturnTypes %}
 @dataclass_json
 @dataclass
-class {{returnType.type}}:
+class {{ returnType.type | camelCase | capitalize }}:
     {{ returnType.code | safe }}
+
 {% endfor %}
 
-class {{ methodName }}:
+class {{ methodName | camelCase | capitalize }}:
     {{ methodComment | safe | indent(4) }}
 
     def __init__(self, url: str):

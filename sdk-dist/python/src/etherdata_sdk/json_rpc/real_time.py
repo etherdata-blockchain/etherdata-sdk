@@ -2,171 +2,174 @@ import requests
 from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
+from ..utils import to_dict
 
 
 @dataclass_json
 @dataclass
 class SubscriptionObject:
-    
-    address:Optional[List[Optional[str]]] 
+
+    address: Optional[List[Optional[str]]]
     """
     Either an address or an array of addresses. Only logs that are created from these addresses are returned (optional)
     """
 
-    topics:Optional[List[Optional[str]]] 
+    topics: Optional[List[Optional[str]]]
     """
     Only logs which match the specified topics
     """
 
+
 @dataclass_json
 @dataclass
 class SupportedSubscriptionsResponseOutputObject:
-    
-    address:str 
+
+    address: str
     """
     The transaction address
     """
 
-    blockHash:str 
+    blockHash: str
     """
     The transaction block hash
     """
 
-    blockNumber:str 
+    blockNumber: str
     """
     The transaction block number
     """
 
-    data:str 
+    data: str
     """
     The transaction data
     """
 
-    logIndex:str 
+    logIndex: str
     """
     The transaction log index
     """
 
-    topics:List[str] 
+    topics: List[str]
     """
     The transaction topic(s)
     """
 
-    transactionHash:str 
+    transactionHash: str
     """
     The transaction hash
     """
 
-    transactionIndex:str 
+    transactionIndex: str
     """
     The transaction index
     """
 
+
 @dataclass_json
 @dataclass
 class NewPendingTransactionsResponseParams:
-    
-    subscription:str 
+
+    subscription: str
     """
     The subscription ID
     """
 
-    result:str 
+    result: str
     """
     The result address
     """
 
+
 @dataclass_json
 @dataclass
 class NewPendingTransactionsResponseTranscation:
-    
-    jsonrpc:str 
+
+    jsonrpc: str
     """
     The jsonrpc version
     """
 
-    method:str 
+    method: str
     """
     The subscription method
     """
 
-    params:NewPendingTransactionsResponseParams 
+    params: NewPendingTransactionsResponseParams
     """
     The parameters regarding the subscription
     """
 
+
 @dataclass_json
 @dataclass
 class NewPendingTransactionsResponse:
-    
-    hash:str    
+
+    hash: str
     """
     The hash for all transactions
     """
-    
-    transcation:NewPendingTransactionsResponseTranscation    
+
+    transcation: NewPendingTransactionsResponseTranscation
     """
     The transaction
     """
-    
 
 
 @dataclass_json
 @dataclass
 class SyncingResponseStatus:
-    
-    startingBlock:float 
+
+    startingBlock: float
     """
     The starting block number
     """
 
-    currentBlock:float 
+    currentBlock: float
     """
     The current block number
     """
 
-    highestBlock:float 
+    highestBlock: float
     """
     The highest block number
     """
 
-    pulledStates:float 
+    pulledStates: float
     """
     The pulled states
     """
 
-    knownStates:float 
+    knownStates: float
     """
     The known states
     """
 
+
 @dataclass_json
 @dataclass
 class SyncingResponse:
-    
-    synchronized:bool    
+
+    synchronized: bool
     """
     Indicating that the synchronization has started (true) or finished (false)
     """
-    
-    status:SyncingResponseStatus    
+
+    status: SyncingResponseStatus
     """
     An object with various progress indicators regarding the synchronization
     """
-    
 
 
-
-class Real_time:
+class RealTime:
     """
     Getd v1
     4 and later support publish / subscribe using JSON-RPC notifications
       This allows clients to wait for events instead of polling for them
-    
+
     It works by subscribing to particular events
      The node will return a subscription id
       For each event that matches the subscription a notification with relevant data is send toGetder  with the subscription id
-    
+
     Considerations 1
      Notifications are sent for current events and not for past events
      If your use case requires  you not to miss any notifications than subscriptions are probably not the best option
@@ -187,46 +190,50 @@ class Real_time:
     def __init__(self, url: str):
         self.url = url
 
-
-    
-    def createSubscription(self, subscriptionName:str, aaaaa:Optional[Any]) -> str:
+    def create_subscription(
+            self,
+            subscription_name_str_aaaaa_optional_any_) -> str:
         """
         Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
          If successful it returns the subscription id
         :param subscriptionName: The subscription name
-        :param aaaaa: 
+        :param aaaaa:
         :return subscriptionID: The subscription ID
         """
-        response = requests.post(self.url, json={
-          "method": "real-time_createSubscription",
-          "params": [subscriptionName, aaaaa],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "real-time_createSubscription",
+            "params": [subscriptionName, aaaaa],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def cancelSubscription(self, subscriptionID:str) -> bool:
+
+    def cancel_subscription(self, subscription_i_d_str) -> bool:
         """
         Subscriptions are cancelled with a regular RPC call with etd_unsubscribe as method and the subscription id as first parameter
          It returns a bool indicating if the subscription was cancelled successful
         :param subscriptionID: The subscription ID
         :return cancelled: Indicating if the subscription was cancelled successful.
         """
-        response = requests.post(self.url, json={
-          "method": "real-time_cancelSubscription",
-          "params": [subscriptionID],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "real-time_cancelSubscription",
+            "params": [subscriptionID],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
-        
-    def supportedSubscriptions(self, subscriptionObject:SubscriptionObject) -> SupportedSubscriptionsResponseOutputObject:
+
+    def supported_subscriptions(
+            self,
+            subscription_object_subscription_object) -> SupportedSubscriptionsResponseOutputObject:
         """
         newHeads -Fires a notification each time a new header is appended to the chain, including chain reorganizations
          Users can use the bloom filter to determine if the block contains logs that are interested to them
          -In case of a chain reorganization the subscription will emit all new headers for the new chain
          Therefore the subscription can emit multiple headers on the same height
-        
+
         logs -Returns logs that are included in new imported blocks and match the given filter criteria
          -In case of a chain reorganization previous sent logs that are on the old chain will be resend with the removed property set to true
          Logs from transactions that ended up in the new chain are emitted
@@ -234,29 +241,33 @@ class Real_time:
         :param subscriptionObject: The object containing different opotional transcation fields
         :return outputObject: The return Object of the function
         """
-        response = requests.post(self.url, json={
-          "method": "real-time_supportedSubscriptions",
-          "params": [subscriptionObject],
-          "jsonrpc": "2.0",
-          "id": 1
-        })
-        return SupportedSubscriptionsResponseOutputObject.from_dict(response.json()["result"])
-        
-    def newPendingTransactions(self, ) -> NewPendingTransactionsResponse:
+        json_data = {
+            "method": "real-time_supportedSubscriptions",
+            "params": [subscriptionObject],
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
+        return SupportedSubscriptionsResponseOutputObject.from_dict(response.json()[
+                                                                    "result"])
+
+    def new_pending_transactions(self, ) -> NewPendingTransactionsResponse:
         """
         Returns the hash for all transactions that are added to the pending state and are signed with a key that is available in the node
          Tansaction that was previously part of the canonical chain isn’t part of the new canonical chain after a reogranization its again emitted
         :return hash: The hash for all transactions
         :return transcation: The transaction
         """
-        response = requests.post(self.url, json={
-          "method": "real-time_newPendingTransactions",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
-        return NewPendingTransactionsResponse.from_dict(response.json()["result"])
-        
+        json_data = {
+            "method": "real-time_newPendingTransactions",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
+        return NewPendingTransactionsResponse.from_dict(
+            response.json()["result"])
+
     def syncing(self, ) -> SyncingResponse:
         """
         Indicates when the node starts or stops synchronizing
@@ -264,12 +275,11 @@ class Real_time:
         :return synchronized: Indicating that the synchronization has started (true) or finished (false)
         :return status: An object with various progress indicators regarding the synchronization
         """
-        response = requests.post(self.url, json={
-          "method": "real-time_syncing",
-          "params": None,
-          "jsonrpc": "2.0",
-          "id": 1
-        })
+        json_data = {
+            "method": "real-time_syncing",
+            "params": None,
+            "jsonrpc": "2.0",
+            "id": 1
+        }
+        response = requests.post(self.url, json=to_dict(json_data))
         return SyncingResponse.from_dict(response.json()["result"])
-        
-

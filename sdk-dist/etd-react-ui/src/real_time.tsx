@@ -18,7 +18,7 @@ interface MethodProps {
   call?(callParam: CallParam): Promise<any>;
 }
 
-export function Createsubscription({ call }: Props) {
+export function CreateSubscription({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -70,7 +70,7 @@ export function Createsubscription({ call }: Props) {
   );
 }
 
-export function Cancelsubscription({ call }: Props) {
+export function CancelSubscription({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -121,7 +121,7 @@ export function Cancelsubscription({ call }: Props) {
   );
 }
 
-export function Supportedsubscriptions({ call }: Props) {
+export function SupportedSubscriptions({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -178,7 +178,7 @@ export function Supportedsubscriptions({ call }: Props) {
   );
 }
 
-export function Newpendingtransactions({ call }: Props) {
+export function NewPendingTransactions({ call }: Props) {
   const [values, setValues] = React.useState<any>();
   const [errors, setErrors] = React.useState<any>();
 
@@ -294,13 +294,13 @@ export function Real_time({ call, host, port }: MethodProps) {
 
   return (
     <div>
-      <Createsubscription call={callRPC} />
+      <CreateSubscription call={callRPC} />
 
-      <Cancelsubscription call={callRPC} />
+      <CancelSubscription call={callRPC} />
 
-      <Supportedsubscriptions call={callRPC} />
+      <SupportedSubscriptions call={callRPC} />
 
-      <Newpendingtransactions call={callRPC} />
+      <NewPendingTransactions call={callRPC} />
 
       <Syncing call={callRPC} />
     </div>
