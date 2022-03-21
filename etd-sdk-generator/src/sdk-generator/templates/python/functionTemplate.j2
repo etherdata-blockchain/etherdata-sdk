@@ -1,5 +1,5 @@
 
-def {{ functionName | snakeCase }}(self, {{ functionInputs | lowerCase }}) -> {{ functionReturns | safe }}:
+def {{ functionName | snakeCase }}(self, {{ functionInputs }}) -> {{ functionReturns | safe }}:
     {{ functionComment | safe | indent(0) }}
 {{- functionBody | safe -}}
 

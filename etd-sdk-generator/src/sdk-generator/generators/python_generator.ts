@@ -111,9 +111,9 @@ export class PythonGenerator extends TypescriptGenerator {
     let types: TypeResult[] = [];
     for (let param of params) {
       const result = this.generateType(param);
-      code += `${ensureSnakeCaseFilter(
-        cleanPythonVariableName(param.name).cleanVariableName
-      )}:${result.type}`;
+      code += `${cleanPythonVariableName(
+        ensureSnakeCaseFilter(param.name)
+      ).cleanVariableName.toLowerCase()}:${result.type}`;
       types = types.concat(result.types);
 
       if (result.isCustomType) {
@@ -268,10 +268,10 @@ export class PythonGenerator extends TypescriptGenerator {
       returnParams += "[";
       let index = 0;
       for (let param of params) {
-        returnParams += `${
+        returnParams += `${ensureSnakeCaseFilter(
           cleanPythonVariableName(lowercaseFirstLetter(param.name))
             .cleanVariableName
-        }`;
+        )}`;
         if (index < params.length - 1) {
           returnParams += ", ";
         }

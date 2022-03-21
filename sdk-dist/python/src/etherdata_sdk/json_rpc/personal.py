@@ -46,7 +46,7 @@ class Personal:
         """
         json_data = {
             "method": "personal_importRawKey",
-            "params": [priveteKey],
+            "params": [privete_key],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -83,7 +83,7 @@ class Personal:
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def new_account(self, passphrase: optional[str]) -> str:
+    def new_account(self, passphrase: Optional[str]) -> str:
         """
         Generates a new private key and stores it in the key store directory
          The key file is encrypted with the given passphrase
@@ -109,8 +109,8 @@ class Personal:
     def unlock_account(
             self,
             account_address: str,
-            passphrase: optional[str],
-            unlock_duration: optional[float]) -> bool:
+            passphrase: Optional[str],
+            unlock_duration: Optional[float]) -> bool:
         """
         Decrypts the key with the given address from the key store
 
@@ -133,14 +133,14 @@ class Personal:
         """
         json_data = {
             "method": "personal_unlockAccount",
-            "params": [accountAddress, passphrase, unlockDuration],
+            "params": [account_address, passphrase, unlock_duration],
             "jsonrpc": "2.0",
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def send_transaction(self, tx: tx) -> str:
+    def send_transaction(self, tx: Tx) -> str:
         """
         Validate the given passphrase and submit transaction
 

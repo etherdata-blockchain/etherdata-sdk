@@ -41,7 +41,7 @@ class Json_rpc_methods(val url: String) {
       val miner: String,
       val difficulty: String,
       val totalDifficulty: String,
-      val extraData: String,
+      val extradata: String,
       val size: String,
       val gasLimit: String,
       val gasUsed: String,
@@ -61,7 +61,7 @@ class Json_rpc_methods(val url: String) {
       val miner: String,
       val difficulty: String,
       val totalDifficulty: String,
-      val extraData: String,
+      val extradata: String,
       val size: String,
       val gasLimit: String,
       val gasUsed: String,
@@ -242,10 +242,10 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns the balance of the account of given address
-   * @param address DATA, 20 Bytes - address to check for balance
-   * @param tag QUANTITY_TAG - integer block number, or the string &quot;latest&quot;,
+   * @param address data, 20 Bytes - address to check for balance
+   * @param tag quantity_tag - integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
-   * @return balance QUANTITY - integer of the current balance in wei.
+   * @return balance quantity - integer of the current balance in wei.
    */
   suspend fun getBalance(address: String, tag: String): Long {
 
@@ -261,9 +261,9 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns the value from a storage position at a given address
-   * @param address DATA, 20 Bytes - address of the storage.
+   * @param address data, 20 Bytes - address of the storage.
    * @param position The integer of the position in the storage.
-   * @param tag QUANTITY_TAG - integer block number, or the string &quot;latest&quot;,
+   * @param tag quantity_tag - integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
    * @return valur The value at this storage position.
    */
@@ -285,7 +285,7 @@ class Json_rpc_methods(val url: String) {
   /**
    * Returns the number of transactions sent from an address
    * @param address The address.
-   * @param state QUANTITY_TAG - integer block number, or the string &quot;latest&quot;,
+   * @param state quantity_tag - integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
    * @return number The number of transactions send from this address.
    */
@@ -307,11 +307,11 @@ class Json_rpc_methods(val url: String) {
   /**
    * Returns the number of transactions in a block from a block matching the given block hash
    * @param data 20 Bytes - The address
-   * @param qUANTITY_TAG integer block number, or the string &quot;latest&quot;,
+   * @param quantity_tag integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
    * @return quantity The integer of the number of transactions send from this address.
    */
-  suspend fun getTransactionCountByHash(data: String, qUANTITY_TAG: String): String {
+  suspend fun getTransactionCountByHash(data: String, quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
@@ -319,7 +319,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getTransactionCountByHash",
-                  params = listOf(data, qUANTITY_TAG),
+                  params = listOf(data, quantity_tag),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -348,11 +348,11 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns the number of transactions in a block matching the given block number
-   * @param qUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;,
+   * @param quantity_tag The integer of a block number, or the string &quot;earliest&quot;,
    * &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
    * @return quantity The integer of the number of transactions in this block.
    */
-  suspend fun getBlockTransactionCountByNumber(qUANTITY_TAG: String): String {
+  suspend fun getBlockTransactionCountByNumber(quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
@@ -360,7 +360,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getBlockTransactionCountByNumber",
-                  params = listOf(qUANTITY_TAG),
+                  params = listOf(quantity_tag),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -370,7 +370,7 @@ class Json_rpc_methods(val url: String) {
   /**
    * Returns the number of uncles in a block from a block matching the given block hash
    * @param data 32 Bytes - The hash of a block
-   * @return qUANTITY_TAG The integer of the number of uncles in this block.
+   * @return quantity_tag The integer of the number of uncles in this block.
    */
   suspend fun getUncleCountByBlockHash(data: String): String {
 
@@ -389,11 +389,11 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns the number of uncles in a block from a block matching the given block number
-   * @param qUANTITY_TAG The integer of a block number, or the string “latest”, “earliest” or
+   * @param quantity_tag The integer of a block number, or the string “latest”, “earliest” or
    * “pending”, see the default block parameter
    * @return quantity The integer of the number of uncles in this block.
    */
-  suspend fun getUncleCountByBlockNumber(qUANTITY_TAG: String): String {
+  suspend fun getUncleCountByBlockNumber(quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
@@ -401,7 +401,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getUncleCountByBlockNumber",
-                  params = listOf(qUANTITY_TAG),
+                  params = listOf(quantity_tag),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -411,18 +411,18 @@ class Json_rpc_methods(val url: String) {
   /**
    * Returns code at a given address
    * @param data 20 Byter - The address
-   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;,
+   * @param quantity_tag The integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
    * @return data The code from the given address.
    */
-  suspend fun getCode(data: String, qUANTITY_TAG: String): String {
+  suspend fun getCode(data: String, quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
           contentType(ContentType.Application.Json)
           body =
               JsonRpcRequest(
-                  method = "eth_code", params = listOf(data, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
+                  method = "eth_code", params = listOf(data, quantity_tag), jsonrpc = "2.0", id = 1)
         }
     return response.result
   }
@@ -509,18 +509,18 @@ class Json_rpc_methods(val url: String) {
   /**
    * Executes a new message call immediately without creating a transaction on the block chain
    * @param obj The transaction object
-   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;,
+   * @param quantity_tag The integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
    * @return data The return value of executed contract.
    */
-  suspend fun call(obj: Obj, qUANTITY_TAG: String): String {
+  suspend fun call(obj: Obj, quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
           contentType(ContentType.Application.Json)
           body =
               JsonRpcRequest(
-                  method = "eth_call", params = listOf(obj, qUANTITY_TAG), jsonrpc = "2.0", id = 1)
+                  method = "eth_call", params = listOf(obj, quantity_tag), jsonrpc = "2.0", id = 1)
         }
     return response.result
   }
@@ -531,11 +531,11 @@ class Json_rpc_methods(val url: String) {
    * significantly more than the amount of gas actually used by the transaction, for a variety of
    * reasons including EVM mechanics and node performance
    * @param obj The transaction object
-   * @param qUANTITY_TAG The integer block number, or the string &quot;latest&quot;,
+   * @param quantity_tag The integer block number, or the string &quot;latest&quot;,
    * &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
    * @return quantity The amount of gas used.
    */
-  suspend fun estimateGas(obj: Obj, qUANTITY_TAG: String): String {
+  suspend fun estimateGas(obj: Obj, quantity_tag: String): String {
 
     val response: JsonRpcResponse<String> =
         client.post(url) {
@@ -543,7 +543,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_estimateGas",
-                  params = listOf(obj, qUANTITY_TAG),
+                  params = listOf(obj, quantity_tag),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -574,13 +574,13 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns information about a block by block number
-   * @param qUANTITY_TAG The integer of a block number, or the string &quot;earliest&quot;,
+   * @param quantity_tag The integer of a block number, or the string &quot;earliest&quot;,
    * &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
    * @param bool If true it returns the full transaction objects, if false only the hashes of the
    * transactions.
    * @return obj A block object, or null when no block was found
    */
-  suspend fun getBlockByNumber(qUANTITY_TAG: String, bool: Boolean): GetBlockByNumberResponseObj {
+  suspend fun getBlockByNumber(quantity_tag: String, bool: Boolean): GetBlockByNumberResponseObj {
 
     val response: JsonRpcResponse<GetBlockByNumberResponseObj> =
         client.post(url) {
@@ -588,7 +588,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getBlockByNumber",
-                  params = listOf(qUANTITY_TAG, bool),
+                  params = listOf(quantity_tag, bool),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -641,13 +641,13 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns information about a transaction by block number and transaction index position
-   * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or
+   * @param quantity_tag a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or
    * &quot;pending&quot;, as in the default block parameter.
    * @param quantity The transaction index position.
    * @return obj See eth_getTransactionByHash
    */
   suspend fun getTransactionByBlockNumberAndIndex(
-      qUANTITY_TAG: String,
+      quantity_tag: String,
       quantity: String
   ): GetTransactionByBlockNumberAndIndexResponseObj {
 
@@ -657,7 +657,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getTransactionByBlockNumberAndIndex",
-                  params = listOf(qUANTITY_TAG, quantity),
+                  params = listOf(quantity_tag, quantity),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -712,14 +712,14 @@ class Json_rpc_methods(val url: String) {
 
   /**
    * Returns information about a uncle of a block by number and uncle index position
-   * @param qUANTITY_TAG a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or
+   * @param quantity_tag a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or
    * &quot;pending&quot;, as in the default block parameter.
    * @param quantity the uncle’s index position.
    * @return obj See eth_getTransactionByHash Note - An uncle doesn’t contain individual
    * transactions.
    */
   suspend fun getUncleByBlockNumberAndIndex(
-      qUANTITY_TAG: String,
+      quantity_tag: String,
       quantity: String
   ): GetUncleByBlockNumberAndIndexResponseObj {
 
@@ -729,7 +729,7 @@ class Json_rpc_methods(val url: String) {
           body =
               JsonRpcRequest(
                   method = "eth_getUncleByBlockNumberAndIndex",
-                  params = listOf(qUANTITY_TAG, quantity),
+                  params = listOf(quantity_tag, quantity),
                   jsonrpc = "2.0",
                   id = 1)
         }
@@ -891,9 +891,9 @@ class Json_rpc_methods(val url: String) {
    * Polling method for a filter, which returns an array of logs which occurred since last poll
    * @param quantity The filter id.
    * @return array Array of log objects, or an empty array if nothing has changed since last poll.
-   * For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g.
+   * For filters created with eth_newBlockFilter the return are block hashes (data, 32 Bytes), e.g.
    * [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the
-   * return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+   * return are transaction hashes (data, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
    */
   suspend fun getFilterChanges(quantity: String): List<Array> {
 
@@ -946,8 +946,8 @@ class Json_rpc_methods(val url: String) {
   /**
    * Returns the hash of the current block, the seedHash, and the boundary condition to be met
    * (“target”)
-   * @return array Array with the following properties -DATA, 32 Bytes - current block header
-   * pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary
+   * @return array Array with the following properties -data, 32 Bytes - current block header
+   * pow-hash -data, 32 Bytes - the seed hash used for the DAG. -data, 32 Bytes - the boundary
    * condition (“target”), 2^256 difficulty.
    */
   suspend fun getWork(): List<String> {

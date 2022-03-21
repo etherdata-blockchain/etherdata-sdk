@@ -193,7 +193,7 @@ class RealTime:
     def create_subscription(
             self,
             subscription_name: str,
-            aaaaa: optional[any]) -> str:
+            aaaaa: Optional[Any]) -> str:
         """
         Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
          If successful it returns the subscription id
@@ -207,7 +207,7 @@ class RealTime:
         """
         json_data = {
             "method": "real-time_createSubscription",
-            "params": [subscriptionName, aaaaa],
+            "params": [subscription_name, aaaaa],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -227,7 +227,7 @@ class RealTime:
         """
         json_data = {
             "method": "real-time_cancelSubscription",
-            "params": [subscriptionID],
+            "params": [subscription_i_d],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -236,7 +236,7 @@ class RealTime:
 
     def supported_subscriptions(
             self,
-            subscription_object: subscriptionobject) -> SupportedSubscriptionsResponseOutputObject:
+            subscription_object: SubscriptionObject) -> SupportedSubscriptionsResponseOutputObject:
         """
         newHeads -Fires a notification each time a new header is appended to the chain, including chain reorganizations
          Users can use the bloom filter to determine if the block contains logs that are interested to them
@@ -256,7 +256,7 @@ class RealTime:
         """
         json_data = {
             "method": "real-time_supportedSubscriptions",
-            "params": [subscriptionObject],
+            "params": [subscription_object],
             "jsonrpc": "2.0",
             "id": 1
         }

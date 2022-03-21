@@ -570,9 +570,9 @@ export function GetTransactionCountByHash({ call }: Props) {
     "type": "object",
     "properties": {
       "data": { "type": "string", "title": "data" },
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["data", "QUANTITY_TAG"],
+    "required": ["data", "quantity_tag"],
   };
 
   return (
@@ -620,8 +620,8 @@ export function GetBlockTransactionCountByHash({ call }: Props) {
     "description":
       "Returns the number of transactions in a block from a block matching the given block hash.",
     "type": "object",
-    "properties": { "DATA": { "type": "string", "title": "DATA" } },
-    "required": ["DATA"],
+    "properties": { "data": { "type": "string", "title": "data" } },
+    "required": ["data"],
   };
 
   return (
@@ -670,9 +670,9 @@ export function GetBlockTransactionCountByNumber({ call }: Props) {
       "Returns the number of transactions in a block matching the given block number.",
     "type": "object",
     "properties": {
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["QUANTITY_TAG"],
+    "required": ["quantity_tag"],
   };
 
   return (
@@ -720,8 +720,8 @@ export function GetUncleCountByBlockHash({ call }: Props) {
     "description":
       "Returns the number of uncles in a block from a block matching the given block hash.",
     "type": "object",
-    "properties": { "DATA": { "type": "string", "title": "DATA" } },
-    "required": ["DATA"],
+    "properties": { "data": { "type": "string", "title": "data" } },
+    "required": ["data"],
   };
 
   return (
@@ -770,9 +770,9 @@ export function GetUncleCountByBlockNumber({ call }: Props) {
       "Returns the number of uncles in a block from a block matching the given block number.",
     "type": "object",
     "properties": {
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["QUANTITY_TAG"],
+    "required": ["quantity_tag"],
   };
 
   return (
@@ -820,10 +820,10 @@ export function GetCode({ call }: Props) {
     "description": "Returns code at a given address.",
     "type": "object",
     "properties": {
-      "DATA": { "type": "string", "title": "DATA" },
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "data": { "type": "string", "title": "data" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["DATA", "QUANTITY_TAG"],
+    "required": ["data", "quantity_tag"],
   };
 
   return (
@@ -1047,8 +1047,8 @@ export function SendRawTransaction({ call }: Props) {
     "description":
       "Creates new message call transaction or a contract creation for signed transactions.",
     "type": "object",
-    "properties": { "DATA": { "type": "string", "title": "DATA" } },
-    "required": ["DATA"],
+    "properties": { "data": { "type": "string", "title": "data" } },
+    "required": ["data"],
   };
 
   return (
@@ -1108,9 +1108,9 @@ export function Call({ call }: Props) {
           "data": { "type": "string", "title": "data" },
         },
       },
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["obj", "QUANTITY_TAG"],
+    "required": ["obj", "quantity_tag"],
   };
 
   return (
@@ -1170,9 +1170,9 @@ export function EstimateGas({ call }: Props) {
           "data": { "type": "string", "title": "data" },
         },
       },
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
     },
-    "required": ["obj", "QUANTITY_TAG"],
+    "required": ["obj", "quantity_tag"],
   };
 
   return (
@@ -1220,10 +1220,10 @@ export function GetBlockByHash({ call }: Props) {
     "description": "Returns information about a block by hash.",
     "type": "object",
     "properties": {
-      "DATA": { "type": "string", "title": "DATA" },
+      "data": { "type": "string", "title": "data" },
       "Bool": { "type": "boolean", "title": "Bool" },
     },
-    "required": ["DATA", "Bool"],
+    "required": ["data", "Bool"],
   };
 
   return (
@@ -1271,10 +1271,10 @@ export function GetBlockByNumber({ call }: Props) {
     "description": "Returns information about a block by block number.",
     "type": "object",
     "properties": {
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
       "Bool": { "type": "boolean", "title": "Bool" },
     },
-    "required": ["QUANTITY_TAG", "Bool"],
+    "required": ["quantity_tag", "Bool"],
   };
 
   return (
@@ -1322,8 +1322,8 @@ export function GetTransactionByHash({ call }: Props) {
     "description":
       "Returns the information about a transaction requested by transaction hash.",
     "type": "object",
-    "properties": { "DATA": { "type": "string", "title": "DATA" } },
-    "required": ["DATA"],
+    "properties": { "data": { "type": "string", "title": "data" } },
+    "required": ["data"],
   };
 
   return (
@@ -1372,10 +1372,10 @@ export function GetTransactionByHashAndIndex({ call }: Props) {
       "Returns information about a transaction by block hash and transaction index position.",
     "type": "object",
     "properties": {
-      "DATA": { "type": "string", "title": "DATA" },
-      "QUANTITY": { "type": "string", "title": "QUANTITY" },
+      "data": { "type": "string", "title": "data" },
+      "quantity": { "type": "string", "title": "quantity" },
     },
-    "required": ["DATA", "QUANTITY"],
+    "required": ["data", "quantity"],
   };
 
   return (
@@ -1424,10 +1424,10 @@ export function GetTransactionByBlockNumberAndIndex({ call }: Props) {
       "Returns information about a transaction by block number and transaction index position.",
     "type": "object",
     "properties": {
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
-      "QUANTITY": { "type": "string", "title": "QUANTITY" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
+      "quantity": { "type": "string", "title": "quantity" },
     },
-    "required": ["QUANTITY_TAG", "QUANTITY"],
+    "required": ["quantity_tag", "quantity"],
   };
 
   return (
@@ -1475,8 +1475,8 @@ export function GetTransactionReceipt({ call }: Props) {
     "description":
       "Returns the receipt of a transaction by transaction hash. Note That the receipt is not available for pending transactions.",
     "type": "object",
-    "properties": { "DATA": { "type": "string", "title": "DATA" } },
-    "required": ["DATA"],
+    "properties": { "data": { "type": "string", "title": "data" } },
+    "required": ["data"],
   };
 
   return (
@@ -1525,10 +1525,10 @@ export function GetUncleByBlockHashAndIndex({ call }: Props) {
       "eturns information about a uncle of a block by hash and uncle index position.",
     "type": "object",
     "properties": {
-      "DATA": { "type": "string", "title": "DATA" },
-      "QUANTITY": { "type": "string", "title": "QUANTITY" },
+      "data": { "type": "string", "title": "data" },
+      "quantity": { "type": "string", "title": "quantity" },
     },
-    "required": ["DATA", "QUANTITY"],
+    "required": ["data", "quantity"],
   };
 
   return (
@@ -1577,10 +1577,10 @@ export function GetUncleByBlockNumberAndIndex({ call }: Props) {
       "Returns information about a uncle of a block by number and uncle index position.",
     "type": "object",
     "properties": {
-      "QUANTITY_TAG": { "type": "string", "title": "QUANTITY_TAG" },
-      "QUANTITY": { "type": "string", "title": "QUANTITY" },
+      "quantity_tag": { "type": "string", "title": "quantity_tag" },
+      "quantity": { "type": "string", "title": "quantity" },
     },
-    "required": ["QUANTITY_TAG", "QUANTITY"],
+    "required": ["quantity_tag", "quantity"],
   };
 
   return (
@@ -1977,8 +1977,8 @@ export function UninstallFilter({ call }: Props) {
     "description":
       "Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additonally Filters timeout when they aren’t requested with eth_getFilterChanges. for a period of time.",
     "type": "object",
-    "properties": { "QUANTITY": { "type": "string", "title": "QUANTITY" } },
-    "required": ["QUANTITY"],
+    "properties": { "quantity": { "type": "string", "title": "quantity" } },
+    "required": ["quantity"],
   };
 
   return (
@@ -2026,8 +2026,8 @@ export function GetFilterChanges({ call }: Props) {
     "description":
       "Polling method for a filter, which returns an array of logs which occurred since last poll.",
     "type": "object",
-    "properties": { "QUANTITY": { "type": "string", "title": "QUANTITY" } },
-    "required": ["QUANTITY"],
+    "properties": { "quantity": { "type": "string", "title": "quantity" } },
+    "required": ["quantity"],
   };
 
   return (
@@ -2075,8 +2075,8 @@ export function GetFilterLogs({ call }: Props) {
     "description":
       "Returns an array of all logs matching filter with given id.",
     "type": "object",
-    "properties": { "QUANTITY": { "type": "string", "title": "QUANTITY" } },
-    "required": ["QUANTITY"],
+    "properties": { "quantity": { "type": "string", "title": "quantity" } },
+    "required": ["quantity"],
   };
 
   return (

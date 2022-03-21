@@ -163,7 +163,7 @@ class Debug:
     def __init__(self, url: str):
         self.url = url
 
-    def backtrace_at(self, location_javascript_based: any) -> None:
+    def backtrace_at(self, location_javascript_based: Any) -> None:
         """
         Sets the logging backtrace location
          When a backtrace location is set and a log message is emitted at that location, the stack of the goroutine executing the log statement will be printed to stderr
@@ -174,7 +174,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_backtraceAt",
-            "params": [locationJavascript_based],
+            "params": [location_javascript_based],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -221,7 +221,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_dumpBlock",
-            "params": [blockNum],
+            "params": [block_num],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -416,7 +416,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_traceBlock",
-            "params": [blockName],
+            "params": [block_name],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -436,7 +436,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_traceBlockByNumber",
-            "params": [blockNum],
+            "params": [block_num],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -456,14 +456,14 @@ class Debug:
         """
         json_data = {
             "method": "debug_traceBlockByHash",
-            "params": [blockHash],
+            "params": [block_hash],
             "jsonrpc": "2.0",
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
         return response.json()["result"]
 
-    def trace_block_from_file(self, file: any) -> Any:
+    def trace_block_from_file(self, file: Any) -> Any:
         """
         Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
          References -> RLP
@@ -486,8 +486,8 @@ class Debug:
     def standard_trace_block_to_file(
             self,
             block: str,
-            tx_hash: optional[str],
-            disable_memory: optional[bool]) -> List[str]:
+            tx_hash: Optional[str],
+            disable_memory: Optional[bool]) -> List[str]:
         """
         When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that could stream results back via a subscription channel
          This method works a bit differently
@@ -511,7 +511,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_standardTraceBlockToFile",
-            "params": [block, txHash, disableMemory],
+            "params": [block, tx_hash, disable_memory],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -534,11 +534,11 @@ class Debug:
     def trace_transaction(
             self,
             hash: str,
-            disable_storage: optional[bool],
-            disable_memory: optional[bool],
-            disable_stack: optional[bool],
-            tracer: optional[str],
-            timeout: optional[str]) -> TraceTransactionResponseTransaction:
+            disable_storage: Optional[bool],
+            disable_memory: Optional[bool],
+            disable_stack: Optional[bool],
+            tracer: Optional[str],
+            timeout: Optional[str]) -> TraceTransactionResponseTransaction:
         """
         OBS In most scenarios, debug
         standardTraceBlockToFile is better suited for tracing! The traceTransaction debugging method will attempt to run the transaction in the exact same manner as it was executed on the network
@@ -574,9 +574,9 @@ class Debug:
             "method": "debug_traceTransaction",
             "params": [
                 hash,
-                disableStorage,
-                disableMemory,
-                disableStack,
+                disable_storage,
+                disable_memory,
+                disable_stack,
                 tracer,
                 timeout],
             "jsonrpc": "2.0",
@@ -601,11 +601,11 @@ class Debug:
     def trace_call(
             self,
             to: str,
-            from_field: optional[str],
-            gas: optional[str],
-            gas_price: optional[float],
-            value: optional[float],
-            data: optional[str]) -> Any:
+            from_field: Optional[str],
+            gas: Optional[str],
+            gas_price: Optional[float],
+            value: Optional[float],
+            data: Optional[str]) -> Any:
         """
         The debug_traceCall method lets you run an eth_call on top of a given block
          The block can be specified either by hash or by number
@@ -634,7 +634,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_traceCall",
-            "params": [to, from_field, gas, gasPrice, value, data],
+            "params": [to, from_field, gas, gas_price, value, data],
             "jsonrpc": "2.0",
             "id": 1
         }
@@ -671,7 +671,7 @@ class Debug:
         """
         json_data = {
             "method": "debug_vmodule",
-            "params": [messageRestrictions],
+            "params": [message_restrictions],
             "jsonrpc": "2.0",
             "id": 1
         }
