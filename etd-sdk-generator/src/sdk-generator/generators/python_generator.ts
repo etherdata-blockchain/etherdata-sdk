@@ -200,15 +200,7 @@ export class PythonGenerator extends TypescriptGenerator {
     };
   }
 
-  protected async validateGeneratedCode(code: string): Promise<boolean> {
-    return true;
-  }
-
-  protected beautify(code: string): string {
-    return code;
-  }
-
-  protected generateComment(
+  generateComment(
     func?: RPCFunction | undefined,
     method?: Method | undefined,
     inputTypes?: InputParamResult,
@@ -251,7 +243,7 @@ export class PythonGenerator extends TypescriptGenerator {
     return returnComment;
   }
 
-  protected generateVariable(variable: Variable): string {
+  generateVariable(variable: Variable): string {
     let code = "";
     const result = this.generateType(variable);
     code = `${cleanPythonVariableName(variable.name).cleanVariableName}:${
@@ -260,7 +252,7 @@ export class PythonGenerator extends TypescriptGenerator {
     return code;
   }
 
-  protected generateRpcMethodParams(params: Param[]): string {
+  generateRpcMethodParams(params: Param[]): string {
     let returnParams = "";
     if (params.length === 0) {
       returnParams = "None";
@@ -281,6 +273,14 @@ export class PythonGenerator extends TypescriptGenerator {
       returnParams += "]";
     }
     return returnParams;
+  }
+
+  protected async validateGeneratedCode(code: string): Promise<boolean> {
+    return true;
+  }
+
+  protected beautify(code: string): string {
+    return code;
   }
 
   protected generateArrayType(
