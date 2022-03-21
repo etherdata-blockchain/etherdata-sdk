@@ -210,10 +210,10 @@ class Admin:
 
     def start_r_p_c(
             self,
-            host: optional[str],
-            port: optional[float],
-            cors: optional[str],
-            apis: optional[str]) -> bool:
+            host: Optional[str],
+            port: Optional[float],
+            cors: Optional[str],
+            apis: Optional[str]) -> bool:
         """
         The startRPC administrative method starts an HTTP based JSON RPC API webserver to handle client requests
          All the parameters are optional
@@ -238,10 +238,10 @@ class Admin:
 
     def start_w_s(
             self,
-            host: optional[str],
-            port: optional[float],
-            cors: optional[str],
-            apis: optional[str]) -> bool:
+            host: Optional[str],
+            port: Optional[float],
+            cors: Optional[str],
+            apis: Optional[str]) -> bool:
         """
         The startWS administrative method starts an WebSocket based JSON RPC API webserver to handle client requests
          All the parameters are optional
