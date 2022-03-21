@@ -164,7 +164,7 @@ The debug API gives you access to several non-standard RPC methods, which will a
 #### backtrace\_at
 
 ```python
-def backtrace_at(location_javascript_based: any) -> None
+def backtrace_at(location_javascript_based: Any) -> None
 ```
 
 Sets the logging backtrace location
@@ -368,7 +368,7 @@ block: Replaying the block that is already present in the database
 #### trace\_block\_from\_file
 
 ```python
-def trace_block_from_file(file: any) -> Any
+def trace_block_from_file(file: Any) -> Any
 ```
 
 Similar to debug_traceBlock,traceBlockFromFile accepts a file containing the RLP of the block
@@ -383,8 +383,8 @@ block: Replaying the block that is already present in the database
 #### standard\_trace\_block\_to\_file
 
 ```python
-def standard_trace_block_to_file(block: str, tx_hash: optional[str],
-                                 disable_memory: optional[bool]) -> List[str]
+def standard_trace_block_to_file(block: str, tx_hash: Optional[str],
+                                 disable_memory: Optional[bool]) -> List[str]
 ```
 
 When JS-based tracing (see below) was first implemented, the intended usecase was to enable long-running tracers that could stream results back via a subscription channel
@@ -419,10 +419,10 @@ This method is similar to debug_standardTraceBlockToFile, but can be used to obt
 
 ```python
 def trace_transaction(
-        hash: str, disable_storage: optional[bool],
-        disable_memory: optional[bool], disable_stack: optional[bool],
-        tracer: optional[str],
-        timeout: optional[str]) -> TraceTransactionResponseTransaction
+        hash: str, disable_storage: Optional[bool],
+        disable_memory: Optional[bool], disable_stack: Optional[bool],
+        tracer: Optional[str],
+        timeout: Optional[str]) -> TraceTransactionResponseTransaction
 ```
 
 OBS In most scenarios, debug
@@ -466,9 +466,9 @@ Javascript
 #### trace\_call
 
 ```python
-def trace_call(to: str, from_field: optional[str], gas: optional[str],
-               gas_price: optional[float], value: optional[float],
-               data: optional[str]) -> Any
+def trace_call(to: str, from_field: Optional[str], gas: Optional[str],
+               gas_price: Optional[float], value: Optional[float],
+               data: Optional[str]) -> Any
 ```
 
 The debug_traceCall method lets you run an eth_call on top of a given block

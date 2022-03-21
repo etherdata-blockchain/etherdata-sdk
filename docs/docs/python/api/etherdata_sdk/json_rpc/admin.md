@@ -195,8 +195,8 @@ peersArray: All the information known about the connected remote nodes
 #### start\_r\_p\_c
 
 ```python
-def start_r_p_c(host: optional[str], port: optional[float],
-                cors: optional[str], apis: optional[str]) -> bool
+def start_r_p_c(host: Optional[str], port: Optional[float],
+                cors: Optional[str], apis: Optional[str]) -> bool
 ```
 
 The startRPC administrative method starts an HTTP based JSON RPC API webserver to handle client requests
@@ -214,8 +214,8 @@ hTTPlistenerOpen: A boolean flag specifying whether the HTTP RPC listener was op
 #### start\_w\_s
 
 ```python
-def start_w_s(host: optional[str], port: optional[float], cors: optional[str],
-              apis: optional[str]) -> bool
+def start_w_s(host: Optional[str], port: Optional[float], cors: Optional[str],
+              apis: Optional[str]) -> bool
 ```
 
 The startWS administrative method starts an WebSocket based JSON RPC API webserver to handle client requests
