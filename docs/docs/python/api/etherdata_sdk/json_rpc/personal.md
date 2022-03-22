@@ -70,7 +70,7 @@ Removes the private key with given address from memory
 #### new\_account
 
 ```python
-def new_account(passphrase: optional[str]) -> str
+def new_account(passphrase: Optional[str]) -> str
 ```
 
 Generates a new private key and stores it in the key store directory
@@ -88,8 +88,8 @@ priveteKey: The generated priveteKey
 #### unlock\_account
 
 ```python
-def unlock_account(account_address: str, passphrase: optional[str],
-                   unlock_duration: optional[float]) -> bool
+def unlock_account(account_address: str, passphrase: Optional[str],
+                   unlock_duration: Optional[float]) -> bool
 ```
 
 Decrypts the key with the given address from the key store
@@ -114,7 +114,7 @@ unlockState: Indicating whether is the account unlocked successfully
 #### send\_transaction
 
 ```python
-def send_transaction(tx: tx) -> str
+def send_transaction(tx: Tx) -> str
 ```
 
 Validate the given passphrase and submit transaction

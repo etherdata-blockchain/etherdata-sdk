@@ -195,7 +195,7 @@ g
 #### create\_subscription
 
 ```python
-def create_subscription(subscription_name: str, aaaaa: optional[any]) -> str
+def create_subscription(subscription_name: str, aaaaa: Optional[Any]) -> str
 ```
 
 Subscriptions are created with a regular RPC call with etd_subscribe as method and the subscription name as first parameter
@@ -227,7 +227,7 @@ cancelled: Indicating if the subscription was cancelled successful.
 
 ```python
 def supported_subscriptions(
-    subscription_object: subscriptionobject
+    subscription_object: SubscriptionObject
 ) -> SupportedSubscriptionsResponseOutputObject
 ```
 

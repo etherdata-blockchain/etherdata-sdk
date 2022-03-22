@@ -4,6 +4,16 @@
       "items": [
         {
           "items": [
+            "api/etherdata_sdk/file/api",
+            "api/etherdata_sdk/file/download",
+            "api/etherdata_sdk/file/file",
+            "api/etherdata_sdk/file/upload_create"
+          ],
+          "label": "etherdata_sdk.file",
+          "type": "category"
+        },
+        {
+          "items": [
             "api/etherdata_sdk/json_rpc/admin",
             "api/etherdata_sdk/json_rpc/clique",
             "api/etherdata_sdk/json_rpc/debug",

@@ -52,31 +52,31 @@ class Obj()
 
 #### from\_field
 
-DATA, 20 Bytes - The address the transaction is sent from.
+data, 20 Bytes - The address the transaction is sent from.
 
 #### to
 
-DATA, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
+data, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
 
 #### gas
 
-QUANTITY - (optional, default &quot;90000&quot;) Integer of the gas provided for the transaction execution. It will return unused gas.
+quantity - (optional, default &quot;90000&quot;) Integer of the gas provided for the transaction execution. It will return unused gas.
 
 #### gasPrice
 
-QUANTITY - (optional, default &quot;To-Be-Determined&quot;) Integer of the gasPrice used for each paid gas, in Wei.
+quantity - (optional, default &quot;To-Be-Determined&quot;) Integer of the gasPrice used for each paid gas, in Wei.
 
 #### value
 
-QUANTITY - (optional) Integer of the value sent with this transaction, in Wei.
+quantity - (optional) Integer of the value sent with this transaction, in Wei.
 
 #### data
 
-DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see etherdata Contract ABI.
+data - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters. For details see etherdata Contract ABI.
 
 #### nonce
 
-QUANTITY - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+quantity - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
 
 ## GetBlockByHashResponseObj Objects
 
@@ -89,63 +89,63 @@ class GetBlockByHashResponseObj()
 
 #### number
 
-QUANTITY - The block number. null when its pending block.
+quantity - The block number. null when its pending block.
 
 #### hash
 
-DATA, 32 Bytes - hash of the block. null when its pending block.
+data, 32 Bytes - hash of the block. null when its pending block.
 
 #### parnetHash
 
-DATA, 32 Bytes - hash of the parent block.
+data, 32 Bytes - hash of the parent block.
 
 #### nonce
 
-DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+data, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
 
 #### sha3Uncles
 
-DATA, 32 Bytes - SHA3 of the uncles data in the block.
+data, 32 Bytes - SHA3 of the uncles data in the block.
 
 #### logsBloom
 
-DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+data, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
 
 #### transactionsRoot
 
-DATA, 32 Bytes - the root of the transaction trie of the block.
+data, 32 Bytes - the root of the transaction trie of the block.
 
 #### miner
 
-DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+data, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
 
 #### difficulty
 
-QUANTITY - integer of the difficulty for this block.
+quantity - integer of the difficulty for this block.
 
 #### totalDifficulty
 
-QUANTITY - integer of the total difficulty of the chain until this block.
+quantity - integer of the total difficulty of the chain until this block.
 
-#### extraData
+#### extradata
 
-DATA - the “extra data” field of this block.
+data - the “extra data” field of this block.
 
 #### size
 
-QUANTITY - integer the size of this block in bytes.
+quantity - integer the size of this block in bytes.
 
 #### gasLimit
 
-QUANTITY - the maximum gas allowed in this block.
+quantity - the maximum gas allowed in this block.
 
 #### gasUsed
 
-QUANTITY - the total used gas by all transactions in this block.
+quantity - the total used gas by all transactions in this block.
 
 #### timestamp
 
-QUANTITY - the unix timestamp for when the block was collated.
+quantity - the unix timestamp for when the block was collated.
 
 #### transaction
 
@@ -166,63 +166,63 @@ class GetBlockByNumberResponseObj()
 
 #### number
 
-QUANTITY - The block number. null when its pending block.
+quantity - The block number. null when its pending block.
 
 #### hash
 
-DATA, 32 Bytes - hash of the block. null when its pending block.
+data, 32 Bytes - hash of the block. null when its pending block.
 
 #### parnetHash
 
-DATA, 32 Bytes - hash of the parent block.
+data, 32 Bytes - hash of the parent block.
 
 #### nonce
 
-DATA, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+data, 8 Bytes - hash of the generated proof-of-work. null when its pending block.
 
 #### sha3Uncles
 
-DATA, 32 Bytes - SHA3 of the uncles data in the block.
+data, 32 Bytes - SHA3 of the uncles data in the block.
 
 #### logsBloom
 
-DATA, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+data, 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
 
 #### transactionsRoot
 
-DATA, 32 Bytes - the root of the transaction trie of the block.
+data, 32 Bytes - the root of the transaction trie of the block.
 
 #### miner
 
-DATA, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+data, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
 
 #### difficulty
 
-QUANTITY - integer of the difficulty for this block.
+quantity - integer of the difficulty for this block.
 
 #### totalDifficulty
 
-QUANTITY - integer of the total difficulty of the chain until this block.
+quantity - integer of the total difficulty of the chain until this block.
 
-#### extraData
+#### extradata
 
-DATA - the “extra data” field of this block.
+data - the “extra data” field of this block.
 
 #### size
 
-QUANTITY - integer the size of this block in bytes.
+quantity - integer the size of this block in bytes.
 
 #### gasLimit
 
-QUANTITY - the maximum gas allowed in this block.
+quantity - the maximum gas allowed in this block.
 
 #### gasUsed
 
-QUANTITY - the total used gas by all transactions in this block.
+quantity - the total used gas by all transactions in this block.
 
 #### timestamp
 
-QUANTITY - the unix timestamp for when the block was collated.
+quantity - the unix timestamp for when the block was collated.
 
 #### transaction
 
@@ -243,59 +243,59 @@ class GetTransactionByHashResponseObj()
 
 #### blockHash
 
-DATA, 32 Bytes - hash of the block where this transaction was in. null when its pending.
+data, 32 Bytes - hash of the block where this transaction was in. null when its pending.
 
 #### blockNumber
 
-QUANTITY - block number where this transaction was in. null when its pending.
+quantity - block number where this transaction was in. null when its pending.
 
 #### from\_field
 
-DATA, 20 Bytes - address of the sender.
+data, 20 Bytes - address of the sender.
 
 #### gas
 
-QUANTITY - gas provided by the sender.
+quantity - gas provided by the sender.
 
 #### gasParice
 
-QUANTITY - gas price provided by the sender in Wei.
+quantity - gas price provided by the sender in Wei.
 
 #### hash
 
-DATA, 32 Bytes - hash of the transaction.
+data, 32 Bytes - hash of the transaction.
 
 #### input
 
-DATA - the data send along with the transaction.
+data - the data send along with the transaction.
 
 #### nonce
 
-QUANTITY - the number of transactions made by the sender prior to this one.
+quantity - the number of transactions made by the sender prior to this one.
 
 #### to
 
-DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+data, 20 Bytes - address of the receiver. null when its a contract creation transaction.
 
 #### transactionIndex
 
-QUANTITY - integer of the transactions index position in the block. null when its pending.
+quantity - integer of the transactions index position in the block. null when its pending.
 
 #### value
 
-QUANTITY - value transferred in Wei.
+quantity - value transferred in Wei.
 
 #### v
 
-QUANTITY - ECDSA recovery id
+quantity - ECDSA recovery id
 
 #### r
 
-DATA, 32 Bytes - ECDSA signature r
+data, 32 Bytes - ECDSA signature r
 
 #### s
 
-DATA, 32 Bytes - ECDSA signature s
+data, 32 Bytes - ECDSA signature s
 
 ## GetTransactionByHashAndIndexResponseObj Objects
 
@@ -334,39 +334,39 @@ class GetTransactionReceiptResponseObj()
 
 #### transactionHash
 
-DATA, 32 Bytes - hash of the transaction.
+data, 32 Bytes - hash of the transaction.
 
 #### transactionIndex
 
-QUANTITY - integer of the transactions index position in the block.
+quantity - integer of the transactions index position in the block.
 
 #### blockHash
 
-DATA, 32 Bytes - hash of the block where this transaction was in.
+data, 32 Bytes - hash of the block where this transaction was in.
 
 #### blockNumber
 
-QUANTITY - block number where this transaction was in.
+quantity - block number where this transaction was in.
 
 #### from\_field
 
-DATA, 20 Bytes - address of the sender.
+data, 20 Bytes - address of the sender.
 
 #### to
 
-DATA, 20 Bytes - address of the receiver. null when its a contract creation transaction.
+data, 20 Bytes - address of the receiver. null when its a contract creation transaction.
 
 #### cumulativeGasUsed
 
-QUANTITY - The total amount of gas used when this transaction was executed in the block.
+quantity - The total amount of gas used when this transaction was executed in the block.
 
 #### gasUsed
 
-QUANTITY - The amount of gas used by this specific transaction alone.
+quantity - The amount of gas used by this specific transaction alone.
 
 #### contractAddress
 
-DATA, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null.
+data, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null.
 
 #### logs
 
@@ -374,15 +374,15 @@ Array - Array of log objects, which this transaction generated.
 
 #### logsBloom
 
-DATA, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+data, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
 
 #### root
 
-Either this or &quot;status&quot; is returned DATA 32 bytes of post-transaction stateroot (pre Byzantium)
+Either this or &quot;status&quot; is returned data 32 bytes of post-transaction stateroot (pre Byzantium)
 
 #### status
 
-Either this or &quot;root&quot; is returned QUANTITY either 1 (success) or 0 (failure)
+Either this or &quot;root&quot; is returned quantity either 1 (success) or 0 (failure)
 
 ## GetUncleByBlockHashAndIndexResponseObj Objects
 
@@ -425,35 +425,35 @@ TAG - true when the log was removed, due to a chain reorganization. false if its
 
 #### logIndex
 
-QUANTITY - integer of the log index position in the block. null when its pending log.
+quantity - integer of the log index position in the block. null when its pending log.
 
 #### transactionIndex
 
-QUANTITY - integer of the transactions index position log was created from. null when its pending log.
+quantity - integer of the transactions index position log was created from. null when its pending log.
 
 #### transactionHash
 
-DATA, 32 Bytes - hash of the transactions this log was created from. null when its pending log.
+data, 32 Bytes - hash of the transactions this log was created from. null when its pending log.
 
 #### blockHash
 
-DATA, 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log.
+data, 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log.
 
 #### blockNumber
 
-QUANTITY - the block number where this log was in. null when its pending. null when its pending log.
+quantity - the block number where this log was in. null when its pending. null when its pending log.
 
 #### address
 
-DATA, 20 Bytes - address from which this log originated.
+data, 20 Bytes - address from which this log originated.
 
 #### data
 
-DATA - contains one or more 32 Bytes non-indexed arguments of the log.
+data - contains one or more 32 Bytes non-indexed arguments of the log.
 
 #### topics
 
-Array of DATA - Array of 0 to 4 32 Bytes DATA of indexed log arguments. (In solidity - The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)
+Array of data - Array of 0 to 4 32 Bytes data of indexed log arguments. (In solidity - The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declared the event with the anonymous specifier.)
 
 ## JsonRpcMethods Objects
 
@@ -561,24 +561,24 @@ def get_balance(address: str, tag: str) -> float
 Returns the balance of the account of given address
 #### Arguments
 
-address: DATA, 20 Bytes - address to check for balance
-tag: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+address: data, 20 Bytes - address to check for balance
+tag: quantity_tag - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
-balance: QUANTITY - integer of the current balance in wei.
+balance: quantity - integer of the current balance in wei.
 
 #### get\_storage\_at
 
 ```python
-def get_storage_at(address: any, position: any, tag: str) -> Any
+def get_storage_at(address: Any, position: Any, tag: str) -> Any
 ```
 
 Returns the value from a storage position at a given address
 #### Arguments
 
-address: DATA, 20 Bytes - address of the storage.
+address: data, 20 Bytes - address of the storage.
 position: The integer of the position in the storage.
-tag: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+tag: quantity_tag - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 valur: The value at this storage position.
@@ -586,14 +586,14 @@ valur: The value at this storage position.
 #### get\_transaction\_count
 
 ```python
-def get_transaction_count(address: any, state: str) -> float
+def get_transaction_count(address: Any, state: str) -> float
 ```
 
 Returns the number of transactions sent from an address
 #### Arguments
 
 address: The address.
-state: QUANTITY_TAG - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+state: quantity_tag - integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 number: The number of transactions send from this address.
@@ -601,15 +601,14 @@ number: The number of transactions send from this address.
 #### get\_transaction\_count\_by\_hash
 
 ```python
-def get_transaction_count_by_hash(data: str,
-                                  q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def get_transaction_count_by_hash(data: str, quantity_tag: str) -> str
 ```
 
 Returns the number of transactions in a block from a block matching the given block hash
 #### Arguments
 
 data: 20 Bytes - The address
-qUANTITY_TAG: integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+quantity_tag: integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 quantity: The integer of the number of transactions send from this address.
@@ -617,7 +616,7 @@ quantity: The integer of the number of transactions send from this address.
 #### get\_block\_transaction\_count\_by\_hash
 
 ```python
-def get_block_transaction_count_by_hash(d_a_t_a: str) -> str
+def get_block_transaction_count_by_hash(data: str) -> str
 ```
 
 Returns the number of transactions in a block from a block matching the given block hash
@@ -631,13 +630,13 @@ quantity: The integer of the number of transactions in this block.
 #### get\_block\_transaction\_count\_by\_number
 
 ```python
-def get_block_transaction_count_by_number(q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def get_block_transaction_count_by_number(quantity_tag: str) -> str
 ```
 
 Returns the number of transactions in a block matching the given block number
 #### Arguments
 
-qUANTITY_TAG: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
+quantity_tag: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 quantity: The integer of the number of transactions in this block.
@@ -645,7 +644,7 @@ quantity: The integer of the number of transactions in this block.
 #### get\_uncle\_count\_by\_block\_hash
 
 ```python
-def get_uncle_count_by_block_hash(d_a_t_a: str) -> str
+def get_uncle_count_by_block_hash(data: str) -> str
 ```
 
 Returns the number of uncles in a block from a block matching the given block hash
@@ -654,18 +653,18 @@ Returns the number of uncles in a block from a block matching the given block ha
 data: 32 Bytes - The hash of a block
 #### Returns
 
-qUANTITY_TAG: The integer of the number of uncles in this block.
+quantity_tag: The integer of the number of uncles in this block.
 
 #### get\_uncle\_count\_by\_block\_number
 
 ```python
-def get_uncle_count_by_block_number(q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def get_uncle_count_by_block_number(quantity_tag: str) -> str
 ```
 
 Returns the number of uncles in a block from a block matching the given block number
 #### Arguments
 
-qUANTITY_TAG: The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
+quantity_tag: The integer of a block number, or the string “latest”, “earliest” or “pending”, see the default block parameter
 #### Returns
 
 quantity: The integer of the number of uncles in this block.
@@ -673,14 +672,14 @@ quantity: The integer of the number of uncles in this block.
 #### get\_code
 
 ```python
-def get_code(d_a_t_a: str, q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def get_code(data: str, quantity_tag: str) -> str
 ```
 
 Returns code at a given address
 #### Arguments
 
 data: 20 Byter - The address
-qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
+quantity_tag: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter
 #### Returns
 
 data: The code from the given address.
@@ -710,7 +709,7 @@ value: The signature
 #### sign\_transaction
 
 ```python
-def sign_transaction(obj: obj) -> str
+def sign_transaction(obj: Obj) -> str
 ```
 
 Signs a transaction that can be submitted to the network at a later time using with eth_sendRawTransaction
@@ -724,7 +723,7 @@ data: The signed transaction object.
 #### send\_transcation
 
 ```python
-def send_transcation(obj: obj) -> str
+def send_transcation(obj: Obj) -> str
 ```
 
 Creates new message call transaction or a contract creation, if the data field contains code
@@ -738,7 +737,7 @@ data: 32 Bytes - the transaction hash, or the zero hash if the transaction is no
 #### send\_raw\_transaction
 
 ```python
-def send_raw_transaction(d_a_t_a: str) -> str
+def send_raw_transaction(data: str) -> str
 ```
 
 Creates new message call transaction or a contract creation for signed transactions
@@ -752,14 +751,14 @@ data: 32 Bytes - the transaction hash, or the zero hash if the transaction is no
 #### call
 
 ```python
-def call(obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def call(obj: Obj, quantity_tag: str) -> str
 ```
 
 Executes a new message call immediately without creating a transaction on the block chain
 #### Arguments
 
 obj: The transaction object
-qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
+quantity_tag: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
 #### Returns
 
 data: The return value of executed contract.
@@ -767,7 +766,7 @@ data: The return value of executed contract.
 #### estimate\_gas
 
 ```python
-def estimate_gas(obj: obj, q_u_a_n_t_i_t_y__t_a_g: str) -> str
+def estimate_gas(obj: Obj, quantity_tag: str) -> str
 ```
 
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
@@ -776,7 +775,7 @@ Generates and returns an estimate of how much gas is necessary to allow the tran
 #### Arguments
 
 obj: The transaction object
-qUANTITY_TAG: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
+quantity_tag: The integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the default block parameter.
 #### Returns
 
 quantity: The amount of gas used.
@@ -784,7 +783,8 @@ quantity: The amount of gas used.
 #### get\_block\_by\_hash
 
 ```python
-def get_block_by_hash(d_a_t_a: str, bool: bool) -> GetBlockByHashResponseObj
+def get_block_by_hash(data: str,
+                      bool_field: bool) -> GetBlockByHashResponseObj
 ```
 
 Returns information about a block by hash
@@ -799,14 +799,14 @@ obj: A block object, or null when no block was found
 #### get\_block\_by\_number
 
 ```python
-def get_block_by_number(q_u_a_n_t_i_t_y__t_a_g: str,
-                        bool: bool) -> GetBlockByNumberResponseObj
+def get_block_by_number(quantity_tag: str,
+                        bool_field: bool) -> GetBlockByNumberResponseObj
 ```
 
 Returns information about a block by block number
 #### Arguments
 
-qUANTITY_TAG: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+quantity_tag: The integer of a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 bool: If true it returns the full transaction objects, if false only the hashes of the transactions.
 #### Returns [`GetBlockByNumberResponseObj`](#getblockbynumberresponseobj-objects)
 
@@ -815,7 +815,7 @@ obj: A block object, or null when no block was found
 #### get\_transaction\_by\_hash
 
 ```python
-def get_transaction_by_hash(d_a_t_a: str) -> GetTransactionByHashResponseObj
+def get_transaction_by_hash(data: str) -> GetTransactionByHashResponseObj
 ```
 
 Returns the information about a transaction requested by transaction hash
@@ -830,8 +830,7 @@ obj: A transaction object, or null when no transaction was found
 
 ```python
 def get_transaction_by_hash_and_index(
-        d_a_t_a: str,
-        q_u_a_n_t_i_t_y: str) -> GetTransactionByHashAndIndexResponseObj
+        data: str, quantity: str) -> GetTransactionByHashAndIndexResponseObj
 ```
 
 Returns information about a transaction by block hash and transaction index position
@@ -847,14 +846,14 @@ obj: See eth_getTransactionByHash
 
 ```python
 def get_transaction_by_block_number_and_index(
-        q_u_a_n_t_i_t_y__t_a_g: str, q_u_a_n_t_i_t_y: str
-) -> GetTransactionByBlockNumberAndIndexResponseObj
+        quantity_tag: str,
+        quantity: str) -> GetTransactionByBlockNumberAndIndexResponseObj
 ```
 
 Returns information about a transaction by block number and transaction index position
 #### Arguments
 
-qUANTITY_TAG: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+quantity_tag: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 quantity: The transaction index position.
 #### Returns [`GetTransactionByBlockNumberAndIndexResponseObj`](#gettransactionbyblocknumberandindexresponseobj-objects)
 
@@ -863,7 +862,7 @@ obj: See eth_getTransactionByHash
 #### get\_transaction\_receipt
 
 ```python
-def get_transaction_receipt(d_a_t_a: str) -> GetTransactionReceiptResponseObj
+def get_transaction_receipt(data: str) -> GetTransactionReceiptResponseObj
 ```
 
 Returns the receipt of a transaction by transaction hash
@@ -879,8 +878,7 @@ obj: A transaction receipt object, or null when no receipt was found
 
 ```python
 def get_uncle_by_block_hash_and_index(
-        d_a_t_a: str,
-        q_u_a_n_t_i_t_y: str) -> GetUncleByBlockHashAndIndexResponseObj
+        data: str, quantity: str) -> GetUncleByBlockHashAndIndexResponseObj
 ```
 
 eturns information about a uncle of a block by hash and uncle index position
@@ -896,14 +894,14 @@ obj: See eth_getTransactionByHash Note - An uncle doesn’t contain individual t
 
 ```python
 def get_uncle_by_block_number_and_index(
-        q_u_a_n_t_i_t_y__t_a_g: str,
-        q_u_a_n_t_i_t_y: str) -> GetUncleByBlockNumberAndIndexResponseObj
+        quantity_tag: str,
+        quantity: str) -> GetUncleByBlockNumberAndIndexResponseObj
 ```
 
 Returns information about a uncle of a block by number and uncle index position
 #### Arguments
 
-qUANTITY_TAG: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
+quantity_tag: a block number, or the string &quot;earliest&quot;, &quot;latest&quot; or &quot;pending&quot;, as in the default block parameter.
 quantity: the uncle’s index position.
 #### Returns [`GetUncleByBlockNumberAndIndexResponseObj`](#getunclebyblocknumberandindexresponseobj-objects)
 
@@ -965,7 +963,7 @@ data: The compiled source code.
 #### new\_filter
 
 ```python
-def new_filter(obj: obj) -> str
+def new_filter(obj: Obj) -> str
 ```
 
 Creates a filter object, based on filter options, to notify when the state changes (logs)
@@ -1008,7 +1006,7 @@ quantity: A filter id.
 #### uninstall\_filter
 
 ```python
-def uninstall_filter(q_u_a_n_t_i_t_y: str) -> bool
+def uninstall_filter(quantity: str) -> bool
 ```
 
 Uninstalls a filter with given id
@@ -1025,7 +1023,7 @@ bool: true if the filter was successfully uninstalled, otherwise false.
 #### get\_filter\_changes
 
 ```python
-def get_filter_changes(q_u_a_n_t_i_t_y: str) -> List[Array]
+def get_filter_changes(quantity: str) -> List[Array]
 ```
 
 Polling method for a filter, which returns an array of logs which occurred since last poll
@@ -1034,12 +1032,12 @@ Polling method for a filter, which returns an array of logs which occurred since
 quantity: The filter id.
 #### Returns `List`[Array]
 
-array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (DATA, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (DATA, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
+array: Array of log objects, or an empty array if nothing has changed since last poll. For filters created with eth_newBlockFilter the return are block hashes (data, 32 Bytes), e.g. [&quot;0x3454645634534...&quot;]. For filters created with eth_newPendingTransactionFilter the return are transaction hashes (data, 32 Bytes), e.g. [&quot;0x6345343454645...&quot;].
 
 #### get\_filter\_logs
 
 ```python
-def get_filter_logs(q_u_a_n_t_i_t_y: str) -> List[Any]
+def get_filter_logs(quantity: str) -> List[Any]
 ```
 
 Returns an array of all logs matching filter with given id
@@ -1053,7 +1051,7 @@ array: See eth_getFilterChanges.
 #### get\_logs
 
 ```python
-def get_logs(obj: obj) -> List[Any]
+def get_logs(obj: Obj) -> List[Any]
 ```
 
 Returns an array of all logs matching a given filter object
@@ -1073,7 +1071,7 @@ def get_work() -> List[str]
 Returns the hash of the current block, the seedHash, and the boundary condition to be met (“target”)
 #### Returns
 
-array: Array with the following properties -DATA, 32 Bytes - current block header pow-hash -DATA, 32 Bytes - the seed hash used for the DAG. -DATA, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
+array: Array with the following properties -data, 32 Bytes - current block header pow-hash -data, 32 Bytes - the seed hash used for the DAG. -data, 32 Bytes - the boundary condition (“target”), 2^256  difficulty.
 
 #### submit\_work
 

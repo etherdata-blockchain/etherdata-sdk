@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Etherdata SDK",
   tagline: "Etherdata SDK generator",
-  baseUrl: "/etherdata-sdk/",
+  baseUrl: "/",
   trailingSlash: false,
   url: "https://etherdata-blockchain.github.io/etherdata-sdk/",
   onBrokenLinks: "throw",
