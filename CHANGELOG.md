@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.1...v3.1.2) (2022-03-22)
+
+
+### Bug Fixes
+
+* add upload function ([#22](https://github.com/etherdata-blockchain/etherdata-sdk/issues/22)) ([350c51f](https://github.com/etherdata-blockchain/etherdata-sdk/commit/350c51fc9a3e516bb8da23d711eb5ea049cfc025))
+
 ## [3.1.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.0...v3.1.1) (2022-03-21)
 
 
