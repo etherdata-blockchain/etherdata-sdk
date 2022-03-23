@@ -10,7 +10,7 @@ const config = {
   tagline: "Etherdata SDK generator",
   baseUrl: "/",
   trailingSlash: false,
-  url: "https://etherdata-blockchain.github.io/etherdata-sdk/",
+  url: "https://etherdata-blockchain.github.io/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -28,7 +28,8 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/etherdata-blockchain/etherdata-sdk/docs",
+          editUrl:
+            "https://github.com/etherdata-blockchain/etherdata-sdk/tree/main/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
