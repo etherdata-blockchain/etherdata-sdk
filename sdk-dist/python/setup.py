@@ -23,5 +23,5 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.6",
-    install_requires=["requests>=2.0.0", "dataclasses-json>=0.5.6"],
+    install_requires=["requests>=2.0.0", "dataclasses-json>=0.5.6", "eth-account==0.6.1"],
 )
