@@ -110,6 +110,9 @@ jobs:
     - name: Install Pep8
       run: pip install -r requirements.txt
       working-directory: sdk-dist/python
+    - name: Testing
+      run: pytest
+      working-directory: sdk-dist/python
     - name: Install pypa/build
       run: >-
         python -m

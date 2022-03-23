@@ -4,6 +4,15 @@
       "items": [
         {
           "items": [
+            "api/etherdata_sdk/account/create",
+            "api/etherdata_sdk/account/save",
+            "api/etherdata_sdk/account/sign"
+          ],
+          "label": "etherdata_sdk.account",
+          "type": "category"
+        },
+        {
+          "items": [
             "api/etherdata_sdk/file/api",
             "api/etherdata_sdk/file/download",
             "api/etherdata_sdk/file/file",
