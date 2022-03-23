@@ -32,9 +32,18 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
       - uses: gradle/gradle-build-action@v2
+        name: Build Kotlin
         with:
           arguments: build
           build-root-directory: sdk-dist/kotlin
+      - uses: gradle/gradle-build-action@v2
+        name: Publish to GitHub Package
+        with:
+          arguments: publish
+          build-root-directory: sdk-dist/kotlin
+        env:
+          USER: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: gradle/gradle-build-action@v2
         name: Building Kotlin Docs
         with:
@@ -44,9 +53,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.tar
-            ./sdk-dist/kotlin/build/distributions/etd-sdk-${{ env.RELEASE_VERSION }}.zip
-            ./sdk-dist/kotlin/build/libs/etd-sdk-${{ env.RELEASE_VERSION }}.jar
+            ./sdk-dist/kotlin/build/distributions/etherdata-sdk-${{ env.RELEASE_VERSION }}.tar
+            ./sdk-dist/kotlin/build/distributions/etherdata-sdk-${{ env.RELEASE_VERSION }}.zip
+            ./sdk-dist/kotlin/build/libs/etherdata-sdk-${{ env.RELEASE_VERSION }}.jar
 
       - uses: actions/upload-artifact@v2
         with:
