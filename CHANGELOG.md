@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.3...v3.1.4) (2022-03-23)
+
+
+### Bug Fixes
+
+* add tutorial docs for python ([#24](https://github.com/etherdata-blockchain/etherdata-sdk/issues/24)) ([1cb3f82](https://github.com/etherdata-blockchain/etherdata-sdk/commit/1cb3f820db27d1f31b80ac6ebfbb1ad25d68abc3))
+
 ## [3.1.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.2...v3.1.3) (2022-03-23)
 
 
