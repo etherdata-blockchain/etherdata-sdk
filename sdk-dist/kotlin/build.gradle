@@ -7,8 +7,7 @@ plugins {
 }
 archivesBaseName = 'etherdata-sdk'
 group = 'etherdata-blockchain'
-version = 'v3.1.6'
-
+version = 'v3.1.8'
 repositories {
     mavenCentral()
 }
@@ -45,7 +44,6 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = '15'
 }
-
 publishing {
     repositories {
         maven {
