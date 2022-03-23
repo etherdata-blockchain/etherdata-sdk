@@ -1,6 +1,6 @@
 {
   "name": "etherdata-typescript",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
