@@ -7,6 +7,8 @@ In this tutorial, we will talk about how to use Etherdata-SDK to sign and send t
 ## Create an Account object
 
 ```python
+from etherdata_sdk.account import Account, Transaction
+
 account = Account()
 ```
 
@@ -51,8 +53,8 @@ signed = from_account.sign_transaction(transaction)
 ## Send transaction by json rpc method
 
 ```python
-from etherdata_sdk.json_rpc import Json_rpc_methods
+from etherdata_sdk.json_rpc import JsonRpcMethods
 
-client = Json_rpc_methods("https://rpc.etdchain.net")
+client = JsonRpcMethods("https://rpc.etdchain.net")
 client.sendRawTransaction(signed.raw_transaction)
 ```

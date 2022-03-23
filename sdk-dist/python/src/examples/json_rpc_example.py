@@ -1,4 +1,5 @@
-from etherdata_sdk.json_rpc import Json_rpc_methods
+from etherdata_sdk.json_rpc import JsonRpcMethods
+from src.etherdata_sdk.account import Account, Transaction
 
-client = Json_rpc_methods("https://rpc.etdchain.net")
-print(client.blockNumber())
+client = JsonRpcMethods("https://rpc.etdchain.net")
+print(client.block_number())

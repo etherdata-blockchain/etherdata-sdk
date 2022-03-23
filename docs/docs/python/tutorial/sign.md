@@ -7,6 +7,8 @@ title: Signing and Sending Transaction
 ## 创建Account Object
 
 ```python
+from etherdata_sdk.account import Account, Transaction
+
 account = Account()
 ```
 
@@ -51,8 +53,8 @@ signed = from_account.sign_transaction(transaction)
 ## 发送交易
 
 ```python
-from etherdata_sdk.json_rpc import Json_rpc_methods
+from etherdata_sdk.json_rpc import JsonRpcMethods
 
-client = Json_rpc_methods("https://rpc.etdchain.net")
+client = JsonRpcMethods("https://rpc.etdchain.net")
 client.sendRawTransaction(signed.raw_transaction)
 ```
