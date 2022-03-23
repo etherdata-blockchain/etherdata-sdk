@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.5](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.4...v3.1.5) (2022-03-23)
+
+
+### Bug Fixes
+
+* edit link now contains /tree/main ([#25](https://github.com/etherdata-blockchain/etherdata-sdk/issues/25)) ([aa6ab03](https://github.com/etherdata-blockchain/etherdata-sdk/commit/aa6ab03edeb37cc59b1f3e06c6eb7b1cbbaec58a))
+
 ## [3.1.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.3...v3.1.4) (2022-03-23)
 
 

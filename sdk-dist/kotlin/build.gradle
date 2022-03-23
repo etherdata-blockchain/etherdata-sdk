@@ -6,7 +6,7 @@ plugins {
 }
 archivesBaseName = 'etd-sdk'
 group = 'etd'
-version = 'v3.1.4'
+version = 'v3.1.5'
 repositories {
     mavenCentral()
 }
