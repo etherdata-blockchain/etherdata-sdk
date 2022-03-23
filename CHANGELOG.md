@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.2...v3.1.3) (2022-03-23)
+
+
+### Bug Fixes
+
+* add signing function ([#23](https://github.com/etherdata-blockchain/etherdata-sdk/issues/23)) ([dacfcef](https://github.com/etherdata-blockchain/etherdata-sdk/commit/dacfcefa223d25f99b862430bc97710f48be621d))
+
 ## [3.1.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.1...v3.1.2) (2022-03-22)
 
 
