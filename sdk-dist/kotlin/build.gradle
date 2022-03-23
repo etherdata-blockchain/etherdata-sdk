@@ -3,10 +3,12 @@ plugins {
     id 'application'
     id("org.jetbrains.dokka") version "1.6.0"
     id 'java-library-distribution'
+    id("maven-publish")
 }
-archivesBaseName = 'etd-sdk'
-group = 'etd'
-version = 'v3.1.7'
+archivesBaseName = 'etherdata-sdk'
+group = 'etherdata-blockchain'
+version = 'v3.1.6'
+
 repositories {
     mavenCentral()
 }
@@ -28,7 +30,7 @@ test {
 }
 distributions {
     main {
-        distributionBaseName = "etd-sdk"
+        distributionBaseName = "etherdata-sdk"
     }
 }
 tasks.withType(Zip){
@@ -42,4 +44,23 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = '15'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/etherdata-blockchain/etherdata-sdk")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            artifactId="etherdata-sdk"
+            from(components.java)
+        }
+    }
 }
