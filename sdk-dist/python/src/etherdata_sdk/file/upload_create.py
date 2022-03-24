@@ -27,7 +27,7 @@ class FileObject:
         if not file_object and not file_path:
             raise RuntimeError("Neither a file_path nor file IO object is provided.")
 
-        if not os.path.exists(file_path):
+        if file_path and not os.path.exists(file_path):
             raise FileNotFoundError(f"Cannot found the file {file_path}")
 
         self.file = open(file_path, "rb") if file_path else file_object
