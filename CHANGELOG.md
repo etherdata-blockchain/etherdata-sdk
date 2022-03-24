@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.11](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.10...v3.1.11) (2022-03-24)
+
+
+### Bug Fixes
+
+* publish scope to public in action ([#33](https://github.com/etherdata-blockchain/etherdata-sdk/issues/33)) ([d4511b7](https://github.com/etherdata-blockchain/etherdata-sdk/commit/d4511b71d3f3f52c5fcc70ef514fc96c726ee7b9))
+
 ## [3.1.10](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.9...v3.1.10) (2022-03-24)
 
 

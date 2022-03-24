@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/etherdata-sdk",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
