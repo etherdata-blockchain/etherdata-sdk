@@ -87,11 +87,17 @@ jobs:
           name: js-doc
           path: docs/docs/typescript/api
           retention-days: 1
-      - run: yarn publish
-        name: Publishing sd
-        working-directory: sdk-dist/typescript
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - uses: JS-DevTools/npm-publish@v1
+        name: Publish Package to NPM
+        with:
+          package: "sdk-dist/typescript/package.json"
+          token: ${{ secrets.npm_token }}
+      - uses: JS-DevTools/npm-publish@v1
+        name: Publish Package to GitHub Package
+        with:
+          package: "sdk-dist/typescript/package.json"
+          registry: "https://npm.pkg.github.com"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-react-ui-npm:
     needs: build
@@ -108,11 +114,17 @@ jobs:
       - run: yarn build
         name: Building dist
         working-directory: sdk-dist/etd-react-ui
-      - run: yarn publish
-        name: Publishing sdk
-        working-directory: sdk-dist/etd-react-ui
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - uses: JS-DevTools/npm-publish@v1
+        name: Publish Package to NPM
+        with:
+          package: "sdk-dist/etd-react-ui/package.json"
+          token: ${{ secrets.npm_token }}
+      - uses: JS-DevTools/npm-publish@v1
+        name: Publish Package to GitHub Package
+        with:
+          package: "sdk-dist/etd-react-ui/package.json"
+          registry: "https://npm.pkg.github.com"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-python:
     name: Build and publish Python 🐍 distributions 📦 to PyPI

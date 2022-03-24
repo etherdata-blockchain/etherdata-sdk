@@ -1,15 +1,18 @@
 {
-  "name": "etherdata-react-ui",
-  "version": "3.1.9",
+  "name": "@etherdata-blockchain/etherdata-sdk-react",
+  "version": "3.1.8",
   "description": "Made with create-react-library",
   "author": "sirily11",
   "license": "MIT",
-  "repository": "sirily11/etd-react-ui",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etherdata-blockchain/etherdata-sdk.git"
   },
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
