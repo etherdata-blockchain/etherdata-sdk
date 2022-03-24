@@ -5,3 +5,4 @@ pytest==7.1.1
 dataclasses-json==0.5.7
 requests==2.27.1
 eth-account==0.6.1
+httpretty==1.1.4

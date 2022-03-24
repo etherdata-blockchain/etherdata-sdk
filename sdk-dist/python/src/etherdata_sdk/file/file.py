@@ -2,7 +2,7 @@ from .upload_create import UploadAPI
 from .download import DownloadAPI
 
 
-class File(UploadAPI):
+class File(UploadAPI, DownloadAPI):
     url: str
 
     def __init__(self, url: str):
