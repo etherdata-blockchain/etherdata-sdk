@@ -6,7 +6,7 @@ title: etherdata_sdk.file.file
 ## File Objects
 
 ```python
-class File(UploadAPI)
+class File(UploadAPI, DownloadAPI)
 ```
 
 #### \_\_init\_\_

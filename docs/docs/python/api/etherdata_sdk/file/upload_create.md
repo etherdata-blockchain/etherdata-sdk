@@ -35,7 +35,7 @@ class UploadAPI(API)
 #### upload\_file
 
 ```python
-def upload_file(file: FileObject) -> Optional[str]
+def upload_file(file: FileObject, error_on_exists=True) -> Optional[str]
 ```
 
 Upload file to the blockchain
@@ -46,4 +46,5 @@ file: [`FileObject`](#fileobject-objects) File object
  #### Returns
 
 file_id: Uploaded file id
+error_on_exist: Will throw an error if file already exists
 

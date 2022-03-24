@@ -1,10 +1,11 @@
-import os.path
+import os
 from http import HTTPStatus
-from typing import IO, Optional
+from typing import Optional, IO
 
 import requests
 
 from .api import API
+from ..types import FileUploadResponse
 
 
 class FileObject:
@@ -44,7 +45,7 @@ class FileObject:
 
 class UploadAPI(API):
 
-    def upload_file(self, file: FileObject) -> Optional[str]:
+    def upload_file(self, file: FileObject, error_on_exists=True) -> Optional[str]:
         """
         Upload file to the blockchain
         #### Arguments
@@ -54,14 +55,14 @@ class UploadAPI(API):
          #### Returns
 
         file_id: Uploaded file id
+        error_on_exist: Will throw an error if file already exists
         """
         if not isinstance(file, FileObject):
             raise RuntimeError("File is not the type of FileObject")
 
         request = requests.post(self.get_url(f"un/file"), files=file.to_upload_dict())
         if request.status_code == HTTPStatus.OK:
-            request_data = request.json()
-            if request_data["data"]['isExist']:
+            request_data: FileUploadResponse = FileUploadResponse.from_dict(request.json())
+            if request_data.data.is_exist and error_on_exists:
                 raise FileExistsError("This file has been uploaded already")
-            return request_data["afid"]
-
+            return request_data.data.afid
