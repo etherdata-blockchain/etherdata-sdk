@@ -92,6 +92,7 @@ jobs:
         with:
           package: "sdk-dist/typescript/package.json"
           token: ${{ secrets.npm_token }}
+          access: "public"
       - uses: JS-DevTools/npm-publish@v1
         name: Publish Package to GitHub Package
         with:
@@ -120,6 +121,7 @@ jobs:
         with:
           package: "sdk-dist/etd-react-ui/package.json"
           token: ${{ secrets.npm_token }}
+          access: "public"
       - uses: JS-DevTools/npm-publish@v1
         name: Publish Package to GitHub Package
         with:
