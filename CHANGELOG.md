@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.9](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.8...v3.1.9) (2022-03-24)
+
+
+### Bug Fixes
+
+* missing username in release action ([#31](https://github.com/etherdata-blockchain/etherdata-sdk/issues/31)) ([a6730bf](https://github.com/etherdata-blockchain/etherdata-sdk/commit/a6730bf987abaae449c0eaf8518cdd7144efbb73))
+
 ## [3.1.8](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.7...v3.1.8) (2022-03-23)
 
 
