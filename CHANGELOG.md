@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.2.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.12...v3.2.0) (2022-03-24)
+
+
+### Features
+
+* add python download function ([#34](https://github.com/etherdata-blockchain/etherdata-sdk/issues/34)) ([44ce253](https://github.com/etherdata-blockchain/etherdata-sdk/commit/44ce253f04a67cca34786b85395b177d48587ad4))
+
 ## [3.1.12](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.1.11...v3.1.12) (2022-03-24)
 
 
