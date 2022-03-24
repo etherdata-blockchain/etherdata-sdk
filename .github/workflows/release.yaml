@@ -42,7 +42,7 @@ jobs:
           arguments: publish
           build-root-directory: sdk-dist/kotlin
         env:
-          USER: ${{ github.actor }}
+          USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: gradle/gradle-build-action@v2
         name: Building Kotlin Docs
