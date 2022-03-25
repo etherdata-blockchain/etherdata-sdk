@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -517,6 +518,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def block_number(self, ) -> str:
@@ -533,6 +537,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def syncing(self, ) -> SyncingResponse:
@@ -550,6 +557,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return SyncingResponse.from_dict(response.json()["result"])
 
     def coinbase(self, ) -> Any:
@@ -566,6 +576,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def mining(self, ) -> bool:
@@ -582,6 +595,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def hashrate(self, ) -> Any:
@@ -598,6 +614,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def gas_price(self, ) -> Any:
@@ -614,6 +633,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def accounts(self, ) -> List[Any]:
@@ -630,6 +652,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_balance(self, address: str, tag: str) -> float:
@@ -650,6 +675,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_storage_at(self, address: Any, position: Any, tag: str) -> Any:
@@ -671,6 +699,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_transaction_count(self, address: Any, state: str) -> float:
@@ -691,6 +722,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_transaction_count_by_hash(
@@ -712,6 +746,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_block_transaction_count_by_hash(self, data: str) -> str:
@@ -731,6 +768,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_block_transaction_count_by_number(self, quantity_tag: str) -> str:
@@ -750,6 +790,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_uncle_count_by_block_hash(self, data: str) -> str:
@@ -769,6 +812,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_uncle_count_by_block_number(self, quantity_tag: str) -> str:
@@ -788,6 +834,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_code(self, data: str, quantity_tag: str) -> str:
@@ -808,6 +857,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def sign(self, a: str, b: str) -> str:
@@ -835,6 +887,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def sign_transaction(self, obj: Obj) -> str:
@@ -854,6 +909,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def send_transcation(self, obj: Obj) -> str:
@@ -873,6 +931,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def send_raw_transaction(self, data: str) -> str:
@@ -892,6 +953,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def call(self, obj: Obj, quantity_tag: str) -> str:
@@ -912,6 +976,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def estimate_gas(self, obj: Obj, quantity_tag: str) -> str:
@@ -934,6 +1001,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_block_by_hash(
@@ -957,6 +1027,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetBlockByHashResponseObj.from_dict(response.json()["result"])
 
     def get_block_by_number(
@@ -980,6 +1053,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetBlockByNumberResponseObj.from_dict(response.json()["result"])
 
     def get_transaction_by_hash(
@@ -1000,6 +1076,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetTransactionByHashResponseObj.from_dict(
             response.json()["result"])
 
@@ -1024,6 +1103,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetTransactionByHashAndIndexResponseObj.from_dict(
             response.json()["result"])
 
@@ -1048,6 +1130,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetTransactionByBlockNumberAndIndexResponseObj.from_dict(response.json()[
                                                                         "result"])
 
@@ -1070,6 +1155,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetTransactionReceiptResponseObj.from_dict(
             response.json()["result"])
 
@@ -1094,6 +1182,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetUncleByBlockHashAndIndexResponseObj.from_dict(
             response.json()["result"])
 
@@ -1118,6 +1209,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetUncleByBlockNumberAndIndexResponseObj.from_dict(response.json()[
                                                                   "result"])
 
@@ -1135,6 +1229,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def compile_solidity(self, string: str) -> str:
@@ -1154,6 +1251,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def complpie_l_l_l(self, string: str) -> str:
@@ -1173,6 +1273,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def complie_serpent(self, string: str) -> str:
@@ -1192,6 +1295,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def new_filter(self, obj: Obj) -> str:
@@ -1216,6 +1322,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def new_block_filter(self, ) -> str:
@@ -1233,6 +1342,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def new_pending_transaction_filter(self, ) -> str:
@@ -1250,6 +1362,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def uninstall_filter(self, quantity: str) -> bool:
@@ -1272,6 +1387,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_filter_changes(self, quantity: str) -> List[Array]:
@@ -1291,6 +1409,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return Array.schema().load(response.json()["result"], many=True)
 
     def get_filter_logs(self, quantity: str) -> List[Any]:
@@ -1310,6 +1431,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_logs(self, obj: Obj) -> List[Any]:
@@ -1329,6 +1453,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_work(self, ) -> List[str]:
@@ -1345,6 +1472,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def submit_work(self, a: str, b: str, c: str) -> bool:
@@ -1366,6 +1496,9 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def submit_hashrate(self, hashrate: str, i_d: str) -> bool:
@@ -1386,4 +1519,7 @@ class JsonRpcMethods:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]

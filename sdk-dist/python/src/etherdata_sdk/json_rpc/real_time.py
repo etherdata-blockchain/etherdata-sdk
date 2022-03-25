@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -212,6 +213,9 @@ class RealTime:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def cancel_subscription(self, subscription_i_d: str) -> bool:
@@ -232,6 +236,9 @@ class RealTime:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def supported_subscriptions(
@@ -261,6 +268,9 @@ class RealTime:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return SupportedSubscriptionsResponseOutputObject.from_dict(response.json()[
                                                                     "result"])
 
@@ -280,6 +290,9 @@ class RealTime:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return NewPendingTransactionsResponse.from_dict(
             response.json()["result"])
 
@@ -299,4 +312,7 @@ class RealTime:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return SyncingResponse.from_dict(response.json()["result"])

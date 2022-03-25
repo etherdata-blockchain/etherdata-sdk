@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 class Miner:
@@ -27,6 +28,9 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def set_extra(self, ) -> None:
@@ -41,6 +45,9 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def set_gas_price(self, price: float) -> None:
@@ -58,6 +65,9 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def start(self, ) -> None:
@@ -71,6 +81,9 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stop(self, ) -> None:
@@ -84,6 +97,9 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def set_etherbase(self, etherbase: str) -> None:
@@ -100,4 +116,7 @@ class Miner:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]

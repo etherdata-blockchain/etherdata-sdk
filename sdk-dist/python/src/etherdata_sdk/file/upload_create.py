@@ -55,7 +55,7 @@ class UploadAPI(API):
          #### Returns
 
         file_id: Uploaded file id
-        error_on_exist: Will throw an error if file already exists
+        error_on_exist: Will throw an exception if file already exists
         """
         if not isinstance(file, FileObject):
             raise RuntimeError("File is not the type of FileObject")

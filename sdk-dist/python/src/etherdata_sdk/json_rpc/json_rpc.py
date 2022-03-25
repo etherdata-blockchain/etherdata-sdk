@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 class JsonRpc:
@@ -66,6 +67,9 @@ class JsonRpc:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def web_socket_server(self, ) -> None:
@@ -97,6 +101,9 @@ class JsonRpc:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def i_p_c_server(self, ) -> None:
@@ -122,4 +129,7 @@ class JsonRpc:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
