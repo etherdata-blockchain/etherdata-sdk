@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -152,6 +153,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def datadir(self, ) -> str:
@@ -168,6 +172,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def node_info(self, ) -> NodeInfoResponseNodeInfo:
@@ -187,6 +194,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return NodeInfoResponseNodeInfo.from_dict(response.json()["result"])
 
     def peers(self, ) -> List[PeersArray]:
@@ -206,6 +216,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return PeersArray.schema().load(response.json()["result"], many=True)
 
     def start_r_p_c(
@@ -234,6 +247,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def start_w_s(
@@ -262,6 +278,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stop_r_p_c(self, ) -> bool:
@@ -279,6 +298,9 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stop_w_s(self, ) -> bool:
@@ -296,4 +318,7 @@ class Admin:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]

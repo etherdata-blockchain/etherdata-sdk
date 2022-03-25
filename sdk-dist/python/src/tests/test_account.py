@@ -1,6 +1,7 @@
 from unittest import TestCase
 import unittest.mock as um
-from src.etherdata_sdk.account import Account, Transaction
+from src.etherdata_sdk.account import Account
+from src.etherdata_sdk import Transaction
 
 
 class TestAccountAPI(TestCase):
@@ -46,7 +47,7 @@ class TestSignAPI(TestCase):
         self.to_account = Account().create_random_private_key()
 
     def test_sign_transaction(self):
-        transaction = Transaction(to=self.to_account.address, value=30000, gas=1000, gas_price=300, nonce=1)
+        transaction = Transaction(to=self.to_account.address, value=30000, gas=1000, gas_price=300, nonce=1, chain_id=3101)
         signed = self.from_account.sign_transaction(transaction)
         self.assertIsNotNone(signed)
         self.assertIsNotNone(signed.r)

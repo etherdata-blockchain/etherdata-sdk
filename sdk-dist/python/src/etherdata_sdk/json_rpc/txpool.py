@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -169,6 +170,9 @@ class Txpool:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return ContentResponseTransactionObject.from_dict(
             response.json()["result"])
 
@@ -194,6 +198,9 @@ class Txpool:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return InspectResponseTransactionObject.from_dict(
             response.json()["result"])
 
@@ -213,4 +220,7 @@ class Txpool:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return StatusResponseStatusObject.from_dict(response.json()["result"])

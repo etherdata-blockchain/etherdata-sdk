@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -179,6 +180,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def block_profile(self, ) -> None:
@@ -194,6 +198,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def cpu_profile(self, ) -> None:
@@ -207,6 +214,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def dump_block(self, block_num: float) -> DumpBlockResponseBlockDetails:
@@ -226,6 +236,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return DumpBlockResponseBlockDetails.from_dict(
             response.json()["result"])
 
@@ -242,6 +255,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_block_rlp(self, ) -> None:
@@ -256,6 +272,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def go_trace(self, ) -> None:
@@ -269,6 +288,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def mem_stats(self, ) -> None:
@@ -284,6 +306,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def seed_hash(self, ) -> None:
@@ -297,6 +322,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def set_head(self, ) -> None:
@@ -313,6 +341,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def set_block_profile_rate(self, rate: float) -> None:
@@ -331,6 +362,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stacks(self, ) -> Any:
@@ -348,6 +382,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def start_c_p_u_profile(self, ) -> None:
@@ -361,6 +398,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def start_go_trace(self, ) -> None:
@@ -374,6 +414,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stop_c_p_u_profile(self, ) -> None:
@@ -387,6 +430,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def stop_go_trace(self, ) -> None:
@@ -400,6 +446,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def trace_block(self, block_name: str) -> TraceBlockResponseBlcok:
@@ -421,6 +470,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return TraceBlockResponseBlcok.from_dict(response.json()["result"])
 
     def trace_block_by_number(self, block_num: str) -> Any:
@@ -441,6 +493,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def trace_block_by_hash(self, block_hash: str) -> Any:
@@ -461,6 +516,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def trace_block_from_file(self, file: Any) -> Any:
@@ -481,6 +539,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def standard_trace_block_to_file(
@@ -516,6 +577,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def standard_trace_bad_block_to_file(self, ) -> None:
@@ -529,6 +593,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def trace_transaction(
@@ -582,6 +649,9 @@ class Debug:
             "jsonrpc": "2.0",
             "id": 1}
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return TraceTransactionResponseTransaction.from_dict(
             response.json()["result"])
 
@@ -596,6 +666,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def trace_call(
@@ -639,6 +712,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def verbosity(self, ) -> Any:
@@ -657,6 +733,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def vmodule(self, message_restrictions: str) -> str:
@@ -676,6 +755,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def write_block_profile(self, ) -> None:
@@ -689,6 +771,9 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def write_mem_profile(self, ) -> None:
@@ -704,4 +789,7 @@ class Debug:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
