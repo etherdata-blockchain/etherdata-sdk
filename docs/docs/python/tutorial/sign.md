@@ -17,11 +17,15 @@ account = Account()
 > 具体API请参见[文档](/docs/python/api/etherdata_sdk/account/create)
 
 ```python
+
 # 通过助记词
 account.create_private_key_from_mnemonic(mnemonic)
 
 # 创建随机的account
 account.create_random_private_key()
+
+# 保存钥匙
+account.save(output_file="./abc.key")
 
 # 从pk文件创建新的account
 account.read_private_key_from_file("abc.key")
@@ -54,7 +58,11 @@ signed = from_account.sign_transaction(transaction)
 
 ```python
 from etherdata_sdk.json_rpc import JsonRpcMethods
-
+#用公网结点测试
 client = JsonRpcMethods("https://rpc.etdchain.net")
-client.sendRawTransaction(signed.raw_transaction)
+client.send_raw_transaction(signed.raw_transaction.hex())
+
+
+
+
 ```
