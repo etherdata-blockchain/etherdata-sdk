@@ -29,6 +29,16 @@ class TestAccountAPI(TestCase):
             self.assertEqual(self.account.private_key, prev_key)
             self.assertEqual(self.account.address, prev_address)
 
+    def test_create_save_load(self):
+        self.account.create_random_private_key()
+        previous_key = self.account.private_key.hex()
+        previous_address = self.account.address
+        self.account.save("private.key")
+        self.account.read_private_key_from_file("private.key")
+        self.assertEqual(self.account.address, previous_address)
+        self.assertEqual(self.account.private_key.hex(), previous_key)
+
+
 
 class TestSignAPI(TestCase):
     def setUp(self) -> None:
