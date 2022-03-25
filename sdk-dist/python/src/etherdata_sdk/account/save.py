@@ -13,4 +13,4 @@ class SaveAPI(AccountAPI):
         if self.private_key is None or len(self.private_key) == 0:
             raise RuntimeError("Your private key is empty. Please create one")
         with open(output_file, "w") as f:
-            f.write(self.private_key)
+            f.write(self.private_key.hex())
