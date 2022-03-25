@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.1...v3.2.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* python save error ([#36](https://github.com/etherdata-blockchain/etherdata-sdk/issues/36)) ([ebf7c90](https://github.com/etherdata-blockchain/etherdata-sdk/commit/ebf7c904fcb986346f1b0ee9b6e14665bfcf9d3a))
+
 ## [3.2.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.0...v3.2.1) (2022-03-24)
 
 
