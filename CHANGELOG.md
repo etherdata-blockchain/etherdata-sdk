@@ -1,5 +1,7 @@
 # Changelog
 
+## [3.2.5](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.4...v3.2.5) (2022-03-25)
+
 ## [3.2.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.3...v3.2.4) (2022-03-25)
 
 
