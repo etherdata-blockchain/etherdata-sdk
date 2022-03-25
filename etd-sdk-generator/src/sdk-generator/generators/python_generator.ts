@@ -352,6 +352,9 @@ export class PythonGenerator extends TypescriptGenerator {
       "id": 1
     }
     response = requests.post(self.url, json=to_dict(json_data))
+    error = response.json().get("error")
+    if error:
+        raise RPCException(error["message"])
     return ${generatePythonFunctionBodyReturn(
       returnTypeName,
       `response.json()["result"]`

@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.2.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.3...v3.2.4) (2022-03-25)
+
+
+### Bug Fixes
+
+* replay-protected (EIP-155) transactions allowed over RPC error ([b435863](https://github.com/etherdata-blockchain/etherdata-sdk/commit/b4358639c1ac761a0af83abe2ecf6f5f0e233034))
+
+## [3.2.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.2...v3.2.3) (2022-03-25)
+
+
+### Bug Fixes
+
+* python rpc method won't throw proper error message ([#37](https://github.com/etherdata-blockchain/etherdata-sdk/issues/37)) ([2cb5046](https://github.com/etherdata-blockchain/etherdata-sdk/commit/2cb50464dd63dc1c3d0e4b091099093680567b65))
+
+## [3.2.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.1...v3.2.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* python save error ([#36](https://github.com/etherdata-blockchain/etherdata-sdk/issues/36)) ([ebf7c90](https://github.com/etherdata-blockchain/etherdata-sdk/commit/ebf7c904fcb986346f1b0ee9b6e14665bfcf9d3a))
+
 ## [3.2.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.0...v3.2.1) (2022-03-24)
 
 
