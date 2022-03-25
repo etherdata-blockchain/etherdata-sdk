@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.2...v3.2.3) (2022-03-25)
+
+
+### Bug Fixes
+
+* python rpc method won't throw proper error message ([#37](https://github.com/etherdata-blockchain/etherdata-sdk/issues/37)) ([2cb5046](https://github.com/etherdata-blockchain/etherdata-sdk/commit/2cb50464dd63dc1c3d0e4b091099093680567b65))
+
 ## [3.2.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.1...v3.2.2) (2022-03-25)
 
 
