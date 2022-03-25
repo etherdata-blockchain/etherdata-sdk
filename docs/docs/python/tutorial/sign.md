@@ -17,8 +17,6 @@ account = Account()
 > 具体API请参见[文档](/docs/python/api/etherdata_sdk/account/create)
 
 ```python
-# 助记词网站https://eurychen.me/tools/mnemonic.html
-mnemonic="powder tobacco rib response change twice kingdom used basket choice taste umbrella hundred stereo brand"
 
 # 通过助记词
 account.create_private_key_from_mnemonic(mnemonic)
