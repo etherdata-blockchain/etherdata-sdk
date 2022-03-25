@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 {% for returnType in functionReturnTypes %}
 @dataclass_json

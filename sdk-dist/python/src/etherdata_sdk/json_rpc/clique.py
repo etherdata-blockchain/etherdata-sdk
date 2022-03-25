@@ -3,6 +3,7 @@ from typing import List, Optional, Any
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json, config
 from ..utils import to_dict
+from ..exception import RPCException
 
 
 @dataclass_json
@@ -111,6 +112,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return GetSnapshotResponseSnapshot.from_dict(response.json()["result"])
 
     def get_snapshot_at_hash(self, ) -> Any:
@@ -127,6 +131,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def get_signers(self, ) -> List[str]:
@@ -143,6 +150,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def proposals(self, ) -> str:
@@ -159,6 +169,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def propose(self, ) -> None:
@@ -174,6 +187,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def discard(self, ) -> None:
@@ -188,6 +204,9 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return response.json()["result"]
 
     def status(self, ) -> StatusResponse:
@@ -206,4 +225,7 @@ class Clique:
             "id": 1
         }
         response = requests.post(self.url, json=to_dict(json_data))
+        error = response.json().get("error")
+        if error:
+            raise RPCException(error["message"])
         return StatusResponse.from_dict(response.json()["result"])
