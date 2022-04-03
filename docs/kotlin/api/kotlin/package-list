@@ -233,7 +233,7 @@ $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/blockHa
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/blockNumber/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/block-number.html
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/from/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/from.html
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/gas/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/gas.html
-$dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/gasParice/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/gas-parice.html
+$dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/gasPrice/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/gas-price.html
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/hash/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/hash.html
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/input/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/input.html
 $dokka.location:com.etd/Json_rpc_methods.GetTransactionByHashResponseObj/nonce/#/PointingToDeclaration/kotlin/com.etd/-json_rpc_methods/-get-transaction-by-hash-response-obj/nonce.html
