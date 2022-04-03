@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.3.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.5...v3.3.0) (2022-04-03)
+
+
+### Features
+
+* add umd config ([#41](https://github.com/etherdata-blockchain/etherdata-sdk/issues/41)) ([0c31a91](https://github.com/etherdata-blockchain/etherdata-sdk/commit/0c31a913b933fc964d49536456913d9bad1f2e1e))
+
 ## [3.2.5](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.4...v3.2.5) (2022-03-25)
 
 ## [3.2.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.2.3...v3.2.4) (2022-03-25)
