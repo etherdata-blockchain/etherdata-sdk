@@ -790,7 +790,7 @@ functions:
             description: quantity - gas provided by the sender.
             example: "0xc350" # 50000
             type: string
-          - name: gasParice
+          - name: gasPrice
             description: quantity - gas price provided by the sender in Wei.
             example: "0x4a817c800" # 20000000000
             type: string

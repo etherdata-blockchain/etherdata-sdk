@@ -285,7 +285,7 @@ class GetTransactionByHashResponseObj:
     quantity - gas provided by the sender.
     """
 
-    gasParice: str
+    gasPrice: str
     """
     quantity - gas price provided by the sender in Wei.
     """
