@@ -75,7 +75,7 @@ class Json_rpc_methods(val url: String) {
       val blockNumber: String,
       val from: String,
       val gas: String,
-      val gasParice: String,
+      val gasPrice: String,
       val hash: String,
       val input: String,
       val nonce: String,

@@ -65,7 +65,7 @@ export interface GetTransactionByHashResponseObj {
   blockNumber: string;
   from: string;
   gas: string;
-  gasParice: string;
+  gasPrice: string;
   hash: string;
   input: string;
   nonce: string;
