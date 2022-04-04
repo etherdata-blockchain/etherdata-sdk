@@ -13,4 +13,4 @@ jobs:
       - name: Dependencies Outdater
         uses: action-runner/dependencies-outdater@master
         with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
+          access_token: ${{ secrets.RELEASE_TOKEN }}
