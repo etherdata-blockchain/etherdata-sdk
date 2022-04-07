@@ -468,7 +468,7 @@ disableStorage: BOOL
   /**
    * Javascript
    */
-  async JavaScriptBasedTracing(): Promise<void> {
+  async javaScriptBasedTracing(): Promise<void> {
     let response = await axios.post(this.url, {
       method: "JavaScript-based tracing",
       params: undefined,

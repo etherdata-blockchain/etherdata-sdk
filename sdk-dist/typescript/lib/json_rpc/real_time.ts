@@ -69,7 +69,7 @@ Considerations 1
 * g
 *  listening for all logs/blocks when the node starts to  synchronize
 */
-export class Real_time {
+export class RealTime {
   baseURL: string;
   port?: number;
   url: string;

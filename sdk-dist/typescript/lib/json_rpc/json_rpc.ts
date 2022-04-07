@@ -16,7 +16,7 @@ Ethereum JSON-RPC APIs use a name-space system
 Access to RPC methods can be enabled on a per-namespace basis
 *  Find documentation for individual  namespaces in the sidebar
 */
-export class Json_rpc {
+export class JsonRpc {
   baseURL: string;
   port?: number;
   url: string;
@@ -58,7 +58,7 @@ Example: if you want to use Remix with Getd, allow requests from the remix domai
 * org&#39; Use --http
 * corsdomain &#39;*&#39; to enable access from any origin
 */
-  async HTTPServer(): Promise<void> {
+  async hTTPServer(): Promise<void> {
     let response = await axios.post(this.url, {
       method: "json_rpc_HTTP Server",
       params: undefined,
@@ -90,7 +90,7 @@ As with --http
 * corsdomain, using --ws
 * origins &#39;*&#39; allows access from any origin
 */
-  async WebSocketServer(): Promise<void> {
+  async webSocketServer(): Promise<void> {
     let response = await axios.post(this.url, {
       method: "json_rpc_WebSocket Server",
       params: undefined,
@@ -116,7 +116,7 @@ On Windows, IPC is provided via named pipes
 You can configure the location of the socket using the --ipcpath flag
 *  IPC can be disabled  using the --ipcdisable flag
 */
-  async IPCServer(): Promise<void> {
+  async iPCServer(): Promise<void> {
     let response = await axios.post(this.url, {
       method: "json_rpc_IPC Server",
       params: undefined,
