@@ -124,7 +124,7 @@ export interface Array {
 /**
  * different methods to perform etd control
  */
-export class Json_rpc_methods {
+export class JsonRpcMethods {
   baseURL: string;
   port?: number;
   url: string;

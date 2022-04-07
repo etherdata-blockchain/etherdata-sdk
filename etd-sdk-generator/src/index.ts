@@ -17,7 +17,7 @@ let filePaths = [
 ];
 
 let outputPaths = [
-  "../../../sdk-dist/typescript/lib",
+  "../../../sdk-dist/typescript/lib/json_rpc",
   "../../../sdk-dist/etd-react-ui/src",
   "../../../sdk-dist/kotlin/src/main/kotlin/com/etd",
   "../../../sdk-dist/python/src/etherdata_sdk/json_rpc",
