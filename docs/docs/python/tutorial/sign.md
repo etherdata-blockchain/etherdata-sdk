@@ -7,7 +7,8 @@ title: Signing and Sending Transaction
 ## 创建Account Object
 
 ```python
-from etherdata_sdk.account import Account, Transaction
+from etherdata_sdk.account import Account
+from etherdata_sdk import Transaction
 
 account = Account()
 ```

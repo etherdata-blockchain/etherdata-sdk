@@ -7,7 +7,8 @@ In this tutorial, we will talk about how to use Etherdata-SDK to sign and send t
 ## Create an Account object
 
 ```python
-from etherdata_sdk.account import Account, Transaction
+from etherdata_sdk.account import Account
+from etherdata_sdk.account import Transaction 
 
 account = Account()
 ```
