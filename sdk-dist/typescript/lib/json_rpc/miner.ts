@@ -17,7 +17,7 @@ export class Miner {
    * Get your hashrate in H/s (Hash operations per second)
    * @return dashRate The hashrate in Hs (Hash operations per second)
    */
-  async Getdashrate(): Promise<string> {
+  async getdashrate(): Promise<string> {
     let response = await axios.post(this.url, {
       method: "miner_Getdashrate",
       params: undefined,

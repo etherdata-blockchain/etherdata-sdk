@@ -3,15 +3,7 @@
 
 name: Build And Publish SDK
 
-on:
-  pull_request:
-    branches:
-      - main
-
-  push:
-    branches:
-      - main
-      - dev
+on: push
 
 jobs:
   test:
@@ -74,6 +66,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn
         name: Installing dependencies
+        working-directory: sdk-dist/typescript
+      - run: yarn test
+        name: Testing
         working-directory: sdk-dist/typescript
       - run: yarn build
         name: Building dist

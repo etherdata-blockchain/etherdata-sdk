@@ -5,7 +5,7 @@ export interface {{returnType.type}} {{ returnType.code | safe }}
 {% endfor %}
 
 {{ methodComment }}
-export class {{ methodName }}{
+export class {{ methodName | camelCase | capitalize }}{
     baseURL: string
     port?: number
     url: string

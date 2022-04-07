@@ -1,4 +1,4 @@
 {{ functionComment }}
-async {{ functionName }}({{ functionInputs }}): Promise<{{ functionReturns | safe }}>{
+async {{ functionName | camelCase }}({{ functionInputs }}): Promise<{{ functionReturns | safe }}>{
     {{ functionBody | safe }}
 }
