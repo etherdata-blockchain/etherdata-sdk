@@ -1,5 +1,18 @@
 # Changelog
 
+# [4.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.3.1...v4.0.0) (2022-04-07)
+
+
+### Bug Fixes
+
+* add file api for typescript ([#47](https://github.com/etherdata-blockchain/etherdata-sdk/issues/47)) ([b05ed05](https://github.com/etherdata-blockchain/etherdata-sdk/commit/b05ed05e6af41d118d571b304bb8a49475544e53))
+* fix python SDK example ([#48](https://github.com/etherdata-blockchain/etherdata-sdk/issues/48)) ([dd50e27](https://github.com/etherdata-blockchain/etherdata-sdk/commit/dd50e27bd7d68dcaf1c475da22f1665e68e9f1dd))
+
+
+### BREAKING CHANGES
+
+* Add File API for JS SDK
+
 ## [3.3.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.3.0...v3.3.1) (2022-04-04)
 
 
