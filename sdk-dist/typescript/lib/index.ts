@@ -1,3 +1,4 @@
 export * as rpc from "./json_rpc";
-export * as file from "./file";
+export * as browserFile from "./browserFile";
+export * as nodeFile from "./nodeFile";
 export * from "./types";

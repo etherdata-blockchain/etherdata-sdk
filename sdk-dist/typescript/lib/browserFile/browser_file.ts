@@ -1,23 +1,17 @@
-import { DownloadProps, FileAPI } from "./file_api";
+import { DownloadProps, FileAPI } from "../file/file_api";
 import FormData from "form-data";
 import urlJoin from "url-join";
 import { URL } from "../const/url";
 import axios from "axios";
 import { StatusCodes } from "http-status-codes";
 import { FileUploadResponse } from "../types";
-import { NodeFileObject } from "./node_file_object";
-import fs from "fs";
-
-function sleep(timeout: number) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(undefined), timeout);
-  });
-}
+import { BrowserFileObject } from "./browser_file_object";
+import JSFileDownloader from "js-file-downloader";
 
 /**
- * Node js file api
+ * Create a browser file object
  */
-export class NodeFile implements FileAPI {
+export class BrowserFile implements FileAPI {
   url: string;
 
   constructor(url: string) {
@@ -26,14 +20,20 @@ export class NodeFile implements FileAPI {
 
   async downloadFile({ fileId, downloadPath }: DownloadProps): Promise<void> {
     const reqURL = urlJoin(this.url, URL.download, fileId);
-    fs.openSync(downloadPath, "w");
-    const fileWriter = fs.createWriteStream(downloadPath);
-    const response = await axios.get(reqURL, { responseType: "stream" });
-    response.data.pipe(fileWriter);
+    const downloader = new JSFileDownloader({
+      url: reqURL,
+      filename: downloadPath,
+    });
+    await downloader;
   }
 
+  /**
+   * Upload a file to the endpoint
+   * @param file {NodeFileObject} A file object
+   * @param errorOnExist Will throw error if the file has been uploaded already
+   */
   async uploadFile(
-    file: NodeFileObject,
+    file: BrowserFileObject,
     errorOnExist: boolean = false
   ): Promise<string> {
     const formData = new FormData();

@@ -1,4 +1,4 @@
-import { FileObject } from "./file_object";
+import { FileObject } from "../file/file_object";
 
 interface BrowserFileProps {
   /**
