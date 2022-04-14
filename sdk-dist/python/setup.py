@@ -5,7 +5,7 @@ Please refer more info on our GitHub
 """
 setuptools.setup(
     name="etherdata-sdk-python",
-    version="4.0.0",
+    version="4.0.1",
     author="etherdata-blockchain",
     author_email="etherdata-blockchain@etd.com",
     description="SDK for etherdata-blockchain",

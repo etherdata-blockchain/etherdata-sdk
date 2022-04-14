@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.0...v4.0.1) (2022-04-14)
+
+
+### Bug Fixes
+
+* add new type def ([#51](https://github.com/etherdata-blockchain/etherdata-sdk/issues/51)) ([5f6eabb](https://github.com/etherdata-blockchain/etherdata-sdk/commit/5f6eabb790821010e445b5019dc457857fb869a1))
+
 # [4.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v3.3.1...v4.0.0) (2022-04-07)
 
 
