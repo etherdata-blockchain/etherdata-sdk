@@ -1,4 +1,4 @@
-import { NodeFile, NodeFileObject } from "../file";
+import { NodeFile, NodeFileObject } from "../nodeFile";
 
 export async function uploadFile() {
   const fileAPI = new NodeFile(process.env.URL!);

@@ -1,15 +1,15 @@
-import { file, FileUploadResponse } from "../lib";
+import { FileUploadResponse, nodeFile } from "../lib";
 //@ts-ignore
 import nock from "nock";
 import { URL } from "../lib/const/url";
 import { StatusCodes } from "http-status-codes";
 
 describe("Given a node file api", () => {
-  let fileAPI: file.FileAPI;
+  let fileAPI: nodeFile.NodeFile;
   const url = "http://localhost:5000";
 
   beforeEach(() => {
-    fileAPI = new file.NodeFile(url);
+    fileAPI = new nodeFile.NodeFile(url);
   });
 
   test("When calling upload", async () => {
@@ -19,7 +19,10 @@ describe("Given a node file api", () => {
       msg: "",
     };
     nock(url).post(URL.upload).reply(StatusCodes.OK, resp);
-    const fileObj = new file.NodeFileObject({ days: 2, filePath: "readme.md" });
+    const fileObj = new nodeFile.NodeFileObject({
+      days: 2,
+      filePath: "readme.md",
+    });
     const result = await fileAPI.uploadFile(fileObj, false);
     expect(result).toBe("mock_id");
   });
@@ -31,7 +34,10 @@ describe("Given a node file api", () => {
       msg: "",
     };
     nock(url).post(URL.upload).reply(StatusCodes.OK, resp);
-    const fileObj = new file.NodeFileObject({ days: 2, filePath: "readme.md" });
+    const fileObj = new nodeFile.NodeFileObject({
+      days: 2,
+      filePath: "readme.md",
+    });
     await expect(() => fileAPI.uploadFile(fileObj, true)).rejects.toThrow(
       Error
     );
