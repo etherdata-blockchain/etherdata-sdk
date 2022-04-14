@@ -17,7 +17,7 @@ interface Props {
 }
 
 export class NodeFileObject implements FileObject {
-  file: fs.ReadStream | undefined;
+  file: fs.ReadStream | undefined | any;
   days: number;
 
   constructor({ fileObject, filePath, days }: Props) {
