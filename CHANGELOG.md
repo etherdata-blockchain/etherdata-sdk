@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.2...v4.0.3) (2022-04-15)
+
+
+### Bug Fixes
+
+* Update dependencies for main ([#53](https://github.com/etherdata-blockchain/etherdata-sdk/issues/53)) ([430296e](https://github.com/etherdata-blockchain/etherdata-sdk/commit/430296e8000044cbf0699e4c6506f77eae31c5db))
+
 ## [4.0.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.1...v4.0.2) (2022-04-14)
 
 
