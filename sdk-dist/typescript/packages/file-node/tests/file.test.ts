@@ -1,15 +1,18 @@
-import { FileUploadResponse, nodeFile } from "../lib";
 //@ts-ignore
 import nock from "nock";
-import { URL } from "../lib/const/url";
 import { StatusCodes } from "http-status-codes";
+import { FileObject, NodeFile } from "../lib";
+import {
+  FileUploadResponse,
+  URL,
+} from "@etherdata-blockchain/etherdata-sdk-common";
 
 describe("Given a node file api", () => {
-  let fileAPI: nodeFile.NodeFile;
+  let fileAPI: NodeFile;
   const url = "http://localhost:5000";
 
   beforeEach(() => {
-    fileAPI = new nodeFile.NodeFile(url);
+    fileAPI = new NodeFile(url);
   });
 
   test("When calling upload", async () => {
@@ -19,7 +22,7 @@ describe("Given a node file api", () => {
       msg: "",
     };
     nock(url).post(URL.upload).reply(StatusCodes.OK, resp);
-    const fileObj = new nodeFile.NodeFileObject({
+    const fileObj = new FileObject({
       days: 2,
       filePath: "readme.md",
     });
@@ -34,7 +37,7 @@ describe("Given a node file api", () => {
       msg: "",
     };
     nock(url).post(URL.upload).reply(StatusCodes.OK, resp);
-    const fileObj = new nodeFile.NodeFileObject({
+    const fileObj = new FileObject({
       days: 2,
       filePath: "readme.md",
     });

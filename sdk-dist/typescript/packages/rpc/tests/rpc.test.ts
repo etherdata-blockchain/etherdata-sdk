@@ -1,5 +1,4 @@
-import { rpc } from "../lib";
-import { json_rpc_methods } from "../lib/json_rpc";
+import { json_rpc_methods } from "../lib";
 // @ts-ignore
 import nock from "nock";
 import { StatusCodes } from "http-status-codes";
@@ -13,7 +12,7 @@ function generateRPCResult(result: any) {
 }
 
 describe("Given a json rpc methods", () => {
-  let jsonRPCMethod: rpc.json_rpc_methods.JsonRpcMethods;
+  let jsonRPCMethod: json_rpc_methods.JsonRpcMethods;
   const url = "http://localhost";
 
   beforeEach(() => {

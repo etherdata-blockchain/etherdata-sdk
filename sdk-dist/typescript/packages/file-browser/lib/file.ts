@@ -1,12 +1,16 @@
-import { DownloadProps, FileAPI } from "../file/file_api";
 import FormData from "form-data";
 import urlJoin from "url-join";
-import { URL } from "../const/url";
 import axios from "axios";
 import { StatusCodes } from "http-status-codes";
-import { FileUploadResponse } from "../types";
-import { BrowserFileObject } from "./browser_file_object";
+
+import { BrowserFileObject } from "./file_object";
 import JSFileDownloader from "js-file-downloader";
+import {
+  DownloadProps,
+  FileAPI,
+  FileUploadResponse,
+  URL,
+} from "@etherdata-blockchain/etherdata-sdk-common";
 
 /**
  * Create a browser file object

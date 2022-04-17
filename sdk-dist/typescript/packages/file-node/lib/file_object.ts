@@ -1,5 +1,4 @@
 import fs from "fs";
-import { FileObject } from "../file/file_object";
 
 interface Props {
   /**
@@ -16,7 +15,7 @@ interface Props {
   days: number;
 }
 
-export class NodeFileObject implements FileObject {
+export class FileObject implements FileObject {
   file: fs.ReadStream | undefined | any;
   days: number;
 
