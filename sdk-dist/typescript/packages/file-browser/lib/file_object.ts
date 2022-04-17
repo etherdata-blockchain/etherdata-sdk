@@ -1,4 +1,4 @@
-import { FileObject } from "../file/file_object";
+import { FileObject } from "@etherdata-blockchain/etherdata-sdk-common";
 
 interface BrowserFileProps {
   /**

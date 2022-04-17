@@ -11,3 +11,4 @@ docs/js/*.md
 docs/kotlin/*.md
 *.egg-info
 __pycache__
+sdk-dist/typescript/yarn-error.log
