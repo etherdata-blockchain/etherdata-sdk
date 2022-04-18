@@ -87,24 +87,27 @@ jobs:
           name: js-doc
           path: docs/docs/typescript/api
           retention-days: 1
-      - uses: JS-DevTools/npm-publish@v1
-        name: Publish Package to NPM
+
+      - uses: healthplace/npmrc-registry-login-action@v1.0
+        name: Login to NPM registry
         with:
-          package: "sdk-dist/typescript/package.json"
-          token: ${{ secrets.npm_token }}
-          access: "public"
-      - uses: JS-DevTools/npm-publish@v1
-        name: Publish Package to GitHub Package
+          scope: '@etherdata-blockchain'
+          registry: 'registry.npmjs.org'
+          auth-token: ${{ secrets.npm_token }}
+      - name: Publish to npm
+        run: yarn release
+        working-directory: sdk-dist/typescript
+
+      - uses: healthplace/npmrc-registry-login-action@v1.0
+        name: Login to GitHub registry
         with:
-          package: "sdk-dist/typescript/package.json"
-          registry: "https://npm.pkg.github.com"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          access: "public"
-      - name: Release umd module
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ./sdk-dist/typescript/etherdata-sdk.js
+          scope: '@etherdata-blockchain'
+          registry: 'https://npm.pkg.github.com'
+          auth-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GitHub
+        run: yarn release
+        working-directory: sdk-dist/typescript
 
   publish-react-ui-npm:
     needs: build
@@ -140,43 +143,43 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-      working-directory: sdk-dist/python
-    - run: python3 generator.py
-      name: Building documentation
-      working-directory: sdk-dist/python
-    - name: Install pypa/build
-      run: >-
-        python -m
-        pip install
-        build
-        --user
-      working-directory: sdk-dist/python
-    - name: Build a binary wheel and a source tarball
-      run: >-
-        python -m
-        build
-        --sdist
-        --wheel
-        --outdir dist/
-        .
-      working-directory: sdk-dist/python
-    - name: Publish distribution 📦 to PyPI
-      if: startsWith(github.ref, 'refs/tags')
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: sdk-dist/python/dist
-    - uses: actions/upload-artifact@v2
-      with:
-        name: python-doc
-        path: docs/docs/python/api
+      - uses: actions/checkout@master
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: sdk-dist/python
+      - run: python3 generator.py
+        name: Building documentation
+        working-directory: sdk-dist/python
+      - name: Install pypa/build
+        run: >-
+          python -m
+          pip install
+          build
+          --user
+        working-directory: sdk-dist/python
+      - name: Build a binary wheel and a source tarball
+        run: >-
+          python -m
+          build
+          --sdist
+          --wheel
+          --outdir dist/
+          .
+        working-directory: sdk-dist/python
+      - name: Publish distribution 📦 to PyPI
+        if: startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: sdk-dist/python/dist
+      - uses: actions/upload-artifact@v2
+        with:
+          name: python-doc
+          path: docs/docs/python/api
 
 
   publish-docs:

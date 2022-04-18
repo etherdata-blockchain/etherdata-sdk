@@ -14,7 +14,8 @@
     "@release-it/bumper": {
       "out": [
         "sdk-dist/etd-react-ui/package.json",
-        "sdk-dist/typescript/package.json"
+        "sdk-dist/typescript/package.json",
+        "sdk-dist/typescript/packages/**/package.json"
       ]
     }
   },

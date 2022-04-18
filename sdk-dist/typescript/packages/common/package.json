@@ -8,6 +8,9 @@
   "dependencies": {
     "ethereumjs-util": "^7.1.4"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/etherdata-blockchain/etherdata-sdk.git"
@@ -15,7 +18,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
-    "doc": "typedoc --out ../../docs/js/common ./lib"
+    "doc": "typedoc --out ../../docs/js/common ./lib",
+    "release": "yarn publish"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

@@ -4,8 +4,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
-      "cache": false
+      "outputs": ["dist/**"]
     },
     "test": {
       "dependsOn": ["build"],
@@ -13,6 +12,9 @@
     },
     "doc": {
       "dependsOn": ["build"]
+    },
+    "release": {
+
     }
   }
 }
