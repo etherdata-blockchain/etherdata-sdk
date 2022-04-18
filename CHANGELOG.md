@@ -1,5 +1,7 @@
 # Changelog
 
+## [4.0.4](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.3...v4.0.4) (2022-04-18)
+
 ## [4.0.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.2...v4.0.3) (2022-04-15)
 
 
