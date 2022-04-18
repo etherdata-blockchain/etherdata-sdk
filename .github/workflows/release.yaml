@@ -92,7 +92,7 @@ jobs:
         name: Login to NPM registry
         with:
           scope: '@etherdata-blockchain'
-          registry: 'registry.npmjs.org'
+          registry: 'https://registry.npmjs.org'
           auth-token: ${{ secrets.npm_token }}
       - name: Publish to npm
         run: yarn release
