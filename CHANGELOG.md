@@ -1,5 +1,18 @@
 # Changelog
 
+# [5.0.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.3...v5.0.0) (2022-04-18)
+
+
+### Bug Fixes
+
+* add github action support for monorepo ([#63](https://github.com/etherdata-blockchain/etherdata-sdk/issues/63)) ([65e3d07](https://github.com/etherdata-blockchain/etherdata-sdk/commit/65e3d07e3179c190a53fb667646686ecae21605d))
+
+
+### Features
+
+* add account package ([#61](https://github.com/etherdata-blockchain/etherdata-sdk/issues/61)) ([9f7401d](https://github.com/etherdata-blockchain/etherdata-sdk/commit/9f7401da71cc7a24bcf0ecbe365673620bd36f47))
+* use monorepo structure ([#60](https://github.com/etherdata-blockchain/etherdata-sdk/issues/60)) ([b4d9499](https://github.com/etherdata-blockchain/etherdata-sdk/commit/b4d9499bbf2ba7a775fd788e329565fa5a86ff41))
+
 ## [4.0.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v4.0.2...v4.0.3) (2022-04-15)
 
 
