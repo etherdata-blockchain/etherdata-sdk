@@ -2,6 +2,7 @@
   "name": "@etherdata-blockchain/etherdata-sdk-file-browser",
   "version": "4.0.3",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "dependencies": {
@@ -33,6 +34,7 @@
     "typescript": "^4.4.3",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
-    "nock": "^13.2.4"
+    "nock": "^13.2.4",
+    "tsconfig": "*"
   }
 }

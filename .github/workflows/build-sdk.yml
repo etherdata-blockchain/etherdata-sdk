@@ -35,7 +35,7 @@ jobs:
         working-directory: etd-sdk-generator
 
   build-kotlin:
-    needs: [build, test]
+    needs: [ build, test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -56,7 +56,7 @@ jobs:
 
 
   build-typescript-npm:
-    needs: [build, test]
+    needs: [ build, test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -64,21 +64,18 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: yarn && yarn build
         name: Installing dependencies
         working-directory: sdk-dist/typescript
       - run: yarn test
         name: Testing
-        working-directory: sdk-dist/typescript
-      - run: yarn build
-        name: Building dist
         working-directory: sdk-dist/typescript
       - run: yarn doc
         name: Building documentation
         working-directory: sdk-dist/typescript
 
   build-react-ui-npm:
-    needs: [build, test]
+    needs: [ build, test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -94,42 +91,42 @@ jobs:
         working-directory: sdk-dist/etd-react-ui
 
   build-python:
-    needs: [build, test]
+    needs: [ build, test ]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9
-    - name: Install Pep8
-      run: pip install -r requirements.txt
-      working-directory: sdk-dist/python
-    - name: Testing
-      run: pytest
-      working-directory: sdk-dist/python
-    - name: Install pypa/build
-      run: >-
-        python -m
-        pip install
-        build
-        --user
-      working-directory: sdk-dist/python
-    - name: Build a binary wheel and a source tarball
-      run: >-
-        python -m
-        build
-        --sdist
-        --wheel
-        --outdir dist/
-        .
-      working-directory: sdk-dist/python
+      - uses: actions/checkout@master
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install Pep8
+        run: pip install -r requirements.txt
+        working-directory: sdk-dist/python
+      - name: Testing
+        run: pytest
+        working-directory: sdk-dist/python
+      - name: Install pypa/build
+        run: >-
+          python -m
+          pip install
+          build
+          --user
+        working-directory: sdk-dist/python
+      - name: Build a binary wheel and a source tarball
+        run: >-
+          python -m
+          build
+          --sdist
+          --wheel
+          --outdir dist/
+          .
+        working-directory: sdk-dist/python
 
 
   release:
     runs-on: ubuntu-latest
     if: ${{ (github.event.pusher.name != 'github action') && (github.ref == 'refs/heads/main') }}
-    needs: [build-kotlin, build-react-ui-npm, build-typescript-npm, build-python]
+    needs: [ build-kotlin, build-react-ui-npm, build-typescript-npm, build-python ]
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2

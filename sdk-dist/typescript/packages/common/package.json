@@ -2,9 +2,11 @@
   "name": "@etherdata-blockchain/etherdata-sdk-common",
   "version": "4.0.3",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "ethereumjs-util": "^7.1.4"
   },
   "repository": {
     "type": "git",

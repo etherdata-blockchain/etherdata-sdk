@@ -2,6 +2,7 @@
   "name": "@etherdata-blockchain/etherdata-sdk-file-node",
   "version": "4.0.3",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "dependencies": {
