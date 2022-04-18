@@ -87,23 +87,17 @@ jobs:
           name: js-doc
           path: docs/docs/typescript/api
           retention-days: 1
-
-      - uses: healthplace/npmrc-registry-login-action@v1.0
-        name: Login to NPM registry
+      - name: publish
+        uses: action-runner/npm-publish@main
         with:
-          scope: '@etherdata-blockchain'
-          registry: 'https://registry.npmjs.org'
-          auth-token: ${{ secrets.npm_token }}
-      - name: Publish to npm
-        run: yarn release
-        working-directory: sdk-dist/typescript
-
-      - uses: healthplace/npmrc-registry-login-action@v1.0
-        name: Login to GitHub registry
-        with:
-          scope: '@etherdata-blockchain'
-          registry: 'https://npm.pkg.github.com'
-          auth-token: ${{ secrets.GITHUB_TOKEN }}
+          tokens: |
+            ${{ secrets.npm_token }}
+            ${{ secrets.GITHUB_TOKEN}}
+          packageFiles: |
+            sdk-dist/typescript/package.json
+          registries: |
+            https://registry.npmjs.org
+            https://npm.pkg.github.com
 
       - name: Publish to GitHub
         run: yarn release
