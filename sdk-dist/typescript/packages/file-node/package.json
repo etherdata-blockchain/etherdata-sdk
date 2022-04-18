@@ -15,6 +15,9 @@
     "url-join": "^4.0.1",
     "@etherdata-blockchain/etherdata-sdk-common": "*"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/etherdata-blockchain/etherdata-sdk.git"
@@ -23,7 +26,8 @@
     "build": "tsc",
     "test": "jest --passWithNoTests",
     "doc": "typedoc --out ../../docs/js/file-node ./lib",
-    "example": "ts-node lib/examples/file_example.ts"
+    "example": "ts-node lib/examples/file_example.ts",
+    "release": "yarn publish"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
