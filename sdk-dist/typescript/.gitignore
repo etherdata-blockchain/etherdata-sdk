@@ -1,2 +1,4 @@
-etherdata-sdk.js
-mock.data
+.turbo
+dist
+docs
+*.jpg
