@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/etherdata-sdk-account",
-  "version": "4.0.3",
+  "version": "4.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "web3-utils": "^1.7.3",
     "@ethereumjs/tx": "^3.5.1",
     "elliptic": "^6.5.4",
-    "@types/elliptic" : "^6.4.14",
+    "@types/elliptic": "^6.4.14",
     "@ethersproject/wallet": "^5.6.0",
     "@ethersproject/address": "^5.6.0",
     "@etherdata-blockchain/etherdata-sdk-common": "*"
