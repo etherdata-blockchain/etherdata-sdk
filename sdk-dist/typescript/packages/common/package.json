@@ -18,8 +18,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
-    "doc": "typedoc --out ../../docs/js/common ./lib",
-    "release": "yarn publish"
+    "doc": "typedoc --out ../../docs/js/common ./lib"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

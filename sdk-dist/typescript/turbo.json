@@ -13,8 +13,5 @@
     "doc": {
       "dependsOn": ["build"]
     },
-    "release": {
-
-    }
   }
 }

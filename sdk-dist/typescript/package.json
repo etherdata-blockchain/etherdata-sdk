@@ -14,8 +14,7 @@
   "scripts": {
     "build": "turbo run build",
     "test": "turbo run test",
-    "doc": "turbo run doc",
-    "release": "turbo run release"
+    "doc": "turbo run doc"
   },
   "devDependencies": {
     "turbo": "^1.2.4"

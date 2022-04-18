@@ -99,10 +99,6 @@ jobs:
             https://registry.npmjs.org
             https://npm.pkg.github.com
 
-      - name: Publish to GitHub
-        run: yarn release
-        working-directory: sdk-dist/typescript
-
   publish-react-ui-npm:
     needs: build
     runs-on: ubuntu-latest
