@@ -1,6 +1,6 @@
 {
   "name": "@etherdata-blockchain/etherdata-sdk-account",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",

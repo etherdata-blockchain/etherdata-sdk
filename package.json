@@ -1,6 +1,6 @@
 {
   "name": "etherdata-sdk",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "main": "index.js",
   "repository": "https://github.com/etherdata-blockchain/etherdata-sdk",
   "author": "sirily11 <sirily1997@gmail.com>",

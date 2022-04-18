@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.2...v5.0.3) (2022-04-18)
+
+
+### Bug Fixes
+
+* release action and script ([#66](https://github.com/etherdata-blockchain/etherdata-sdk/issues/66)) ([55ba21d](https://github.com/etherdata-blockchain/etherdata-sdk/commit/55ba21d54dcda819bb56f3753a0003f953f7aa73))
+
 ## [5.0.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.1...v5.0.2) (2022-04-18)
 
 
