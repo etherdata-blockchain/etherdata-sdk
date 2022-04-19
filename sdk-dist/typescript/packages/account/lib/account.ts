@@ -5,10 +5,9 @@ import {
 } from "@etherdata-blockchain/etherdata-sdk-common";
 import utils from "web3-utils";
 import { TransactionFactory } from "@ethereumjs/tx";
-import elliptic from "elliptic";
 import { Wallet } from "@ethersproject/wallet";
-import { keccak256 } from "@ethersproject/keccak256";
 import { getAddress, getIcapAddress } from "@ethersproject/address";
+import Common from "@ethereumjs/common";
 
 /**
  * Create an account object which can be used for signing
@@ -18,13 +17,8 @@ export class Account {
   address: string;
 
   constructor(privateKey: string) {
-    const secp256k1 = new elliptic.ec("secp256k1");
-
-    const buffer = new Buffer(privateKey.slice(2), "hex");
-    const ecKey = secp256k1.keyFromPrivate(buffer);
-    const publicKey = "0x" + ecKey.getPublic(false, "hex").slice(2);
-    const publicHash = keccak256(publicKey);
-    this.address = this.toChecksum("0x" + publicHash.slice(-40));
+    const wallet = new Wallet(privateKey);
+    this.address = wallet.address;
     this.privateKey = privateKey;
   }
 
@@ -49,21 +43,23 @@ export class Account {
     let privateKey = this.privateKey;
     this.validateTransactionForSigning(tx);
 
-    tx.from = this.addressFormatter(tx.from ?? this.address);
+    tx.from = this.address;
     tx.data = tx.data || "0x";
     tx.value = this.toHex(tx.value);
     tx.gasLimit = this.toHex(tx.gasLimit || tx.gas);
     tx.gas = this.toHex(tx.gas);
     tx.type = this.toHex(tx.type ?? 0);
     tx.nonce = this.toHex(tx.nonce);
-    tx.chainId = this.toHex(tx.chainId);
+    tx.gasPrice = this.toHex(tx.gasPrice || tx.gas);
 
     if (tx.type === "0x1" && tx.accessList === undefined) tx.accessList = [];
 
     if (privateKey.startsWith("0x")) {
       privateKey = privateKey.substring(2);
     }
-    let newTx = TransactionFactory.fromTxData(tx);
+    let newTx = TransactionFactory.fromTxData(tx, {
+      common: Common.custom({ chainId: tx.chainId as number }),
+    });
     let signedTx = newTx.sign(Buffer.from(privateKey, "hex"));
     let validationErrors = signedTx.validate(true);
     if (validationErrors.length > 0) {
@@ -103,6 +99,10 @@ export class Account {
     // handle base 10's value
     if (typeof newValue === "number") {
       newValue = newValue.toString(16);
+    }
+
+    if (newValue === undefined) {
+      newValue = "0x0";
     }
 
     if (!newValue.startsWith("0x")) {

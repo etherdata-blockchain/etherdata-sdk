@@ -145,7 +145,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -160,7 +163,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -176,7 +182,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -191,7 +200,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -206,7 +218,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -221,7 +236,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -236,7 +254,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -251,7 +272,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -268,7 +292,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -286,7 +313,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -303,7 +333,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -323,7 +356,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -339,7 +375,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -357,7 +396,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -373,7 +415,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -389,7 +434,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -406,7 +454,10 @@ export class JsonRpcMethods {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -430,7 +481,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -446,7 +500,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -462,7 +519,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -478,7 +538,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -495,7 +558,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -514,7 +580,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -534,7 +603,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -554,7 +626,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -572,7 +647,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -592,7 +670,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -612,7 +693,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -631,7 +715,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -651,7 +738,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -671,7 +761,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -686,7 +779,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -702,7 +798,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -718,7 +817,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -734,7 +836,10 @@ Note the address to sign with must be unlocked
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -755,7 +860,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -771,7 +879,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -787,7 +898,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -806,7 +920,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -822,7 +939,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -838,7 +958,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -854,7 +977,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -869,7 +995,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -887,7 +1016,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -904,7 +1036,10 @@ A note on specifying topic filters Topics are order-dependent
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 }

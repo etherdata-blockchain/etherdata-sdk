@@ -67,7 +67,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -83,7 +86,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -97,7 +103,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -113,7 +122,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -129,7 +141,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -144,7 +159,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -158,7 +176,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -174,7 +195,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -188,7 +212,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -205,7 +232,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -222,7 +252,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -238,7 +271,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -252,7 +288,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -266,7 +305,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -280,7 +322,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -294,7 +339,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -312,7 +360,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -329,7 +380,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -346,7 +400,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -363,7 +420,10 @@ export class Debug {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -395,7 +455,10 @@ The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uin
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -409,7 +472,10 @@ The options is as follows type StdTraceConfig struct { *vm.LogConfig Reexec *uin
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -461,7 +527,10 @@ disableStorage: BOOL
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -475,7 +544,10 @@ disableStorage: BOOL
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -515,7 +587,10 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -532,7 +607,10 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -548,7 +626,10 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -562,7 +643,10 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -578,7 +662,10 @@ from:     DATA, 20 Bytes - (optional) The address the transaction is sent from
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 }

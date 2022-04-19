@@ -1,0 +1,27 @@
+{
+  "name": "e2e",
+  "version": "5.0.2",
+  "license": "MIT",
+  "private": true,
+  "main": "lib/index.ts",
+  "dependencies": {
+    "@etherdata-blockchain/etherdata-sdk": "*",
+    "@etherdata-blockchain/etherdata-sdk-account": "*",
+    "@etherdata-blockchain/etherdata-sdk-common": "*",
+    "typescript": "^4.6.3",
+    "web3-eth-accounts": "^1.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etherdata-blockchain/etherdata-sdk.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node lib/test.js"
+  },
+  "devDependencies": {
+    "jest": "^27.2.0",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1"
+  }
+}
