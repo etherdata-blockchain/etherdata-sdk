@@ -31,7 +31,10 @@ export class Personal {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -46,7 +49,10 @@ export class Personal {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -61,7 +67,10 @@ export class Personal {
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -81,7 +90,10 @@ At the Getd console, newAccount will prompt for a passphrase when it is not supp
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -112,7 +124,10 @@ The account can be used with etd_sign and etd_sendTransaction while it is unlock
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -141,7 +156,10 @@ Example &#39;&gt; var tx = {from&#39;:&#39; &quot;0x391694e7e0b0cce554cb130d723a
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -166,7 +184,10 @@ See ecRecover to verify the signature
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -183,7 +204,10 @@ See ecRecover to verify the signature
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 }

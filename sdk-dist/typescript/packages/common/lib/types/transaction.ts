@@ -8,7 +8,7 @@ export interface Transaction {
    * User can provider either a base16's value or a base10's value
    */
   value: number | string;
-  gasPrice?: number;
+  gasPrice?: number | string;
   nonce: number | string;
   /**
    * Chain id for the transaction. Default to ChainId.mainNet.
@@ -18,7 +18,7 @@ export interface Transaction {
   maxPriorityFeePerGas?: number | string;
   gasLimit?: string | number;
   data?: string;
-  accessList: JsonAccessListItem[];
+  accessList?: JsonAccessListItem[];
   type?: string;
 }
 

@@ -71,7 +71,10 @@ Please note, there may be multiple transactions associated with the same account
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -94,7 +97,10 @@ Please note, there may be multiple transactions associated with the same account
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -111,7 +117,10 @@ The result is an object with two fields pending and queued, each of which is a c
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 }

@@ -65,7 +65,10 @@ Example: if you want to use Remix with Getd, allow requests from the remix domai
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -97,7 +100,10 @@ As with --http
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 
@@ -123,7 +129,10 @@ You can configure the location of the socket using the --ipcpath flag
       jsonrpc: "2.0",
       id: 1,
     });
-
+    const error = response.data.error;
+    if (error) {
+      throw new Error(error.message);
+    }
     return response.data.result;
   }
 }
