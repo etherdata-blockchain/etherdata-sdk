@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.6](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.5...v5.0.6) (2022-04-20)
+
+
+### Bug Fixes
+
+* update typescript import ([#69](https://github.com/etherdata-blockchain/etherdata-sdk/issues/69)) ([d08648a](https://github.com/etherdata-blockchain/etherdata-sdk/commit/d08648ad82fca450a4720263369159ffcbd4faf5))
+
 ## [5.0.5](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.4...v5.0.5) (2022-04-20)
 
 
