@@ -37,3 +37,13 @@ package/
 ```
 
 Select item from left for more details
+
+## Demos
+
+We provide few [demos](https://github.com/etherdata-blockchain/demos) built on top of ETD platform. You can try them out here.
+
+
+
+- Faucet (https://faucet.debugchain.net/)
+- Transaction (https://demos.transaction.debugchain.net/)
+- File Upload (Hosting platform doesn't support file upload yet, only local version available)

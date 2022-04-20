@@ -37,3 +37,12 @@ package/
 ```
 
 具体的实现代码会在专门的文档目录下进行详细介绍。
+
+
+## Demos
+
+为了展示现有的ETD功能，我们特别的制作了几个可以直接用的[demo](https://github.com/etherdata-blockchain/demos)。
+
+- Faucet (https://faucet.debugchain.net/)
+- Transaction (https://demos.transaction.debugchain.net/)
+- File Upload (Hosting platform doesn't support file upload yet, only local version available)
