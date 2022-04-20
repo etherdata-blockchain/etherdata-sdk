@@ -7,12 +7,7 @@ In this document, we will describe how to upload files using JS SDK.
 ## Step 1 import APIs
 
 ```typescript
-import { file } from "@etherdata-blockchain/etherdata-sdk";
-````
-
-The `file` here is used to import our `file` api. After that we can define the required API in the following way.
-```typescript
-const { NodeFile, NodeFileObject } = file
+import { NodeFile, NodeFileObject } from "@etherdata-blockchain/etherdata-sdk-file-node";
 ````
 
 1. `NodeFileObject` is the Object used to create the uploaded file

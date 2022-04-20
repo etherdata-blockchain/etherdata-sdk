@@ -7,13 +7,10 @@
 ## 第一步 引入依赖性
 
 ```typescript
-import { file } from "@etherdata-blockchain/etherdata-sdk";
+import { NodeFile, NodeFileObject } from "@etherdata-blockchain/etherdata-sdk-file-node";
 ```
 
 在这里的`file`是用来引入我们的`file` api的。之后我们可以定义所需要的API通过下面的方式。
-```typescript
-const { NodeFile, NodeFileObject } = file
-```
 
 1. `NodeFileObject` 为创建上传的文件用的Object
 2. `NodeFile` 为上传文件的API
