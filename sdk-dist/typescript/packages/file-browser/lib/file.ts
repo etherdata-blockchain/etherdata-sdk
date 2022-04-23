@@ -1,16 +1,15 @@
-import FormData from "form-data";
 import urlJoin from "url-join";
 import axios from "axios";
 import { StatusCodes } from "http-status-codes";
 
 import { BrowserFileObject } from "./file_object";
-import JSFileDownloader from "js-file-downloader";
 import {
   DownloadProps,
   FileAPI,
   FileUploadResponse,
   URL,
 } from "@etherdata-blockchain/etherdata-sdk-common";
+import FileSaver from "file-saver";
 
 /**
  * Create a browser file object
@@ -24,11 +23,8 @@ export class BrowserFile implements FileAPI {
 
   async downloadFile({ fileId, downloadPath }: DownloadProps): Promise<void> {
     const reqURL = urlJoin(this.url, URL.download, fileId);
-    const downloader = new JSFileDownloader({
-      url: reqURL,
-      filename: downloadPath,
-    });
-    await downloader;
+    const response = await axios.get(reqURL);
+    FileSaver.saveAs(response.data, downloadPath);
   }
 
   /**
@@ -43,11 +39,9 @@ export class BrowserFile implements FileAPI {
     const formData = new FormData();
     const uploadObject = file.toUploadFile();
     formData.append("file", uploadObject.file);
-    formData.append("days", uploadObject.days);
+    formData.append("days", `${file.days}`);
     const reqURL = urlJoin(this.url, URL.upload);
-    const request = await axios.post<FileUploadResponse>(reqURL, formData, {
-      headers: { ...formData.getHeaders() },
-    });
+    const request = await axios.post<FileUploadResponse>(reqURL, formData);
 
     if (request.status === StatusCodes.OK) {
       if (request.data.data.isExist && errorOnExist) {
