@@ -67,12 +67,15 @@
     /* Advanced Options */
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */,
-    "lib": ["es6"],
-    "outDir": "./dist",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "outDir": "./dist"
   },
   "include": [
     "lib"
   ],
   "exclude": ["node_modules"],
-  
+
 }
