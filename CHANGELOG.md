@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.7](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.6...v5.0.7) (2022-04-23)
+
+
+### Bug Fixes
+
+* file browser upload ([#70](https://github.com/etherdata-blockchain/etherdata-sdk/issues/70)) ([174af80](https://github.com/etherdata-blockchain/etherdata-sdk/commit/174af806f3fa570b6806552c0da1d16be09aeabe))
+
 ## [5.0.6](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.5...v5.0.6) (2022-04-20)
 
 
