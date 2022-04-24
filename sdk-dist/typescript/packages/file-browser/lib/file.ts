@@ -10,6 +10,7 @@ import {
   URL,
 } from "@etherdata-blockchain/etherdata-sdk-common";
 import FileSaver from "file-saver";
+import { UploadError } from "@etherdata-blockchain/etherdata-sdk-errors";
 
 /**
  * Create a browser file object
@@ -36,19 +37,23 @@ export class BrowserFile implements FileAPI {
     file: BrowserFileObject,
     errorOnExist: boolean = false
   ): Promise<string> {
-    const formData = new FormData();
-    const uploadObject = file.toUploadFile();
-    formData.append("file", uploadObject.file);
-    formData.append("days", `${file.days}`);
-    const reqURL = urlJoin(this.url, URL.upload);
-    const request = await axios.post<FileUploadResponse>(reqURL, formData);
+    try {
+      const formData = new FormData();
+      const uploadObject = file.toUploadFile();
+      formData.append("file", uploadObject.file);
+      formData.append("days", `${file.days}`);
+      const reqURL = urlJoin(this.url, URL.upload);
+      const response = await axios.post<FileUploadResponse>(reqURL, formData);
 
-    if (request.status === StatusCodes.OK) {
-      if (request.data.data.isExist && errorOnExist) {
-        throw new Error("This file already exist");
+      if (response.status === StatusCodes.OK) {
+        if (response.data.data.isExist && errorOnExist) {
+          throw new UploadError("File already exists");
+        }
+        return response.data.data.afid;
       }
-      return request.data.data.afid;
+      return response.data.data.afid;
+    } catch (err: any) {
+      throw new UploadError(err.response?.message, err.response?.status);
     }
-    throw new Error(`Server returns a not ok status ${request.status}`);
   }
 }
