@@ -1,13 +1,11 @@
 {
   "name": "@etherdata-blockchain/etherdata-sdk-errors",
-  "version": "5.0.5",
+  "version": "5.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "publishConfig": {
     "access": "public"
   },

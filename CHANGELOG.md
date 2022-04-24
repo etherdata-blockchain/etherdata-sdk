@@ -1,5 +1,12 @@
 # Changelog
 
+# [5.1.0](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.7...v5.1.0) (2022-04-24)
+
+
+### Features
+
+* add custom error ([#71](https://github.com/etherdata-blockchain/etherdata-sdk/issues/71)) ([a233585](https://github.com/etherdata-blockchain/etherdata-sdk/commit/a233585175c1d16edcc68ddb2bd681556cbbd7ba))
+
 ## [5.0.7](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.0.6...v5.0.7) (2022-04-23)
 
 
