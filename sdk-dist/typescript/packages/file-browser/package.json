@@ -26,7 +26,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
-    "doc": "typedoc --out ../../docs/js/file-browser ./lib"
+    "doc": "typedoc --out ../../docs/js/file-browser ./lib",
+    "example": "ts-node example/upload.ts"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
