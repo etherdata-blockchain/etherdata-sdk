@@ -9,7 +9,6 @@ import {
   FileUploadResponse,
   URL,
 } from "@etherdata-blockchain/etherdata-sdk-common";
-import FileSaver from "file-saver";
 import { UploadError } from "@etherdata-blockchain/etherdata-sdk-errors";
 
 /**
@@ -25,7 +24,12 @@ export class BrowserFile implements FileAPI {
   async downloadFile({ fileId, downloadPath }: DownloadProps): Promise<void> {
     const reqURL = urlJoin(this.url, URL.download, fileId);
     const response = await axios.get(reqURL);
-    FileSaver.saveAs(response.data, downloadPath);
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", downloadPath);
+    document.body.appendChild(link);
+    link.click();
   }
 
   /**
