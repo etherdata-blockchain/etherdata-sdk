@@ -10,6 +10,7 @@ import {
   URL,
 } from "@etherdata-blockchain/etherdata-sdk-common";
 import { UploadError } from "@etherdata-blockchain/etherdata-sdk-errors";
+import JsFileDownloader from "js-file-downloader";
 
 /**
  * Create a browser file object
@@ -23,13 +24,7 @@ export class BrowserFile implements FileAPI {
 
   async downloadFile({ fileId, downloadPath }: DownloadProps): Promise<void> {
     const reqURL = urlJoin(this.url, URL.download, fileId);
-    const response = await axios.get(reqURL);
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", downloadPath);
-    document.body.appendChild(link);
-    link.click();
+    await new JsFileDownloader({ url: reqURL, filename: downloadPath });
   }
 
   /**
