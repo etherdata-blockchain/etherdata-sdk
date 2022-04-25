@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.1.1...v5.1.2) (2022-04-25)
+
+
+### Bug Fixes
+
+* browser download issue ([#73](https://github.com/etherdata-blockchain/etherdata-sdk/issues/73)) ([60299c5](https://github.com/etherdata-blockchain/etherdata-sdk/commit/60299c577403da8d6df29c091fa52eb29aa3be80))
+* Update dependencies for main ([#74](https://github.com/etherdata-blockchain/etherdata-sdk/issues/74)) ([6939944](https://github.com/etherdata-blockchain/etherdata-sdk/commit/693994405f8746d281be93593187b562eefd13f0))
+
 ## [5.1.1](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.1.0...v5.1.1) (2022-04-24)
 
 

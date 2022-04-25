@@ -7,7 +7,7 @@ plugins {
 }
 archivesBaseName = 'etherdata-sdk'
 group = 'etherdata-blockchain'
-version = 'v5.1.1'
+version = 'v5.1.2'
 repositories {
     mavenCentral()
 }
