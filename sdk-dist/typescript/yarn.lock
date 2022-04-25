@@ -2817,6 +2817,11 @@ jest@^27.2.0:
     import-local "^3.0.2"
     jest-cli "^27.2.0"
 
+js-file-downloader@^1.1.24:
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/js-file-downloader/-/js-file-downloader-1.1.24.tgz#58102debfd86174462b650b0c251a223fa4b291a"
+  integrity sha512-DbOKEtofflVV8DfdFEkkykJQW1jWXT56+G2dC6dn1tLGRHjoVsdMpYKKyxQb/jJv2CGNxuTvMTpPmqYEf+LTGA==
+
 js-sha3@0.8.0, js-sha3@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
