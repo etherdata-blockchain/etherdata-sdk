@@ -47,6 +47,23 @@ class TestFileUpload(TestCase):
         with pytest.raises(FileExistsError):
             file.upload_file(file=file_obj)
 
+    @httpretty.activate(allow_net_connect=False)
+    def test_simple_upload_failed(self):
+        response = {
+            "code": 0,
+            "msg": "",
+            "data": {
+                "afid": "abc",
+            }
+        }
+        httpretty.register_uri(httpretty.POST, self.url + "/un/file", body=json.dumps(response))
+        file = File(url=self.url)
+        file_obj = FileObject(file_object=tempfile.TemporaryFile(mode="rb"))
+
+        fid = file.upload_file(file=file_obj)
+        self.assertEqual(fid, "abc")
+
+
 
 class TestFileDownload(TestCase):
     def setUp(self) -> None:

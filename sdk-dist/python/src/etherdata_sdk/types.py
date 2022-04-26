@@ -9,7 +9,7 @@ from hexbytes import HexBytes
 @dataclass
 class _FileUploadResponseData:
     afid: str
-    is_exist: bool
+    is_exist: bool = False
 
 
 @dataclass_json
