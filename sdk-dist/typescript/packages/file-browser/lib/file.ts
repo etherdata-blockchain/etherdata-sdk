@@ -7,6 +7,7 @@ import {
   DownloadProps,
   FileAPI,
   FileUploadResponse,
+  PreviewProps,
   URL,
 } from "@etherdata-blockchain/etherdata-sdk-common";
 import { UploadError } from "@etherdata-blockchain/etherdata-sdk-errors";
@@ -25,6 +26,16 @@ export class BrowserFile implements FileAPI {
   async downloadFile({ fileId, downloadPath }: DownloadProps): Promise<void> {
     const reqURL = urlJoin(this.url, URL.download, fileId);
     await new JsFileDownloader({ url: reqURL, filename: downloadPath });
+  }
+
+  /**
+   * Get file content. This is used for preview file content
+   * @param fileId
+   */
+  async getFileContent({ fileId }: PreviewProps): Promise<any> {
+    const reqURL = urlJoin(this.url, URL.download, fileId);
+    const response = await axios.get(reqURL);
+    return response.data;
   }
 
   /**

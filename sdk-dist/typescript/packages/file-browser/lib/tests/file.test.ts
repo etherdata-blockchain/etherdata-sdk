@@ -46,4 +46,17 @@ describe("Given a browser file api", () => {
       Error
     );
   });
+
+  test("When calling get file content", async () => {
+    nock(url)
+      .get(`${URL.download}/mock_id`)
+      .replyWithFile(StatusCodes.OK, "readme.md", {
+        "Content-Type": "application/json",
+      });
+    const data = await fileAPI.getFileContent({
+      fileId: "mock_id",
+    });
+    expect(data).toBeDefined();
+    expect(data.length).toBeGreaterThan(0);
+  });
 });
