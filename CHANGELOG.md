@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.3](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.1.2...v5.1.3) (2022-04-26)
+
+
+### Bug Fixes
+
+* add preview content ([#75](https://github.com/etherdata-blockchain/etherdata-sdk/issues/75)) ([2d61587](https://github.com/etherdata-blockchain/etherdata-sdk/commit/2d6158722852f8f91fc7aed735c234f6c768751b))
+* python is exist problem ([#76](https://github.com/etherdata-blockchain/etherdata-sdk/issues/76)) ([df45f68](https://github.com/etherdata-blockchain/etherdata-sdk/commit/df45f68d4cb86649eaab0f69d3030ef8a3eddc10))
+
 ## [5.1.2](https://github.com/etherdata-blockchain/etherdata-sdk/compare/v5.1.1...v5.1.2) (2022-04-25)
 
 
