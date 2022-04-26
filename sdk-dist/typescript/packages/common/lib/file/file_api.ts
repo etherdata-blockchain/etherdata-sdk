@@ -11,6 +11,10 @@ export interface DownloadProps {
   fileId: string;
 }
 
+export interface PreviewProps {
+  fileId: string;
+}
+
 export interface FileAPI {
   url: string;
 
