@@ -11,7 +11,7 @@
     "docs": "typedoc --out docs/js /Users/sirily11/Desktop/etd/etherdata-sdk/sdk-dist/typescript"
   },
   "dependencies": {
-    "prettier": "^2.7.0"
+    "prettier": "^2.7.1"
   },
   "devDependencies": {
     "release-it": "^15.0.0",
