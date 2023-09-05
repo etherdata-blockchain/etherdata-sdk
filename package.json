@@ -16,7 +16,7 @@
   "devDependencies": {
     "release-it": "^16.1.5",
     "typescript": "^5.2.2",
-    "@release-it/conventional-changelog": "^7.0.0",
+    "@release-it/conventional-changelog": "^7.0.1",
     "@release-it/bumper": "^5.1.0"
   }
 }
