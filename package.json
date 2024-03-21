@@ -11,12 +11,12 @@
     "docs": "typedoc --out docs/js /Users/sirily11/Desktop/etd/etherdata-sdk/sdk-dist/typescript"
   },
   "dependencies": {
-    "prettier": "^2.6.2"
+    "prettier": "^3.2.5"
   },
   "devDependencies": {
-    "release-it": "^14.14.2",
-    "typescript": "^4.6.3",
-    "@release-it/conventional-changelog": "^4.3.0",
-    "@release-it/bumper": "^3.0.1"
+    "release-it": "^17.1.1",
+    "typescript": "^5.4.3",
+    "@release-it/conventional-changelog": "^8.0.1",
+    "@release-it/bumper": "^6.0.1"
   }
 }
