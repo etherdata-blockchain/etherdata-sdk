@@ -338,10 +338,10 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@release-it/bumper@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@release-it/bumper/-/bumper-7.0.1.tgz#73633fa47261f4a551756bcf54c8c14704e9e5c3"
-  integrity sha512-cxupQlP6Ip+O8EXm1mR4atmlGEBrinOS+eqwOWoWo5PhK5yb+BfH+yz3OEoJtfzI6MzPcRIMgrQlVmSHq58yQA==
+"@release-it/bumper@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@release-it/bumper/-/bumper-7.0.2.tgz#cd339a7854db8544cf01f1c5b0b0812c04695f84"
+  integrity sha512-OHcdArfUgSW//1GuzcjWOW2Sbx3tz9vgMyi2KQv8SEeLeWjIMAM2IxR+bXzbC2q40ACSa/cQRQE0HfHCMfkYwg==
   dependencies:
     "@iarna/toml" "^3.0.0"
     cheerio "^1.0.0"
@@ -350,7 +350,7 @@
     ini "^5.0.0"
     js-yaml "^4.1.0"
     lodash-es "^4.17.21"
-    semver "^7.6.3"
+    semver "^7.7.1"
 
 "@release-it/conventional-changelog@^10.0.0":
   version "10.0.0"
@@ -2220,6 +2220,11 @@ semver@^7.6.0:
   version "7.6.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.6.2.tgz#1e3b34759f896e8f14d6134732ce798aeb0c6e13"
   integrity sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==
+
+semver@^7.7.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.1.tgz#abd5098d82b18c6c81f6074ff2647fd3e7220c9f"
+  integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
 
 shebang-command@^2.0.0:
   version "2.0.0"
