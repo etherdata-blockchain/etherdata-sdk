@@ -314,10 +314,10 @@
   resolved "https://registry.yarnpkg.com/@phun-ky/typeof/-/typeof-1.2.5.tgz#6a2f218a940d681042cfa98240fbce3c5b84e93f"
   integrity sha512-hlymcHDbmYiRGutF/xWd3tpB57O3XfIbr9J4Blvqhb2rIJ1bfzn4CIS2gT1zy+QUm2Z+tgGkX6qNy1K+yFLd1g==
 
-"@release-it/bumper@^7.0.4":
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/@release-it/bumper/-/bumper-7.0.4.tgz#6bec55d73eebd7af74d98ceec0752e3eac28aba6"
-  integrity sha512-t4N6Eh28j1oDYE/r0LeP8yQBJ+NWoxQg/w7wm4/+yEeJc5mPmwTmqvPzlA6hjCi2aC7NJAFLzHdRyxwtRBpqWg==
+"@release-it/bumper@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/@release-it/bumper/-/bumper-7.0.5.tgz#8c161ab427f896b32eec2db479263483b38aa8a9"
+  integrity sha512-HCFMqDHreLYg4jjTWL//pW1GzZZMn3p7HDbwS2y7y5m0L6p8hEaOEixC3tEzwyVV7VP1VGjqxMvxfa360q8+Tg==
   dependencies:
     "@iarna/toml" "^3.0.0"
     cheerio "^1.0.0"
