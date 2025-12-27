@@ -14,7 +14,7 @@
     "prettier": "^3.7.4"
   },
   "devDependencies": {
-    "release-it": "^19.2.1",
+    "release-it": "^19.2.2",
     "typescript": "^5.9.3",
     "@release-it/conventional-changelog": "^10.0.4",
     "@release-it/bumper": "^7.0.5"
